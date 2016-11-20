@@ -1,0 +1,36 @@
+{
+  "name": "gaucho",
+  "version": "0.1.0",
+  "description": "A graphical task runner powered by Yerbamate",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.4.4",
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.97.8",
+    "vue": "^2.0.8",
+    "yerbamate": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angrykoala/gaucho.git"
+  },
+  "keywords": [
+    "electron",
+    "task",
+    "runner",
+    "yerbamate",
+    "gui",
+    "graphical"
+  ],
+  "author": "angrykoala <demiurgosoft@hotmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/angrykoala/gaucho/issues"
+  },
+  "homepage": "https://github.com/angrykoala/gaucho#readme"
+}

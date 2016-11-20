@@ -1,0 +1,4 @@
+{
+    "Hello world": "echo Hello",
+    "Read File": "cat ./package.json"
+}
