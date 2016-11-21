@@ -1,4 +1,4 @@
 {
-    "Hello world": "echo Hello",
+    "Start": "npm start",
     "Read File": "cat ./package.json"
 }

@@ -16,18 +16,21 @@ Vue.component('run-card', {
         return {
             output: [],
             status: taskStatus.idle,
-            statusColor: ""
+            statusColor: "",
+            running: false,
+            proc: null
         };
     },
     template: `
     
     <li class="run-card">
         <div class="collapsible-header">
-            <span class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}">{{status}}</i></span>{{title}} 
+            <span class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{status}}</i></span>{{title}} 
         </div>
       
     <div class="collapsible-body">
-        <a class="waves-effect waves-light btn run-buton" v-on:click="runClick(task)">{{title}}</a>
+        <a class="waves-effect waves-light btn run-button" v-on:click="run(task)">{{title}}</a>
+        <a class="waves-effect waves-light btn run-button" v-on:click="stop(task)" v-bind:class="{ disabled: !running }">Stop</a>
         <div class="run-output">
             <p v-for="log in output">
             {{log}}
@@ -37,26 +40,30 @@ Vue.component('run-card', {
   </li>
   `,
     methods: {
-        runClick: function(task) {
-            this.status=taskStatus.running;
-            this.statusColor="";
+        run: function(task) {
+            this.status = taskStatus.running;
+            this.statusColor = "";
+            this.running = true;
             this.output = [];
-            yerbamate.run(task, ".", {
+            this.proc = yerbamate.run(task, ".", {
                     stderr: this.print,
                     stdout: this.print
                 },
                 (code, out, errs) => {
-                    if (!yerbamate.successCode(code)){
-                        this.status=taskStatus.error;
-                        this.statusColor="red";
-                    }else{
-                        this.status=taskStatus.ok;
-                        this.statusColor="green";
+                    this.running = false;
+                    if (!yerbamate.successCode(code)) {
+                        this.status = taskStatus.error;
+                        this.statusColor = "red";
+
+                    } else {
+                        this.status = taskStatus.ok;
+                        this.statusColor = "green";
                     }
                     if (errs.length > 0) console.log("Errors in process:" + errs.length);
-                    
-                    //console.log("Output: " + out[0]);
                 });
+        },
+        stop: function() {
+            yerbamate.stop(this.proc);
         },
         print: function(out) {
             this.output.push(out);
