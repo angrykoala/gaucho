@@ -11,10 +11,10 @@ const taskStatus = {
 
 
 Vue.component('run-card', {
-    props: ['task', 'title'],
+    props: ['task', 'title', 'path'],
     data: () => {
         return {
-            output: [],
+            output: "",
             status: taskStatus.idle,
             statusColor: "",
             running: false,
@@ -22,30 +22,29 @@ Vue.component('run-card', {
         };
     },
     template: `
-    
     <li class="run-card">
         <div class="collapsible-header">
-            <span class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{status}}</i></span>{{title}} 
+            <span class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{status}}</i></span>{{title}}
         </div>
-      
+
     <div class="collapsible-body">
-        <a class="waves-effect waves-light btn run-button" v-on:click="run(task)">{{title}}</a>
+        <a class="waves-effect waves-light btn run-button" v-on:click="run(task,path)"  v-bind:class="{ disabled: running }">{{title}}</a>
         <a class="waves-effect waves-light btn run-button" v-on:click="stop(task)" v-bind:class="{ disabled: !running }">Stop</a>
         <div class="run-output">
-            <p v-for="log in output">
-            {{log}}
+            <p>
+            {{output}}
             </p>
         </div>
     </div>
   </li>
   `,
     methods: {
-        run: function(task) {
+        run: function(task,path) {
             this.status = taskStatus.running;
             this.statusColor = "";
             this.running = true;
-            this.output = [];
-            this.proc = yerbamate.run(task, ".", {
+            this.output = "";
+            this.proc = yerbamate.run(task, path, {
                     stderr: this.print,
                     stdout: this.print
                 },
@@ -59,14 +58,19 @@ Vue.component('run-card', {
                         this.status = taskStatus.ok;
                         this.statusColor = "green";
                     }
-                    if (errs.length > 0) console.log("Errors in process:" + errs.length);
+                    if (errs.length > 0) console.log("Errors in process:",errs);
                 });
         },
         stop: function() {
             yerbamate.stop(this.proc);
         },
         print: function(out) {
-            this.output.push(out);
+            this.output+="\n"+out;
+            this.output=this.output.slice(-10000);
+            /*let outputElement=this.$el.querySelector(".run-output");
+            console.log(outputElement.scrollHeight);
+            outputElement.scrollTop = outputElement.scrollHeight;
+            console.log(outputElement.scrollTop);*/
 
         }
     }

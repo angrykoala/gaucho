@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Gaucho Task Runner</title>
-    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <link href="./resources/material_icons/material-icons.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="./resources/styles.css" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script>
@@ -22,14 +21,14 @@
 <body>
     <h1>Gaucho</h1>
     <blockquote>
-      Powered by Yerbamate
+        Powered by Yerbamate
     </blockquote>
     <div id="app">
         <ul class="collapsible" data-collapsible="expandable">
-            <template v-for="(task, title) in tasks">
-                <run-card v-bind:title="title" v-bind:task="task"></run-card>
+            <template v-for="(task,title) in tasks">
+                <run-card v-bind:title="title" v-bind:path="task.path || '.'" v-bind:task="task.command"></run-card>
             </template>
-        </ul>    
+        </ul>
         <script type="text/javascript" src="./app/main.js"></script>
     </div>
 </body>

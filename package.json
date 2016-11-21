@@ -8,7 +8,7 @@
     "jquery": "^3.1.1",
     "materialize-css": "^0.97.8",
     "vue": "^2.0.8",
-    "yerbamate": "^1.1.1"
+    "yerbamate": "^1.1.2"
   },
   "devDependencies": {},
   "scripts": {

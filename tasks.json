@@ -1,4 +1,5 @@
 {
-    "Start": "npm start",
-    "Read File": "cat ./package.json"
+    "Hello World": {
+        "command": "cat package.json"
+    }
 }

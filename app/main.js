@@ -1,10 +1,9 @@
-const yerbamate = require('yerbamate');
 require('./app/components/run-card');
-var tasks = require('./tasks.json');
+const tasks = require('./tasks.json');
 
-var app = new Vue({
+const app = new Vue({
     el: '#app',
     data: {
         tasks: tasks
     }
-})
+});
