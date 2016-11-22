@@ -1,38 +1,31 @@
 "use strict";
 
 const yerbamate = require('yerbamate');
-
-const taskStatus = {
-    idle: "do_not_disturb_off",
-    error: "error",
-    running: "autorenew",
-    ok: "check_circle"
-};
+const taskStatus = require('../tasks').taskStatus;
 
 
 Vue.component('run-card', {
-    props: ['task', 'title', 'path'],
+    props: ['task'],
     data: () => {
         return {
             output: "",
-            status: taskStatus.idle,
-            statusColor: "",
-            running: false,
-            proc: null
+            //status: this.task.status,
+            //statusColor: this.getStatusColor(this.task.status),
+            //running: this.task.isRunning()
         };
     },
     template: `
     <li class="run-card">
         <div class="collapsible-header row">
          <div class="col s6">
-            <strong>{{title}}</strong>
+            <strong>{{task.title}}</strong>
             </div>
             <div class="col s5">
             <a class="waves-effect waves-light btn run-button" v-on:click="run" v-show="!running">Run</a>
             <a class="waves-effect waves-light btn run-button" v-on:click="stop" v-show="running">Stop</a>
             </div>
             <div class="col s1">
-            <div class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{status}}</i></div>
+            <div class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{task.status}}</i></div>
             </div>
         </div>
 
@@ -47,31 +40,12 @@ Vue.component('run-card', {
   `,
     methods: {
         run: function(ev) {
-            if(ev) ev.stopPropagation();
-            this.status = taskStatus.running;
-            this.statusColor = "";
-            this.running = true;
-            this.output = "";
-            this.proc = yerbamate.run(this.task, this.path, {
-                    stderr: this.print,
-                    stdout: this.print
-                },
-                (code, out, errs) => {
-                    this.running = false;
-                    if (!yerbamate.successCode(code)) {
-                        this.status = taskStatus.error;
-                        this.statusColor = "red";
-
-                    } else {
-                        this.status = taskStatus.ok;
-                        this.statusColor = "green";
-                    }
-                    if (errs.length > 0) console.log("Errors in process:", errs);
-                });
+            if (ev) ev.stopPropagation();
+            this.task.run(this.print);
         },
         stop: function(ev) {
-            if(ev) ev.stopPropagation();
-            yerbamate.stop(this.proc);
+            if (ev) ev.stopPropagation();
+            this.task.stop();
         },
         print: function(out) {
             this.output += "\n" + out;
@@ -81,6 +55,25 @@ Vue.component('run-card', {
             outputElement.scrollTop = outputElement.scrollHeight;
             console.log(outputElement.scrollTop);*/
 
+        }
+    },
+    computed: {
+        statusColor: function() {
+            switch (this.task.status) {
+                case taskStatus.idle:
+                    return "black";
+                case taskStatus.error:
+                    return "red";
+                case taskStatus.running:
+                    return "blue";
+                case taskStatus.ok:
+                    return "green";
+                default:
+                    return "grey";
+            }
+        },
+        running: function(){
+            return this.task.isRunning();
         }
     }
 });
