@@ -1,12 +1,20 @@
 {
     "suites": [{
-        "title": "Suite 1",
+        "title": "My Project",
         "tasks": [{
-            "title": "Hello World",
-            "command": "cat package.json"
+            "title": "Install",
+            "command": "npm install"
         }, {
-            "title": "Second task",
-            "command": "cat package.json"
+            "title": "Test",
+            "command": "npm test"
+        }, {
+            "title": "Another awesome task",
+            "command": "echo 'The result of my awesome task'"
+
+        }, {
+            "title": "Start",
+            "command": "npm start"
+
         }]
     }, {
         "title": "Suite 2",
