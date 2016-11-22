@@ -19,17 +19,23 @@
 </head>
 
 <body>
-    <h1>Gaucho</h1>
+    <h3>Gaucho</h3>
     <blockquote>
         Powered by Yerbamate
     </blockquote>
     <div id="app">
-        <ul class="collapsible" data-collapsible="accordion">
-            <template v-for="(task,title) in tasks">
-                <run-card v-bind:title="title" v-bind:path="task.path || '.'" v-bind:task="task.command"></run-card>
+        <ul class="tabs">
+            <template v-for="(suite,index) in suites">
+                <li class="tab"><a v-bind:href="'#tab'+index"><strong>{{suite.title}}<strong></a></li>
             </template>
+            <li class="tab"><a href="newtab"><span class="material-icons">add</span></a></li>
         </ul>
+        <template v-for="(suite,index) in suites">
+            <task-suite v-bind:suite="suite" v-bind:id="'tab'+index"></task-suite>
+        </template>
+
         <script type="text/javascript" src="./app/main.js"></script>
+
     </div>
 </body>
 

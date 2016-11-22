@@ -1,9 +1,10 @@
 require('./app/components/run-card');
-const tasks = require('./tasks.json');
+require('./app/components/task-suite');
+const suites = require('./tasks.json');
 
 const app = new Vue({
     el: '#app',
     data: {
-        tasks: tasks
+        suites: suites.suites
     }
 });

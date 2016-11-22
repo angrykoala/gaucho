@@ -13,3 +13,7 @@
     margin:0;
     border:1;
 }
+
+.tab .material-icons{
+    vertical-align: middle;
+}

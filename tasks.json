@@ -1,8 +1,18 @@
 {
-    "Hello World": {
-        "command": "cat package.json"
-    },
-    "Gedit":{
-        "command": "gedit"
-    }
+    "suites": [{
+        "title": "Suite 1",
+        "tasks": [{
+            "title": "Hello World",
+            "command": "cat package.json"
+        }, {
+            "title": "Second task",
+            "command": "cat package.json"
+        }]
+    }, {
+        "title": "Suite 2",
+        "tasks": [{
+            "title": "Hello World 2",
+            "command": "echo 'hello world'"
+        }]
+    }]
 }
