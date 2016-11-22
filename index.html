@@ -24,7 +24,7 @@
         Powered by Yerbamate
     </blockquote>
     <div id="app">
-        <ul class="collapsible" data-collapsible="expandable">
+        <ul class="collapsible" data-collapsible="accordion">
             <template v-for="(task,title) in tasks">
                 <run-card v-bind:title="title" v-bind:path="task.path || '.'" v-bind:task="task.command"></run-card>
             </template>

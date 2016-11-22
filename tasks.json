@@ -1,5 +1,8 @@
 {
     "Hello World": {
         "command": "cat package.json"
+    },
+    "Gedit":{
+        "command": "gedit"
     }
 }

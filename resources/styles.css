@@ -1,9 +1,15 @@
 .run-output{
     overflow-y: auto;
     height: 200px;
-    background-color: #eeeeee
+    background-color: #eeeeee;
 }
 
 .run-button{
-    margin: 10px 10px 10px 10px;
+    float: right;
+    margin-top: 2px;
+}
+.run-card .collapsible-header{
+    padding:10px;
+    margin:0;
+    border:1;
 }
