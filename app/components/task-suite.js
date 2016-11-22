@@ -1,3 +1,5 @@
+"use strict";
+
 Vue.component('task-suite', {
     props: ['suite', 'id'],
     data: () => {

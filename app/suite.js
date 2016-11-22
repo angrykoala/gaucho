@@ -1,3 +1,5 @@
+"use strict";
+
 class Suite {
     constructor(title) {
         this.title = title || "";

@@ -1,6 +1,5 @@
 "use strict";
 
-const yerbamate = require('yerbamate');
 const taskStatus = require('../tasks').taskStatus;
 
 
