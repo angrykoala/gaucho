@@ -1,6 +1,8 @@
 "use strict";
 
-Vue.component('task-suite', {
+const taskCard = require('./task-card')
+
+module.exports = {
     props: ['suite', 'id'],
     data: () => {
         return {
@@ -11,7 +13,7 @@ Vue.component('task-suite', {
         <div v-bind:id="id">
             <ul class="collapsible" data-collapsible="accordion">
                 <template v-for="task in suite.tasks">
-                    <run-card v-bind:task="task"></run-card>
+                    <task-card v-bind:task="task"></task-card>
                 </template>
             </ul>
         </div>
@@ -20,5 +22,8 @@ Vue.component('task-suite', {
     methods: {
 
 
+    },
+    components: {
+        "task-card": taskCard
     }
-});
+}

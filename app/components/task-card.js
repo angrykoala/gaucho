@@ -3,7 +3,7 @@
 const taskStatus = require('../tasks').taskStatus;
 
 
-Vue.component('run-card', {
+module.exports= {
     props: ['task'],
     data: () => {
         return {
@@ -75,4 +75,4 @@ Vue.component('run-card', {
             return this.task.isRunning();
         }
     }
-});
+}
