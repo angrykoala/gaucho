@@ -19,7 +19,7 @@ class Task {
         this.process = null;
     }
 
-    run(stdout) {
+    run(stdout,done) {
         this.status = taskStatus.running;
         this.proc = yerbamate.run(this.command, this.path, {
                 stderr: stdout,
@@ -27,6 +27,7 @@ class Task {
             },
             (code) => {
                 this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
+                done();
             });
     }
 

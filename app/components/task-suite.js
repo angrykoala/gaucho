@@ -1,6 +1,6 @@
 "use strict";
 
-const taskCard = require('./task-card')
+const taskCard = require('./task-card');
 
 module.exports = {
     props: ['suite', 'id'],

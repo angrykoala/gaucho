@@ -3,11 +3,12 @@
 const taskStatus = require('../tasks').taskStatus;
 
 
-module.exports= {
+module.exports = {
     props: ['task'],
     data: () => {
         return {
             output: "",
+            cleanOutput: false
         };
     },
     template: `
@@ -37,19 +38,31 @@ module.exports= {
     methods: {
         run: function(ev) {
             if (ev) ev.stopPropagation();
-            this.task.run(this.print);
+            this.task.run(this.print, () => {
+                this.cleanOutput = true;
+            });
         },
         stop: function(ev) {
             if (ev) ev.stopPropagation();
             this.task.stop();
         },
         print: function(out) {
-            this.output += "\n" + out;
+            if (this.cleanOutput) {
+                this.output = "";
+                this.cleanOutput = false;
+            } else this.output = "\n";
+            this.output += out;
             this.output = this.output.slice(-10000);
+            this.autoScroll();
 
-            var container = this.$el.querySelector(".run-output");
-            container.scrollTop = container.scrollHeight;
-
+        },
+        autoScroll() {
+            let container = this.$el.querySelector(".run-output");
+            if (container.scrollTop === container.scrollHeight - container.clientHeight) {
+                this.$nextTick(() => {
+                    container.scrollTop = container.scrollHeight;
+                });
+            }
         }
     },
     computed: {
@@ -67,7 +80,7 @@ module.exports= {
                     return "grey";
             }
         },
-        running: function(){
+        running: function() {
             return this.task.isRunning();
         }
     }
