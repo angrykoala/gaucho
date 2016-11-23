@@ -5,8 +5,8 @@
             "title": "Install",
             "command": "npm install"
         }, {
-            "title": "Test",
-            "command": "npm test"
+            "title": "Get Package.json",
+            "command": "cat package.json"
         }, {
             "title": "Another awesome task",
             "command": "echo 'The result of my awesome task'"

@@ -8,9 +8,6 @@ module.exports= {
     data: () => {
         return {
             output: "",
-            //status: this.task.status,
-            //statusColor: this.getStatusColor(this.task.status),
-            //running: this.task.isRunning()
         };
     },
     template: `
@@ -49,10 +46,9 @@ module.exports= {
         print: function(out) {
             this.output += "\n" + out;
             this.output = this.output.slice(-10000);
-            /*let outputElement=this.$el.querySelector(".run-output");
-            console.log(outputElement.scrollHeight);
-            outputElement.scrollTop = outputElement.scrollHeight;
-            console.log(outputElement.scrollTop);*/
+
+            var container = this.$el.querySelector(".run-output");
+            container.scrollTop = container.scrollHeight;
 
         }
     },
@@ -75,4 +71,4 @@ module.exports= {
             return this.task.isRunning();
         }
     }
-}
+};

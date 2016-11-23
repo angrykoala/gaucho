@@ -26,4 +26,4 @@ module.exports = {
     components: {
         "task-card": taskCard
     }
-}
+};
