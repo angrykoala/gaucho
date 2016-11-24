@@ -16,9 +16,15 @@
     </script>
     <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+    });
+    </script>
 </head>
 
 <body>
+    <script type="text/javascript" src="./app.js"></script>
     <h3>Gaucho</h3>
     <blockquote>
         Powered by Yerbamate
@@ -26,16 +32,13 @@
     <div id="app">
         <ul class="tabs">
             <template v-for="(suite,index) in suites">
-                <li class="tab"><a v-bind:href="'#tab'+index"><strong>{{suite.title}}</strong></a></li>
+                <li class="tab"><a v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }"><strong>{{suite.title}}</strong></a></li>
             </template>
-            <li class="tab"><a href="newtab"><span class="material-icons">add</span></a></li>
+            <li class="tab"><a href="#newtab"><span class="material-icons">add</span></a></li>
         </ul>
         <template v-for="(suite,index) in suites">
             <task-suite v-bind:suite="suite" v-bind:id="'tab'+index"></task-suite>
         </template>
-
-        <script type="text/javascript" src="./app.js"></script>
-
     </div>
 </body>
 

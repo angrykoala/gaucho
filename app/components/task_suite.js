@@ -1,6 +1,6 @@
 "use strict";
 
-const taskCard = require('./task-card');
+const taskCard = require('./task_card');
 
 module.exports = {
     props: ['suite', 'id'],
@@ -18,7 +18,6 @@ module.exports = {
             </ul>
         </div>
     `,
-
     methods: {
 
 

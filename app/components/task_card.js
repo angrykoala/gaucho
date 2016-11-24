@@ -1,6 +1,6 @@
 "use strict";
 
-const taskStatus = require('../tasks').taskStatus;
+const taskStatus = require('../task').taskStatus;
 
 
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
         </div>
     </div>
   </li>
-  `,
+  `,     
     methods: {
         run: function(ev) {
             if (ev) ev.stopPropagation();
