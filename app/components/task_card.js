@@ -14,15 +14,16 @@ module.exports = {
     template: `
     <li class="run-card">
         <div class="collapsible-header row">
-         <div class="col s6">
-            <strong>{{task.title}}</strong>
-            </div>
-            <div class="col s5">
-            <a class="waves-effect waves-light btn run-button" v-on:click="run" v-show="!running">Run</a>
-            <a class="waves-effect waves-light btn run-button" v-on:click="stop" v-show="running">Stop</a>
-            </div>
-            <div class="col s1">
-            <div class="badge"><i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{task.status}}</i></div>
+            <div class="col s6">
+                    <strong>{{task.title}}</strong>
+                </div>
+                <div class="col s5">
+                    <a class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
+                </div>
+                <div class="col s1">
+                <div class="badge">
+                    <i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{task.status}}</i>
+                </div>
             </div>
         </div>
 
@@ -36,14 +37,17 @@ module.exports = {
   </li>
   `,     
     methods: {
-        run: function(ev) {
-            if (ev) ev.stopPropagation();
+        toggleRun: function(ev){
+            ev.stopPropagation();
+            if(this.running) this.stop();
+            else this.run();
+        },
+        run: function() {
             this.task.run(this.print, () => {
                 this.cleanOutput = true;
             });
         },
-        stop: function(ev) {
-            if (ev) ev.stopPropagation();
+        stop: function() {
             this.task.stop();
         },
         print: function(out) {

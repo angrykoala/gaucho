@@ -1,19 +1,39 @@
-.run-output{
+.run-output {
     overflow-y: auto;
     height: 200px;
     background-color: #eeeeee;
 }
 
-.run-button{
+.run-button {
     float: right;
     margin-top: 2px;
 }
-.run-card .collapsible-header{
-    padding:10px;
-    margin:0;
-    border:1;
+
+.run-card .collapsible-header {
+    padding: 10px;
+    margin: 0;
+    border: 1;
 }
 
-.tab .material-icons{
+.tab .material-icons {
     vertical-align: middle;
+}
+
+.add-task-header {
+    background-color: #efefef;
+}
+
+.add-task-header .material-icons {
+    vertical-align: middle;
+}
+
+.add-task-body{
+    padding-bottom: 10px;
+}
+.add-task-body input{
+    margin-bottom: 0;
+}
+.add-task-button{
+    margin-top: 20px;
+    
 }

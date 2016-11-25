@@ -1,6 +1,7 @@
 "use strict";
 
 const taskCard = require('./task_card');
+const addTask=require('./add_task');
 
 module.exports = {
     props: ['suite', 'id'],
@@ -15,14 +16,19 @@ module.exports = {
                 <template v-for="task in suite.tasks">
                     <task-card v-bind:task="task"></task-card>
                 </template>
+                <add-task></add-task>
             </ul>
         </div>
     `,
     methods: {
-
+        addTask: function(){
+            
+            
+        }
 
     },
     components: {
-        "task-card": taskCard
+        "task-card": taskCard,
+        "add-task": addTask
     }
 };
