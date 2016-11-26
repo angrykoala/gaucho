@@ -14,18 +14,21 @@ class Task {
     constructor(title, path, command) {
         this.title = title || "";
         this.path = path || ".";
+        if(this.path.trim()==="") this.path=".";
         this.command = command || "";
         this.status = taskStatus.idle;
         this.process = null;
     }
 
     run(stdout,done) {
+        console.log(this.command,this.path);
         this.status = taskStatus.running;
         this.proc = yerbamate.run(this.command, this.path, {
                 stderr: stdout,
                 stdout: stdout
             },
             (code) => {
+                console.log("CODE:",code);
                 this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
                 done();
             });

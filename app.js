@@ -18,7 +18,6 @@ config.loadConfig((err, suites) => {
         mounted() {
             meterialUpdate.updateCollapsible();
             meterialUpdate.updateTabs();
-
         }
     });
 });

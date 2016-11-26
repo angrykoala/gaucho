@@ -8,5 +8,8 @@ module.exports = {
     },
     updateTabs() {
         $('ul.tabs').tabs();
+    },
+    updateInput(){
+        Materialize.updateTextFields();
     }
 };

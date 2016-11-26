@@ -29,9 +29,7 @@ module.exports = {
 
     <div class="collapsible-body">
         <div class="run-output">
-            <p>
-            {{output}}
-            </p>
+            <pre>{{output}}</pre>
         </div>
     </div>
   </li>
@@ -51,12 +49,13 @@ module.exports = {
             this.task.stop();
         },
         print: function(out) {
+            console.log(out);
             if (this.cleanOutput) {
                 this.output = "";
                 this.cleanOutput = false;
-            } else this.output = "\n";
+            }
             this.output += out;
-            this.output = this.output.slice(-10000);
+            this.output = this.output.slice(-10000).trim();
             this.autoScroll();
 
         },
