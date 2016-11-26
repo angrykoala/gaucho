@@ -21,7 +21,6 @@ class Task {
     }
 
     run(stdout,done) {
-        console.log(this.command,this.path);
         this.status = taskStatus.running;
         this.proc = yerbamate.run(this.command, this.path, {
                 stderr: stdout,
@@ -42,6 +41,15 @@ class Task {
 
     isRunning() {
         return this.status === taskStatus.running;
+    }
+    
+    toJSON(){
+        let res={
+            title:this.title,
+            command: this.command,
+        }
+        if(this.path!==".") res.path=this.path;
+        return res;
     }
 }
 

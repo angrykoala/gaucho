@@ -2,6 +2,7 @@
 
 const TaskCard = require('./task_card');
 const TaskInput = require('./task_input');
+const config = require('../config');
 
 module.exports = {
     props: ['suite', 'id'],
@@ -23,6 +24,7 @@ module.exports = {
     methods: {
         addTask: function(task) {
             this.suite.addTask(task);
+            config.saveConfig();
         }
 
     },

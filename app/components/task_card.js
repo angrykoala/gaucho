@@ -49,7 +49,6 @@ module.exports = {
             this.task.stop();
         },
         print: function(out) {
-            console.log(out);
             if (this.cleanOutput) {
                 this.output = "";
                 this.cleanOutput = false;
