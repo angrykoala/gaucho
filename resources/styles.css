@@ -11,6 +11,7 @@
 .run-button {
     float: right;
     margin-top: 2px;
+    width: 90px;
 }
 
 .run-card .collapsible-header {
@@ -43,6 +44,6 @@
     margin-top: 20px;
 }
 
-.suite-tab{
-    margin-top: 48px;    
+.suite-tab {
+    margin-top: 48px;
 }
