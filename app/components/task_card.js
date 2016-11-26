@@ -8,19 +8,19 @@ module.exports = {
     data: () => {
         return {
             output: "",
-            cleanOutput: false
+            cleanOutput: false,
         };
     },
     template: `
     <li class="run-card">
         <div class="collapsible-header row">
             <div class="col s6">
-                    <strong>{{task.title}}</strong>
-                </div>
-                <div class="col s5">
-                    <a class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
-                </div>
-                <div class="col s1">
+                <strong class="truncate">{{task.title}}</strong>                
+            </div>
+            <div class="col s5">
+                <a class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
+            </div>
+            <div class="col s1">
                 <div class="badge">
                     <i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{task.status}}</i>
                 </div>

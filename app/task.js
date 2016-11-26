@@ -47,7 +47,7 @@ class Task {
         let res={
             title:this.title,
             command: this.command,
-        }
+        };
         if(this.path!==".") res.path=this.path;
         return res;
     }
