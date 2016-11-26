@@ -1,10 +1,11 @@
 "use strict";
 
 const config = require('./app/config');
-const meterialUpdate = require('./app/material_update');
+const materialUpdate = require('./app/material_update');
 
 const components = {
-    "task-suite": require('./app/components/task_suite')
+    "task-suite": require('./app/components/task_suite'),
+    "navbar": require('./app/components/navbar')
 };
 
 config.loadConfig((err, suites) => {
@@ -16,8 +17,7 @@ config.loadConfig((err, suites) => {
         },
         components: components,
         mounted() {
-            meterialUpdate.updateCollapsible();
-            meterialUpdate.updateTabs();
+            materialUpdate.init();
         }
     });
 });

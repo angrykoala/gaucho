@@ -6,13 +6,8 @@ const config = require('../config');
 
 module.exports = {
     props: ['suite', 'id'],
-    data() {
-        return {
-
-        };
-    },
     template: `
-        <div v-bind:id="id">
+        <div v-bind:id="id" class="suite-tab">
             <ul class="collapsible" data-collapsible="accordion">
                 <template v-for="task in suite.tasks">
                     <task-card v-bind:task="task"></task-card>
