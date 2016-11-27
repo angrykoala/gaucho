@@ -1,7 +1,7 @@
 "use strict";
 
 const config = require('./app/config');
-const materialUpdate = require('./app/material_update');
+const Material = require('./app/materialize');
 
 const components = {
     "task-suite": require('./app/components/task_suite'),
@@ -10,14 +10,19 @@ const components = {
 
 config.loadConfig((err, suites) => {
     if (err) console.error(err);
-    const app = new Vue({
+    const app = new Vue({ // jshint ignore:line
         el: '#app',
         data: {
             suites: suites
         },
         components: components,
         mounted() {
-            materialUpdate.init();
+            Material.init();
+        },
+        updated() {
+            this.$nextTick(() => {
+                Material.init();
+            });
         }
     });
 });

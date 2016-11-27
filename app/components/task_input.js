@@ -1,5 +1,5 @@
 const Task = require('../task');
-const MaterialUpdate = require('../material_update');
+const Material = require('../materialize');
 
 module.exports = {
     data() {
@@ -48,7 +48,7 @@ module.exports = {
         clear() {
             this.title = this.command = this.path = "";
             this.$nextTick(() => {
-                MaterialUpdate.updateInput();
+                Material.updateInput();
             });
         }
 
