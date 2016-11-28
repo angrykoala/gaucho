@@ -10,6 +10,10 @@ class Suite {
         this.tasks.push(task);
     }
 
+    removeTask(index) {
+        this.tasks.splice(index, 1);
+    }
+
     toJSON() {
         return {
             title: this.title,

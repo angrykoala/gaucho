@@ -3,6 +3,7 @@
 const Suite = require('../suite');
 const config = require('../config');
 const Material = require('../materialize');
+const AppStatus=require('../app_status');
 
 module.exports = {
     props: ['suites'],
@@ -10,7 +11,8 @@ module.exports = {
         return {
             output: "",
             cleanOutput: false,
-            selectedTab: 0
+            selectedTab: 0,
+            AppStatus: AppStatus
         };
     },
     template: `
@@ -19,8 +21,9 @@ module.exports = {
             <div class="nav-wrapper">
                 <a class="brand-logo left">Gaucho</a>
                 <ul class="right">
-                    <li><a v-on:click="addSuite">Create Suite</a></li>
-                    <li><a v-on:click="deleteSuite">Delete Current Tab</a></li>
+                    <li><a v-on:click="addSuite" v-if="AppStatus.editMode">Create Suite</a></li>
+                    <li><a v-on:click="deleteSuite" v-if="AppStatus.editMode">Delete Current Suite</a></li>
+                    <li><a v-on:click="toggleEdit"><i class="material-icons small">mode_edit</i></a>
                 </ul>
 
                 <ul id="navbar-tabs" class="tabs tabs-transparent">
@@ -56,6 +59,9 @@ module.exports = {
                 Material.selectTab("#navbar-tabs", 'tab' + index);
                 this.selectedTab = index;
             });
+        },
+        toggleEdit(){
+            this.AppStatus.editMode=!this.AppStatus.editMode;
         }
     }
 };

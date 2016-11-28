@@ -1,18 +1,1 @@
-{
-    "suites": [{
-        "title": "Bash Examples",
-        "tasks": [{
-            "title": "Hello World (bash)",
-            "command": "echo hello world"
-        }, {
-            "title": "Read file (bash)",
-            "command": "cat package.json"
-        }]
-    }, {
-        "title": "Node Examples",
-        "tasks": [{
-            "title": "Hello World (node)",
-            "command": "node -e \"console.log('hello')\""
-        }]
-    }]
-}
+{"suites":[{"title":"Bash Examples","tasks":[{"title":"Hello World (bash)","command":"echo hello world"},{"title":"Read file (bash)","command":"cat package.json"}]},{"title":"Suite 2","tasks":[]}]}

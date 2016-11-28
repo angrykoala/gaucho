@@ -1,6 +1,7 @@
 "use strict";
 
 const taskStatus = require('../task').taskStatus;
+const AppStatus = require('../app_status');
 
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
         return {
             output: "",
             cleanOutput: false,
+            AppStatus: AppStatus
         };
     },
     template: `
@@ -18,7 +20,8 @@ module.exports = {
                 <strong class="truncate">{{task.title}}</strong>                
             </div>
             <div class="col s5">
-                <a class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
+                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="deleteTask">Delete</a>
+                <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
                 <div class="badge">
@@ -33,12 +36,18 @@ module.exports = {
         </div>
     </div>
   </li>
-  `,     
+  `,
     methods: {
-        toggleRun: function(ev){
+        toggleRun: function(ev) {
             ev.stopPropagation();
-            if(this.running) this.stop();
+            if (this.running) this.stop();
             else this.run();
+        },
+        deleteTask(ev) {
+            ev.stopPropagation();
+            if (this.running) this.stop();
+            this.$emit('remove');
+
         },
         run: function() {
             this.task.run(this.print, () => {

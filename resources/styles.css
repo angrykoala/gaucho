@@ -14,6 +14,17 @@
     width: 90px;
 }
 
+.delete-button {
+    float: right;
+    margin-top: 2px;
+    width: 110px;
+    background-color: red;
+}
+
+.delete-button:hover{
+    background-color: #af0000;
+}
+
 .run-card .collapsible-header {
     padding: 10px;
     margin: 0;
