@@ -1,7 +1,7 @@
 "use strict";
 
 //Methods interface with jQuery
-
+/* jshint ignore:start */
 module.exports = {
     init() {
         this.updateCollapsible();
@@ -11,10 +11,10 @@ module.exports = {
 
     },
     updateCollapsible() {
-        $(".collapsible").collapsible(); // jshint ignore:line
+        $(".collapsible").collapsible();
     },
     updateTabs() {
-        $('ul.tabs').tabs(); // jshint ignore:line
+        $('ul.tabs').tabs();
     },
     updateDropdown() {
         $('.navbar-menu-button').dropdown({
@@ -27,9 +27,11 @@ module.exports = {
         });
     },
     updateInput() {
-        Materialize.updateTextFields(); // jshint ignore:line
+        Materialize.updateTextFields();
     },
     selectTab(selector, tabId) {
-        $(selector).tabs('select_tab', tabId); // jshint ignore:line
+        $(selector).tabs('select_tab', tabId);
     }
 };
+
+/* jshint ignore:end */

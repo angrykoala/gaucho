@@ -1,1 +1,1 @@
-{"suites":[{"title":"Bash Examples","tasks":[{"title":"Hello World (bash)","command":"echo hello world"}]}]}
+{"suites":[{"title":"Bash Examples","tasks":[{"title":"Hello World (bash)","command":"echo hello world"}]},{"title":"Suite 2","tasks":[]}]}
