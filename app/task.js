@@ -27,7 +27,6 @@ class Task {
                 stdout: stdout
             },
             (code) => {
-                console.log("CODE:",code);
                 this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
                 done();
             });

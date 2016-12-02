@@ -4,9 +4,13 @@ const Suite = require('../suite');
 const config = require('../config');
 const Material = require('../materialize');
 const AppStatus=require('../app_status');
+const NavbarMenu=require('./navbar_menu');
 
 module.exports = {
     props: ['suites'],
+    components: {
+        "navbar-menu": NavbarMenu
+    },  
     data: () => {
         return {
             output: "",
@@ -23,8 +27,11 @@ module.exports = {
                 <ul class="right">
                     <li><a v-on:click="addSuite" v-if="AppStatus.editMode">Create Suite</a></li>
                     <li><a v-on:click="deleteSuite" v-if="AppStatus.editMode">Delete Current Suite</a></li>
-                    <li><a v-on:click="toggleEdit"><i class="material-icons small">mode_edit</i></a>
+                    <li><a v-on:click="toggleEdit"><i class="material-icons small">mode_edit</i></a></li>
+                    <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small">menu</i></a></li>
                 </ul>
+                <navbar-menu></navbar-menu>
+            
 
                 <ul id="navbar-tabs" class="tabs tabs-transparent">
                     <template v-for="(suite,index) in suites">
