@@ -7,8 +7,6 @@ module.exports = {
         this.updateCollapsible();
         this.updateTabs();
         this.updateDropdown();
-
-
     },
     updateCollapsible() {
         $(".collapsible").collapsible();
