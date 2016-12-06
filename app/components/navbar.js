@@ -15,7 +15,6 @@ module.exports = {
         return {
             output: "",
             cleanOutput: false,
-            selectedTab: 0,
             AppStatus: AppStatus
         };
     },
@@ -32,10 +31,12 @@ module.exports = {
                 </ul>
                 <navbar-menu></navbar-menu>
             
-
                 <ul id="navbar-tabs" class="tabs tabs-transparent">
                     <template v-for="(suite,index) in suites">
-                        <li class="tab col s3"><a v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }"><strong>{{suite.title}}</strong></a></li>
+                    <li class="tab col s3">
+                        <a v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }"><strong>{{suite.title}}</strong>
+                        </a>
+                    </li>
                     </template>
                 </ul>
             </div>
@@ -52,19 +53,19 @@ module.exports = {
         },
         deleteSuite() {
             if (this.suites.length > 1) {
-                this.suites.splice(this.selectedTab, 1);
-                this.selectTab(this.selectedTab);
+                this.suites.splice(AppStatus.activeSuite, 1);
+                this.selectTab(AppStatus.activeSuite);
                 config.saveConfig();
             }
         },
         onTabSelected(index) {
-            this.selectedTab = index;
+            AppStatus.activeSuite = index;
         },
         selectTab(index) {
             if (index >= this.suites.length) index = this.suites.length - 1;
             this.$nextTick(() => {
                 Material.selectTab("#navbar-tabs", 'tab' + index);
-                this.selectedTab = index;
+                AppStatus.activeSuite = index;
             });
         },
         toggleEdit(){

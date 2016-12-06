@@ -1,3 +1,4 @@
 module.exports={
-    editMode: false 
+    editMode: false,
+    activeSuite: 0
 };
