@@ -1,8 +1,5 @@
 "use strict";
 
-const AppStatus = require('../app_status');
-
-
 module.exports = {
     template: `
     <ul id='navbar-menu' class='dropdown-content'>
@@ -17,7 +14,7 @@ module.exports = {
     `,
     methods: {
         selected(selection){
-            AppStatus.events.emit(selection);    
+            this.$emit("selection",selection);    
         },
         invalidClick(ev){
             ev.stopPropagation();

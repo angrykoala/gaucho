@@ -27,7 +27,7 @@ module.exports = {
                     <li><a v-on:click="toggleEdit"><i class="material-icons small">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small">menu</i></a></li>
                 </ul>
-                <navbar-menu></navbar-menu>
+                <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
             
                 <ul id="navbar-tabs" class="tabs tabs-transparent">
                     <template v-for="(suite,index) in suites">
@@ -41,14 +41,6 @@ module.exports = {
         </nav>
     </div>
     `,
-    mounted: function() {
-        AppStatus.events.on("add-suite", () => {
-            this.addSuite();
-        });
-        AppStatus.events.on("delete-suite", () => {
-            this.deleteSuite();
-        });
-    },
     methods: {
         addSuite() {
             if (this.suites.length < 6) {
@@ -76,6 +68,18 @@ module.exports = {
         },
         toggleEdit() {
             this.AppStatus.editMode = !this.AppStatus.editMode;
+        },
+        onMenuSelection(selection) {
+            switch (selection) {
+                case "add-suite":
+                    this.addSuite();
+                    break;
+                case "delete-suite":
+                    this.deleteSuite();
+                    break;
+                default:
+                    this.AppStatus.events.emit(selection);
+            }
         }
     }
 };
