@@ -42,7 +42,7 @@ module.exports = {
     </div>
     `,
     mounted: function() {
-        AppStatus.events.on("create-suite", () => {
+        AppStatus.events.on("add-suite", () => {
             this.addSuite();
         });
         AppStatus.events.on("delete-suite", () => {

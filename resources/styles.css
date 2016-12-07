@@ -58,3 +58,8 @@
 .suite-tab {
     margin-top: 48px;
 }
+
+.menu-title{
+    color: #ee6e73;
+    cursor: default;
+}
