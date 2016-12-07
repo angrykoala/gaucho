@@ -1,15 +1,18 @@
 "use strict";
 
+const EventEmitter = require('events');
+
 const TaskCard = require('./task_card');
 const TaskInput = require('./task_input');
 const config = require('../config');
 const AppStatus = require('../app_status');
 
 module.exports = {
-    props: ['suite', 'id'],
+    props: ['suite', 'index'],
     data: () => {
         return {
-            AppStatus: AppStatus
+            AppStatus: AppStatus,
+            event: new EventEmitter()
         };
 
     },
@@ -17,20 +20,37 @@ module.exports = {
         <div v-bind:id="id" class="suite-tab">
             <ul class="collapsible" data-collapsible="accordion">
                 <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:remove="removeTask(i)"></task-card>
+                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-bind:event="event"></task-card>
                 </template>
                 <task-input v-on:add="addTask" v-if="AppStatus.editMode"></task-input>
             </ul>
         </div>
     `,
+    mounted: function() {
+        AppStatus.events.on("run-suite", (suiteIndex) => {
+            if(this.index===suiteIndex){
+                this.event.emit("run");
+            }
+        });
+        AppStatus.events.on("stop-suite", (suiteIndex) => {
+            if(this.index===suiteIndex){
+                this.event.emit("stop");
+            }
+        });
+    },
     methods: {
         addTask: function(task) {
             this.suite.addTask(task);
             config.saveConfig();
         },
-        removeTask: function(i){
+        removeTask: function(i) {
             this.suite.removeTask(i);
-            config.saveConfig();            
+            config.saveConfig();
+        }
+    },
+    computed: {
+        id: function() {
+            return "tab" + this.index;
         }
 
     },

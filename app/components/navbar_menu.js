@@ -1,5 +1,7 @@
 "use strict";
 
+const AppStatus = require('../app_status');
+
 
 module.exports = {
     template: `
@@ -10,14 +12,14 @@ module.exports = {
       <li><a>three</a></li>
     </ul>
     `,
-    methods:{
-        runAll(){
-            
+    methods: {
+        runAll() {
+            AppStatus.events.emit("run-suite",AppStatus.activeSuite);
         },
-        stopAll(){
-            
+        stopAll() {
+            AppStatus.events.emit("stop-suite",AppStatus.activeSuite);
         }
-        
+
     }
-  
+
 };

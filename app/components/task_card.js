@@ -5,7 +5,7 @@ const AppStatus = require('../app_status');
 
 
 module.exports = {
-    props: ['task'],
+    props: ['task', 'event'],
     data: () => {
         return {
             output: "",
@@ -37,6 +37,14 @@ module.exports = {
     </div>
   </li>
   `,
+    mounted: function() {
+        this.event.on("run", () => {
+            if (!this.running) this.run();
+        });
+        this.event.on("stop", () => {
+            if (this.running) this.stop();
+        });
+    },
     methods: {
         toggleRun: function(ev) {
             ev.stopPropagation();

@@ -3,7 +3,7 @@
     "camelcase": true,
     "eqeqeq": true,
     "forin": false,
-    "latedef": false,
+    "latedef": true,
     "noempty": true,
     "maxcomplexity": 6,
     "maxdepth": 6,

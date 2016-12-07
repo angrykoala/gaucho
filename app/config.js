@@ -4,6 +4,16 @@ const path = require('path');
 const Suite = require('./suite');
 const Task = require('./task');
 
+function parseData(data) {
+    return data.suites.map((suite) => {
+        let result = new Suite(suite.title);
+        result.tasks = suite.tasks.map((task) => {
+            return new Task(task.title, task.path, task.command);
+        });
+        return result;
+    });
+}
+
 module.exports = {
     configFile: "../tasks.json",
     suites: [],
@@ -33,13 +43,3 @@ module.exports = {
 
     }
 };
-
-function parseData(data) {
-    return data.suites.map((suite) => {
-        let result = new Suite(suite.title);
-        result.tasks = suite.tasks.map((task) => {
-            return new Task(task.title, task.path, task.command);
-        });
-        return result;
-    });
-}

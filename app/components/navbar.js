@@ -3,14 +3,14 @@
 const Suite = require('../suite');
 const config = require('../config');
 const Material = require('../materialize');
-const AppStatus=require('../app_status');
-const NavbarMenu=require('./navbar_menu');
+const AppStatus = require('../app_status');
+const NavbarMenu = require('./navbar_menu');
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu
-    },  
+    },
     data: () => {
         return {
             output: "",
@@ -48,7 +48,7 @@ module.exports = {
             if (this.suites.length < 6) {
                 this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
                 config.saveConfig();
-                this.selectTab(this.suites.length-1);
+                this.selectTab(this.suites.length - 1);
             }
         },
         deleteSuite() {
@@ -68,8 +68,8 @@ module.exports = {
                 AppStatus.activeSuite = index;
             });
         },
-        toggleEdit(){
-            this.AppStatus.editMode=!this.AppStatus.editMode;
+        toggleEdit() {
+            this.AppStatus.editMode = !this.AppStatus.editMode;
         }
     }
 };

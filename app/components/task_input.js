@@ -51,9 +51,6 @@ module.exports = {
                 Material.updateInput();
             });
         }
-
-
-
     }
 
 };
