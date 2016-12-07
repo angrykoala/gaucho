@@ -27,13 +27,13 @@ module.exports = {
         </div>
     `,
     mounted: function() {
-        AppStatus.events.on("run-suite", (suiteIndex) => {
-            if(this.index===suiteIndex){
+        AppStatus.events.on("run-suite", () => {
+            if(this.index===AppStatus.activeSuite){
                 this.event.emit("run");
             }
         });
-        AppStatus.events.on("stop-suite", (suiteIndex) => {
-            if(this.index===suiteIndex){
+        AppStatus.events.on("stop-suite", () => {
+            if(this.index===AppStatus.activeSuite){
                 this.event.emit("stop");
             }
         });

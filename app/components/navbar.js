@@ -24,8 +24,6 @@ module.exports = {
             <div class="nav-wrapper">
                 <a class="brand-logo left">Gaucho</a>
                 <ul class="right">
-                    <li><a v-on:click="addSuite" v-if="AppStatus.editMode">Create Suite</a></li>
-                    <li><a v-on:click="deleteSuite" v-if="AppStatus.editMode">Delete Current Suite</a></li>
                     <li><a v-on:click="toggleEdit"><i class="material-icons small">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small">menu</i></a></li>
                 </ul>
@@ -43,6 +41,14 @@ module.exports = {
         </nav>
     </div>
     `,
+    mounted: function() {
+        AppStatus.events.on("create-suite", () => {
+            this.addSuite();
+        });
+        AppStatus.events.on("delete-suite", () => {
+            this.deleteSuite();
+        });
+    },
     methods: {
         addSuite() {
             if (this.suites.length < 6) {
