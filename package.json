@@ -10,10 +10,14 @@
     "vue": "^2.0.8",
     "yerbamate": "^1.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron-packager": "^8.3.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "NODE_ENV=dev electron .",
+    "build-electron": "electron-packager . --overwrite --out builds",
+    "build-electron-all": "electron-packager . --overwrite --out builds --all"
   },
   "repository": {
     "type": "git",
