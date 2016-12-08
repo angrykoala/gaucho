@@ -4,7 +4,7 @@ const EventEmitter = require('events');
 
 const TaskCard = require('./task_card');
 const TaskInput = require('./task_input');
-const config = require('../config');
+const userConfig = require('../user_config');
 const AppStatus = require('../app_status');
 
 module.exports = {
@@ -41,11 +41,11 @@ module.exports = {
     methods: {
         addTask: function(task) {
             this.suite.addTask(task);
-            config.saveConfig();
+            userConfig.saveConfig();
         },
         removeTask: function(i) {
             this.suite.removeTask(i);
-            config.saveConfig();
+            userConfig.saveConfig();
         }
     },
     computed: {

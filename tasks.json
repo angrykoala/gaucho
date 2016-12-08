@@ -1,1 +1,1 @@
-{"suites":[{"title":"Bash Examples","tasks":[{"title":"Hello World (bash)","command":"echo hello world"},{"title":"python server","command":"python -m SimpleHTTPServer","path":"/home/andrew/Desktop"}]},{"title":"Suite 2","tasks":[{"title":"fds","command":"fsd","path":"fds"}]}]}
+{"suites":[{"title":"Bash Examples","tasks":[{"title":"read package.json","command":"cat package.json"}]}]}

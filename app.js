@@ -1,6 +1,6 @@
 "use strict";
 
-const config = require('./app/config');
+const userConfig = require('./app/user_config');
 const Material = require('./app/materialize');
 
 const components = {
@@ -8,7 +8,7 @@ const components = {
     "navbar": require('./app/components/navbar')
 };
 
-config.loadConfig((err, suites) => {
+userConfig.loadConfig((err, suites) => {
     if (err) console.error(err);
     const app = new Vue({ // jshint ignore:line
         el: '#app',

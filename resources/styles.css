@@ -1,11 +1,14 @@
 .run-output {
     overflow-y: auto;
+    overflow-x: hidden;
     height: 200px;
     background-color: #eeeeee;
 }
 
 .run-output pre {
     margin: 0 0 0 10px;
+    overflow: hidden;
+    white-space: pre-wrap;
 }
 
 .run-button {

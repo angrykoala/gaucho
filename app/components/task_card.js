@@ -2,6 +2,7 @@
 
 const taskStatus = require('../task').taskStatus;
 const AppStatus = require('../app_status');
+const config = require('../../config.json');
 
 
 module.exports = {
@@ -70,8 +71,8 @@ module.exports = {
                 this.output = "";
                 this.cleanOutput = false;
             }
-            this.output += out;
-            this.output = this.output.slice(-10000).trim();
+            this.output += "\n" + out;
+            this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
 
         },
