@@ -66,3 +66,13 @@
     color: #ee6e73;
     cursor: default;
 }
+
+.edit-button-active{
+    transition: color 0.5s ease;
+    background-color: rgba(0,0,0,0.3);
+    color: #989898;
+}
+
+.edit-button-active:hover{
+    background-color: rgba(0,0,0,0.3);
+}

@@ -1,7 +1,7 @@
 "use strict";
 
 const Suite = require('../suite');
-const userConfig = require('../user_config');
+const UserConfig = require('../user_config');
 const Material = require('../materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu');
@@ -24,7 +24,7 @@ module.exports = {
             <div class="nav-wrapper">
                 <a class="brand-logo left">Gaucho</a>
                 <ul class="right">
-                    <li><a v-on:click="toggleEdit"><i class="material-icons small">mode_edit</i></a></li>
+                    <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': AppStatus.editMode}"><i class="material-icons">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small">menu</i></a></li>
                 </ul>
                 <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
@@ -32,7 +32,8 @@ module.exports = {
                 <ul id="navbar-tabs" class="tabs tabs-transparent">
                     <template v-for="(suite,index) in suites">
                     <li class="tab col s3">
-                        <a v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }"><strong>{{suite.title}}</strong>
+                        <a v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
+                            <strong>{{suite.title}}</strong>
                         </a>
                     </li>
                     </template>
@@ -45,7 +46,7 @@ module.exports = {
         addSuite() {
             if (this.suites.length < 6) {
                 this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
-                userConfig.saveConfig();
+                UserConfig.saveConfig();
                 this.selectTab(this.suites.length - 1);
             }
         },
@@ -53,7 +54,7 @@ module.exports = {
             if (this.suites.length > 1) {
                 this.suites.splice(AppStatus.activeSuite, 1);
                 this.selectTab(AppStatus.activeSuite);
-                userConfig.saveConfig();
+                UserConfig.saveConfig();
             }
         },
         onTabSelected(index) {
