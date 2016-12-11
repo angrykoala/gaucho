@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "start-dev": "Node_ENV=dev npm start",
+    "start-dev": "NODE_ENV=dev npm start",
     "build-electron": "electron-packager . --overwrite --out builds",
     "build-electron-all": "npm run build-electron-win && npm run build-electron-linux && npm run build-electron-mac",
     "build-electron-win": "electron-packager . --overwrite --out builds --platform=win32 --arch=x64",
