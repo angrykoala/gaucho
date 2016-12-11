@@ -12,7 +12,6 @@ module.exports = {
             <li><a v-on:click="selected('stop-suite')">Stop</a></li>
         </template>
         <template v-else>
-            <li><a v-on:click="selected('edit-suite')">Edit</a></li>
             <li><a v-on:click="selected('add-suite')">Add New</a></li>
             <li><a v-on:click="selected('delete-suite')">Delete</a></li>
         </template>

@@ -41,11 +41,11 @@ module.exports = {
     methods: {
         addTask: function(task) {
             this.suite.addTask(task);
-            userConfig.saveConfig();
+            //userConfig.saveConfig();
         },
         removeTask: function(i) {
             this.suite.removeTask(i);
-            userConfig.saveConfig();
+            //userConfig.saveConfig();
         }
     },
     computed: {

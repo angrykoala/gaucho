@@ -19,27 +19,34 @@ module.exports = {
         };
     },
     template: `
+    <div>
     <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a class="brand-logo left">Gaucho</a>
+                <a class="brand-logo main-logo left">Gaucho</a>
                 <ul class="right">
-                    <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': AppStatus.editMode}"><i class="material-icons">mode_edit</i></a></li>
+                    <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}"><i class="material-icons">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small">menu</i></a></li>
                 </ul>
                 <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
             
-                <ul id="navbar-tabs" class="tabs tabs-transparent">
-                    <template v-for="(suite,index) in suites">
-                    <li class="tab col s3">
-                        <a v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
-                            <strong>{{suite.title}}</strong>
-                        </a>
-                    </li>
-                    </template>
-                </ul>
+                <div class="row tabs-row">
+                    <ul id="navbar-tabs" class="tabs tabs-transparent">
+                        <template v-for="(suite,index) in suites">
+                        <li class="tab col s3">
+                            <a draggable="false" v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
+                                <template v-if="editMode && index===AppStatus.activeSuite">
+                                    <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
+                                </template>
+                                <span class="tab-text" v-show="!editMode || index!==AppStatus.activeSuite">{{suite.title}}</span>
+                            </a>
+                        </li>
+                        </template>
+                    </ul>
+                </div>
             </div>
         </nav>
+    </div>
     </div>
     `,
     methods: {
@@ -68,7 +75,7 @@ module.exports = {
             });
         },
         toggleEdit() {
-            this.AppStatus.editMode = !this.AppStatus.editMode;
+            AppStatus.toggleEdit();
         },
         onMenuSelection(selection) {
             switch (selection) {
@@ -81,6 +88,14 @@ module.exports = {
                 default:
                     this.AppStatus.events.emit(selection);
             }
+        }
+    },
+    computed: {
+        currentSuite() {
+            return this.suites[AppStatus.activeSuite];
+        },
+        editMode() {
+            return AppStatus.editMode;
         }
     }
 };
