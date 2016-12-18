@@ -9,6 +9,6 @@ module.exports = {
     events: new EventEmitter(),
     toggleEdit: function() {
         this.editMode = !this.editMode;
-        userConfig.saveConfig();
+        UserConfig.saveConfig();
     }
 };

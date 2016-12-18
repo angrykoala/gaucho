@@ -13,8 +13,8 @@ const taskStatus = {
 class Task {
     constructor(title, path, command) {
         this.title = title || "";
-        this.path = path || ".";
-        if(this.path.trim()==="") this.path=".";
+        this.path = path || "";
+        //if(this.path.trim()==="") this.path=".";
         this.command = command || "";
         this.status = taskStatus.idle;
         this.process = null;

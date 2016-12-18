@@ -10,7 +10,7 @@ module.exports = {
         this.updateModals();
     },
     updateCollapsible() {
-        $(".collapsible").collapsible();
+        $('.collapsible').collapsible();
     },
     updateTabs() {
         $('ul.tabs').tabs();

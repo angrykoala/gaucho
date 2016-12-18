@@ -46,16 +46,19 @@
     vertical-align: middle;
 }
 
-.add-task-body {
-    padding-bottom: 10px;
+.task-input-body {
+    padding-bottom: 15px;
+    padding-top: 10px;
 }
 
-.add-task-body input {
+.task-input-body input {
     margin-bottom: 0;
 }
 
-.add-task-button {
-    margin-top: 20px;
+.save-task-button {
+    margin-top: 8px;
+    margin-right: 15px;
+    float: right;
 }
 
 .suite-tab {
@@ -92,7 +95,12 @@
     text-align: center;
     text-transform: none;
 }
+
 input.tab-text{
     border-style: hidden !important;
     box-shadow: none !important;
+}
+
+.task-input-send-row{
+    margin-bottom: 0;    
 }

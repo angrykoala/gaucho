@@ -1,9 +1,10 @@
 "use strict";
 
-const taskStatus = require('../task').taskStatus;
 const AppStatus = require('../app_status');
 const config = require('../../config.json');
+const taskStatus = require('../task').taskStatus;
 
+const TaskInput=require('./task_input');
 
 module.exports = {
     props: ['task', 'event'],
@@ -32,8 +33,11 @@ module.exports = {
         </div>
 
     <div class="collapsible-body">
-        <div class="run-output">
+        <div v-if="!AppStatus.editMode" class="run-output">
             <pre>{{output}}</pre>
+        </div>
+        <div v-else class="container">
+            <task-input v-bind:task="task" v-on:save="editTask"></task-input>
         </div>
     </div>
   </li>
@@ -57,6 +61,10 @@ module.exports = {
             if (this.running) this.stop();
             this.$emit('remove');
 
+        },
+        editTask(task){
+            this.stop();
+            this.$emit('edit',task);
         },
         run: function() {
             this.task.run(this.print, () => {
@@ -103,5 +111,8 @@ module.exports = {
         running: function() {
             return this.task.isRunning();
         }
+    },
+    components: {
+        "task-input": TaskInput
     }
 };

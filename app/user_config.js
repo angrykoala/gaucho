@@ -72,7 +72,5 @@ module.exports = {
             if (err) console.error("Error on saveConfig:" + err);
             if (done) done();
         });
-
-
     }
 };

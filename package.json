@@ -4,10 +4,10 @@
   "description": "A graphical task runner powered by Yerbamate",
   "main": "main.js",
   "dependencies": {
-    "electron": "^1.4.4",
     "jquery": "^3.1.1",
     "materialize-css": "^0.97.8",
     "vue": "^2.0.8",
+    "electron": "^1.4.4",
     "yerbamate": "^1.1.2"
   },
   "devDependencies": {
@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "start-dev": "NODE_ENV=dev npm start",
-    "build-electron": "electron-packager . --overwrite --out builds",
+    "build-electron": "electron-packager . --overwrite --out builds --ignore='tasks?\\.json|\\.gitignore|\\.jshintrc'",
     "build-electron-all": "npm run build-electron-win && npm run build-electron-linux && npm run build-electron-mac",
     "build-electron-win": "electron-packager . --overwrite --out builds --platform=win32 --arch=x64",
     "build-electron-linux": "electron-packager . --overwrite --out builds --platform=linux --arch=x64",
