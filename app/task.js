@@ -6,7 +6,8 @@ const taskStatus = {
     idle: "do_not_disturb_off",
     error: "error",
     running: "autorenew",
-    ok: "check_circle"
+    ok: "check_circle",
+    stopped: "do_not_disturb_off"
 };
 
 
@@ -20,14 +21,14 @@ class Task {
         this.process = null;
     }
 
-    run(stdout,done) {
+    run(stdout, done) {
         this.status = taskStatus.running;
         this.proc = yerbamate.run(this.command, this.path, {
                 stderr: stdout,
                 stdout: stdout
             },
             (code) => {
-                this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
+                if(this.status!==taskStatus.stopped) this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
                 done();
             });
     }
@@ -36,18 +37,19 @@ class Task {
         if (this.isRunning()) {
             yerbamate.stop(this.proc);
         }
+        this.status = taskStatus.stopped;
     }
 
     isRunning() {
         return this.status === taskStatus.running;
     }
-    
-    toJSON(){
-        let res={
-            title:this.title,
+
+    toJSON() {
+        let res = {
+            title: this.title,
             command: this.command,
         };
-        if(this.path!==".") res.path=this.path;
+        if (this.path !== ".") res.path = this.path;
         return res;
     }
 }

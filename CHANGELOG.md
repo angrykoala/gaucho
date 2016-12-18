@@ -1,8 +1,12 @@
 0.1.1 / <unreleased>
 ==================
 
+  * Stopping a running task icon changed
+  * Fixed problem when cleaning output
   * Task edit menu added
   * .jshintrc, .gitignore and task.json removed from build
+  * Added changelog file
+  
 
 
 0.1.0 / 2016-12-12

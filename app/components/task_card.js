@@ -11,7 +11,6 @@ module.exports = {
     data: () => {
         return {
             output: "",
-            cleanOutput: false,
             AppStatus: AppStatus
         };
     },
@@ -67,22 +66,18 @@ module.exports = {
             this.$emit('edit',task);
         },
         run: function() {
+            this.output = "";
             this.task.run(this.print, () => {
-                this.cleanOutput = true;
+
             });
         },
         stop: function() {
             this.task.stop();
         },
         print: function(out) {
-            if (this.cleanOutput) {
-                this.output = "";
-                this.cleanOutput = false;
-            }
             this.output += "\n" + out;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
-
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
@@ -97,6 +92,7 @@ module.exports = {
         statusColor: function() {
             switch (this.task.status) {
                 case taskStatus.idle:
+                case taskStatus.stopped:
                     return "black";
                 case taskStatus.error:
                     return "red";
