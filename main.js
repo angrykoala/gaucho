@@ -20,7 +20,10 @@ function createWindow() {
     UserConfig.loadConfig((config) => {
         let winConfig = {
             width: config.windowSize[0],
-            height: config.windowSize[1]
+            height: config.windowSize[1],
+            minWidth: 200,
+            minHeight: 300,
+            webgl: false
         };
         if (isDevEnv()) {
             winConfig.width += config.devToolsSize;

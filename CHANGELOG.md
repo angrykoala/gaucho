@@ -1,4 +1,4 @@
-0.1.1 / <unreleased>
+0.1.1 / 2016-12-20
 ==================
 
   * Stopping a running task icon changed
@@ -9,8 +9,8 @@
   * Task.json renamed to tasks.json
   * Changed project structure
   * Added config.json as a separate file from tasks.json
-  * Window size will be stored
-
+  * Window size will be part of the userConfig
+  * Added minimum size to the window
 
 0.1.0 / 2016-12-12
 ==================
