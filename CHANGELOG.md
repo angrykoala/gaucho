@@ -1,16 +1,16 @@
 0.1.1 / 2016-12-20
 ==================
 
-  * Stopping a running task icon changed
-  * Fixed problem when cleaning output
-  * Task edit menu added
-  * .jshintrc, .gitignore and task.json removed from build
-  * Added changelog file
-  * Task.json renamed to tasks.json
-  * Changed project structure
-  * Added config.json as a separate file from tasks.json
   * Window size will be part of the userConfig
+  * Task edit menu added
   * Added minimum size to the window
+  * Stopping a running task icon changed, now it will be the same as idle task
+  * Fixed problem when cleaning output
+  * Changed project structure
+  * .jshintrc, .gitignore and task.json removed from build
+  * Task.json renamed to tasks.json
+  * Added changelog file
+  * Added config.json as a separate file from tasks.json
 
 0.1.0 / 2016-12-12
 ==================
