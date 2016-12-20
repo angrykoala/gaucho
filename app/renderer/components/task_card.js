@@ -1,10 +1,11 @@
 "use strict";
 
 const AppStatus = require('../app_status');
-const config = require('../../config.json');
+const TaskInput=require('./task_input');
+
+const config = AppStatus.config;
 const taskStatus = require('../task').taskStatus;
 
-const TaskInput=require('./task_input');
 
 module.exports = {
     props: ['task', 'event'],

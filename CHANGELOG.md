@@ -6,7 +6,10 @@
   * Task edit menu added
   * .jshintrc, .gitignore and task.json removed from build
   * Added changelog file
-  
+  * Task.json renamed to tasks.json
+  * Changed project structure
+  * Added config.json as a separate file from tasks.json
+  * Window size will be stored
 
 
 0.1.0 / 2016-12-12
