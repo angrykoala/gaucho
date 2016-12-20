@@ -1,34 +1,48 @@
 "use strict";
 
-const {app, BrowserWindow} = require('electron');
+const {
+    app,
+    BrowserWindow
+} = require('electron');
 
-const config=require('./config.json');
+const UserConfig = require('./app/main/userConfig');
 
-function isDevEnv(){
-    return process.env.NODE_ENV==="dev";
+
+function isDevEnv() {
+    return process.env.NODE_ENV === "dev";
 }
 
 //Global reference to window
 let win;
 
-function createWindow () {
-    let winSize={
-        width: config.windowSize[0],
-        height: config.windowSize[1]
-    };
-    if(isDevEnv()){
-        winSize.width+=config.devToolsSize;
-    }
-    
-  win = new BrowserWindow(winSize);
 
-  win.loadURL(`file://${__dirname}/index.html`);
+function createWindow() {
+    UserConfig.loadConfig((config) => {
+        let winConfig = {
+            width: config.windowSize[0],
+            height: config.windowSize[1],
+            minWidth: 200,
+            minHeight: 300,
+            webgl: false
+        };
+        if (isDevEnv()) {
+            winConfig.width += config.devToolsSize;
+        }
 
- //Comment to remove devTools
- if(isDevEnv()) win.webContents.openDevTools();
+        win = new BrowserWindow(winConfig);
+        win.userConfig = config;
 
-  win.on('closed', () => {
-    win = null;
+        win.loadURL(`file://${__dirname}/index.html`);
+
+
+        if (isDevEnv()) win.webContents.openDevTools();
+
+        win.on('resize', () => {
+            UserConfig.config.windowSize = win.getSize();
+        });
+        win.on('closed', () => {
+            win = null;
+        });
     });
 }
 
@@ -36,15 +50,17 @@ app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    //For macOS
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+    UserConfig.saveConfig(() => {
+        //For macOS
+        if (process.platform !== 'darwin') {
+            app.quit();
+        }
+    });
 });
 
 app.on('activate', () => {
-  //FOR macOS
-  if (win === null) {
-    createWindow();
-  }
+    //FOR macOS
+    if (win === null) {
+        createWindow();
+    }
 });

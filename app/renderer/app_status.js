@@ -1,7 +1,9 @@
 "use strict";
 
+const remote=require('electron').remote;
 const EventEmitter = require('events');
-const UserConfig = require('./user_config');
+
+const TaskConfig = require('./task_config');
 
 module.exports = {
     editMode: false,
@@ -9,6 +11,7 @@ module.exports = {
     events: new EventEmitter(),
     toggleEdit: function() {
         this.editMode = !this.editMode;
-        userConfig.saveConfig();
-    }
+        TaskConfig.saveConfig();
+    },
+    config:  remote.getCurrentWindow().userConfig,
 };

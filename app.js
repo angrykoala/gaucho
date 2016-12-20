@@ -1,14 +1,14 @@
 "use strict";
 
-const userConfig = require('./app/user_config');
-const Material = require('./app/materialize');
+const TaskConfig = require('./app/renderer/task_config');
+const Material = require('./app/renderer/materialize');
 
 const components = {
-    "task-suite": require('./app/components/task_suite'),
-    "navbar": require('./app/components/navbar')
+    "task-suite": require('./app/renderer/components/task_suite'),
+    "navbar": require('./app/renderer/components/navbar')
 };
 
-userConfig.loadConfig((err, suites) => {
+TaskConfig.loadConfig((err, suites) => {
     if (err) console.error(err);
     const app = new Vue({ // jshint ignore:line
         el: '#app',

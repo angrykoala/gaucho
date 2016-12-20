@@ -3,8 +3,7 @@
 const EventEmitter = require('events');
 
 const TaskCard = require('./task_card');
-const TaskInput = require('./task_input');
-const userConfig = require('../user_config');
+const AddTask = require('./add_task');
 const AppStatus = require('../app_status');
 
 module.exports = {
@@ -20,20 +19,20 @@ module.exports = {
         <div v-bind:id="id" class="suite-tab">
             <ul class="collapsible" data-collapsible="accordion">
                 <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-bind:event="event"></task-card>
+                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-                <task-input v-on:add="addTask" v-if="AppStatus.editMode"></task-input>
+                <add-task v-on:add="addTask" v-if="AppStatus.editMode"></add-task>
             </ul>
         </div>
     `,
     mounted: function() {
         AppStatus.events.on("run-suite", () => {
-            if(this.index===AppStatus.activeSuite){
+            if (this.index === AppStatus.activeSuite) {
                 this.event.emit("run");
             }
         });
         AppStatus.events.on("stop-suite", () => {
-            if(this.index===AppStatus.activeSuite){
+            if (this.index === AppStatus.activeSuite) {
                 this.event.emit("stop");
             }
         });
@@ -41,11 +40,14 @@ module.exports = {
     methods: {
         addTask: function(task) {
             this.suite.addTask(task);
-            //userConfig.saveConfig();
         },
         removeTask: function(i) {
             this.suite.removeTask(i);
-            //userConfig.saveConfig();
+            this.$forceUpdate();
+        },
+        editTask: function(i, task) {
+            this.suite.replaceTask(i, task);
+            this.$forceUpdate();
         }
     },
     computed: {
@@ -56,6 +58,6 @@ module.exports = {
     },
     components: {
         "task-card": TaskCard,
-        "task-input": TaskInput
+        "add-task": AddTask
     }
 };

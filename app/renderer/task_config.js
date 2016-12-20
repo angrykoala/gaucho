@@ -16,7 +16,7 @@ function parseData(data) {
     });
 }
 
-const configFile = "../task.json";
+const configFile = "../../tasks.json";
 
 const defaultConfig = `{
     "suites": [{
@@ -70,9 +70,7 @@ module.exports = {
 
         fs.writeFile(path.join(__dirname, configFile), JSON.stringify(data), (err) => {
             if (err) console.error("Error on saveConfig:" + err);
-            if (done) done();
+            if (done) done(err);
         });
-
-
     }
 };

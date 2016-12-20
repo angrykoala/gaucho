@@ -38,5 +38,6 @@ jspm_packages
 
 
 # Custom
-task.json
+tasks.json
+config.json
 builds

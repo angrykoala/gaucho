@@ -13,6 +13,10 @@ class Suite {
     removeTask(index) {
         this.tasks.splice(index, 1);
     }
+    
+    replaceTask(index,task){
+        this.tasks.splice(index, 1,task);
+    }
 
     toJSON() {
         return {

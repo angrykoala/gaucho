@@ -1,8 +1,10 @@
 "use strict";
 
-const taskStatus = require('../task').taskStatus;
 const AppStatus = require('../app_status');
-const config = require('../../config.json');
+const TaskInput=require('./task_input');
+
+const config = AppStatus.config;
+const taskStatus = require('../task').taskStatus;
 
 
 module.exports = {
@@ -10,7 +12,6 @@ module.exports = {
     data: () => {
         return {
             output: "",
-            cleanOutput: false,
             AppStatus: AppStatus
         };
     },
@@ -32,8 +33,11 @@ module.exports = {
         </div>
 
     <div class="collapsible-body">
-        <div class="run-output">
+        <div v-if="!AppStatus.editMode" class="run-output">
             <pre>{{output}}</pre>
+        </div>
+        <div v-else class="container">
+            <task-input v-bind:task="task" v-on:save="editTask"></task-input>
         </div>
     </div>
   </li>
@@ -58,23 +62,23 @@ module.exports = {
             this.$emit('remove');
 
         },
+        editTask(task){
+            this.stop();
+            this.$emit('edit',task);
+        },
         run: function() {
+            this.output = "";
             this.task.run(this.print, () => {
-                this.cleanOutput = true;
+
             });
         },
         stop: function() {
             this.task.stop();
         },
         print: function(out) {
-            if (this.cleanOutput) {
-                this.output = "";
-                this.cleanOutput = false;
-            }
             this.output += "\n" + out;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
-
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
@@ -89,6 +93,7 @@ module.exports = {
         statusColor: function() {
             switch (this.task.status) {
                 case taskStatus.idle:
+                case taskStatus.stopped:
                     return "black";
                 case taskStatus.error:
                     return "red";
@@ -103,5 +108,8 @@ module.exports = {
         running: function() {
             return this.task.isRunning();
         }
+    },
+    components: {
+        "task-input": TaskInput
     }
 };
