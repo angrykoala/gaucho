@@ -4,6 +4,7 @@ const {
     app,
     BrowserWindow
 } = require('electron');
+const path = require('path');
 
 const UserConfig = require('./app/main/userConfig');
 
@@ -17,13 +18,16 @@ let win;
 
 
 function createWindow() {
+    const iconPath = path.join(__dirname, 'resources', 'icon.png');
+
     UserConfig.loadConfig((config) => {
         let winConfig = {
             width: config.windowSize[0],
             height: config.windowSize[1],
             minWidth: 200,
             minHeight: 300,
-            webgl: false
+            webgl: false,
+            icon: iconPath
         };
         if (isDevEnv()) {
             winConfig.width += config.devToolsSize;
