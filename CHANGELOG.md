@@ -3,6 +3,7 @@
 
   * Added icon
   * Electron fixed to 1.4
+  * Task collapsed after saving in edit mode
 
 0.1.1 / 2016-12-20
 ==================

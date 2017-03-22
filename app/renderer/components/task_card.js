@@ -1,11 +1,12 @@
 "use strict";
 
 const AppStatus = require('../app_status');
-const TaskInput=require('./task_input');
+const TaskInput = require('./task_input');
 
 const config = AppStatus.config;
 const taskStatus = require('../task').taskStatus;
 
+const Material = require('../materialize');
 
 module.exports = {
     props: ['task', 'event'],
@@ -62,9 +63,10 @@ module.exports = {
             this.$emit('remove');
 
         },
-        editTask(task){
+        editTask(task) {
             this.stop();
-            this.$emit('edit',task);
+            this.collapseTask();
+            this.$emit('edit', task);
         },
         run: function() {
             this.output = "";
@@ -86,6 +88,13 @@ module.exports = {
                 this.$nextTick(() => {
                     container.scrollTop = container.scrollHeight;
                 });
+            }
+        },
+        collapseTask() {
+            const elements = this.$el.getElementsByClassName('collapsible-header');
+            if (elements[0]) {
+                elements[0].classList.remove("active");
+                Material.updateCollapsible();
             }
         }
     },
