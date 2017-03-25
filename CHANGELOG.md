@@ -2,8 +2,9 @@
 ==================
 
   * Added icon
-  * Electron fixed to 1.4
+  * Electron and materialize versions fixed
   * Task collapsed after saving in edit mode
+  * Added running time to tasks
 
 0.1.1 / 2016-12-20
 ==================

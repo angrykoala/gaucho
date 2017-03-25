@@ -13,6 +13,8 @@ module.exports = {
     data: () => {
         return {
             output: "",
+            executionTime: "-",
+            executionUpdateTimer: null,
             AppStatus: AppStatus
         };
     },
@@ -20,9 +22,12 @@ module.exports = {
     <li class="run-card">
         <div class="collapsible-header row">
             <div class="col s6">
-                <strong class="truncate">{{task.title}}</strong>                
+                <strong class="truncate">{{task.title}}</strong>     
             </div>
-            <div class="col s5">
+            <div class="col s2">
+                <div class="truncate task-time">{{executionTime}}</div>
+            </div>
+            <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="deleteTask">Delete</a>
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
@@ -71,10 +76,15 @@ module.exports = {
         run: function() {
             this.output = "";
             this.task.run(this.print, () => {
-
+                this.onTaskFinish();
             });
+            this.executionTime = this.task.printTime();
+            this.executionUpdateTimer = setInterval(() => {
+                this.executionTime = this.task.printTime();
+            }, 1000);
         },
         stop: function() {
+
             this.task.stop();
         },
         print: function(out) {
@@ -96,6 +106,10 @@ module.exports = {
                 elements[0].classList.remove("active");
                 Material.updateCollapsible();
             }
+        },
+        onTaskFinish() {
+            clearInterval(this.executionUpdateTimer);
+            this.executionTime = this.task.printTime();
         }
     },
     computed: {
