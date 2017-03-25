@@ -80,7 +80,7 @@
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.tabs-row{
+.tabs-row {
     margin-bottom: 0;
 }
 
@@ -90,17 +90,32 @@
     }
 }
 
-.tab-text{
+.tab-text {
     font-weight: 500;
     text-align: center;
     text-transform: none;
 }
 
-input.tab-text{
+input.tab-text {
     border-style: hidden !important;
     box-shadow: none !important;
 }
 
-.task-input-send-row{
-    margin-bottom: 0;    
+.task-input-send-row {
+    margin-bottom: 0;
+}
+
+.task-time {
+    text-align: center;
+    padding-right: 10px;
+    color: #777777;
+}
+
+.brand-logo.main-logo {
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+.unselectable {
+    -webkit-user-select: none;
 }

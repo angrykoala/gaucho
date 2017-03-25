@@ -13,7 +13,7 @@ module.exports = {
     template: `
     <li class="run-card">
         <div class="collapsible-header row center-align add-task-header">
-            <strong>
+            <strong class="unselectable">
                 <span class="small material-icons">add</span>
                 Add New Task
             </strong>

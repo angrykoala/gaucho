@@ -1,6 +1,7 @@
 "use strict";
 
 const yerbamate = require('yerbamate');
+const moment = require('moment');
 
 const taskStatus = {
     idle: "do_not_disturb_off",
@@ -19,16 +20,21 @@ class Task {
         this.command = command || "";
         this.status = taskStatus.idle;
         this.process = null;
+        this.beginTime = null;
+        this.finishTime = null;
     }
 
     run(stdout, done) {
         this.status = taskStatus.running;
+        this.beginTime = Date.now();
+        this.finishTime = null;
         this.proc = yerbamate.run(this.command, this.path, {
                 stderr: stdout,
                 stdout: stdout
             },
             (code) => {
-                if(this.status!==taskStatus.stopped) this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
+                if (this.status !== taskStatus.stopped) this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
+                this.finishTime = Date.now();
                 done();
             });
     }
@@ -51,6 +57,17 @@ class Task {
         };
         if (this.path !== ".") res.path = this.path;
         return res;
+    }
+
+    printTime() {
+        if (this.beginTime === null) return "";
+        let finishTime = this.finishTime;
+        if (finishTime === null) finishTime = Date.now();
+
+        const time = moment(finishTime - this.beginTime);
+        let timeFormat = "mm:ss"; //TODO: add HH:mm:ss
+
+        return moment(time).format(timeFormat);
     }
 }
 

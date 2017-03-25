@@ -1,6 +1,7 @@
 Gaucho
 ======
-_by @angrykoala_
+_by @angrykoala_    
+
 A graphical task runner powered by Yerbamate
 
 ![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/21082203/c7a1ceec-bfce-11e6-9f1a-114cf49a4593.png)
