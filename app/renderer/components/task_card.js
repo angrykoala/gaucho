@@ -20,7 +20,7 @@ module.exports = {
     },
     template: `
     <li class="run-card">
-        <div class="collapsible-header row">
+        <div class="collapsible-header row unselectable">
             <div class="col s6">
                 <strong class="truncate">{{task.title}}</strong>     
             </div>

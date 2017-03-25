@@ -110,3 +110,12 @@ input.tab-text {
     padding-right: 10px;
     color: #777777;
 }
+
+.brand-logo.main-logo {
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+}

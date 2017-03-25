@@ -5,6 +5,7 @@
   * Electron and materialize versions fixed
   * Task collapsed after saving in edit mode
   * Added running time to tasks
+  * Texts are no longer selectable (except logs and inputs)
 
 0.1.1 / 2016-12-20
 ==================
