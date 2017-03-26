@@ -23,7 +23,10 @@ module.exports = {
     <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a class="brand-logo main-logo left">Gaucho</a>
+                <div class="brand-logo main-logo left">
+                <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
+                <a>Gaucho</a>
+                </div>
                 <ul class="right">
                     <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}"><i class="material-icons unselectable">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small unselectable">menu</i></a></li>

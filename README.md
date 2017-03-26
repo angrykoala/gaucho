@@ -4,7 +4,7 @@ _by @angrykoala_
 
 A graphical task runner powered by Yerbamate
 
-![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/21082203/c7a1ceec-bfce-11e6-9f1a-114cf49a4593.png)
+![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24318182/0b199e68-10f9-11e7-8a35-fd3f1eb51337.png)
 
 
 # Usage
