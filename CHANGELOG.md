@@ -4,6 +4,7 @@
   * Gaucho icon aded to navbar
   * Readme updated with better instructions for usage and development
   * Removed moment.js dependency
+  * Loading times slightly improved
 
 0.1.2 / 2017-03-25
 ==================

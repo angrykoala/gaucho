@@ -8,21 +8,26 @@ const components = {
     "navbar": require('./app/renderer/components/navbar')
 };
 
-TaskConfig.loadConfig((err, suites) => {
-    if (err) console.error(err);
-    const app = new Vue({ // jshint ignore:line
-        el: '#app',
-        data: {
-            suites: suites
-        },
-        components: components,
-        mounted() {
+let suites = [];
+
+
+const app = new Vue({ // jshint ignore:line
+    el: '#app',
+    data: {
+        suites: suites,
+        loaded: false
+    },
+    components: components,
+    mounted() {
+        Material.init();
+        TaskConfig.loadConfig((err, s) => {
+            this.suites = s;
+            this.loaded = true;
+        });
+    },
+    updated() {
+        this.$nextTick(() => {
             Material.init();
-        },
-        updated() {
-            this.$nextTick(() => {
-                Material.init();
-            });
-        }
-    });
+        });
+    }
 });
