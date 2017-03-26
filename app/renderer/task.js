@@ -1,7 +1,7 @@
 "use strict";
 
 const yerbamate = require('yerbamate');
-const moment = require('moment');
+const Utils=require('../common/utils');
 
 const taskStatus = {
     idle: "do_not_disturb_off",
@@ -16,7 +16,6 @@ class Task {
     constructor(title, path, command) {
         this.title = title || "";
         this.path = path || "";
-        //if(this.path.trim()==="") this.path=".";
         this.command = command || "";
         this.status = taskStatus.idle;
         this.process = null;
@@ -64,10 +63,9 @@ class Task {
         let finishTime = this.finishTime;
         if (finishTime === null) finishTime = Date.now();
 
-        const time = moment(finishTime - this.beginTime);
-        let timeFormat = "mm:ss"; //TODO: add HH:mm:ss
+        const time = Math.trunc((finishTime - this.beginTime) / 1000);
 
-        return moment(time).format(timeFormat);
+        return Utils.generateTimeString(time);
     }
 }
 

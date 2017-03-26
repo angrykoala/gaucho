@@ -7,7 +7,6 @@
     "electron": "~1.4.0",
     "jquery": "^3.1.1",
     "materialize-css": "~0.97.8",
-    "moment": "^2.18.1",
     "vue": "^2.0.8",
     "yerbamate": "^1.1.2"
   },
