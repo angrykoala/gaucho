@@ -6,7 +6,7 @@ const {
 } = require('electron');
 const path = require('path');
 
-const UserConfig = require('./app/main/userConfig');
+const UserConfig = require('./app/main/user_config');
 
 
 function isDevEnv() {
