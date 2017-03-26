@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Gaucho</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="brand-logo">
+                <img class="logo-icon" src="logos/gaucho_logo.png" height="40px"/>
+                <a href="#">Gaucho</a>
+            </div>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="https://github.com/angrykoala/gaucho/releases">Download</a></li>
+                <li><a href="https://github.com/angrykoala/gaucho">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1>Gaucho</h1>
+            <blockquote>
+                <p><em>by @angrykoala</em> </p>
+            </blockquote>
+            <p>A graphical launcher powered by Yerbamate.</p>
+            <p><img src="https://cloud.githubusercontent.com/assets/5960567/24318182/0b199e68-10f9-11e7-8a35-fd3f1eb51337.png" alt="Gaucho Screenshot"><br><em>Gaucho 0.1.2</em></p>
+            <h2 id="download">Download</h2>
+            <p>Gaucho can be downloaded [here]<a href="https://github.com/angrykoala/gaucho/releases">https://github.com/angrykoala/gaucho/releases</a>. Available versions for Linux, Mac and Windows (64 bits).</p>
+            <p>To use, unzip in the desired location and execute gaucho (execute file depends on you OS).</p>
+            <p>If you need a different version, please, follow the <em>development</em> instructions to make your own build from the source code</p>
+            <h2 id="usage">Usage</h2>
+            <p>Gaucho allows you to configure <em>tasks</em> as part of different <em>suites</em> or groups you can access the different suites by clicking on its name in the navbar menu.</p>
+            <h3 id="executing-tasks">Executing tasks</h3>
+            <p>On each suite, you will find the list of possible tasks to launch. By clicking on <em>Run</em> you will start that task. Clicking the same button again (now the <em>Stop</em> button) you can stop the tasks.</p>
+            <p>You can easily see the <em>name</em>, <em>execution time</em> and <em>status</em> of each task. The <em>status</em> (shown with the status icon) can be <em>idle</em> (black), <em>running</em> (blue), <em>successful</em> (green) or <em>failed</em>                (red). </p>
+            <p>Clicking in the task name the <em>log</em> will be displayed, allowing you to check the task output in real time.</p>
+            <h3 id="creating-and-editing-tasks">Creating and Editing tasks</h3>
+            <p>By clicking the <em>Edit</em> button (on the top right corner) you&#39;ll be able to edit the suites and tasks.</p>
+            <p>You can add new tasks to the current suite by clicking <em>&quot;Add New Task&quot;</em> at the bottom of the list. By clicking on a task name you&#39;ll be able to edit that task.</p>
+            <p>While editing/creating a new tasks, you should add a <em>name</em> to the task and a <em>command</em>. The command can be any shell/terminal accepted command or an executable file. Optionally a path can be added as well, if no path is added,
+                the gaucho execution path will be used.</p>
+            <p>The tasks can be deleted by clicking the <em>Delete</em> button.</p>
+            <blockquote>
+                <p>Keep in mind that you won&#39;t be able to run new tasks in edit mode</p>
+            </blockquote>
+            <p>While in edit mode, suites names can also be changed by clicking on it. To close edit mode simply click again on the edit button.</p>
+            <h2 id="menu">Menu</h2>
+            <p>Next to the edit button, is the menu button. When clicking the menu, several options will be shown, those options may change if the edit mode is active:</p>
+            <p><strong>Normal mode</strong> </p>
+            <ul>
+                <li><em>Run Suite</em>: Runs all tasks in the current suite (except those already running)</li>
+                <li><em>Stop Suite</em>: Stops all running tasks in suite</li>
+            </ul>
+            <p><strong>Edit mode</strong> </p>
+            <ul>
+                <li><em>Add new Suite</em>: Created a new suite</li>
+                <li><em>Delete Suite</em>: Deletes current suite</li>
+            </ul>
+            <h2 id="user-and-tasks-configuration">User and Tasks Configuration</h2>
+            <p>All tasks and user changes are saved automatically when closing gaucho. This includes all the tasks/suites information as well as the window size.</p>
+            <blockquote>
+                <p>This information is stored in <code>config.json</code> and <code>tasks.json</code> if any of those files is not present, the default configuration will be loaded and the file will be created</p>
+            </blockquote>
+            <h2 id="development">Development</h2>
+            <p>If you want to contribute to Gaucho, create a new different version of Gaucho, or compile it from source code, follow these instructions.</p>
+            <p>Clone/download source code from the github repo. Make sure you have <em>node</em> and <em>npm</em> already installed in your system:</p>
+            <ol>
+                <li><code>npm install</code> to install electron and all the dependencies.</li>
+                <li><code>npm start</code> to start <em>gaucho</em>.
+                    <ul>
+                        <li><code>npm run start-dev</code> to run <em>gaucho</em> with chrome dev tools enabled.</li>
+                    </ul>
+                </li>
+                <li><code>npm build-electron</code> to build <em>gaucho</em> for your system (build will be placed in <code>builds</code> folder).
+                    <ul>
+                        <li><code>npm run build-electron-all</code> to make builds for windows, linux and mac.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3 id="license">License</h3>
+            <p>Gaucho is being developed and maintained as Open-Source software by @angrykoala (<a href="https://github.com/angrykoala">https://github.com/angrykoala</a>) licensed under <a href="https://github.com/angrykoala/xejs/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE version 3</a></p>
+            <br><br>
+
+        </div>
+    </div>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+
+</body>
+
+</html>
