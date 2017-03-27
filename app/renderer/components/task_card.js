@@ -84,7 +84,6 @@ module.exports = {
             }, 1000);
         },
         stop: function() {
-
             this.task.stop();
         },
         print: function(out) {

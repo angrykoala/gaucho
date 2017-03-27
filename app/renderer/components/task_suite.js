@@ -13,7 +13,6 @@ module.exports = {
             AppStatus: AppStatus,
             event: new EventEmitter()
         };
-
     },
     template: `
         <div v-bind:id="id" class="suite-tab">
@@ -28,12 +27,14 @@ module.exports = {
     mounted: function() {
         AppStatus.events.on("run-suite", () => {
             if (this.index === AppStatus.activeSuite) {
+                //this.suite.runAll();
                 this.event.emit("run");
             }
         });
         AppStatus.events.on("stop-suite", () => {
             if (this.index === AppStatus.activeSuite) {
                 this.event.emit("stop");
+                //this.suite.stopAll();
             }
         });
     },

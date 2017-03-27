@@ -1,7 +1,7 @@
 "use strict";
 
 const yerbamate = require('yerbamate');
-const Utils=require('../common/utils');
+const Utils = require('../common/utils');
 
 const taskStatus = {
     idle: "do_not_disturb_off",
@@ -38,10 +38,10 @@ class Task {
             });
     }
 
-    stop() {
+    stop(cb) {
         if (this.isRunning()) {
-            yerbamate.stop(this.proc);
-        }
+            yerbamate.stop(this.proc, cb);
+        } else cb();
         this.status = taskStatus.stopped;
     }
 

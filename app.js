@@ -1,5 +1,7 @@
 "use strict";
 
+const ipcRenderer = require('electron').ipcRenderer;
+
 const TaskConfig = require('./app/renderer/task_config');
 const Material = require('./app/renderer/materialize');
 
@@ -8,8 +10,17 @@ const components = {
     "navbar": require('./app/renderer/components/navbar')
 };
 
+
 let suites = [];
 
+ipcRenderer.on('before-close', () => {
+    const promises=suites.map((s)=>{
+        return s.stopAll();
+    });
+    Promise.all(promises).then(()=>{
+        ipcRenderer.send("close-app");
+    });
+});
 
 const app = new Vue({ // jshint ignore:line
     el: '#app',
@@ -21,7 +32,9 @@ const app = new Vue({ // jshint ignore:line
     mounted() {
         Material.init();
         TaskConfig.loadConfig((err, s) => {
-            this.suites = s;
+            if (err) console.error(err);
+            suites = s;
+            this.suites = suites;
             this.loaded = true;
         });
     },
