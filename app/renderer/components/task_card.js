@@ -4,9 +4,10 @@ const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 
+const Material = require('../materialize');
+
 const config = AppStatus.config;
 
-const Material = require('../materialize');
 
 module.exports = {
     props: ['task', 'event'],

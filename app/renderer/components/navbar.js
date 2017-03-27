@@ -13,8 +13,6 @@ module.exports = {
     },
     data: () => {
         return {
-            output: "",
-            cleanOutput: false,
             AppStatus: AppStatus
         };
     },

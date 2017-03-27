@@ -34,7 +34,7 @@ class Task {
     stop(cb) {
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
-        } else cb();
+        } else if(cb) cb();
         this.status = TaskStatus.stopped;
     }
 
