@@ -5,6 +5,7 @@
   * Gaucho icon aded to navbar
   * Readme updated with better instructions for usage and development
   * Removed moment.js dependency
+  * Hours support in execution time
   * Loading times slightly improved
   * Fixed resizing with dev tools bug
   * Small code improvements on suite runAll/stopAll
