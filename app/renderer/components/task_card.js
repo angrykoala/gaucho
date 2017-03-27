@@ -2,9 +2,9 @@
 
 const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
+const TaskStatus = require('../../common/task_status');
 
 const config = AppStatus.config;
-const taskStatus = require('../task').taskStatus;
 
 const Material = require('../materialize');
 
@@ -114,14 +114,14 @@ module.exports = {
     computed: {
         statusColor: function() {
             switch (this.task.status) {
-                case taskStatus.idle:
-                case taskStatus.stopped:
+                case TaskStatus.idle:
+                case TaskStatus.stopped:
                     return "black";
-                case taskStatus.error:
+                case TaskStatus.error:
                     return "red";
-                case taskStatus.running:
+                case TaskStatus.running:
                     return "blue";
-                case taskStatus.ok:
+                case TaskStatus.ok:
                     return "green";
                 default:
                     return "grey";

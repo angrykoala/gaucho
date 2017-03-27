@@ -2,14 +2,7 @@
 
 const yerbamate = require('yerbamate');
 const Utils = require('../common/utils');
-
-const taskStatus = {
-    idle: "do_not_disturb_off",
-    error: "error",
-    running: "autorenew",
-    ok: "check_circle",
-    stopped: "do_not_disturb_off"
-};
+const TaskStatus = require('../common/task_status');
 
 
 class Task {
@@ -17,14 +10,14 @@ class Task {
         this.title = title || "";
         this.path = path || "";
         this.command = command || "";
-        this.status = taskStatus.idle;
+        this.status = TaskStatus.idle;
         this.process = null;
         this.beginTime = null;
         this.finishTime = null;
     }
 
     run(stdout, done) {
-        this.status = taskStatus.running;
+        this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
         this.proc = yerbamate.run(this.command, this.path, {
@@ -32,7 +25,7 @@ class Task {
                 stdout: stdout
             },
             (code) => {
-                if (this.status !== taskStatus.stopped) this.status = yerbamate.successCode(code) ? taskStatus.ok : taskStatus.error;
+                if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
                 this.finishTime = Date.now();
                 done();
             });
@@ -42,11 +35,11 @@ class Task {
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
         } else cb();
-        this.status = taskStatus.stopped;
+        this.status = TaskStatus.stopped;
     }
 
     isRunning() {
-        return this.status === taskStatus.running;
+        return this.status === TaskStatus.running;
     }
 
     toJSON() {
@@ -69,6 +62,6 @@ class Task {
     }
 }
 
-Task.taskStatus = taskStatus;
+Task.TaskStatus = TaskStatus;
 
 module.exports = Task;
