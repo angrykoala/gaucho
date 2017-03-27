@@ -59,6 +59,7 @@ function createWindow() {
         });
         win.on('closed', () => {
             win = null;
+            UserConfig.saveConfig(() => {});
         });
     });
 }
@@ -67,12 +68,10 @@ app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    UserConfig.saveConfig(() => {
-        //For macOS
-        if (process.platform !== 'darwin') {
-            app.quit();
-        }
-    });
+    //For macOS
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
 app.on('activate', () => {

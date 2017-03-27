@@ -2,13 +2,12 @@
 ==================
 
   * All running tasks will stop when closing gaucho
-  * Gaucho icon aded to navbar
+  * Gaucho icon added to navbar
   * Readme updated with better instructions for usage and development
   * Removed moment.js dependency
   * Hours support in execution time
   * Loading times slightly improved
   * Fixed resizing with dev tools bug
-  * Small code improvements on suite runAll/stopAll
 
 0.1.2 / 2017-03-25
 ==================

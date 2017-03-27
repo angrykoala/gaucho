@@ -19,18 +19,19 @@ class Suite {
     }
 
     stopAll() {
-        let promises = [];
-        for (const task of this.tasks) {
-            if (task.isRunning()) {
-                promises.push(new Promise((resolve) => {
+        const promises = this.tasks.map((task) => {
+            if (!task.isRunning()) return Promise.resolve();
+            else {
+                return new Promise((resolve) => {
                     task.stop(() => {
                         resolve();
                     });
-                }));
+                });
             }
-        }
+        });
         return Promise.all(promises);
     }
+
     runAll() {
         for (const task of this.tasks) {
             if (!task.isRunning()) task.run();
