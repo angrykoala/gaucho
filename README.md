@@ -68,6 +68,6 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
     * `npm run build-electron-all` to make builds for windows, linux and mac.
 
 ### License
-Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/xejs/blob/master/LICENSE)
+Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
