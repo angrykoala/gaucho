@@ -53,13 +53,16 @@ function createWindow() {
         });
         let first = true;
         win.on('close', (ev) => {
-            win.webContents.send('before-close');
-            if (first) ev.preventDefault();
-            first = false;
+            if (first) {
+                ev.preventDefault();
+                UserConfig.saveConfig(() => {
+                    win.webContents.send('before-close');
+                    first = false;
+                });
+            }
         });
         win.on('closed', () => {
             win = null;
-            UserConfig.saveConfig(() => {});
         });
     });
 }

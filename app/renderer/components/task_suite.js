@@ -27,14 +27,12 @@ module.exports = {
     mounted: function() {
         AppStatus.events.on("run-suite", () => {
             if (this.index === AppStatus.activeSuite) {
-                //this.suite.runAll();
                 this.event.emit("run");
             }
         });
         AppStatus.events.on("stop-suite", () => {
             if (this.index === AppStatus.activeSuite) {
                 this.event.emit("stop");
-                //this.suite.stopAll();
             }
         });
     },

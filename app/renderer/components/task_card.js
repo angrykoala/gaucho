@@ -44,7 +44,7 @@ module.exports = {
             <pre>{{output}}</pre>
         </div>
         <div v-else class="container">
-            <task-input v-bind:task="task" v-on:save="editTask"></task-input>
+            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
         </div>
     </div>
   </li>
@@ -69,7 +69,7 @@ module.exports = {
             this.$emit('remove');
 
         },
-        editTask(task) {
+        saveTask(task) {
             this.stop();
             this.collapseTask();
             this.$emit('edit', task);
