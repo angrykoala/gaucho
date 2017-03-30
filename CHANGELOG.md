@@ -1,4 +1,4 @@
-0.1.3 / ####-##-##
+0.1.3 / 2017-03-30
 ==================
 
   * All running tasks will stop when closing gaucho
