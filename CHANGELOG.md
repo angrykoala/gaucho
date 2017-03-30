@@ -9,6 +9,7 @@
   * Loading times slightly improved
   * Fixed resizing with dev tools bug
   * Build will no longer contain config.json file
+  * Tasks.json will be saved when closing gaucho
 
 0.1.2 / 2017-03-25
 ==================
