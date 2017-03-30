@@ -19,14 +19,14 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="./app.js"></script>
 
     <div id="app">
-        <navbar v-bind:suites="suites"></navbar>
+        <navbar v-bind:suites="suites" v-if="loaded"></navbar>
         <template v-for="(suite,index) in suites">
             <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
         </template>
     </div>
+    <script type="text/javascript" src="./app.js"></script>
 </body>
 
 </html>

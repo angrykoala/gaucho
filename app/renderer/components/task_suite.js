@@ -13,7 +13,6 @@ module.exports = {
             AppStatus: AppStatus,
             event: new EventEmitter()
         };
-
     },
     template: `
         <div v-bind:id="id" class="suite-tab">

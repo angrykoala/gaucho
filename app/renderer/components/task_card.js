@@ -2,11 +2,12 @@
 
 const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
-
-const config = AppStatus.config;
-const taskStatus = require('../task').taskStatus;
+const TaskStatus = require('../../common/task_status');
 
 const Material = require('../materialize');
+
+const config = AppStatus.config;
+
 
 module.exports = {
     props: ['task', 'event'],
@@ -21,10 +22,10 @@ module.exports = {
     template: `
     <li class="run-card">
         <div class="collapsible-header row unselectable">
-            <div class="col s6">
+            <div class="col s5">
                 <strong class="truncate">{{task.title}}</strong>     
             </div>
-            <div class="col s2">
+            <div class="col s3">
                 <div class="truncate task-time">{{executionTime}}</div>
             </div>
             <div class="col s3">
@@ -43,7 +44,7 @@ module.exports = {
             <pre>{{output}}</pre>
         </div>
         <div v-else class="container">
-            <task-input v-bind:task="task" v-on:save="editTask"></task-input>
+            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
         </div>
     </div>
   </li>
@@ -68,7 +69,7 @@ module.exports = {
             this.$emit('remove');
 
         },
-        editTask(task) {
+        saveTask(task) {
             this.stop();
             this.collapseTask();
             this.$emit('edit', task);
@@ -84,7 +85,6 @@ module.exports = {
             }, 1000);
         },
         stop: function() {
-
             this.task.stop();
         },
         print: function(out) {
@@ -115,14 +115,14 @@ module.exports = {
     computed: {
         statusColor: function() {
             switch (this.task.status) {
-                case taskStatus.idle:
-                case taskStatus.stopped:
+                case TaskStatus.idle:
+                case TaskStatus.stopped:
                     return "black";
-                case taskStatus.error:
+                case TaskStatus.error:
                     return "red";
-                case taskStatus.running:
+                case TaskStatus.running:
                     return "blue";
-                case taskStatus.ok:
+                case TaskStatus.ok:
                     return "green";
                 default:
                     return "grey";

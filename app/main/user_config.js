@@ -21,7 +21,12 @@ module.exports = {
                 this.config = defaultConfig;
                 if (done) done(this.config);
             } else {
-                this.config = Object.assign({}, defaultConfig, JSON.parse(data));
+                try {
+                    this.config = Object.assign({}, defaultConfig, JSON.parse(data));
+                } catch (e) {
+                    console.error(e);
+                    this.config = defaultConfig;
+                }
                 if (done) return done(this.config);
             }
         });

@@ -1,5 +1,7 @@
 "use strict";
 
+const ipcRenderer = require('electron').ipcRenderer;
+
 const TaskConfig = require('./app/renderer/task_config');
 const Material = require('./app/renderer/materialize');
 
@@ -8,21 +10,42 @@ const components = {
     "navbar": require('./app/renderer/components/navbar')
 };
 
-TaskConfig.loadConfig((err, suites) => {
-    if (err) console.error(err);
-    const app = new Vue({ // jshint ignore:line
-        el: '#app',
-        data: {
-            suites: suites
-        },
-        components: components,
-        mounted() {
-            Material.init();
-        },
-        updated() {
-            this.$nextTick(() => {
-                Material.init();
-            });
-        }
+
+let suites = [];
+
+ipcRenderer.on('before-close', () => {
+    const promises = suites.map((s) => {
+        return s.stopAll();
     });
+    promises.push(new Promise((resolve) => {
+        TaskConfig.saveConfig(() => {
+            resolve();
+        });
+    }));
+    Promise.all(promises).then(() => {
+        ipcRenderer.send("close-app");
+    });
+});
+
+const app = new Vue({ // jshint ignore:line
+    el: '#app',
+    data: {
+        suites: suites,
+        loaded: false
+    },
+    components: components,
+    mounted() {
+        Material.init();
+        TaskConfig.loadConfig((err, s) => {
+            if (err) console.error(err);
+            suites = s;
+            this.suites = suites;
+            this.loaded = true;
+        });
+    },
+    updated() {
+        this.$nextTick(() => {
+            Material.init();
+        });
+    }
 });

@@ -1,7 +1,6 @@
 "use strict";
 
 const Suite = require('../suite');
-const TaskConfig = require('../task_config');
 const Material = require('../materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu');
@@ -13,8 +12,6 @@ module.exports = {
     },
     data: () => {
         return {
-            output: "",
-            cleanOutput: false,
             AppStatus: AppStatus
         };
     },
@@ -23,7 +20,10 @@ module.exports = {
     <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a class="brand-logo main-logo left">Gaucho</a>
+                <div class="brand-logo main-logo left">
+                <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
+                <a>Gaucho</a>
+                </div>
                 <ul class="right">
                     <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}"><i class="material-icons unselectable">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small unselectable">menu</i></a></li>
@@ -53,7 +53,6 @@ module.exports = {
         addSuite() {
             if (this.suites.length < 6) {
                 this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
-                TaskConfig.saveConfig();
                 this.selectTab(this.suites.length - 1);
             }
         },
@@ -61,7 +60,6 @@ module.exports = {
             if (this.suites.length > 1) {
                 this.suites.splice(AppStatus.activeSuite, 1);
                 this.selectTab(AppStatus.activeSuite);
-                TaskConfig.saveConfig();
             }
         },
         onTabSelected(index) {

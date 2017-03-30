@@ -1,3 +1,17 @@
+0.1.3 / 2017-03-30
+==================
+
+  * All running tasks will stop when closing gaucho
+  * Gaucho icon added to navbar
+  * Readme updated with better instructions for usage and development
+  * Removed moment.js dependency
+  * Hours support in execution time
+  * Loading times slightly improved
+  * Fixed resizing with dev tools bug
+  * Build will no longer contain config.json file
+  * Task.json will be saved when closing gaucho
+  * Added icon as part of the build
+
 0.1.2 / 2017-03-25
 ==================
 

@@ -2,15 +2,72 @@ Gaucho
 ======
 _by @angrykoala_    
 
-A graphical task runner powered by Yerbamate
+A graphical launcher powered by Yerbamate.
 
-![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/21082203/c7a1ceec-bfce-11e6-9f1a-114cf49a4593.png)
+![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24318182/0b199e68-10f9-11e7-8a35-fd3f1eb51337.png)    
+_Gaucho 0.1.2_
+
+## Download
+
+Gaucho can be downloaded [here]<https://github.com/angrykoala/gaucho/releases>.
+Available versions for Linux, Mac and Windows (64 bits).
+
+To use, unzip in the desired location and execute gaucho (execute file depends on you OS).
+
+If you need a different version, please, follow the _development_ instructions to make your own build from the source code
+
+## Usage
+Gaucho allows you to configure _tasks_ as part of different _suites_ or groups you can access the different suites by clicking on its name in the navbar menu.
+
+### Executing tasks
+On each suite, you will find the list of possible tasks to launch. By clicking on _Run_ you will start that task. Clicking the same button again (now the _Stop_ button) you can stop the tasks.
+
+You can easily see the _name_, _execution time_ and _status_ of each task. The _status_ (shown with the status icon) can be _idle_ (black), _running_ (blue), _successful_ (green) or _failed_ (red). 
+
+Clicking in the task name the _log_ will be displayed, allowing you to check the task output in real time.
+
+### Creating and Editing tasks
+By clicking the _Edit_ button (on the top right corner) you'll be able to edit the suites and tasks.
+
+You can add new tasks to the current suite by clicking _"Add New Task"_ at the bottom of the list. By clicking on a task name you'll be able to edit that task.
+
+While editing/creating a new tasks, you should add a _name_ to the task and a _command_. The command can be any shell/terminal accepted command or an executable file. Optionally a path can be added as well, if no path is added, the gaucho execution path will be used.
+
+The tasks can be deleted by clicking the _Delete_ button.
+
+> Keep in mind that you won't be able to run new tasks in edit mode
+
+While in edit mode, suites names can also be changed by clicking on it. To close edit mode simply click again on the edit button.
+
+## Menu
+Next to the edit button, is the menu button. When clicking the menu, several options will be shown, those options may change if the edit mode is active:
+
+**Normal mode**   
+* _Run Suite_: Runs all tasks in the current suite (except those already running)
+* _Stop Suite_: Stops all running tasks in suite
+
+**Edit mode**  
+* _Add new Suite_: Created a new suite
+* _Delete Suite_: Deletes current suite
+
+## User and Tasks Configuration
+All tasks and user changes are saved automatically when closing gaucho. This includes all the tasks/suites information as well as the window size.
+
+> This information is stored in `config.json` and `tasks.json` if any of those files is not present, the default configuration will be loaded and the file will be created
 
 
-# Usage
-After downloading, and assuming you have _node_ and _npm_ already installed in your system:
+## Development
+If you want to contribute to Gaucho, create a new different version of Gaucho, or compile it from source code, follow these instructions.
 
-1. `npm install` to install electron and all the dependencies
-2. `npm start` to start _gaucho_
-3. You can configure your own tasks modifying `tasks.json`
-    * Each task has a `title`, `command` and `path`
+Clone/download source code from the github repo. Make sure you have _node_ and _npm_ already installed in your system:
+
+1. `npm install` to install electron and all the dependencies.
+2. `npm start` to start _gaucho_.
+    * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
+3. `npm build-electron` to build _gaucho_ for your system (build will be placed in `builds` folder).
+    * `npm run build-electron-all` to make builds for windows, linux and mac.
+
+### License
+Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
+
+The original source code can be found at: <https://github.com/angrykoala/gaucho>

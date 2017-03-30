@@ -84,8 +84,8 @@
     margin-bottom: 0;
 }
 
-@media (max-width: 250px) {
-    .brand-logo.main-logo {
+@media (max-width: 280px) {
+    .brand-logo.main-logo>a {
         display: none !important;
     }
 }
@@ -114,6 +114,15 @@ input.tab-text {
 .brand-logo.main-logo {
     -webkit-user-select: none;
     cursor: default;
+    margin-top: 5px;
+}
+
+.logo-icon {
+    height: 40px;
+}
+
+.brand-logo.main-logo>a {
+    vertical-align: top;
 }
 
 .unselectable {
