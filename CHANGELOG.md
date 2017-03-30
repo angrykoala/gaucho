@@ -8,6 +8,7 @@
   * Hours support in execution time
   * Loading times slightly improved
   * Fixed resizing with dev tools bug
+  * Build will no longer contain config.json file
 
 0.1.2 / 2017-03-25
 ==================

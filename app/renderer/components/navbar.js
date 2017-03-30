@@ -1,7 +1,6 @@
 "use strict";
 
 const Suite = require('../suite');
-const TaskConfig = require('../task_config');
 const Material = require('../materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu');
@@ -54,7 +53,6 @@ module.exports = {
         addSuite() {
             if (this.suites.length < 6) {
                 this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
-                TaskConfig.saveConfig();
                 this.selectTab(this.suites.length - 1);
             }
         },
@@ -62,7 +60,6 @@ module.exports = {
             if (this.suites.length > 1) {
                 this.suites.splice(AppStatus.activeSuite, 1);
                 this.selectTab(AppStatus.activeSuite);
-                TaskConfig.saveConfig();
             }
         },
         onTabSelected(index) {
