@@ -29,7 +29,7 @@ function createWindow() {
         let winConfig = {
             width: config.windowSize[0],
             height: config.windowSize[1],
-            minWidth: 200,
+            minWidth: 360,
             minHeight: 300,
             webgl: false,
             icon: iconPath

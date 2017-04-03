@@ -2,6 +2,7 @@
 ==================
 
   * Running tasks now update using the same timer
+  * Increased minimun width
 
 0.1.3 / 2017-03-30
 ==================
