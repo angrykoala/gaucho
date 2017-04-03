@@ -3,12 +3,15 @@
 const Suite = require('../suite');
 const Material = require('../materialize');
 const AppStatus = require('../app_status');
+
 const NavbarMenu = require('./navbar_menu');
+const WindowFrameTop = require('./window_frame_top');
 
 module.exports = {
     props: ['suites'],
     components: {
-        "navbar-menu": NavbarMenu
+        "navbar-menu": NavbarMenu,
+        "window-frame-top": WindowFrameTop
     },
     data: () => {
         return {
@@ -20,6 +23,7 @@ module.exports = {
     <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
+                <window-frame-top></window-frame-top>
                 <div class="brand-logo main-logo left">
                 <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
                 <a>Gaucho</a>

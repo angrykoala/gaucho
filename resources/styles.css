@@ -62,7 +62,8 @@
 }
 
 .suite-tab {
-    margin-top: 48px;
+    margin-top: 72px;
+    /*47 px + 25px*/
 }
 
 .menu-title {
@@ -127,4 +128,22 @@ input.tab-text {
 
 .unselectable {
     -webkit-user-select: none;
+}
+
+.window-frame-top {
+    color: rgba(255, 255, 255, 0.8);
+    height: 25px;
+    line-height: 25px;
+    background-color: rgba(51, 51, 51, 0.15);
+}
+
+.window-frame-top .window-frame-button {
+    cursor: pointer;
+    float: right;
+    height: 25px;
+    line-height: 25px;
+}
+
+.window-frame-button:hover {
+    background-color: rgba(0, 0, 0, 0.1)
 }
