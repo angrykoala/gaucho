@@ -15,7 +15,6 @@ module.exports = {
         return {
             output: "",
             executionTime: "-",
-            executionUpdateTimer: null,
             AppStatus: AppStatus
         };
     },
@@ -80,17 +79,18 @@ module.exports = {
                 this.onTaskFinish();
             });
             this.executionTime = this.task.printTime();
-            this.executionUpdateTimer = setInterval(() => {
-                this.executionTime = this.task.printTime();
-            }, 1000);
+            AppStatus.events.on("time-update",this.updateTime);
         },
-        stop: function() {
+        stop(){
             this.task.stop();
         },
-        print: function(out) {
+        print(out) {
             this.output += "\n" + out;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
+        },
+        updateTime(){
+            this.executionTime = this.task.printTime();
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
@@ -108,7 +108,7 @@ module.exports = {
             }
         },
         onTaskFinish() {
-            clearInterval(this.executionUpdateTimer);
+            AppStatus.events.removeListener("time-update",this.updateTime);
             this.executionTime = this.task.printTime();
         }
     },

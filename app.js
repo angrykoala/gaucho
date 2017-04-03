@@ -5,6 +5,9 @@ const ipcRenderer = require('electron').ipcRenderer;
 const TaskConfig = require('./app/renderer/task_config');
 const Material = require('./app/renderer/materialize');
 
+const AppStatus = require('./app/renderer/app_status');
+const AppTimer = require('./app/renderer/timer');
+
 const components = {
     "task-suite": require('./app/renderer/components/task_suite'),
     "navbar": require('./app/renderer/components/navbar')
@@ -41,6 +44,7 @@ const app = new Vue({ // jshint ignore:line
             suites = s;
             this.suites = suites;
             this.loaded = true;
+            AppTimer(AppStatus.events);
         });
     },
     updated() {

@@ -1,3 +1,8 @@
+0.1.4 / ####-##-##
+==================
+
+  * Running tasks now update using the same timer
+
 0.1.3 / 2017-03-30
 ==================
 
