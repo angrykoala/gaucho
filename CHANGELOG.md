@@ -1,8 +1,10 @@
 0.1.4 / ####-##-##
 ==================
 
+  * Gaucho is now "Frameless" so the style will be the same on every OS
   * Running tasks now update using the same timer
   * Increased minimun width
+  * Mouse pointer will no longer change
 
 0.1.3 / 2017-03-30
 ==================

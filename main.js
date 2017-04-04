@@ -32,7 +32,8 @@ function createWindow() {
             minWidth: 360,
             minHeight: 300,
             webgl: false,
-            icon: iconPath
+            icon: iconPath,
+            frame: false
         };
         if (isDevEnv()) {
             winConfig.width += config.devToolsSize;
