@@ -16,7 +16,7 @@ module.exports = {
         </div>
         <div class="window-controls">
             <i class="tiny material-icons unselectable window-frame-button" v-on:click="onClose">close</i>
-            <i class="tiny material-icons unselectable window-frame-button" v-on:click="onMaximize">crop_square</i>
+            <!--<i class="tiny material-icons unselectable window-frame-button" v-on:click="onMaximize">crop_square</i>-->
             <i class="tiny material-icons unselectable window-frame-button" v-on:click="onMinimize">remove</i>
         </div>
     </div>
@@ -26,6 +26,7 @@ module.exports = {
             this.win.close();
         },
         onMaximize() {
+            // Currently not working
             if (!this.win.isMaximized()) {
                 this.win.maximize();
             } else {
