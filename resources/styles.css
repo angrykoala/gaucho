@@ -68,6 +68,7 @@
 
 .menu-title {
     color: #ee6e73;
+        cursor: default;
 }
 
 .edit-button-active {
@@ -114,6 +115,7 @@ input.tab-text {
 .brand-logo.main-logo {
     -webkit-user-select: none;
     margin-top: 5px;
+    cursor: default
 }
 
 .logo-icon {
@@ -141,12 +143,9 @@ input.tab-text {
     height: 28px;
     line-height: 28px;
     -webkit-app-region: no-drag;
+    cursor: default;
 }
 
 .window-frame-button:hover {
     background-color: rgba(0, 0, 0, 0.1)
-}
-
-* {
-    cursor: default !important;
 }
