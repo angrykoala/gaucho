@@ -5,15 +5,15 @@ const AppStatus=require('../app_status');
 module.exports = {
     template: `
     <ul id='navbar-menu' class='dropdown-content'>
-        <h5 v-on:click="invalidClick" class="center-align menu-title unselectable">Suite</h5>
+        <h5 v-on:click="invalidClick" class="center-align menu-title unselectable-text">Suite</h5>
         <li class="divider"></li>
         <template v-if="!editMode">
-            <li class="unselectable"><a v-on:click="selected('run-suite')">Run</a></li>
-            <li class="unselectable"><a v-on:click="selected('stop-suite')">Stop</a></li>
+            <li class="unselectable-text"><a v-on:click="selected('run-suite')">Run</a></li>
+            <li class="unselectable-text"><a v-on:click="selected('stop-suite')">Stop</a></li>
         </template>
         <template v-else>
-            <li class="unselectable"><a v-on:click="selected('add-suite')">Add New</a></li>
-            <li class="unselectable"><a v-on:click="selected('delete-suite')">Delete</a></li>
+            <li class="unselectable-text"><a v-on:click="selected('add-suite')">Add New</a></li>
+            <li class="unselectable-text"><a v-on:click="selected('delete-suite')">Delete</a></li>
         </template>
         <li class="divider"></li>
     </ul>

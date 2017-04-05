@@ -126,7 +126,7 @@ input.tab-text {
     vertical-align: top;
 }
 
-.unselectable {
+.unselectable-text {
     -webkit-user-select: none;
 }
 

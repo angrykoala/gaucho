@@ -15,9 +15,9 @@ module.exports = {
         <div class="draggable-frame">
         </div>
         <div class="window-controls">
-            <i class="tiny material-icons unselectable window-frame-button" v-on:click="onClose">close</i>
-            <i class="tiny material-icons unselectable window-frame-button" v-on:click="onMaximize">crop_square</i>
-            <i class="tiny material-icons unselectable window-frame-button" v-on:click="onMinimize">remove</i>
+            <i class="tiny material-icons unselectable-text window-frame-button" v-on:click="onClose">close</i>
+            <i class="tiny material-icons unselectable-text window-frame-button" v-on:click="onMaximize">crop_square</i>
+            <i class="tiny material-icons unselectable-text window-frame-button" v-on:click="onMinimize">remove</i>
         </div>
     </div>
     `,

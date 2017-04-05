@@ -29,15 +29,15 @@ module.exports = {
                 <a>Gaucho</a>
                 </div>
                 <ul class="right">
-                    <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}"><i class="material-icons unselectable">mode_edit</i></a></li>
-                    <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small unselectable">menu</i></a></li>
+                    <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}"><i class="material-icons unselectable-text">mode_edit</i></a></li>
+                    <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
                 <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
             
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
                         <template v-for="(suite,index) in suites">
-                        <li class="tab col s3 unselectable">
+                        <li class="tab col s3 unselectable-text">
                             <a draggable="false" v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
                                 <template v-if="editMode && index===AppStatus.activeSuite">
                                     <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
