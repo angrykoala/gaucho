@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require('path');
+
 const MainWindow = require('./app/main/main_window');
 const AppEvents = require('./app/main/app_events');
 const UserConfig = require('./app/main/user_config');
