@@ -3,6 +3,7 @@
 
   * Gaucho is now "Frameless" so the style will be the same on every OS
   * Running tasks now update using the same timer
+  * Add and delete suite buttons disabled when action is invalid
   * Increased minimum window width
   * General code refactoring
   * Small changes in README

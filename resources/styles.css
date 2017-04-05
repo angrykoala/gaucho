@@ -126,9 +126,15 @@ input.tab-text {
     vertical-align: top;
 }
 
+
+/* common */
+
 .unselectable-text {
     -webkit-user-select: none;
 }
+
+
+/* Window frame */
 
 .window-frame-top {
     color: rgba(255, 255, 255, 0.8);
@@ -148,4 +154,24 @@ input.tab-text {
 
 .window-frame-button:hover {
     background-color: rgba(0, 0, 0, 0.1)
+}
+
+
+/*  Navbar Menu */
+
+.menu-button>a {
+    cursor: default;
+}
+
+.menu-button.disabled>a {
+    background-color: transparent;
+    color: #5f9ea0;
+}
+
+.menu-button.disabled {
+    background-color: #ababab;
+}
+
+.menu-button.disabled:hover {
+    background-color: #ababab;
 }

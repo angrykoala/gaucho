@@ -32,7 +32,7 @@ module.exports = {
                     <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}"><i class="material-icons unselectable-text">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" href='#' data-activates='navbar-menu'><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
-                <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
+                <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites"></navbar-menu>
             
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
@@ -55,7 +55,7 @@ module.exports = {
     `,
     methods: {
         addSuite() {
-            if (this.suites.length < 6) {
+            if (this.suites.length < AppStatus.maxSuites) {
                 this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
                 this.selectTab(this.suites.length - 1);
             }

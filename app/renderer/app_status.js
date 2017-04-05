@@ -14,4 +14,5 @@ module.exports = {
         TaskConfig.saveConfig();
     },
     config:  remote.getCurrentWindow().userConfig,
+    maxSuites: 6
 };
