@@ -2,7 +2,7 @@ Gaucho
 ======
 _by @angrykoala_    
 
-A graphical launcher powered by Yerbamate.
+> Minimalistic task launcher
 
 ![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24318182/0b199e68-10f9-11e7-8a35-fd3f1eb51337.png)    
 _Gaucho 0.1.2_

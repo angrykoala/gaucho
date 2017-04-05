@@ -5,6 +5,7 @@
   * Running tasks now update using the same timer
   * Increased minimum window width
   * General code refactoring
+  * Small changes in README
 
 0.1.3 / 2017-03-30
 ==================
