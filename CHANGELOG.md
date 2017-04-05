@@ -1,12 +1,12 @@
 0.1.4 / ####-##-##
 ==================
 
-  * Gaucho is now "Frameless" so the style will be the same on every OS
-  * Running tasks now update using the same timer
+  * Gaucho is now "Frameless" so the window style will be the same on every OS
+  * Running tasks will be updated using the same timer
   * Add and delete suite buttons disabled when action is invalid
   * Increased minimum window width
   * General code refactoring
-  * Small changes in README
+  * Improvements in Readme file
 
 0.1.3 / 2017-03-30
 ==================
