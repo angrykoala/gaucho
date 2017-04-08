@@ -53,7 +53,8 @@ module.exports = {
         this.event.on("stop", this.onStop);
     },
     beforeDestroy() {
-        this.deleteTask();
+        if (this.running) this.stop();
+        this.removeListeners();
     },
     methods: {
         toggleRun: function(ev) {
@@ -67,9 +68,7 @@ module.exports = {
 
         },
         deleteTask() {
-            if (this.running) this.stop();
             this.$emit('remove');
-            this.removeListeners();
         },
         saveTask(task) {
             this.stop();
