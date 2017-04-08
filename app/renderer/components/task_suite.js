@@ -20,7 +20,7 @@ module.exports = {
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-                <add-task v-on:add="addTask" v-if="AppStatus.editMode"></add-task>
+                <add-task v-on:add="addTask" v-if="showAddTab"></add-task>
             </ul>
         </div>
     `,
@@ -38,7 +38,9 @@ module.exports = {
     },
     methods: {
         addTask: function(task) {
-            this.suite.addTask(task);
+            if (this.suite.length < AppStatus.maxTasksPerSuite) {
+                this.suite.addTask(task);
+            }
         },
         removeTask: function(i) {
             this.suite.removeTask(i);
@@ -52,6 +54,9 @@ module.exports = {
     computed: {
         id: function() {
             return "tab" + this.index;
+        },
+        showAddTab: function(){
+            return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         }
 
     },

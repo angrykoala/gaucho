@@ -1,6 +1,6 @@
 "use strict";
 
-const remote=require('electron').remote;
+const remote = require('electron').remote;
 const EventEmitter = require('events');
 
 const TaskConfig = require('./task_config');
@@ -13,6 +13,7 @@ module.exports = {
         this.editMode = !this.editMode;
         TaskConfig.saveConfig();
     },
-    config:  remote.getCurrentWindow().userConfig,
-    maxSuites: 6
+    config: remote.getCurrentWindow().userConfig,
+    maxSuites: 6,
+    maxTasksPerSuite: 8
 };

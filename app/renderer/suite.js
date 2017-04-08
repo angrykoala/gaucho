@@ -5,6 +5,10 @@ class Suite {
         this.title = title || "";
         this.tasks = [];
     }
+    
+    get length(){
+        return this.tasks.length;
+    }
 
     addTask(task) {
         this.tasks.push(task);

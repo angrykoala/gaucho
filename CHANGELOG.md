@@ -6,6 +6,7 @@
   * Add and delete suite buttons disabled when action is invalid
   * Increased minimum window width
   * Tab supported for command input
+  * Number of tasks per suite limited to 8. Gaucho now supports a maximum of 48 tasks
   * General code refactoring
   * Improvements in Readme file
 
