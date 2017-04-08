@@ -2,7 +2,7 @@
 ==================
 
   * Gaucho is now "Frameless" so the window style will be the same on every OS
-  * Running tasks will be updated using the same timer
+  * Running tasks time will be updated each second using the same timer
   * Add and delete suite buttons disabled when action is invalid
   * Increased minimum window width
   * Tab supported for command input

@@ -92,10 +92,10 @@ module.exports = {
             this.event.removeListener("stop", this.onStop);
         },
         onRun() {
-            if (this.running) this.stop();
+            if (!this.running) this.run();
         },
         onStop() {
-            if (!this.running) this.run();
+            if (this.running) this.stop();
         },
         print(out) {
             this.output += "\n" + out;
