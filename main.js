@@ -27,7 +27,6 @@ function initApp() {
                 .setIndex(htmlUrl)
                 .setUserConfig(config)
                 .initWindow(isDevEnv());
-
             });
         }
     }

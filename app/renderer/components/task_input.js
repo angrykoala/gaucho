@@ -19,7 +19,7 @@ module.exports = {
             <label for="title">Task Title</label>
         </div>
         <div class="input-field">
-            <textarea id="command" class="materialize-textarea" v-model="command"></textarea>
+            <textarea id="command" class="materialize-textarea" v-model="command" v-on:keydown.9="onCommandTabPressed"></textarea>
             <label>Command</label>
         </div>
         <div class="input-field">
@@ -63,6 +63,18 @@ module.exports = {
                     Material.updateInput();
                 });
             }
+        },
+        onCommandTabPressed(ev) {
+            ev.preventDefault();
+            const target = ev.target;
+            const selection = target.selectionStart;
+
+            let value = this.command;
+            this.command = target.value = value.substring(0, selection) +
+                "    " +
+                value.substring(selection, value.length);
+
+            target.selectionStart = target.selectionEnd = selection + 4;
         }
     }
 };

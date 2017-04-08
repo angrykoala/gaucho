@@ -5,6 +5,7 @@
   * Running tasks will be updated using the same timer
   * Add and delete suite buttons disabled when action is invalid
   * Increased minimum window width
+  * Tab supported for command input
   * General code refactoring
   * Improvements in Readme file
 
