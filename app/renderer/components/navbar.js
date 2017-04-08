@@ -61,7 +61,7 @@ module.exports = {
             }
         },
         deleteSuite() {
-            if (this.suites.length > 1) {
+            if (this.suites.length > 1) {                    
                 this.suites.splice(AppStatus.activeSuite, 1);
                 this.selectTab(AppStatus.activeSuite);
             }

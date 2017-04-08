@@ -28,7 +28,7 @@ module.exports = {
                 <div class="truncate task-time">{{executionTime}}</div>
             </div>
             <div class="col s3">
-                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="deleteTask">Delete</a>
+                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
@@ -49,12 +49,11 @@ module.exports = {
   </li>
   `,
     mounted: function() {
-        this.event.on("run", () => {
-            if (!this.running) this.run();
-        });
-        this.event.on("stop", () => {
-            if (this.running) this.stop();
-        });
+        this.event.on("run", this.onRun);
+        this.event.on("stop", this.onStop);
+    },
+    beforeDestroy() {
+        this.deleteTask();
     },
     methods: {
         toggleRun: function(ev) {
@@ -62,34 +61,48 @@ module.exports = {
             if (this.running) this.stop();
             else this.run();
         },
-        deleteTask(ev) {
+        onDeleteClick(ev) {
             ev.stopPropagation();
+            this.deleteTask();
+
+        },
+        deleteTask() {
             if (this.running) this.stop();
             this.$emit('remove');
-
+            this.removeListeners();
         },
         saveTask(task) {
             this.stop();
             this.collapseTask();
             this.$emit('edit', task);
         },
-        run: function() {
+        run() {
             this.output = "";
             this.task.run(this.print, () => {
                 this.onTaskFinish();
             });
             this.executionTime = this.task.printTime();
-            AppStatus.events.on("time-update",this.updateTime);
+            AppStatus.events.on("time-update", this.updateTime);
         },
-        stop(){
+        stop() {
             this.task.stop();
+        },
+        removeListeners() {
+            this.event.removeListener("run", this.onRun);
+            this.event.removeListener("stop", this.onStop);
+        },
+        onRun() {
+            if (this.running) this.stop();
+        },
+        onStop() {
+            if (!this.running) this.run();
         },
         print(out) {
             this.output += "\n" + out;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
         },
-        updateTime(){
+        updateTime() {
             this.executionTime = this.task.printTime();
         },
         autoScroll() {
@@ -108,7 +121,7 @@ module.exports = {
             }
         },
         onTaskFinish() {
-            AppStatus.events.removeListener("time-update",this.updateTime);
+            AppStatus.events.removeListener("time-update", this.updateTime);
             this.executionTime = this.task.printTime();
         }
     },

@@ -24,17 +24,13 @@ module.exports = {
             </ul>
         </div>
     `,
-    mounted: function() {
-        AppStatus.events.on("run-suite", () => {
-            if (this.index === AppStatus.activeSuite) {
-                this.event.emit("run");
-            }
-        });
-        AppStatus.events.on("stop-suite", () => {
-            if (this.index === AppStatus.activeSuite) {
-                this.event.emit("stop");
-            }
-        });
+    mounted() {
+        AppStatus.events.on("run-suite", this.onRunSuite);
+        AppStatus.events.on("stop-suite", this.onStopSuite);
+    },
+    beforeDestroy() {
+        AppStatus.events.removeListener("run-suite", this.onRunSuite);
+        AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
         addTask: function(task) {
@@ -49,13 +45,23 @@ module.exports = {
         editTask: function(i, task) {
             this.suite.replaceTask(i, task);
             this.$forceUpdate();
+        },
+        onRunSuite() {
+            if (this.index === AppStatus.activeSuite) {
+                this.event.emit("run");
+            }
+        },
+        onStopSuite() {
+            if (this.index === AppStatus.activeSuite) {
+                this.event.emit("stop");
+            }
         }
     },
     computed: {
         id: function() {
             return "tab" + this.index;
         },
-        showAddTab: function(){
+        showAddTab: function() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         }
 
