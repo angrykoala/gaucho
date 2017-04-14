@@ -106,7 +106,7 @@ module.exports = {
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
-            if (container.scrollTop === container.scrollHeight - container.clientHeight) {
+            if (container && container.scrollTop === container.scrollHeight - container.clientHeight) {
                 this.$nextTick(() => {
                     container.scrollTop = container.scrollHeight;
                 });
