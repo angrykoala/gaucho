@@ -5,6 +5,7 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 
 const Material = require('../materialize');
+const Utils = require('../../common/utils');
 
 const config = AppStatus.config;
 
@@ -14,7 +15,6 @@ module.exports = {
     data: () => {
         return {
             output: "",
-            executionTime: "-",
             AppStatus: AppStatus
         };
     },
@@ -49,11 +49,10 @@ module.exports = {
   </li>
   `,
     mounted: function() {
-        this.event.on("run", this.onRun);
-        this.event.on("stop", this.onStop);
+        this.event.on("run", this.run);
+        this.event.on("stop", this.stop);
     },
     beforeDestroy() {
-        if (this.running) this.stop();
         this.removeListeners();
     },
     methods: {
@@ -68,6 +67,7 @@ module.exports = {
 
         },
         deleteTask() {
+            this.stop();
             this.$emit('remove');
         },
         saveTask(task) {
@@ -77,32 +77,19 @@ module.exports = {
         },
         run() {
             this.output = "";
-            this.task.run(this.print, () => {
-                this.onTaskFinish();
-            });
-            this.executionTime = this.task.printTime();
-            AppStatus.events.on("time-update", this.updateTime);
+            this.task.run(this.print, () => {});
         },
         stop() {
             this.task.stop();
         },
         removeListeners() {
-            this.event.removeListener("run", this.onRun);
-            this.event.removeListener("stop", this.onStop);
-        },
-        onRun() {
-            if (!this.running) this.run();
-        },
-        onStop() {
-            if (this.running) this.stop();
+            this.event.removeListener("run", this.run);
+            this.event.removeListener("stop", this.stop);
         },
         print(out) {
             this.output += "\n" + out;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
-        },
-        updateTime() {
-            this.executionTime = this.task.printTime();
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
@@ -118,10 +105,6 @@ module.exports = {
                 elements[0].classList.remove("active");
                 Material.updateCollapsible();
             }
-        },
-        onTaskFinish() {
-            AppStatus.events.removeListener("time-update", this.updateTime);
-            this.executionTime = this.task.printTime();
         }
     },
     computed: {
@@ -142,6 +125,10 @@ module.exports = {
         },
         running: function() {
             return this.task.isRunning();
+        },
+        executionTime: function() {
+            if (this.task.beginTime === null) return "-";
+            return Utils.generateTimeString(this.task.elapsedTime);
         }
     },
     components: {

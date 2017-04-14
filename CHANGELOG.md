@@ -7,6 +7,7 @@
   * Increased minimum window width
   * Tab supported for command input
   * Number of tasks per suite limited to 8. Gaucho now supports a maximum of 48 tasks
+  * Fixed timers problems when deleting running tasks
   * Fixed problem "Cannot read property 'scrollTop' of null" when deleting a running task
   * Fixed listeners memory leak when deleting tasks or suites
   * General code refactoring
