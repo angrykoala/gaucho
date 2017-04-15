@@ -54,11 +54,26 @@ module.exports = class MainWindow {
 
         if (devWindow) win.webContents.openDevTools();
 
+        if (UserConfig.config.maximized === true) {
+            win.maximize();
+        }
+
         win.on('resize', () => {
-            let size = win.getSize();
-            if (devWindow) size[0] -= config.devToolsSize;
-            UserConfig.config.windowSize = size;
+            if (UserConfig.config.maximized !== true) {
+                let size = win.getSize();
+                if (devWindow) size[0] -= config.devToolsSize;
+                UserConfig.config.windowSize = size;
+            }
         });
+
+        win.on('maximize', () => {
+            UserConfig.config.maximized = true;
+        });
+
+        win.on('unmaximize', () => {
+            UserConfig.config.maximized = false;
+        });
+
         let first = true;
         win.on('close', (ev) => {
             if (first) {
