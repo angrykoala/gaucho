@@ -5,6 +5,7 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 
 const Material = require('../materialize');
+const Utils = require('../../common/utils');
 
 const config = AppStatus.config;
 
@@ -14,14 +15,12 @@ module.exports = {
     data: () => {
         return {
             output: "",
-            executionTime: "-",
-            executionUpdateTimer: null,
             AppStatus: AppStatus
         };
     },
     template: `
     <li class="run-card">
-        <div class="collapsible-header row unselectable">
+        <div class="collapsible-header row unselectable-text">
             <div class="col s5">
                 <strong class="truncate">{{task.title}}</strong>     
             </div>
@@ -29,7 +28,7 @@ module.exports = {
                 <div class="truncate task-time">{{executionTime}}</div>
             </div>
             <div class="col s3">
-                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="deleteTask">Delete</a>
+                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
@@ -50,12 +49,11 @@ module.exports = {
   </li>
   `,
     mounted: function() {
-        this.event.on("run", () => {
-            if (!this.running) this.run();
-        });
-        this.event.on("stop", () => {
-            if (this.running) this.stop();
-        });
+        this.event.on("run", this.run);
+        this.event.on("stop", this.stop);
+    },
+    beforeDestroy() {
+        this.removeListeners();
     },
     methods: {
         toggleRun: function(ev) {
@@ -63,38 +61,39 @@ module.exports = {
             if (this.running) this.stop();
             else this.run();
         },
-        deleteTask(ev) {
+        onDeleteClick(ev) {
             ev.stopPropagation();
-            if (this.running) this.stop();
-            this.$emit('remove');
+            this.deleteTask();
 
+        },
+        deleteTask() {
+            this.stop();
+            this.$emit('remove');
         },
         saveTask(task) {
             this.stop();
             this.collapseTask();
             this.$emit('edit', task);
         },
-        run: function() {
+        run() {
             this.output = "";
-            this.task.run(this.print, () => {
-                this.onTaskFinish();
-            });
-            this.executionTime = this.task.printTime();
-            this.executionUpdateTimer = setInterval(() => {
-                this.executionTime = this.task.printTime();
-            }, 1000);
+            this.task.run(this.print, () => {});
         },
-        stop: function() {
+        stop() {
             this.task.stop();
         },
-        print: function(out) {
+        removeListeners() {
+            this.event.removeListener("run", this.run);
+            this.event.removeListener("stop", this.stop);
+        },
+        print(out) {
             this.output += "\n" + out;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
-            if (container.scrollTop === container.scrollHeight - container.clientHeight) {
+            if (container && container.scrollTop === container.scrollHeight - container.clientHeight) {
                 this.$nextTick(() => {
                     container.scrollTop = container.scrollHeight;
                 });
@@ -106,10 +105,6 @@ module.exports = {
                 elements[0].classList.remove("active");
                 Material.updateCollapsible();
             }
-        },
-        onTaskFinish() {
-            clearInterval(this.executionUpdateTimer);
-            this.executionTime = this.task.printTime();
         }
     },
     computed: {
@@ -130,6 +125,10 @@ module.exports = {
         },
         running: function() {
             return this.task.isRunning();
+        },
+        executionTime: function() {
+            if (this.task.beginTime === null) return "-";
+            return Utils.generateTimeString(this.task.elapsedTime);
         }
     },
     components: {

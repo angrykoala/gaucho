@@ -10,7 +10,6 @@ const components = {
     "navbar": require('./app/renderer/components/navbar')
 };
 
-
 let suites = [];
 
 ipcRenderer.on('before-close', () => {

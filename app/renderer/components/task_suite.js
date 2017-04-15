@@ -20,25 +20,23 @@ module.exports = {
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-                <add-task v-on:add="addTask" v-if="AppStatus.editMode"></add-task>
+                <add-task v-on:add="addTask" v-if="showAddTab"></add-task>
             </ul>
         </div>
     `,
-    mounted: function() {
-        AppStatus.events.on("run-suite", () => {
-            if (this.index === AppStatus.activeSuite) {
-                this.event.emit("run");
-            }
-        });
-        AppStatus.events.on("stop-suite", () => {
-            if (this.index === AppStatus.activeSuite) {
-                this.event.emit("stop");
-            }
-        });
+    mounted() {
+        AppStatus.events.on("run-suite", this.onRunSuite);
+        AppStatus.events.on("stop-suite", this.onStopSuite);
+    },
+    beforeDestroy() {
+        AppStatus.events.removeListener("run-suite", this.onRunSuite);
+        AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
         addTask: function(task) {
-            this.suite.addTask(task);
+            if (this.suite.length < AppStatus.maxTasksPerSuite) {
+                this.suite.addTask(task);
+            }
         },
         removeTask: function(i) {
             this.suite.removeTask(i);
@@ -47,11 +45,24 @@ module.exports = {
         editTask: function(i, task) {
             this.suite.replaceTask(i, task);
             this.$forceUpdate();
+        },
+        onRunSuite() {
+            if (this.index === AppStatus.activeSuite) {
+                this.event.emit("run");
+            }
+        },
+        onStopSuite() {
+            if (this.index === AppStatus.activeSuite) {
+                this.event.emit("stop");
+            }
         }
     },
     computed: {
         id: function() {
             return "tab" + this.index;
+        },
+        showAddTab: function() {
+            return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         }
 
     },

@@ -9,13 +9,6 @@
     <link type="text/css" rel="stylesheet" href="./resources/styles.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <script>
-        window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
-        window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
-    </script>
-    <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="./node_modules/vue/dist/vue.min.js"></script>
 </head>
 
 <body>
@@ -26,6 +19,14 @@
             <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
         </template>
     </div>
+
+
+    <script>
+        window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+        window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
+    </script>
+    <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
     <script type="text/javascript" src="./app.js"></script>
 </body>
 

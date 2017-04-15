@@ -8,7 +8,8 @@ const configFile = "../../config.json";
 const defaultConfig = {
     "windowSize": [500, 600],
     "devToolsSize": 300,
-    "outputMaxSize": 10000
+    "outputMaxSize": 10000,
+    "maximized": false
 };
 
 module.exports = {

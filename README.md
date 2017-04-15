@@ -2,10 +2,10 @@ Gaucho
 ======
 _by @angrykoala_    
 
-A graphical launcher powered by Yerbamate.
+> Minimalistic task launcher
 
-![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24318182/0b199e68-10f9-11e7-8a35-fd3f1eb51337.png)    
-_Gaucho 0.1.2_
+![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24731607/1b0278e0-1a63-11e7-84bf-b7340635723a.png)    
+_Gaucho 0.1.4_
 
 ## Download
 
@@ -39,7 +39,7 @@ The tasks can be deleted by clicking the _Delete_ button.
 
 While in edit mode, suites names can also be changed by clicking on it. To close edit mode simply click again on the edit button.
 
-## Menu
+### Menu
 Next to the edit button, is the menu button. When clicking the menu, several options will be shown, those options may change if the edit mode is active:
 
 **Normal mode**   
@@ -50,7 +50,7 @@ Next to the edit button, is the menu button. When clicking the menu, several opt
 * _Add new Suite_: Created a new suite
 * _Delete Suite_: Deletes current suite
 
-## User and Tasks Configuration
+### User and Tasks Configuration
 All tasks and user changes are saved automatically when closing gaucho. This includes all the tasks/suites information as well as the window size.
 
 > This information is stored in `config.json` and `tasks.json` if any of those files is not present, the default configuration will be loaded and the file will be created
@@ -67,7 +67,14 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 3. `npm build-electron` to build _gaucho_ for your system (build will be placed in `builds` folder).
     * `npm run build-electron-all` to make builds for windows, linux and mac.
 
-### License
+
+## Acknowledgments
+
+ [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
+* [Electron](https://electron.atom.io/)  framework was used for the app development.
+
+
+## License
 Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>

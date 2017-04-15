@@ -1,3 +1,20 @@
+0.2.0 / 2017-04-15
+==================
+
+  * Gaucho is now "Frameless" so the window style will be the same on every OS
+  * Running tasks time will be updated each second using the same timer
+  * Add and delete suite buttons disabled when action is invalid
+  * Increased minimum window width
+  * Tab supported for command input
+  * Pressing F11 will no longer make gaucho "fullscreen"
+  * Number of tasks per suite limited to 8. Gaucho now supports a maximum of 48 tasks
+  * Fixed problem when closing and reopening a maximized window
+  * Fixed timers problems when deleting running tasks
+  * Fixed problem "Cannot read property 'scrollTop' of null" when deleting a running task
+  * Fixed listeners memory leak when deleting tasks or suites
+  * General code refactoring
+  * Improvements in Readme file
+
 0.1.3 / 2017-03-30
 ==================
 
