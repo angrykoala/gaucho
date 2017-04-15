@@ -1,4 +1,4 @@
-0.1.4 / ####-##-##
+0.2.0 / 2017-04-15
 ==================
 
   * Gaucho is now "Frameless" so the window style will be the same on every OS

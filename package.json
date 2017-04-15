@@ -1,6 +1,6 @@
 {
   "name": "gaucho",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "A graphical task runner powered by Yerbamate",
   "main": "main.js",
   "dependencies": {
