@@ -5,7 +5,7 @@ _by @angrykoala_
 > Minimalistic task launcher
 
 ![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24731607/1b0278e0-1a63-11e7-84bf-b7340635723a.png)    
-_Gaucho 0.1.4_
+_Gaucho 0.2.0_
 
 ## Download
 
