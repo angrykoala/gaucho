@@ -11,6 +11,7 @@
   * Fixed problem "Cannot read property 'scrollTop' of null" when deleting a running task
   * Fixed listeners memory leak when deleting tasks or suites
   * General code refactoring
+  * Pressing F11 will no longer make gaucho "fullscreen"
   * Improvements in Readme file
 
 0.1.3 / 2017-03-30

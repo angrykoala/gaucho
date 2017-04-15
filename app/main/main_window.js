@@ -38,6 +38,7 @@ module.exports = class MainWindow {
             height: config.windowSize[1],
             minWidth: 360,
             minHeight: 300,
+            fullscreenable: false,
             webgl: false,
             icon: this.config.iconPath,
             frame: false
