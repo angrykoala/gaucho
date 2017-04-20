@@ -70,7 +70,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 
 ## Acknowledgments
 
- [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
+* [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
 * [Electron](https://electron.atom.io/)  framework was used for the app development.
 
 

@@ -15,9 +15,11 @@
     float: right;
     margin-top: 2px;
     width: 90px;
+    cursor: default;
 }
 
 .delete-button {
+    cursor: default;
     float: right;
     margin-top: 2px;
     width: 110px;
@@ -32,6 +34,7 @@
     padding: 10px;
     margin: 0;
     border: 1;
+    cursor: default;
 }
 
 .tab .material-icons {
@@ -71,6 +74,10 @@
     cursor: default;
 }
 
+.edit-button {
+    cursor: default;
+}
+
 .edit-button-active {
     transition: color 0.5s ease;
     background-color: rgba(0, 0, 0, 0.3);
@@ -83,6 +90,10 @@
 
 .tabs-row {
     margin-bottom: 0;
+}
+
+.tab-button {
+    cursor: default;
 }
 
 @media (max-width: 280px) {
@@ -168,10 +179,19 @@ input.tab-text {
     color: #5f9ea0;
 }
 
+.navbar-menu-button {
+    cursor: default;
+}
+
 .menu-button.disabled {
     background-color: #ababab;
 }
 
 .menu-button.disabled:hover {
     background-color: #ababab;
+}
+
+.input-field>label {
+    cursor: default;
+    -webkit-user-select: none;
 }
