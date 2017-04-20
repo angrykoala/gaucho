@@ -2,6 +2,7 @@
 ==================
 
   * Removed "pointer" cursor style
+  * Fixed bug where stopping a suite will turn all tasks icons to "stopped"
 
 
 0.2.0 / 2017-04-15
