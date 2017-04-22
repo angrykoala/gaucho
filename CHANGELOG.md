@@ -1,6 +1,8 @@
 0.2.1 / ####-##-##
 ==================
 
+  * Added Unit tests and test coverage information
+  * Added Travis CI support
   * Removed "pointer" cursor style
   * Fixed bug where stopping a suite will turn all tasks icons to "stopped"
 

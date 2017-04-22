@@ -2,7 +2,6 @@
 
 const path = require('path');
 const assert = require('chai').assert;
-// const sinon = require('sinon');
 
 const config = require('./config');
 
