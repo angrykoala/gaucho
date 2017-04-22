@@ -42,11 +42,11 @@ class Suite {
         }
     }
 
-    toJSON() {
+    getData() {
         return {
             title: this.title,
             tasks: this.tasks.map((task) => {
-                return task.toJSON();
+                return task.getData();
             })
         };
     }

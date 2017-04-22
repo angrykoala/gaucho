@@ -9,12 +9,12 @@ const TaskTimer = require('../common/timer');
 
 
 const TaskEvents = new EventEmitter();
-TaskTimer(TaskEvents,1000);
+TaskTimer(TaskEvents, 1000);
 
 class Task {
     constructor(title, path, command) {
         this.title = title || "";
-        this.path = path || "";
+        this.setPath(path);
         this.command = command || "";
         this.status = TaskStatus.idle;
 
@@ -60,7 +60,7 @@ class Task {
         return this.status === TaskStatus.running;
     }
 
-    toJSON() {
+    getData() {
         let res = {
             title: this.title,
             command: this.command,
@@ -75,6 +75,11 @@ class Task {
         if (finishTime === null) finishTime = Date.now();
 
         this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
+    }
+
+    setPath(path) {
+        if (!path || path === "") path = ".";
+        this.path = path;
     }
 }
 

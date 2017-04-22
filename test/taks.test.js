@@ -28,7 +28,7 @@ describe("Tasks", () => {
         assert.isOk(TaskStatus.stopped);
     });
 
-    it("Valid Task Execution", (done) => {
+    it("Correct Task Execution", (done) => {
         let stdoutCalled = false;
         assert.isFalse(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.idle);
@@ -47,9 +47,18 @@ describe("Tasks", () => {
         });
         assert.isTrue(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.running);
-
     });
-    it.skip("Create Invalid Task", () => {
+
+    it("Get Task Config", () => {
+        const taskData = testTask.getData();
+        const expectedResult = {
+            title: "Test",
+            command: taskCommand
+        };
+        assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
+    });
+
+    it.skip("Invalid Task Execution", () => {
 
     });
 });

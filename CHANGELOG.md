@@ -5,6 +5,8 @@
   * Added Travis CI support
   * Removed "pointer" cursor style
   * Fixed bug where stopping a suite will turn all tasks icons to "stopped"
+  * Fixed a small bug where empty paths where stored in the tasks.json file
+  * Minor code refactoring
 
 
 0.2.0 / 2017-04-15
