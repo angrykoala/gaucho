@@ -1,6 +1,7 @@
 Gaucho
 ======
 _by @angrykoala_    
+[![Build Status](https://travis-ci.org/angrykoala/gaucho.svg?branch=master)](https://travis-ci.org/angrykoala/gaucho)
 
 > Minimalistic task launcher
 
