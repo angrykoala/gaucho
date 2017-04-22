@@ -1,8 +1,6 @@
 "use strict";
 
-const defaultInterval = 1000;
-
-module.exports = function(eventEmitter, intervalTime = defaultInterval) {
+module.exports = function(eventEmitter, intervalTime) {
     setInterval(() => {
         eventEmitter.emit("time-update");
     }, intervalTime);

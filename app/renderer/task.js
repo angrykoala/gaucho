@@ -9,7 +9,7 @@ const TaskTimer = require('../common/timer');
 
 
 const TaskEvents = new EventEmitter();
-TaskTimer(TaskEvents);
+TaskTimer(TaskEvents,1000);
 
 class Task {
     constructor(title, path, command) {
