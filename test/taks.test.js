@@ -29,11 +29,19 @@ describe("Tasks", () => {
     });
 
     it("Valid Task Execution", (done) => {
+        let stdoutCalled = false;
         assert.isFalse(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.idle);
-        testTask.run(() => {}, () => {
+
+        function stdout(text) {
+            assert.strictEqual(text, "hello\n");
+            stdoutCalled = true;
+        }
+
+        testTask.run(stdout, () => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.ok);
+            assert.isTrue(stdoutCalled);
             done();
 
         });
