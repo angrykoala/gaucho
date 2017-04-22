@@ -1,11 +1,9 @@
 "use strict";
 
 const assert = require('chai').assert;
-
 const Utils = require('../app/common/utils');
 
 describe("Utils", () => {
-
     it("Generate Time Strings", () => {
         let t1 = Utils.generateTimeString(0);
         assert.strictEqual(t1, "00:00");
@@ -22,5 +20,4 @@ describe("Utils", () => {
         t1 = Utils.generateTimeString(363600);
         assert.strictEqual(t1, "101:00:00");
     });
-
 });
