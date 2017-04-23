@@ -72,15 +72,22 @@ describe("Tasks", () => {
         });
         assert.isNull(testTask.elapsedTime);
 
-        testTask.run(() => {});
+        testTask.run(() => {}, () => {});
         assert.doesNotThrow(() => {
             testTask.updateElapsedTime();
         });
         assert.isNumber(testTask.elapsedTime);
     });
 
-    it.skip("Stop task", () => {
-
+    it("Stop task", (done) => {
+        testTask.run(() => {}, () => {
+            assert.isFalse(testTask.isRunning());
+            assert.strictEqual(testTask.status, TaskStatus.stopped);
+            testTask.stop();
+            assert.strictEqual(testTask.status, TaskStatus.stopped);
+            done();
+        });
+        testTask.stop();
     });
 
     it.skip("Time Update Events", () => {
