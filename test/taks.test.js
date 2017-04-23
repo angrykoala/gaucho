@@ -89,9 +89,4 @@ describe("Tasks", () => {
         });
         testTask.stop();
     });
-
-    it.skip("Time Update Events", () => {
-
-    });
-
 });
