@@ -43,7 +43,6 @@ describe("Tasks", () => {
             assert.strictEqual(testTask.status, TaskStatus.ok);
             assert.isTrue(stdoutCalled);
             done();
-
         });
         assert.isTrue(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.running);
@@ -58,7 +57,34 @@ describe("Tasks", () => {
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
     });
 
-    it.skip("Invalid Task Execution", () => {
+    it("Invalid Task Execution", (done) => {
+        let invalidTask = new Task("Invalid test", "", "invalidTask");
+
+        invalidTask.run(() => {}, () => {
+            assert.strictEqual(invalidTask.status, TaskStatus.error);
+            done();
+        });
+    });
+
+    it("Update Execution Time", () => {
+        assert.throws(() => {
+            testTask.updateElapsedTime();
+        });
+        assert.isNull(testTask.elapsedTime);
+
+        testTask.run(() => {});
+        assert.doesNotThrow(() => {
+            testTask.updateElapsedTime();
+        });
+        assert.isNumber(testTask.elapsedTime);
+    });
+
+    it.skip("Stop task", () => {
 
     });
+
+    it.skip("Time Update Events", () => {
+
+    });
+
 });
