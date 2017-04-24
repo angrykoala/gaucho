@@ -10,7 +10,7 @@ _Gaucho 0.2.0_
 
 ## Download
 
-Gaucho can be downloaded [here]<https://github.com/angrykoala/gaucho/releases>.
+Gaucho can be downloaded [here](https://github.com/angrykoala/gaucho/releases).
 Available versions for Linux, Mac and Windows (64 bits).
 
 To use, unzip in the desired location and execute gaucho (execute file depends on you OS).
@@ -73,7 +73,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 ## Acknowledgments
 
 * [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
-* [Electron](https://electron.atom.io/)  framework was used for the app development.
+* [Electron](https://electron.atom.io)  framework was used for the app development.
 
 
 ## License

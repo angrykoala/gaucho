@@ -1,7 +1,6 @@
 "use strict";
 
 const assert = require('chai').assert;
-const sinon = require('sinon');
 
 const Suite = require('../app/renderer/suite');
 const Task = require('../app/renderer/task');
@@ -13,10 +12,6 @@ describe("Suite", () => {
     beforeEach(() => {
         taskStub = new Task("test", "", "command");
         testSuite = new Suite("Test");
-    });
-
-    afterEach(() => {
-        //taskStub.restore();
     });
 
     it("Create New Suite", () => {
