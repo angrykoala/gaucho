@@ -16,18 +16,18 @@ module.exports = {
     <div class="task-input-body">
         <div class="input-field">
             <input id="title" type="text" v-model="title">
-            <label for="title">Task Title</label>
+            <label for="title">Task Title *</label>
         </div>
         <div class="input-field">
             <textarea id="command" class="materialize-textarea" v-model="command" v-on:keydown.9="onCommandTabPressed"></textarea>
-            <label>Command</label>
+            <label>Command *</label>
         </div>
         <div class="input-field">
             <input id="path" type="text" v-model="path">
             <label for="path">Path</label>
         </div>
         <div class="row task-input-send-row">
-        <button class="btn waves-effect waves-light save-task-button" v-on:click="saveTask">Save
+        <button class="btn waves-effect waves-light save-task-button" v-bind:class="{ disabled: !canSave }" v-on:click="saveTask">Save
             <i class="material-icons right">send</i>
         </button>   
         </div> 
@@ -43,7 +43,7 @@ module.exports = {
     },
     methods: {
         saveTask() {
-            if (this.title && this.command) {
+            if (this.canSave) {
                 this.$emit('save', new Task(this.title, this.path, this.command));
                 this.clear();
             }
@@ -75,6 +75,11 @@ module.exports = {
                 value.substring(selection, value.length);
 
             target.selectionStart = target.selectionEnd = selection + 4;
+        }
+    },
+    computed: {
+        canSave() {
+            return this.title && this.command;
         }
     }
 };

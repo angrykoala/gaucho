@@ -14,8 +14,8 @@ TaskTimer(TaskEvents, 1000);
 class Task {
     constructor(title, path, command) {
         this.title = title || "";
-        this.setPath(path);
         this.command = command || "";
+        this.path = path || "";
         this.status = TaskStatus.idle;
 
         this.beginTime = null;
@@ -65,7 +65,7 @@ class Task {
             title: this.title,
             command: this.command,
         };
-        if (this.path !== ".") res.path = this.path;
+        if (this.path !== "") res.path = this.path;
         return res;
     }
 
@@ -75,11 +75,6 @@ class Task {
         if (finishTime === null) finishTime = Date.now();
 
         this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
-    }
-
-    setPath(path) {
-        if (!path || path === "") path = ".";
-        this.path = path;
     }
 }
 
