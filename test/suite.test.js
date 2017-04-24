@@ -1,6 +1,7 @@
 "use strict";
 
 const assert = require('chai').assert;
+const sinon = require('sinon');
 
 const Suite = require('../app/renderer/suite');
 const Task = require('../app/renderer/task');
@@ -12,6 +13,11 @@ describe("Suite", () => {
     beforeEach(() => {
         taskStub = new Task("test", "", "command");
         testSuite = new Suite("Test");
+        sinon.stub(taskStub, "getData").returns("taskStub");
+    });
+
+    afterEach(() => {
+        taskStub.getData.restore();
     });
 
     it("Create New Suite", () => {
@@ -45,7 +51,23 @@ describe("Suite", () => {
         assert.strictEqual(testSuite.tasks[0], "secondTask");
     });
 
-    it.skip("Get Data", () => {
+    it("Get Data", () => {
+        const suiteData = testSuite.getData();
+        const expectedData = {
+            title: "Test",
+            tasks: []
+        };
 
+        assert.strictEqual(JSON.stringify(suiteData), JSON.stringify(expectedData));
+    });
+    it("Get Data With Tasks", () => {
+        testSuite.addTask(taskStub);
+        const suiteData = testSuite.getData();
+        const expectedData = {
+            title: "Test",
+            tasks: ["taskStub"]
+        };
+
+        assert.strictEqual(JSON.stringify(suiteData), JSON.stringify(expectedData));
     });
 });
