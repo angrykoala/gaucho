@@ -13,7 +13,7 @@ TaskTimer(TaskEvents, 1000);
 
 class Task {
     constructor(title, path, command) {
-        this.title = title || "";
+        this.title = title.trim() || "";
         this.command = command || "";
         this.path = path || "";
         this.status = TaskStatus.idle;

@@ -90,10 +90,13 @@ describe("Suite", () => {
     });
 
     it("Replace Tasks", () => {
+        const taskStub2 = new Task("secondTask", "", "command");
+        createStub(taskStub2);
+
         testSuite.addTask(taskStub);
-        testSuite.replaceTask(0, "secondTask");
+        testSuite.replaceTask(0, taskStub2);
         assert.strictEqual(testSuite.length, 1);
-        assert.strictEqual(testSuite.tasks[0], "secondTask");
+        assert.strictEqual(testSuite.tasks[0].title, "secondTask");
     });
 
     it("Get Data", () => {
@@ -105,6 +108,7 @@ describe("Suite", () => {
 
         assert.strictEqual(JSON.stringify(suiteData), JSON.stringify(expectedData));
     });
+
     it("Get Data With Tasks", () => {
         testSuite.addTask(taskStub);
         const suiteData = testSuite.getData();
@@ -114,5 +118,33 @@ describe("Suite", () => {
         };
 
         assert.strictEqual(JSON.stringify(suiteData), JSON.stringify(expectedData));
+    });
+
+    it("Add Task With Repeated Name", () => {
+        const taskStub2 = new Task("test", "", "command");
+        createStub(taskStub2);
+        const taskStub3 = new Task("test", "", "command");
+        createStub(taskStub3);
+        testSuite.addTask(taskStub);
+        testSuite.addTask(taskStub2);
+        testSuite.addTask(taskStub3);
+        assert.strictEqual(testSuite.tasks[0].title, "test");
+        assert.strictEqual(testSuite.tasks[1].title, "test 2");
+        assert.strictEqual(testSuite.tasks[2].title, "test 3");
+
+        restoreStub(taskStub2);
+        restoreStub(taskStub3);
+    });
+
+    it("Replace Task With Repeated Name", () => {
+        const taskStub2 = new Task("different_name", "", "command");
+        createStub(taskStub2);
+        const taskStub3 = new Task("test", "", "command");
+        createStub(taskStub3);
+        testSuite.addTask(taskStub);
+        testSuite.addTask(taskStub2);
+        testSuite.replaceTask(1, taskStub3);
+        assert.strictEqual(testSuite.tasks[0].title, "test");
+        assert.strictEqual(testSuite.tasks[1].title, "test 2");
     });
 });

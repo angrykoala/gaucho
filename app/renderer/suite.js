@@ -5,12 +5,14 @@ class Suite {
         this.title = title || "";
         this.tasks = [];
     }
-    
-    get length(){
+
+    get length() {
         return this.tasks.length;
     }
 
     addTask(task) {
+        let title = this.getValidName(task.title);
+        task.title = title;
         this.tasks.push(task);
     }
 
@@ -19,6 +21,8 @@ class Suite {
     }
 
     replaceTask(index, task) {
+        let title = this.getValidName(task.title);
+        task.title = title;
         this.tasks.splice(index, 1, task);
     }
 
@@ -49,6 +53,23 @@ class Suite {
                 return task.getData();
             })
         };
+    }
+
+    getValidName(name) {
+        let index = 2;
+        if (!this.existTaskName(name)) return name;
+        while (this.existTaskName(name + " " + index)) {
+            index++;
+        }
+        return name + " " + index;
+    }
+
+    existTaskName(name) {
+        name = name.trim();
+        let index = this.tasks.find((task) => {
+            return task.title === name;
+        });
+        return index !== undefined;
     }
 }
 
