@@ -54,7 +54,7 @@ describe("Suite", () => {
     });
 
     it("Run Tasks", () => {
-        const taskStub2 = new Task("test", "", "command");
+        const taskStub2 = new Task("test2", "", "command");
         createStub(taskStub2);
         taskStub2.status = TaskStatus.running;
 
@@ -72,7 +72,7 @@ describe("Suite", () => {
     });
 
     it("Stop All Tasks", () => {
-        const taskStub2 = new Task("test", "", "command");
+        const taskStub2 = new Task("test2", "", "command");
         createStub(taskStub2);
         taskStub2.status = TaskStatus.running;
 

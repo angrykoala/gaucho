@@ -2,7 +2,7 @@
 ==================
 
   * Added Unit tests and test coverage information
-  * Save button is disabled until command and name are not empty
+  * Save button is disabled until command and name are filled
   * Removed "pointer" cursor style
   * Fixed bug where stopping a suite will turn all tasks icons to "stopped"
   * Fixed a small bug where empty paths where stored in the tasks.json file
