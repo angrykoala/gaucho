@@ -64,7 +64,7 @@ module.exports = {
     saveConfig: function(done) {
         let data = {
             suites: this.suites.map((suite) => {
-                return suite.toJSON();
+                return suite.getData();
             })
         };
 

@@ -1,6 +1,7 @@
 Gaucho
 ======
 _by @angrykoala_    
+[![Build Status](https://travis-ci.org/angrykoala/gaucho.svg?branch=master)](https://travis-ci.org/angrykoala/gaucho)
 
 > Minimalistic task launcher
 
@@ -9,7 +10,7 @@ _Gaucho 0.2.0_
 
 ## Download
 
-Gaucho can be downloaded [here]<https://github.com/angrykoala/gaucho/releases>.
+Gaucho can be downloaded [here](https://github.com/angrykoala/gaucho/releases).
 Available versions for Linux, Mac and Windows (64 bits).
 
 To use, unzip in the desired location and execute gaucho (execute file depends on you OS).
@@ -66,12 +67,13 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
     * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
 3. `npm build-electron` to build _gaucho_ for your system (build will be placed in `builds` folder).
     * `npm run build-electron-all` to make builds for windows, linux and mac.
-
+4. `npm test` to run the automated tests.
+    * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
 
 ## Acknowledgments
 
- [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
-* [Electron](https://electron.atom.io/)  framework was used for the app development.
+* [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
+* [Electron](https://electron.atom.io)  framework was used for the app development.
 
 
 ## License

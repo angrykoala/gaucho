@@ -1,3 +1,17 @@
+0.2.1 / 2017-04-25
+==================
+
+  * Added Unit tests and test coverage information
+  * Save button is disabled until command and name are filled
+  * Tasks now have an unique name per suite
+  * Removed empty spaces at the beginning and end of task title
+  * Removed "pointer" cursor style
+  * Fixed bug where stopping a suite will turn all tasks icons to "stopped"
+  * Fixed a small bug where empty paths where stored in the tasks.json file
+  * Added Travis CI support
+  * Minor code refactoring
+
+
 0.2.0 / 2017-04-15
 ==================
 

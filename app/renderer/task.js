@@ -9,13 +9,13 @@ const TaskTimer = require('../common/timer');
 
 
 const TaskEvents = new EventEmitter();
-TaskTimer(TaskEvents);
+TaskTimer(TaskEvents, 1000);
 
 class Task {
     constructor(title, path, command) {
-        this.title = title || "";
-        this.path = path || "";
+        this.title = title.trim() || "";
         this.command = command || "";
+        this.path = path || "";
         this.status = TaskStatus.idle;
 
         this.beginTime = null;
@@ -52,20 +52,20 @@ class Task {
     stop(cb) {
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
+            this.status = TaskStatus.stopped;
         } else if (cb) cb();
-        this.status = TaskStatus.stopped;
     }
 
     isRunning() {
         return this.status === TaskStatus.running;
     }
 
-    toJSON() {
+    getData() {
         let res = {
             title: this.title,
             command: this.command,
         };
-        if (this.path !== ".") res.path = this.path;
+        if (this.path !== "") res.path = this.path;
         return res;
     }
 
