@@ -1,3 +1,9 @@
+0.2.2 / ####-##-##
+==================
+
+  * Tasks with same name will now append the number between parenthesis
+  * Fixed bug where editing and saving tasks with the same name will append 2
+
 0.2.1 / 2017-04-25
 ==================
 
