@@ -65,7 +65,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 1. `npm install` to install electron and all the dependencies.
 2. `npm start` to start _gaucho_.
     * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
-3. `npm build-electron` to build _gaucho_ for your system (build will be placed in `builds` folder).
+3. `npm run build-electron` to build _gaucho_ for your system (build will be placed in `builds` folder).
     * `npm run build-electron-all` to make builds for windows, linux and mac.
 4. `npm test` to run the automated tests.
     * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.

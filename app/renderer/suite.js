@@ -21,8 +21,10 @@ class Suite {
     }
 
     replaceTask(index, task) {
-        let title = this.getValidName(task.title);
-        task.title = title;
+        if (this.tasks[index].title !== task.title) {
+            let title = this.getValidName(task.title);
+            task.title = title;
+        }
         this.tasks.splice(index, 1, task);
     }
 
@@ -58,10 +60,10 @@ class Suite {
     getValidName(name) {
         let index = 2;
         if (!this.existTaskName(name)) return name;
-        while (this.existTaskName(name + " " + index)) {
+        while (this.existTaskName(name + " (" + index + ")")) {
             index++;
         }
-        return name + " " + index;
+        return name + " (" + index + ")";
     }
 
     existTaskName(name) {

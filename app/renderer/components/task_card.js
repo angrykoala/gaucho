@@ -12,7 +12,7 @@ const config = AppStatus.config;
 
 module.exports = {
     props: ['task', 'event'],
-    data: () => {
+    data() {
         return {
             output: "",
             AppStatus: AppStatus
@@ -48,7 +48,7 @@ module.exports = {
     </div>
   </li>
   `,
-    mounted: function() {
+    mounted() {
         this.event.on("run", this.run);
         this.event.on("stop", this.stop);
     },
@@ -56,7 +56,7 @@ module.exports = {
         this.removeListeners();
     },
     methods: {
-        toggleRun: function(ev) {
+        toggleRun(ev) {
             ev.stopPropagation();
             if (this.running) this.stop();
             else this.run();
@@ -108,7 +108,7 @@ module.exports = {
         }
     },
     computed: {
-        statusColor: function() {
+        statusColor() {
             switch (this.task.status) {
                 case TaskStatus.idle:
                 case TaskStatus.stopped:
@@ -123,10 +123,10 @@ module.exports = {
                     return "grey";
             }
         },
-        running: function() {
+        running() {
             return this.task.isRunning();
         },
-        executionTime: function() {
+        executionTime() {
             if (this.task.beginTime === null) return "-";
             return Utils.generateTimeString(this.task.elapsedTime);
         }

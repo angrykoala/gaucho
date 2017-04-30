@@ -9,7 +9,7 @@ module.exports = {
     editMode: false,
     activeSuite: 0,
     events: new EventEmitter(),
-    toggleEdit: function() {
+    toggleEdit() {
         this.editMode = !this.editMode;
         TaskConfig.saveConfig();
     },
