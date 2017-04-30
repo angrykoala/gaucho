@@ -3,6 +3,9 @@
   "version": "0.2.3",
   "description": "A graphical task runner powered by Yerbamate",
   "main": "main.js",
+  "bin": {
+    "yamp": "electron ."
+  },
   "dependencies": {
     "electron": "~1.4.0",
     "extract-zip": "=1.6.0",
