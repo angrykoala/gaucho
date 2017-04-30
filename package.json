@@ -1,7 +1,7 @@
 {
   "name": "gaucho",
   "version": "0.2.3",
-  "description": "A graphical task runner powered by Yerbamate",
+  "description": "Minimalistic task launcher with GUI",
   "main": "main.js",
   "dependencies": {
     "electron": "~1.4.0",
