@@ -47,11 +47,11 @@ const defaultConfig = `{
 
 module.exports = {
     suites: [],
-    loadConfig: function(done) {
+    loadConfig(done) {
         fs.readFile(path.join(__dirname, configFile), 'utf8', (err, data) => {
             if (err) {
                 console.warn("tasks.json file not found");
-                data=defaultConfig;
+                data = defaultConfig;
             }
             try {
                 this.suites = parseData(JSON.parse(data));
@@ -61,7 +61,7 @@ module.exports = {
             }
         });
     },
-    saveConfig: function(done) {
+    saveConfig(done) {
         let data = {
             suites: this.suites.map((suite) => {
                 return suite.getData();

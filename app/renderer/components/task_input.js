@@ -33,11 +33,11 @@ module.exports = {
         </div> 
     </div>
     `,
-    mounted: function() {
+    mounted() {
         this.onTaskUpdate();
     },
     watch: {
-        task: function() {
+        task() {
             this.onTaskUpdate();
         }
     },

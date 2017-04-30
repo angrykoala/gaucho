@@ -13,7 +13,7 @@ module.exports = {
         "navbar-menu": NavbarMenu,
         "window-frame-top": WindowFrameTop
     },
-    data: () => {
+    data() {
         return {
             AppStatus: AppStatus
         };
