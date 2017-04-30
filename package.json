@@ -11,14 +11,15 @@
     "yerbamate": "^1.1.4"
   },
   "devDependencies": {
-    "electron-packager": "^8.3.0",
     "chai": "^3.5.0",
+    "electron-packager": "^8.3.0",
     "istanbul": "^0.4.5",
+    "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "sinon": "^2.0.0"
   },
   "scripts": {
-    "test": "npm run clean && istanbul cover _mocha",
+    "test": "npm run clean && istanbul cover _mocha && npm run jshint",
     "start": "electron .",
     "start-dev": "NODE_ENV=dev npm start",
     "build-electron": "electron-packager . --overwrite --out builds --ignore='tasks?\\.json|\\.gitignore|\\.jshintrc'",
@@ -26,7 +27,8 @@
     "build-electron-win": "electron-packager . --overwrite --out builds --platform=win32 --arch=x64 --icon=resources/icon.png",
     "build-electron-linux": "electron-packager . --overwrite --out builds --platform=linux --arch=x64 --icon=resources/icon.png",
     "build-electron-mac": "electron-packager . --overwrite --out builds --platform=darwin --arch=x64 --icon=resources/icon.png",
-    "clean": "rm -rf builds config.json tasks.json coverage"
+    "clean": "rm -rf builds config.json tasks.json coverage",
+    "jshint": "jshint *.js app test"
   },
   "repository": {
     "type": "git",

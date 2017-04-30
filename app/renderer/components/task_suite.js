@@ -8,7 +8,7 @@ const AppStatus = require('../app_status');
 
 module.exports = {
     props: ['suite', 'index'],
-    data: () => {
+    data() {
         return {
             AppStatus: AppStatus,
             event: new EventEmitter()
@@ -33,16 +33,16 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
-        addTask: function(task) {
+        addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
                 this.suite.addTask(task);
             }
         },
-        removeTask: function(i) {
+        removeTask(i) {
             this.suite.removeTask(i);
             this.$forceUpdate();
         },
-        editTask: function(i, task) {
+        editTask(i, task) {
             this.suite.replaceTask(i, task);
             this.$forceUpdate();
         },
@@ -58,10 +58,10 @@ module.exports = {
         }
     },
     computed: {
-        id: function() {
+        id() {
             return "tab" + this.index;
         },
-        showAddTab: function() {
+        showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         }
 

@@ -5,7 +5,7 @@ const {
 } = require('electron');
 
 module.exports = {
-    data: () => {
+    data() {
         return {
             win: remote.BrowserWindow.getFocusedWindow()
         };

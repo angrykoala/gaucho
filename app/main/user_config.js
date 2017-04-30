@@ -15,7 +15,7 @@ const defaultConfig = {
 module.exports = {
     config: null,
 
-    loadConfig: function(done) {
+    loadConfig(done) {
         fs.readFile(path.join(__dirname, configFile), 'utf8', (err, data) => {
             if (err) {
                 console.warn("config.json file not found");
@@ -33,7 +33,7 @@ module.exports = {
         });
     },
 
-    saveConfig: function(done) {
+    saveConfig(done) {
         if (!this.config) {
             console.warn("Can't save null config");
             done();
