@@ -3,6 +3,7 @@
 
   * Tasks with same name will now append the number between parenthesis
   * Fixed bug where editing and saving tasks with the same name will append 2
+  * Temporal fix on electron installation problem with extract zip
   * Small improvements in unit tests
   * jshint code style checks added as part of the tests
   * Minor code and style refactoring
