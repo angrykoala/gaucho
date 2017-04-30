@@ -1,4 +1,4 @@
-0.2.2 / ####-##-##
+0.2.2 / 2017-04-30
 ==================
 
   * Tasks with same name will now append the number between parenthesis
