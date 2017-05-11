@@ -170,6 +170,11 @@ input.tab-text {
 
 /*  Navbar Menu */
 
+#navbar-menu {
+    width: 118px !important;
+    left: 360px !important;
+}
+
 .menu-button>a {
     cursor: default;
 }

@@ -1,9 +1,9 @@
 0.2.3 / ####-##-##
 ==================
 
+    * Increased navbar menu width
     * Added gaucho to npm
     * Electron postinstall bug fixed, removed patch
-
 
 0.2.2 / 2017-04-30
 ==================
