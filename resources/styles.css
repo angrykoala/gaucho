@@ -30,6 +30,10 @@
     background-color: #af0000;
 }
 
+.collapsible-body.task-card-body {
+    padding: 0;
+}
+
 .run-card .collapsible-header {
     padding: 10px;
     margin: 0;
@@ -167,12 +171,15 @@ input.tab-text {
     background-color: rgba(0, 0, 0, 0.1)
 }
 
+#navbar-tabs {
+    overflow: hidden;
+}
+
 
 /*  Navbar Menu */
 
 #navbar-menu {
     width: 118px !important;
-    left: 360px !important;
 }
 
 .menu-button>a {
