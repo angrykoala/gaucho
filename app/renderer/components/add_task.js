@@ -18,7 +18,7 @@ module.exports = {
                 Add New Task
             </strong>
         </div>
-        <div class="collapsible-body container">
+        <div class="collapsible-body container task-card-body">
             <task-input v-on:save="addTask"></task-input>
         </div>
     </li>    
