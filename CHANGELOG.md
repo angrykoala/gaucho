@@ -3,7 +3,7 @@
 
     * Increased navbar menu width
     * Electron postinstall bug fixed, removed patch
-    * Updated materializecss
+    * Updated materializecss and electron
     * Added gaucho to npm
 
 0.2.2 / 2017-04-30
