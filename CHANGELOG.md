@@ -2,6 +2,7 @@
 ==================
 
     * Increased navbar menu width
+    * Changed navbar menu elements text
     * Electron post-install bug fixed, removed patch
     * Updated materializecss and electron
     * Added gaucho to npm repository
@@ -20,7 +21,7 @@
 ==================
 
   * Added Unit tests and test coverage information
-  * Save button is disabled until command and name are filled
+  * Save button disabled until command and name are filled
   * Tasks now have an unique name per suite
   * Removed empty spaces at the beginning and end of task title
   * Removed "pointer" cursor style
