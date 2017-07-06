@@ -6,6 +6,7 @@
     * Electron post-install bug fixed, removed patch
     * materializecss and electron dependencies updated
     * Minor interface improvements
+    * Added package-lock.json file
     * Added gaucho to npm repository
 
 0.2.2 / 2017-04-30
