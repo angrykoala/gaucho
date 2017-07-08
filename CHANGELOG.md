@@ -1,4 +1,4 @@
-0.2.3 / ####-##-##
+0.2.3 / 2017-07-08
 ==================
 
     * Using tile (~) in the path is now supported
