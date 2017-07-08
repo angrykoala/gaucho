@@ -11,7 +11,7 @@
     "jquery": "^3.1.1",
     "materialize-css": "^0.98.2",
     "vue": "^2.0.8",
-    "yerbamate": "^1.1.4"
+    "yerbamate": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^4.0.2",

@@ -1,6 +1,7 @@
 0.2.3 / ####-##-##
 ==================
 
+    * Using tile (~) in the path is now supported
     * Increased navbar menu width
     * Changed navbar menu elements text
     * Electron post-install bug fixed, removed patch
