@@ -6,15 +6,13 @@ module.exports = {
     props: ['suites'],
     template: `
     <ul id='navbar-menu' class='dropdown-content'>
-        <h5 v-on:click="invalidClick" class="center-align menu-title unselectable-text">Suite</h5>
-        <li class="divider"></li>
         <template v-if="!editMode">
-            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'run-suite')">Run</a></li>
-            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'stop-suite')">Stop</a></li>
+            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'run-suite')">Run Suite</a></li>
+            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'stop-suite')">Stop Suite</a></li>
         </template>
         <template v-else>
-            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canAddSuite }"><a v-on:click="selected($event,'add-suite',!canAddSuite)">Add New</a></li>
-            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canDeleteSuite }"><a v-on:click="selected($event,'delete-suite',!canDeleteSuite)">Delete</a></li>
+            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canAddSuite }"><a v-on:click="selected($event,'add-suite',!canAddSuite)">Add Suite</a></li>
+            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canDeleteSuite }"><a v-on:click="selected($event,'delete-suite',!canDeleteSuite)">Delete Suite</a></li>
         </template>
         <li class="divider"></li>
     </ul>

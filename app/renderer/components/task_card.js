@@ -38,7 +38,7 @@ module.exports = {
             </div>
         </div>
 
-    <div class="collapsible-body">
+    <div class="collapsible-body task-card-body">
         <div v-if="!AppStatus.editMode" class="run-output">
             <pre>{{output}}</pre>
         </div>

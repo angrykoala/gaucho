@@ -1,3 +1,15 @@
+0.2.3 / 2017-07-08
+==================
+
+    * Using tile (~) in the path is now supported
+    * Increased navbar menu width
+    * Changed navbar menu elements text
+    * Electron post-install bug fixed, removed patch
+    * materializecss and electron dependencies updated
+    * Minor interface improvements
+    * Added package-lock.json file
+    * Added gaucho to npm repository
+
 0.2.2 / 2017-04-30
 ==================
 
@@ -12,7 +24,7 @@
 ==================
 
   * Added Unit tests and test coverage information
-  * Save button is disabled until command and name are filled
+  * Save button disabled until command and name are filled
   * Tasks now have an unique name per suite
   * Removed empty spaces at the beginning and end of task title
   * Removed "pointer" cursor style
