@@ -41,4 +41,4 @@ jspm_packages
 tasks.json
 config.json
 builds
-.package-lock.json # It affects the final build
+package-lock.json # It affects the final build
