@@ -1,14 +1,19 @@
+0.2.4 / ####-##-##
+==================
+
+  * Added CONTRIBUTIONS.md file
+
 0.2.3 / 2017-07-08
 ==================
 
-    * Using tile (~) in the path is now supported
-    * Increased navbar menu width
-    * Changed navbar menu elements text
-    * Electron post-install bug fixed, removed patch
-    * materializecss and electron dependencies updated
-    * Minor interface improvements
-    * Added package-lock.json file
-    * Added gaucho to npm repository
+  * Using tile (~) in the path is now supported
+  * Increased navbar menu width
+  * Changed navbar menu elements text
+  * Electron post-install bug fixed, removed patch
+  * materializecss and electron dependencies updated
+  * Minor interface improvements
+  * Added package-lock.json file
+  * Added gaucho to npm repository
 
 0.2.2 / 2017-04-30
 ==================
