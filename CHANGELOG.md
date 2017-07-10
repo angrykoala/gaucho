@@ -2,6 +2,7 @@
 ==================
 
   * Added CONTRIBUTIONS.md file
+  * Remove configuration files from final build
 
 0.2.3 / 2017-07-08
 ==================
