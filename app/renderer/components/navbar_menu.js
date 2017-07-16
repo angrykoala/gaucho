@@ -15,9 +15,11 @@ module.exports = {
             <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canDeleteSuite }"><a v-on:click="selected($event,'delete-suite',!canDeleteSuite)">Delete Suite</a></li>
         </template>
         <li class="divider"></li>
+            <li class="unselectable-text menu-button"><a href="#about-modal">About</a></li>
     </ul>
     `,
     methods: {
+        // <a class="waves-effect waves-light btn" href="#about-modal">Modal</a>
         selected(ev, selection, ignoreSelection) {
             if (!ignoreSelection) {
                 this.$emit("selection", selection);

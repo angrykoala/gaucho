@@ -1,6 +1,7 @@
 0.2.4 / ####-##-##
 ==================
 
+  * Added About menu
   * Added CONTRIBUTIONS.md file
   * Remove configuration files from final build
 

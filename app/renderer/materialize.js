@@ -32,14 +32,15 @@ module.exports = {
         $(selector).tabs('select_tab', tabId);
     },
     updateModals() {
-        $('#suite-edit-modal').modal({
-            dismissible: false,
-            opacity: .5,
-            in_duration: 300,
-            out_duration: 200,
-            starting_top: '4%',
-            ending_top: '10%',
-        });
+        $('.modal').modal();
+        // $('#suite-edit-modal').modal({
+        //     dismissible: false,
+        //     opacity: .5,
+        //     in_duration: 300,
+        //     out_duration: 200,
+        //     starting_top: '4%',
+        //     ending_top: '10%',
+        // });
     }
 };
 
