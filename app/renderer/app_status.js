@@ -4,6 +4,7 @@ const remote = require('electron').remote;
 const EventEmitter = require('events');
 
 const TaskConfig = require('./task_config');
+const version = require('../../package.json').version;
 
 module.exports = {
     editMode: false,
@@ -15,5 +16,6 @@ module.exports = {
     },
     config: remote.getCurrentWindow().userConfig,
     maxSuites: 6,
-    maxTasksPerSuite: 8
+    maxTasksPerSuite: 8,
+    version: version
 };
