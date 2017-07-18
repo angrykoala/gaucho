@@ -31,7 +31,7 @@
 ==================
 
   * Added Unit tests and test coverage information
-  * Save button disabled until command and name are filled
+  * Save button disabled until command and name filled
   * Tasks now have an unique name per suite
   * Removed empty spaces at the beginning and end of task title
   * Removed "pointer" cursor style
@@ -84,7 +84,7 @@
 0.1.1 / 2016-12-20
 ==================
 
-  * Window size will be part of the userConfig
+  * Window size will be part of the user config
   * Task edit menu added
   * Added minimum size to the window
   * Stopping a running task icon changed, now it will be the same as idle task

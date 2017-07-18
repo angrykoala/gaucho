@@ -1,7 +1,7 @@
 "use strict";
 const {
     shell
-} = require('electron')
+} = require('electron');
 const AppStatus = require('../app_status');
 
 module.exports = {
