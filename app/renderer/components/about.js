@@ -17,7 +17,7 @@ module.exports = {
         <h4>Gaucho</h4>
         <p>Version: {{version}} </p>
         <i>by @angrykoala</i>
-        <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at <a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>
+        <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br><a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>

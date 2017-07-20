@@ -1,6 +1,7 @@
 0.2.4 / ####-##-##
 ==================
 
+  * Removed custom window frame, and replaced by OS default frame
   * Added About menu
   * Added CONTRIBUTIONS.md file
   * Remove configuration files from final build
