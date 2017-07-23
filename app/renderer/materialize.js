@@ -20,7 +20,6 @@ module.exports = {
             inDuration: 150,
             outDuration: 100,
             hover: false,
-            gutter: 0,
             belowOrigin: true,
             alignment: 'left'
         });
@@ -33,14 +32,6 @@ module.exports = {
     },
     updateModals() {
         $('.modal').modal();
-        // $('#suite-edit-modal').modal({
-        //     dismissible: false,
-        //     opacity: .5,
-        //     in_duration: 300,
-        //     out_duration: 200,
-        //     starting_top: '4%',
-        //     ending_top: '10%',
-        // });
     }
 };
 

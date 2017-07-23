@@ -15,7 +15,7 @@ module.exports = {
             <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canDeleteSuite }"><a v-on:click="selected($event,'delete-suite',!canDeleteSuite)">Delete Suite</a></li>
         </template>
         <li class="divider"></li>
-            <li class="unselectable-text menu-button"><a href="#about-modal">About</a></li>
+        <li class="unselectable-text menu-button"><a class="modal-trigger" href="#about-modal">About</a></li>
     </ul>
     `,
     methods: {

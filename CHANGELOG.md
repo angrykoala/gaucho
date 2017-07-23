@@ -2,6 +2,8 @@
 ==================
 
   * Removed custom window frame, and replaced by OS default frame
+  * Materialize-css updated to 0.99
+  * Added jquery-ui dependency, needed by materialize>0.99
   * Added About menu
   * Added CONTRIBUTIONS.md file
   * Remove configuration files from final build
@@ -13,7 +15,7 @@
   * Increased navbar menu width
   * Changed navbar menu elements text
   * Electron post-install bug fixed, removed patch
-  * materializecss and electron dependencies updated
+  * Materialize-css and electron dependencies updated
   * Minor interface improvements
   * Added package-lock.json file
   * Added gaucho to npm repository

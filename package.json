@@ -5,9 +5,10 @@
   "main": "main.js",
   "dependencies": {
     "jquery": "^3.1.1",
-    "materialize-css": "^0.98.2",
+    "jquery-ui": "^1.12.1",
+    "materialize-css": "^0.99.0",
     "vue": "^2.0.8",
-    "yerbamate": "^2.0.0"
+    "yerbamate": "^2.0.1"
   },
   "devDependencies": {
     "electron": "^1.6.7",
