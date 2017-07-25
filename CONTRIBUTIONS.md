@@ -49,7 +49,6 @@ It means a lot to us that you took time out to improve this project and contribu
 
  - [Project Page][github]
  - [Author][author]
- - [NPM Package][package]
  - [License][license]
 
 
