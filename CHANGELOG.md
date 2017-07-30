@@ -4,11 +4,10 @@
   * Removed custom window frame, and replaced by OS default frame, several related bugs solved
   * Sudo commands now supported by converting to gksudo
   * Task progress icon changed into a loading spinner
-  * Materialize-css updated to 0.99
-  * Added jquery-ui dependency, needed by materialize>0.99
   * Added About menu
-  * Added CONTRIBUTIONS.md file
+  * Materialize-css updated to 0.99 and jqeury-ui added
   * Remove configuration files from final build
+  * Added CONTRIBUTIONS.md file
 
 0.2.3 / 2017-07-08
 ==================
