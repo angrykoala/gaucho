@@ -2,6 +2,7 @@
 ==================
 
   * Removed custom window frame, and replaced by OS default frame
+  * Task progress icon changed into a loading spinner
   * Materialize-css updated to 0.99
   * Added jquery-ui dependency, needed by materialize>0.99
   * Added About menu

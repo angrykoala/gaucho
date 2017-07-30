@@ -11,13 +11,13 @@
     "yerbamate": "^2.0.1"
   },
   "devDependencies": {
-    "electron": "^1.6.7",
     "chai": "^4.0.2",
+    "electron": "^1.6.7",
     "electron-packager": "^8.3.0",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
-    "sinon": "^2.0.0"
+    "sinon": "^2.4.1"
   },
   "scripts": {
     "test": "npm run clean && istanbul cover _mocha && npm run jshint",

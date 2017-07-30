@@ -3,6 +3,7 @@
 const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
+const ProgressSpinner = require('./progress_spinner');
 
 const Material = require('../materialize');
 const Utils = require('../../common/utils');
@@ -18,11 +19,15 @@ module.exports = {
             AppStatus: AppStatus
         };
     },
+    components: {
+        "task-input": TaskInput,
+        "progress-spinner": ProgressSpinner
+    },
     template: `
     <li class="run-card">
         <div class="collapsible-header row unselectable-text">
             <div class="col s5">
-                <strong class="truncate">{{task.title}}</strong>     
+                <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
                 <div class="truncate task-time">{{executionTime}}</div>
@@ -32,9 +37,8 @@ module.exports = {
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
-                <div class="badge">
-                    <i class="small material-icons" v-bind:style="{color: statusColor}" v-bind:class="{ disabled: running }">{{task.status}}</i>
-                </div>
+                <progress-spinner v-if="running"></progress-spinner>
+                <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
             </div>
         </div>
 
@@ -130,8 +134,5 @@ module.exports = {
             if (this.task.beginTime === null) return "-";
             return Utils.generateTimeString(this.task.elapsedTime);
         }
-    },
-    components: {
-        "task-input": TaskInput
     }
 };

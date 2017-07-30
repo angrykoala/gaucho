@@ -206,3 +206,8 @@ input.tab-text {
     cursor: default;
     -webkit-user-select: none;
 }
+
+.progress-badge{
+    width: 20px;
+    height: 20px;
+}
