@@ -1,4 +1,4 @@
-0.2.4 / ####-##-##
+0.2.4 / 2017-08-01
 ==================
 
   * Removed custom window frame, and replaced by OS default frame, several related bugs solved
