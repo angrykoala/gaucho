@@ -2,7 +2,7 @@
 ==================
 
   * Removed custom window frame, and replaced by OS default frame, several related bugs solved
-  * Sudo commands now supported by converting to gksudo
+  * Sudo commands now supported by converting sudo to pkexec
   * Task progress icon changed into a loading spinner
   * Added About menu
   * Materialize-css updated to 0.99 and jqeury-ui added

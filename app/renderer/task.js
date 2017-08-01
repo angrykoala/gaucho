@@ -78,7 +78,7 @@ class Task {
     }
 
     processCommand() {
-        return this.command.replace(/(^|\s)sudo($|\s)/g, "$1gksudo$2");
+        return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
     }
 }
 
