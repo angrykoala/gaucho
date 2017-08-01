@@ -69,8 +69,7 @@
 }
 
 .suite-tab {
-    margin-top: 72px;
-    /*47 px + 25px*/
+    margin-top: 47px;
 }
 
 .menu-title {
@@ -206,4 +205,9 @@ input.tab-text {
 .input-field>label {
     cursor: default;
     -webkit-user-select: none;
+}
+
+.progress-badge{
+    width: 20px;
+    height: 20px;
 }

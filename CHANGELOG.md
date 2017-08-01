@@ -1,14 +1,25 @@
+0.2.4 / 2017-08-01
+==================
+
+  * Removed custom window frame, and replaced by OS default frame, several related bugs solved
+  * Sudo commands now supported by converting sudo to pkexec
+  * Task progress icon changed into a loading spinner
+  * Added About menu
+  * Materialize-css updated to 0.99 and jqeury-ui added
+  * Remove configuration files from final build
+  * Added CONTRIBUTIONS.md file
+
 0.2.3 / 2017-07-08
 ==================
 
-    * Using tile (~) in the path is now supported
-    * Increased navbar menu width
-    * Changed navbar menu elements text
-    * Electron post-install bug fixed, removed patch
-    * materializecss and electron dependencies updated
-    * Minor interface improvements
-    * Added package-lock.json file
-    * Added gaucho to npm repository
+  * Using tile (~) in the path is now supported
+  * Increased navbar menu width
+  * Changed navbar menu elements text
+  * Electron post-install bug fixed, removed patch
+  * Materialize-css and electron dependencies updated
+  * Minor interface improvements
+  * Added package-lock.json file
+  * Added gaucho to npm repository
 
 0.2.2 / 2017-04-30
 ==================
@@ -24,7 +35,7 @@
 ==================
 
   * Added Unit tests and test coverage information
-  * Save button disabled until command and name are filled
+  * Save button disabled until command and name filled
   * Tasks now have an unique name per suite
   * Removed empty spaces at the beginning and end of task title
   * Removed "pointer" cursor style
@@ -77,7 +88,7 @@
 0.1.1 / 2016-12-20
 ==================
 
-  * Window size will be part of the userConfig
+  * Window size will be part of the user config
   * Task edit menu added
   * Added minimum size to the window
   * Stopping a running task icon changed, now it will be the same as idle task

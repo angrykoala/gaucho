@@ -5,13 +5,11 @@ const Material = require('../materialize');
 const AppStatus = require('../app_status');
 
 const NavbarMenu = require('./navbar_menu');
-const WindowFrameTop = require('./window_frame_top');
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
-        "window-frame-top": WindowFrameTop
     },
     data() {
         return {
@@ -23,7 +21,6 @@ module.exports = {
     <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <window-frame-top></window-frame-top>
                 <div class="brand-logo main-logo left">
                 <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
                 <a>Gaucho</a>
@@ -33,7 +30,7 @@ module.exports = {
                     <li><a class="navbar-menu-button" data-activates='navbar-menu' data-gutter="30"><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
                 <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites"></navbar-menu>
-            
+
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
                         <template v-for="(suite,index) in suites">

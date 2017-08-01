@@ -14,6 +14,10 @@ module.exports = {
             event: new EventEmitter()
         };
     },
+    components: {
+        "task-card": TaskCard,
+        "add-task": AddTask
+    },
     template: `
         <div v-bind:id="id" class="suite-tab">
             <ul class="collapsible" data-collapsible="accordion">
@@ -65,9 +69,5 @@ module.exports = {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         }
 
-    },
-    components: {
-        "task-card": TaskCard,
-        "add-task": AddTask
     }
 };

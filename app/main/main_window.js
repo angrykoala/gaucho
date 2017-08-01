@@ -41,7 +41,7 @@ module.exports = class MainWindow {
             fullscreenable: false,
             webgl: false,
             icon: this.config.iconPath,
-            frame: false
+            frame: true
         };
         if (devWindow) {
             winConfig.width += config.devToolsSize;
@@ -49,6 +49,7 @@ module.exports = class MainWindow {
 
         win = new BrowserWindow(winConfig);
         win.userConfig = config;
+        win.setMenu(null);
 
         win.loadURL(this.config.indexPath);
 

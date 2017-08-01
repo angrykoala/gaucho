@@ -31,7 +31,7 @@ class Task {
         this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
-        this.proc = yerbamate.run(this.command, this.path, {
+        this.proc = yerbamate.run(this.processCommand(), this.path, {
                 stderr: stdout,
                 stdout: stdout
             },
@@ -75,6 +75,10 @@ class Task {
         if (finishTime === null) finishTime = Date.now();
 
         this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
+    }
+
+    processCommand() {
+        return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
     }
 }
 
