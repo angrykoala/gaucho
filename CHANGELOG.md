@@ -1,7 +1,7 @@
 0.2.4 / ####-##-##
 ==================
 
-
+  * Window title changed to: Gaucho Task Launcher
 
 0.2.4 / 2017-08-01
 ==================

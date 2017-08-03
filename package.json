@@ -1,7 +1,7 @@
 {
   "name": "gaucho",
   "version": "0.2.5",
-  "description": "Minimalistic task launcher with GUI",
+  "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
     "jquery": "^3.1.1",
