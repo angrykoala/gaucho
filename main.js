@@ -15,7 +15,6 @@ function isDevEnv() {
 let win = null;
 
 function initApp() {
-
     function createWindow() {
         if (win === null) {
             const iconPath = path.join(__dirname, 'resources', 'icon.png');
@@ -31,7 +30,6 @@ function initApp() {
         }
     }
     AppEvents(createWindow);
-
 }
 
 initApp();

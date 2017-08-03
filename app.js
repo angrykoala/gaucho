@@ -36,8 +36,7 @@ const app = new Vue({ // jshint ignore:line
     components: components,
     mounted() {
         Material.init();
-        TaskConfig.loadConfig((err, s) => {
-            if (err) console.error(err);
+        TaskConfig.loadConfig((s) => {
             suites = s;
             this.suites = suites;
             this.loaded = true;

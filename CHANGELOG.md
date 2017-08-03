@@ -2,6 +2,7 @@
 ==================
 
   * Window title changed to: Gaucho Task Launcher
+  * Fallback to default config if file is corrupted
 
 0.2.4 / 2017-08-01
 ==================

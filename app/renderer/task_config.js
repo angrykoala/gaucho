@@ -55,9 +55,11 @@ module.exports = {
             }
             try {
                 this.suites = parseData(JSON.parse(data));
-                return done(null, this.suites);
+                return done(this.suites);
             } catch (e) {
-                done(e);
+                console.error(e);
+                this.suites = parseData(JSON.parse(defaultConfig));
+                done(this.suites);
             }
         });
     },
