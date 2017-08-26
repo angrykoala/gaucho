@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+¡<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,13 +12,24 @@
 </head>
 
 <body>
-    <div id="app">
+<div id="app">
         <about></about>
-        <navbar v-bind:suites="suites" v-if="loaded"></navbar>
-        <template v-for="(suite,index) in suites">
-            <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
-        </template>
-    </div>
+        <div class="r_flex_container">
+            <div class="r_flex_fixed_child">
+                <navbar v-bind:suites="suites" v-if="loaded"></navbar>
+            </div>
+            
+            <div class="r_flex_expand_child">
+                <template v-for="(suite,index) in suites">
+                    <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+                </template>
+            </div>
+            
+            <div class="r_flex_fixed_child">
+                <bottombar></bottombar>
+            </div>
+        </div>
+</div>
 
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
