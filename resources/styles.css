@@ -248,7 +248,7 @@ html, body, .r_flex_container, #app{
 
 .r_flex_expand_child {
     flex:auto;
-    overflow-y:scroll;
+    overflow-y:auto;
 }
 
 #left {

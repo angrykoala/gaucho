@@ -66,6 +66,7 @@ module.exports = {
         },
         onTabSelected(index) {
             AppStatus.activeSuite = index;
+            AppStatus.totalTasks = this.suites[index].length;
         },
         selectTab(index) {
             if (index >= this.suites.length) index = this.suites.length - 1;

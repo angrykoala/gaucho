@@ -40,11 +40,13 @@ module.exports = {
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
                 this.suite.addTask(task);
+                AppStatus.totalTasks++;
             }
         },
         removeTask(i) {
             this.suite.removeTask(i);
             this.$forceUpdate();
+            AppStatus.totalTasks--;
         },
         editTask(i, task) {
             this.suite.replaceTask(i, task);

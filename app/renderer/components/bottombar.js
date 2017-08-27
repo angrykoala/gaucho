@@ -2,8 +2,6 @@
 
 const AppStatus = require('../app_status');
 
-
-
 module.exports = {
     
     props: ['suite'],    
@@ -16,10 +14,10 @@ module.exports = {
     <div class="bottombar">
         <nav class="navbar navbar-inverse">
              <div id="left">
-                Total Tasks: 10
+                <b>Total Tasks:</b> {{AppStatus.totalTasks}}
             </div>
             <div id="right">
-                Running Tasks: 0
+                <b>Running Tasks:</b> {{AppStatus.runningTasks}}
             </div>
     </nav> 
     </div>
