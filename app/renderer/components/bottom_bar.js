@@ -3,7 +3,6 @@
 const AppStatus = require('../app_status');
 
 module.exports = {
-    props: ['suite'],    
     data() {
         return {
             AppStatus: AppStatus
