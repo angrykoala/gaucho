@@ -14,19 +14,19 @@
 <body>
     <div id="app">
             <about></about>
-            <div class="r_flex_container">
-                <div class="r_flex_fixed_child_top">
+            <div class="flex-column">
+                <div class="flex-fixed margin-bottom">
                     <navbar v-bind:suites="suites" v-if="loaded"></navbar>
                 </div>
                 
-                <div class="r_flex_expand_child">
+                <div class="flex-auto">
                     <template v-for="(suite,index) in suites">
                         <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
                     </template>
                 </div>
                 
-                <div class="r_flex_fixed_child_bott">
-                    <bottombar></bottombar>
+                <div class="flex-fixed">
+                    <bottom-bar></bottom-bar>
                 </div>
             </div>
     </div>

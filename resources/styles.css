@@ -223,30 +223,27 @@ input.tab-text {
 
 
 
-html, body, .r_flex_container, #app{
+html, body, .flex-column, #app{
     height: 100%;
     display: flex;
     flex-direction: column;
     margin: 0;
 }
-.r_flex_container {
+.flex-column {
     display:flex;
     flex-flow: column nowrap;
 }
 
-.r_flex_fixed_child_top {
-    background-color:black;
+.flex-fixed{
     flex:none;
+}
+
+.margin-bottom{
     margin-bottom: 50px;
 }
 
-.r_flex_fixed_child_bott {
-    background-color:black;
-    flex:none;
-    margin-bottom: 0px;
-}
 
-.r_flex_expand_child {
+.flex-auto{
     flex:auto;
     overflow-y:auto;
 }
