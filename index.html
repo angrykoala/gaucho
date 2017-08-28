@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gaucho Task Runner</title>
+    <link href="./resources/material_icons/material-icons.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="./resources/styles.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div id="app">
+            <about></about>
+            <div class="r_flex_container">
+                <div class="r_flex_fixed_child_top">
+                    <navbar v-bind:suites="suites" v-if="loaded"></navbar>
+                </div>
+                
+                <div class="r_flex_expand_child">
+                    <template v-for="(suite,index) in suites">
+                        <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+                    </template>
+                </div>
+                
+                <div class="r_flex_fixed_child_bott">
+                    <bottombar></bottombar>
+                </div>
+            </div>
+    </div>
+
+    <script>
+        window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+        window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
+    </script>
+    <script src="./node_modules/jquery-ui/build/release.js"></script>
+    <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+</body>
+
+</html>
