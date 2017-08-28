@@ -9,7 +9,7 @@ module.exports = {
         };
     },
     template: `
-    <div class="bottombar">
+    <div class="bottom_bar">
         <nav class="navbar navbar-inverse">
              <div id="left">
                 <b>Total Tasks:</b> {{AppStatus.totalTasks}}

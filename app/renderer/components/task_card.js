@@ -82,8 +82,10 @@ module.exports = {
         run() {
             this.output = "";
             AppStatus.runningTasks++;
-            this.task.run(this.print, () => {   AppStatus.runningTasks--;   }
-          
+            this.task.run(this.print, () => {
+                    AppStatus.runningTasks--;
+            }
+
             );
             
 
