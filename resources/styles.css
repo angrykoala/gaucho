@@ -74,10 +74,6 @@
     float: right;
 }
 
-.suite-tab {
-    margin-top: 0px;
-
-}
 
 .menu-title {
     color: #ee6e73;
@@ -247,13 +243,13 @@ html, body, .flex-column, #app{
     overflow-y:auto;
 }
 
-#left {
+.left-content {
   float:left;
   width:180px;
   padding-left: 20px;
     
 }
-#right {
+.right-content {
   padding-right: 20px;
   width: 100%;
   text-align: right;

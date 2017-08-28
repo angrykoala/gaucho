@@ -11,10 +11,10 @@ module.exports = {
     template: `
     <div class="bottom_bar">
         <nav class="navbar navbar-inverse">
-             <div id="left">
+             <div class="left-content">
                 <b>Total Tasks:</b> {{AppStatus.totalTasks}}
             </div>
-            <div id="right">
+            <div class="right-content">
                 <b>Running Tasks:</b> {{AppStatus.runningTasks}}
             </div>
     </nav> 
