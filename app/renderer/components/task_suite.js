@@ -19,7 +19,7 @@ module.exports = {
         "add-task": AddTask
     },
     template: `
-        <div v-bind:id="id" class="suite-tab">
+        <div v-bind:id="id">
             <ul class="collapsible" data-collapsible="accordion">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
