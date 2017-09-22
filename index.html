@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gaucho Task Runner</title>
+    <title>Gaucho Task Launcher</title>
     <link href="./resources/material_icons/material-icons.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="./resources/styles.css" />
@@ -18,13 +18,13 @@
                 <div class="flex-fixed margin-bottom">
                     <navbar v-bind:suites="suites" v-if="loaded"></navbar>
                 </div>
-                
+
                 <div class="flex-auto">
                     <template v-for="(suite,index) in suites">
                         <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
                     </template>
                 </div>
-                
+
                 <div class="flex-fixed">
                     <bottom-bar></bottom-bar>
                 </div>
