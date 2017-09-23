@@ -20,7 +20,7 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <ul style="margin-bottom:0" class="collapsible" data-collapsible="accordion">
+            <ul style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
