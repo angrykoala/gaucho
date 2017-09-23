@@ -68,7 +68,6 @@
     float: right;
 }
 
-
 .menu-title {
     color: #ee6e73;
     cursor: default;
@@ -204,54 +203,68 @@ input.tab-text {
     -webkit-user-select: none;
 }
 
-.progress-badge{
+.progress-badge {
     width: 20px;
     height: 20px;
 }
 
-footer{
-    position:fixed;
-    width:100%;
-    left:0;
-    bottom:0;
+footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
 }
 
-.left-content{
-    float:left;
-    padding-left:20px;
+.left-content {
+    float: left;
+    padding-left: 20px;
 }
 
-.right-content{
-    float:right;
-    padding-right:20px;
+.right-content {
+    float: right;
+    padding-right: 20px;
 }
 
-.left-content, right{
-    width:50%;
+.left-content, right {
+    width: 50%;
 }
 
-#app{
+#app {
     height: 100%;
     width: 100%;
     overflow: hidden;
     position: relative;
 }
 
-main{
+main {
     position: absolute;
-    top: 110px;
-    bottom: 64px;
-    left: 0px;
-    right: 0px;
+    top: 104px;
+    bottom: 56px;
+    left: 0;
+    right: 0;
     overflow: auto;
 }
 
-html, body{
+html, body {
     height: 100%;
     overflow: hidden;
 }
 
-.no-margin{
-    margin-top:0;
-    margin-bottom:0;
+.no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.bottom-bar>.navbar {
+    height: 56px;
+    line-height: 56px;
+}
+
+.nav-extended {
+    line-height: 56px !important;
+}
+
+.navbar-buttons i {
+    height: 56px !important;
+    line-height: 56px !important;
 }

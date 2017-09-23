@@ -1,10 +1,11 @@
-0.2.4 / ####-##-##
+0.2.5 / ####-##-##
 ==================
 
   * Bottom bar with some information about tasks
   * Scroll now only visible inside the suite
-  * Minimum window width increased to avoid horizontal scroll
   * Window title changed to: Gaucho Task Launcher
+  * Minimum window width increased to avoid horizontal scroll
+  * Overall style slightly improved
   * Fallback to default config if file is corrupted
   * CONTRIBUTIONS.md renamed to CONTRIBUTING.md
 

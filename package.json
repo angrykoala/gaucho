@@ -13,11 +13,11 @@
   "devDependencies": {
     "chai": "^4.0.2",
     "electron": "^1.6.7",
-    "electron-packager": "^8.3.0",
+    "electron-packager": "^9.1.0",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
-    "sinon": "^2.4.1"
+    "sinon": "^3.3.0"
   },
   "scripts": {
     "test": "npm run clean && istanbul cover _mocha && npm run jshint",
