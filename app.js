@@ -8,7 +8,8 @@ const Material = require('./app/renderer/materialize');
 const components = {
     "task-suite": require('./app/renderer/components/task_suite'),
     "navbar": require('./app/renderer/components/navbar'),
-    "about": require('./app/renderer/components/about')
+    "about": require('./app/renderer/components/about'),
+    "bottom-bar": require('./app/renderer/components/bottom_bar'),
 };
 
 let suites = [];

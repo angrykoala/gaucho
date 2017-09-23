@@ -12,13 +12,22 @@
 </head>
 
 <body>
-    <div id="app">
-        <about></about>
-        <navbar v-bind:suites="suites" v-if="loaded"></navbar>
-        <template v-for="(suite,index) in suites">
-            <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
-        </template>
-    </div>
+    <section id="app">
+            <about></about>
+                <header id="main-header"class="margin-bottom" style="height:100px">
+                    <navbar v-bind:suites="suites" v-if="loaded"></navbar>
+                </header>
+
+                <main>
+                    <template v-for="(suite,index) in suites">
+                        <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+                    </template>
+                </main>
+
+                <footer>
+                    <bottom-bar></bottom-bar>
+                </footer>
+    </section>
 
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');

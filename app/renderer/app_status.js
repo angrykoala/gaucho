@@ -17,5 +17,7 @@ module.exports = {
     config: remote.getCurrentWindow().userConfig,
     maxSuites: 6,
     maxTasksPerSuite: 8,
+    totalTasks: 0,
+    runningTasks: 0,
     version: version
 };

@@ -42,3 +42,4 @@ tasks.json
 config.json
 builds
 package-lock.json
+.vscode
