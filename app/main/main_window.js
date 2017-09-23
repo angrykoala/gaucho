@@ -36,7 +36,7 @@ module.exports = class MainWindow {
         let winConfig = {
             width: config.windowSize[0],
             height: config.windowSize[1],
-            minWidth: 360,
+            minWidth: 365,
             minHeight: 300,
             fullscreenable: false,
             webgl: false,
