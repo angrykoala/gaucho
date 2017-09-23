@@ -30,20 +30,14 @@
     background-color: #af0000;
 }
 
-.collapsible{
- margin-top: 0;
- border-top: 0;
-}
-
-
 .collapsible-body.task-card-body {
     padding: 0;
 }
 
 .run-card .collapsible-header {
-    padding: 0px;
+    padding: 10px;
     margin: 0;
-    border: 0;
+    border: 1;
     cursor: default;
 }
 
@@ -215,43 +209,44 @@ input.tab-text {
     height: 20px;
 }
 
+footer{
+    position:fixed;
+    width:100%;
+    left:0;
+    bottom:0;
+}
 
+.left-content{
+    float:left;
+    padding-left:20px;
+}
 
+.right-content{
+    float:right;
+    padding-right:20px;
+}
 
-html, body, .flex-column, #app{
+.left-content, right{
+    width:50%;
+}
+
+#app{
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-}
-.flex-column {
-    display:flex;
-    flex-flow: column nowrap;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
-.flex-fixed{
-    flex:none;
+main{
+    position: absolute;
+    top: 110px;
+    bottom: 64px;
+    left: 0px;
+    right: 0px;
+    overflow: auto;
 }
 
-.margin-bottom{
-    margin-bottom: 50px;
+html, body{
+    height: 100%;
+    overflow: hidden;
 }
-
-
-.flex-auto{
-    flex:auto;
-    overflow-y:auto;
-}
-
-.left-content {
-  float:left;
-  width:180px;
-  padding-left: 20px;
-    
-}
-.right-content {
-  padding-right: 20px;
-  width: 100%;
-  text-align: right;
-}
-

@@ -12,24 +12,22 @@
 </head>
 
 <body>
-    <div id="app">
+    <section id="app">
             <about></about>
-            <div class="flex-column">
-                <div class="flex-fixed margin-bottom">
+                <header id="main-header"class="margin-bottom" style="height:100px">
                     <navbar v-bind:suites="suites" v-if="loaded"></navbar>
-                </div>
+                </header>
 
-                <div class="flex-auto">
+                <main>
                     <template v-for="(suite,index) in suites">
                         <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
                     </template>
-                </div>
+                </main>
 
-                <div class="flex-fixed">
+                <footer>
                     <bottom-bar></bottom-bar>
-                </div>
-            </div>
-    </div>
+                </footer>
+    </section>
 
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');

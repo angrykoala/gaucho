@@ -3,9 +3,6 @@ logs
 *.log
 npm-debug.log*
 
-# VisualStudio Code (debug)
-.vscode
-
 # Runtime data
 pids
 *.pid
@@ -45,3 +42,4 @@ tasks.json
 config.json
 builds
 package-lock.json
+.vscode
