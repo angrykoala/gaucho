@@ -10,6 +10,7 @@ const components = {
     "navbar": require('./app/renderer/components/navbar'),
     "about": require('./app/renderer/components/about'),
     "bottom-bar": require('./app/renderer/components/bottom_bar'),
+    "config-menu": require('./app/renderer/components/config_menu')
 };
 
 let suites = [];
