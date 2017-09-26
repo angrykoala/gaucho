@@ -4,6 +4,7 @@
   * Bottom bar with some information about tasks
   * Scroll now only visible inside the suite
   * Window title changed to: Gaucho Task Launcher
+  * Config now using electron-config package
   * Minimum window width increased to avoid horizontal scroll
   * Overall style slightly improved
   * Fallback to default config if file is corrupted

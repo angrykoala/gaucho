@@ -1,7 +1,6 @@
 "use strict";
 
 const AppStatus = require('../app_status');
-
 const SwitchForm = require('./switch_form');
 
 module.exports = {
@@ -41,7 +40,9 @@ module.exports = {
             this.config.systemWindow = AppStatus.config.systemWindow;
         },
         onSave() {
-            Object.assign(AppStatus.config, this.config);
+            AppStatus.config.bottomBar = this.config.bottomBar;
+            AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+            AppStatus.config.systemWindow = this.config.systemWindow;
         }
     }
 };

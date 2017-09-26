@@ -13,21 +13,21 @@
 
 <body>
     <section id="app">
-            <config-menu></config-menu>
-            <about></about>
-                <header id="main-header"class="margin-bottom" style="height:100px">
-                    <navbar v-bind:suites="suites" v-if="loaded"></navbar>
-                </header>
+        <config-menu></config-menu>
+        <about></about>
+        <header id="main-header" class="margin-bottom" style="height:100px">
+            <navbar v-bind:suites="suites" v-if="loaded"></navbar>
+        </header>
 
-                <main>
-                    <template v-for="(suite,index) in suites">
-                        <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
-                    </template>
-                </main>
+        <main>
+            <template v-for="(suite,index) in suites">
+                    <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+                </template>
+        </main>
 
-                <footer>
-                    <bottom-bar></bottom-bar>
-                </footer>
+        <footer v-if="AppStatus.config.bottomBar">
+            <bottom-bar></bottom-bar>
+        </footer>
     </section>
 
     <script>

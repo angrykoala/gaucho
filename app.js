@@ -3,6 +3,7 @@
 const ipcRenderer = require('electron').ipcRenderer;
 
 const TaskConfig = require('./app/renderer/task_config');
+const AppStatus=require('./app/renderer/app_status');
 const Material = require('./app/renderer/materialize');
 
 const components = {
@@ -33,7 +34,8 @@ const app = new Vue({ // jshint ignore:line
     el: '#app',
     data: {
         suites: suites,
-        loaded: false
+        loaded: false,
+        AppStatus: AppStatus
     },
     components: components,
     mounted() {

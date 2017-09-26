@@ -4,7 +4,6 @@ const path = require('path');
 
 const MainWindow = require('./app/main/main_window');
 const AppEvents = require('./app/main/app_events');
-const UserConfig = require('./app/main/user_config');
 
 
 function isDevEnv() {
@@ -20,13 +19,10 @@ function initApp() {
             const iconPath = path.join(__dirname, 'resources', 'icon.png');
             const htmlUrl = "file://" + __dirname + "/index.html";
 
-            UserConfig.loadConfig((config) => {
-                win = new MainWindow()
+            win = new MainWindow()
                 .setIcon(iconPath)
                 .setIndex(htmlUrl)
-                .setUserConfig(config)
                 .initWindow(isDevEnv());
-            });
         }
     }
     AppEvents(createWindow);
