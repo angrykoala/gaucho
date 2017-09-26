@@ -206,6 +206,7 @@ input.tab-text {
 .progress-badge {
     width: 20px;
     height: 20px;
+    top: 6px;
 }
 
 footer {
