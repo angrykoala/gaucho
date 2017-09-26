@@ -23,7 +23,7 @@ Gaucho allows you to configure _tasks_ as part of different _suites_ or groups y
 ### Executing tasks
 On each suite, you will find the list of possible tasks to launch. By clicking on _Run_ you will start that task. Clicking the same button again (now the _Stop_ button) you can stop the tasks.
 
-You can easily see the _name_, _execution time_ and _status_ of each task. The _status_ (shown with the status icon) can be _idle_ (black), _running_ (blue), _successful_ (green) or _failed_ (red). 
+You can easily see the _name_, _execution time_ and _status_ of each task. The _status_ (shown with the status icon) can be _idle_ (black), _running_ (blue), _successful_ (green) or _failed_ (red).
 
 Clicking in the task name the _log_ will be displayed, allowing you to check the task output in real time.
 
@@ -51,10 +51,12 @@ Next to the edit button, is the menu button. When clicking the menu, several opt
 * _Add new Suite_: Created a new suite
 * _Delete Suite_: Deletes current suite
 
+**Other menus**
+* _Configuration_: Will show the configuration menu
+* _About_: Some information about Gaucho such as the version you are running
+
 ### User and Tasks Configuration
 All tasks and user changes are saved automatically when closing gaucho. This includes all the tasks/suites information as well as the window size.
-
-> This information is stored in `config.json` and `tasks.json` if any of those files is not present, the default configuration will be loaded and the file will be created
 
 
 ## Development
