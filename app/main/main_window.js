@@ -74,7 +74,7 @@ module.exports = class MainWindow {
         win.on('close', (ev) => {
             if (first) {
                 ev.preventDefault();
-                win.webContents.send('before-close'); //TODO: remove?
+                win.webContents.send('before-close');
                 first = false;
             }
         });
