@@ -37,7 +37,7 @@ module.exports = {
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
-                <progress-spinner v-if="running"></progress-spinner>
+                <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
                 <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
             </div>
         </div>

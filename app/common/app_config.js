@@ -10,7 +10,6 @@ const defaultData = {
     maximized: false,
     bottomBar: true,
     animatedSpinner: true,
-    systemWindow: true
 };
 
 

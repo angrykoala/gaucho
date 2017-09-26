@@ -9,7 +9,6 @@ module.exports = {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
                 animatedSpinner: AppStatus.config.animatedSpinner,
-                systemWindow: AppStatus.config.systemWindow
             }
         };
     },
@@ -23,7 +22,6 @@ module.exports = {
             <div class="container">
                 <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
-                <switch-form v-bind:title="'System Window (recommended)'" v-model="config.systemWindow"></switch-form>
             </div>
         </div>
         <div class="modal-footer">
@@ -37,12 +35,10 @@ module.exports = {
         onClose() {
             this.config.bottomBar = AppStatus.config.bottomBar;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-            this.config.systemWindow = AppStatus.config.systemWindow;
         },
         onSave() {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
-            AppStatus.config.systemWindow = this.config.systemWindow;
         }
     }
 };
