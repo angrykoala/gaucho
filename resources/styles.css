@@ -246,6 +246,10 @@ main {
     overflow: auto;
 }
 
+main.full-size {
+    bottom: 0px;
+}
+
 html, body {
     height: 100%;
     overflow: hidden;
