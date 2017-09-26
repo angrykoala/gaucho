@@ -282,3 +282,7 @@ html, body {
 .switch-lever {
     float: right;
 }
+
+.switch>label{
+    font-size: 15px;
+}
