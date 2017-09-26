@@ -1,4 +1,4 @@
-0.2.5 / ####-##-##
+0.3.0 / ####-##-##
 ==================
 
   * Bottom bar with some information about tasks
