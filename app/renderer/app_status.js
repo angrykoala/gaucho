@@ -14,7 +14,7 @@ module.exports = {
         this.editMode = !this.editMode;
         TaskConfig.saveConfig();
     },
-    config: remote.getCurrentWindow().userConfig,
+    config: remote.getCurrentWindow().userConfig, //TODO: improve how this works
     maxSuites: 6,
     maxTasksPerSuite: 8,
     totalTasks: 0,

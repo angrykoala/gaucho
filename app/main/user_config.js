@@ -6,10 +6,13 @@ const path = require('path');
 const configFile = "../../config.json";
 
 const defaultConfig = {
-    "windowSize": [500, 600],
-    "devToolsSize": 300,
-    "outputMaxSize": 10000,
-    "maximized": false
+    windowSize: [500, 600],
+    devToolsSize: 300,
+    outputMaxSize: 10000,
+    maximized: false,
+    bottomBar: true,
+    animatedSpinner: true,
+    systemWindow: true
 };
 
 module.exports = {

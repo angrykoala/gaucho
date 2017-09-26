@@ -6,9 +6,14 @@ module.exports = {
     <div class="switch">
       <label>
         {{title}}
-        <input type="checkbox" v-model="value">
-        <span class="lever"></span>
+        <input type="checkbox" v-model="value" v-on:change="updateValue()">
+        <span class="lever switch-lever"></span>
       </label>
     </div>
     `,
+    methods: {
+        updateValue() {
+            this.$emit('input', this.value);
+        }
+    }
 };

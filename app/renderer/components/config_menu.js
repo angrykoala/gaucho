@@ -7,11 +7,10 @@ const SwitchForm = require('./switch_form');
 module.exports = {
     data() {
         return {
-            AppStatus: AppStatus,
             config: {
-                bottomBar: true,
-                animatedSpinner: true,
-                systemWindow: true
+                bottomBar: AppStatus.config.bottomBar,
+                animatedSpinner: AppStatus.config.animatedSpinner,
+                systemWindow: AppStatus.config.systemWindow
             }
         };
     },
@@ -22,11 +21,11 @@ module.exports = {
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
         <div class="modal-content">
             <h3>Configuration</h3>
-            <form>
-                <switch-form v-bind:title="'Bottom Bar'" v-bind:value="true"></switch-form>
-                <switch-form v-bind:title="'Animated Progress Icon'" v-bind:value="true"></switch-form>
-                <switch-form v-bind:title="'System Window (recommended)'" v-bind:value="true"></switch-form>
-            </form>
+            <div class="container">
+                <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
+                <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
+                <switch-form v-bind:title="'System Window (recommended)'" v-model="config.systemWindow"></switch-form>
+            </div>
         </div>
         <div class="modal-footer">
             <a href="#!" v-on:click="onClose" class="modal-action modal-close waves-effect waves-green btn-flat left">Close</a>
@@ -37,10 +36,12 @@ module.exports = {
 
     methods: {
         onClose() {
-            console.log("CLOSE");
+            this.config.bottomBar = AppStatus.config.bottomBar;
+            this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+            this.config.systemWindow = AppStatus.config.systemWindow;
         },
         onSave() {
-            console.log("SAVE");
+            Object.assign(AppStatus.config, this.config);
         }
     }
 };
