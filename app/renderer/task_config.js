@@ -35,7 +35,7 @@ const defaultTasks = [{
 
 module.exports = {
     suites: [],
-    loadConfig() {
+    loadTasks() {
         const store = new Store({
             name: "gaucho_tasks",
             encryptionKey: key
@@ -46,7 +46,7 @@ module.exports = {
         }
         this.suites = this.parseData(suites);
     },
-    saveConfig() {
+    saveTasks() {
         const store = new Store({
             name: "gaucho_tasks",
             encryptionKey: key
@@ -58,6 +58,14 @@ module.exports = {
         if (this.isValid(data)) {
             store.set("suites", data);
         }
+    },
+    clearTasks() {
+        for (const suite of this.suites) {
+            suite.stopAll();
+        }
+        this.suites[0] = new Suite("Default Suite");
+        this.suites.splice(1, this.suites.length);
+        this.saveTasks();
     },
     isValid(data) {
         return (Array.isArray(data) && data.length >= 1);

@@ -283,10 +283,20 @@ html, body {
     float: right;
 }
 
-.switch>label{
+.switch>label {
     font-size: 15px;
 }
 
-.config-form{
+.config-form {
     max-width: 300px;
+}
+
+.buttons-form {
+    max-width: 230px;
+    margin-top: 20px;
+}
+
+.buttons-form .btn {
+    width: 100%;
+    margin-top: 10px;
 }

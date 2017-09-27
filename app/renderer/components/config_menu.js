@@ -2,6 +2,8 @@
 
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
+const TaskConfig = require('../task_config');
+
 
 module.exports = {
     data() {
@@ -22,6 +24,12 @@ module.exports = {
             <div class="container config-form">
                 <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
+
+                <div class="center-align buttons-form container">
+                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
+                    <label>Warning: This will remove all your suites and tasks</label>
+                    <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -32,6 +40,14 @@ module.exports = {
     `,
 
     methods: {
+        clearTasks() {
+            TaskConfig.clearTasks();
+            AppStatus.activeSuite = 0;
+        },
+        resetConfig() {
+            this.config.bottomBar=true;
+            this.config.animatedSpinner=true;
+        },
         onClose() {
             this.config.bottomBar = AppStatus.config.bottomBar;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;

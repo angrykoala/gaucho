@@ -5,6 +5,7 @@
   * Added configuration menu
   * Scroll now only visible inside the suite
   * Window title changed to: Gaucho Task Launcher
+  * Clear all tasks button
   * Progress badge now centered
   * Animated progress bar is now optional
   * Configuration data is now stored using electron-config package

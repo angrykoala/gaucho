@@ -12,7 +12,7 @@ module.exports = {
     events: new EventEmitter(),
     toggleEdit() {
         this.editMode = !this.editMode;
-        TaskConfig.saveConfig();
+        TaskConfig.saveTasks();
     },
     config: new AppConfigStatus(),
     maxSuites: 6,

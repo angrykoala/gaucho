@@ -17,7 +17,7 @@ const components = {
 let suites = [];
 
 ipcRenderer.on('before-close', () => {
-    TaskConfig.saveConfig();
+    TaskConfig.saveTasks();
     const promises = suites.map((s) => {
         return s.stopAll();
     });
@@ -36,7 +36,7 @@ const app = new Vue({ // jshint ignore:line
     components: components,
     mounted() {
         Material.init();
-        TaskConfig.loadConfig();
+        TaskConfig.loadTasks();
         this.suites = TaskConfig.suites;
         this.loaded = true;
     },
