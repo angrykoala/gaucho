@@ -6,6 +6,7 @@
   * Scroll now only visible inside the suite
   * Window title changed to: Gaucho Task Launcher
   * Progress badge now centered
+  * Animated progress bar is now optional
   * Configuration data is now stored using electron-config package
   * Minimum window width increased to avoid horizontal scroll
   * Overall style slightly improved

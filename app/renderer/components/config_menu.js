@@ -19,7 +19,7 @@ module.exports = {
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
         <div class="modal-content">
             <h3>Configuration</h3>
-            <div class="container">
+            <div class="container config-form">
                 <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
             </div>

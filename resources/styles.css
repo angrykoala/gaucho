@@ -286,3 +286,7 @@ html, body {
 .switch>label{
     font-size: 15px;
 }
+
+.config-form{
+    max-width: 300px;
+}
