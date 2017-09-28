@@ -11,6 +11,7 @@ module.exports = {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
                 animatedSpinner: AppStatus.config.animatedSpinner,
+                configMenu: AppStatus.config.configMenu,
             }
         };
     },
@@ -51,10 +52,12 @@ module.exports = {
         onClose() {
             this.config.bottomBar = AppStatus.config.bottomBar;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+            AppStatus.configMenu = false;
         },
         onSave() {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+            AppStatus.configMenu = false;
         }
     }
 };

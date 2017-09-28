@@ -8,6 +8,7 @@ const AppConfigStatus = require('./app_config_status');
 
 module.exports = {
     editMode: false,
+    configMenu: false,
     activeSuite: 0,
     events: new EventEmitter(),
     toggleEdit() {
