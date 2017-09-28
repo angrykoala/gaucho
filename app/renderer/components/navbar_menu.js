@@ -32,7 +32,7 @@ module.exports = {
             ev.stopPropagation();
         },
         enableConfigMenu() {
-            AppStatus.config.configMenu = true
+            AppStatus.config.configMenu = true;
         }
     },
     computed: {
