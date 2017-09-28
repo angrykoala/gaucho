@@ -54,12 +54,12 @@ module.exports = {
             this.config.bottomBar = AppStatus.config.bottomBar;
             this.config.configMenu = AppStatus.config.configMenu;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-            AppStatus.config.configMenu = false;
+            AppStatus.configMenu = false;
         },
         onSave() {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
-            AppStatus.config.configMenu = false;
+            AppStatus.configMenu = false;
         }
     }
 };

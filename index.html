@@ -13,7 +13,7 @@
 
 <body>
     <section id="app">
-        <config-menu v-if="AppStatus.config.configMenu"></config-menu>
+        <config-menu v-if="AppStatus.configMenu"></config-menu>
         <about></about>
         <header id="main-header" class="margin-bottom" style="height:100px">
             <navbar v-bind:suites="suites" v-if="loaded"></navbar>
