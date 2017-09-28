@@ -19,8 +19,8 @@ module.exports = {
         "add-task": AddTask
     },
     template: `
-        <div v-bind:id="id" class="suite-tab">
-            <ul class="collapsible" data-collapsible="accordion">
+        <div v-bind:id="id" class="no-margin">
+            <ul style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
@@ -31,6 +31,8 @@ module.exports = {
     mounted() {
         AppStatus.events.on("run-suite", this.onRunSuite);
         AppStatus.events.on("stop-suite", this.onStopSuite);
+        AppStatus.totalTasks += this.suite.length;
+        
     },
     beforeDestroy() {
         AppStatus.events.removeListener("run-suite", this.onRunSuite);
@@ -40,11 +42,13 @@ module.exports = {
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
                 this.suite.addTask(task);
+                AppStatus.totalTasks++;
             }
         },
         removeTask(i) {
             this.suite.removeTask(i);
             this.$forceUpdate();
+            AppStatus.totalTasks--;
         },
         editTask(i, task) {
             this.suite.replaceTask(i, task);

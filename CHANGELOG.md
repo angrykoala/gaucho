@@ -1,3 +1,19 @@
+0.3.0 / ####-##-##
+==================
+
+  * Bottom bar with some information about tasks
+  * Added configuration menu
+  * Scroll now only visible inside the suite
+  * Window title changed to: Gaucho Task Launcher
+  * Clear all tasks button
+  * Progress badge now centered
+  * Animated progress bar is now optional
+  * Configuration data is now stored using electron-config package
+  * Minimum window width increased to avoid horizontal scroll
+  * Overall style slightly improved
+  * Fallback to default config if corrupted file
+  * CONTRIBUTIONS.md renamed to CONTRIBUTING.md
+
 0.2.4 / 2017-08-01
 ==================
 

@@ -68,10 +68,6 @@
     float: right;
 }
 
-.suite-tab {
-    margin-top: 47px;
-}
-
 .menu-title {
     color: #ee6e73;
     cursor: default;
@@ -207,7 +203,100 @@ input.tab-text {
     -webkit-user-select: none;
 }
 
-.progress-badge{
+.progress-badge {
     width: 20px;
     height: 20px;
+    top: 6px;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+.left-content {
+    float: left;
+    padding-left: 20px;
+}
+
+.right-content {
+    float: right;
+    padding-right: 20px;
+}
+
+.left-content, right {
+    width: 50%;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+main {
+    position: absolute;
+    top: 104px;
+    bottom: 56px;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+main.full-size {
+    bottom: 0px;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.bottom-bar>.navbar {
+    height: 56px;
+    line-height: 56px;
+}
+
+.nav-extended {
+    line-height: 56px !important;
+}
+
+.navbar-buttons i {
+    height: 56px !important;
+    line-height: 56px !important;
+}
+
+#config-modal {
+    max-height: 100%;
+    height: 100%;
+}
+
+.switch-lever {
+    float: right;
+}
+
+.switch>label {
+    font-size: 15px;
+}
+
+.config-form {
+    max-width: 300px;
+}
+
+.buttons-form {
+    max-width: 230px;
+    margin-top: 20px;
+}
+
+.buttons-form .btn {
+    width: 100%;
+    margin-top: 10px;
 }

@@ -1,4 +1,5 @@
 "use strict";
+
 const {
     app,
     ipcMain
@@ -23,7 +24,7 @@ module.exports = function(onReadyCallback) {
     });
 
     app.on('activate', () => {
-        //FOR macOS        
+        //FOR macOS
         onReadyCallback();
     });
 

@@ -2,12 +2,10 @@ language: node_js
 os:
     - linux
     - windows
-    - osx
 node_js:
     - "stable"
     - "6.9.1"
-    - "4.6.1"
-sudo: false    
+sudo: false
 script:
     - npm test
 after_success:

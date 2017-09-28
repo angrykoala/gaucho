@@ -1,10 +1,10 @@
 "use strict";
 
-const remote = require('electron').remote;
 const EventEmitter = require('events');
 
 const TaskConfig = require('./task_config');
 const version = require('../../package.json').version;
+const AppConfigStatus = require('./app_config_status');
 
 module.exports = {
     editMode: false,
@@ -12,10 +12,12 @@ module.exports = {
     events: new EventEmitter(),
     toggleEdit() {
         this.editMode = !this.editMode;
-        TaskConfig.saveConfig();
+        TaskConfig.saveTasks();
     },
-    config: remote.getCurrentWindow().userConfig,
+    config: new AppConfigStatus(),
     maxSuites: 6,
     maxTasksPerSuite: 8,
+    totalTasks: 0,
+    runningTasks: 0,
     version: version
 };
