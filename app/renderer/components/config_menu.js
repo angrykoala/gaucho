@@ -47,12 +47,10 @@ module.exports = {
         },
         resetConfig() {
             this.config.bottomBar=true;
-            this.config.configMenu=false;
             this.config.animatedSpinner=true;
         },
         onClose() {
             this.config.bottomBar = AppStatus.config.bottomBar;
-            this.config.configMenu = AppStatus.config.configMenu;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;
             AppStatus.configMenu = false;
         },
