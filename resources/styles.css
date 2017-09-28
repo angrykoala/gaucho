@@ -141,6 +141,7 @@ input.tab-text {
 
 .unselectable-text {
     -webkit-user-select: none;
+    cursor: default;
 }
 
 
