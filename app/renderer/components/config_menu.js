@@ -11,6 +11,7 @@ module.exports = {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
                 animatedSpinner: AppStatus.config.animatedSpinner,
+                configMenu: AppStatus.config.configMenu,
             }
         };
     },
@@ -46,15 +47,19 @@ module.exports = {
         },
         resetConfig() {
             this.config.bottomBar=true;
+            this.config.configMenu=false;
             this.config.animatedSpinner=true;
         },
         onClose() {
             this.config.bottomBar = AppStatus.config.bottomBar;
+            this.config.configMenu = AppStatus.config.configMenu;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+            AppStatus.config.configMenu = false;
         },
         onSave() {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+            AppStatus.config.configMenu = false;
         }
     }
 };

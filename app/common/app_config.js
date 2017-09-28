@@ -9,6 +9,7 @@ const defaultData = {
     outputMaxSize: 10000,
     maximized: false,
     bottomBar: true,
+    configMenu: false,
     animatedSpinner: true,
 };
 
