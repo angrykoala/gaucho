@@ -5,6 +5,7 @@ const EventEmitter = require('events');
 const TaskCard = require('./task_card');
 const AddTask = require('./add_task');
 const AppStatus = require('../app_status');
+const Draggable = require('vuedraggable');
 
 module.exports = {
     props: ['suite', 'index'],
@@ -16,15 +17,18 @@ module.exports = {
     },
     components: {
         "task-card": TaskCard,
-        "add-task": AddTask
+        "add-task": AddTask,
+        "draggable": Draggable
     },
     template: `
         <div v-bind:id="id" class="no-margin">
             <ul style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion">
-                <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
-                </template>
-                <add-task v-on:add="addTask" v-if="showAddTab"></add-task>
+                <draggable v-model="orderTasks" @end="reStructureTasks">
+                    <template v-for="(task,i) in orderTasks">
+                        <task-card v-bind:task="task" v-on:reStructureTasks="reStructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
+                    </template>
+                </draggable>
+                <add-task v-bind:tasks="orderTasks" v-on:add="addTask" v-if="showAddTab"></add-task>
             </ul>
         </div>
     `,
@@ -39,6 +43,28 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
+        reStructureTasks(order, task) {
+            const tasks = this.suite.tasks;
+            const currentIndex = tasks.indexOf(task);
+            if (order === "desc") {
+                if (tasks[currentIndex + 1]) {
+                    tasks[currentIndex + 1].order += 1;
+                    this.editTask(currentIndex + 1, tasks[currentIndex + 1]);
+                }
+
+                task.order -= 1;
+                this.editTask(currentIndex, task);
+            }
+            if (order === "asc") {
+                if (tasks[currentIndex - 1]) {
+                    tasks[currentIndex - 1].order -= 1;
+                    this.editTask(currentIndex - 1, tasks[currentIndex - 1]);
+                }
+
+                task.order += 1;
+                this.editTask(currentIndex, task);
+            }
+        },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
                 this.suite.addTask(task);
@@ -71,7 +97,9 @@ module.exports = {
         },
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+        },
+        orderTasks() {
+            return this.suite.tasks.sort((a, b) => b.order - a.order);
         }
-
     }
 };

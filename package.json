@@ -9,6 +9,7 @@
     "jquery-ui": "^1.12.1",
     "materialize-css": "^0.99.0",
     "vue": "^2.0.8",
+    "vuedraggable": "^2.14.1",
     "yerbamate": "^2.0.1"
   },
   "devDependencies": {
@@ -20,9 +21,9 @@
     "mocha": "^3.2.0",
     "sinon": "^4.0.0"
   },
-  "config":{
-      "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.jshintrc)",
-      "icon": "resources/icon.png"
+  "config": {
+    "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.jshintrc)",
+    "icon": "resources/icon.png"
   },
   "scripts": {
     "test": "npm run clean && istanbul cover _mocha && npm run jshint",
