@@ -1,8 +1,12 @@
 "use strict";
+var app = require('electron').remote;
+var dialog = app.dialog;
+const fs = require('fs');
 
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TaskConfig = require('../task_config');
+
 
 
 module.exports = {
@@ -29,6 +33,10 @@ module.exports = {
                     <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
+                     </br>
+                     <a class="waves-effect waves-light btn" v-on:click="exportTasks">Export Tasks</a>
+                    <label>Export the tasks.json to be able to load it into a different gaucho instance
+                    </label>
                 </div>
             </div>
         </div>
@@ -39,22 +47,45 @@ module.exports = {
     </div>
     `,
 
-    methods: {
-        clearTasks() {
-            TaskConfig.clearTasks();
-            AppStatus.activeSuite = 0;
-        },
-        resetConfig() {
-            this.config.bottomBar=true;
-            this.config.animatedSpinner=true;
-        },
-        onClose() {
-            this.config.bottomBar = AppStatus.config.bottomBar;
-            this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-        },
-        onSave() {
-            AppStatus.config.bottomBar = this.config.bottomBar;
-            AppStatus.config.animatedSpinner = this.config.animatedSpinner;
-        }
+  methods: {
+
+    exportTasks(){
+      var content = TaskConfig.getData() ;
+      content = JSON.stringify(content) ;
+
+        dialog.showSaveDialog({ filters: [
+
+          { name: 'gtasks', extensions: ['json'] }
+
+        ]}, function (fileName) {
+
+          if(fileName === undefined){
+            alert("You didn't save the file!!");
+            return;
+          }
+
+          fs.writeFile(fileName, content, (err) => {
+            if(err) console.log(err);
+            alert("The file has been successfully saved.");
+          });
+        });
+    },
+
+    clearTasks() {
+      TaskConfig.clearTasks();
+      AppStatus.activeSuite = 0;
+    },
+    resetConfig() {
+      this.config.bottomBar=true;
+      this.config.animatedSpinner=true;
+    },
+    onClose() {
+      this.config.bottomBar = AppStatus.config.bottomBar;
+      this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+    },
+    onSave() {
+      AppStatus.config.bottomBar = this.config.bottomBar;
+      AppStatus.config.animatedSpinner = this.config.animatedSpinner;
     }
+  }
 };

@@ -32,7 +32,7 @@ module.exports = {
         AppStatus.events.on("run-suite", this.onRunSuite);
         AppStatus.events.on("stop-suite", this.onStopSuite);
         AppStatus.totalTasks += this.suite.length;
-        
+
     },
     beforeDestroy() {
         AppStatus.events.removeListener("run-suite", this.onRunSuite);
