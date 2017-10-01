@@ -72,7 +72,7 @@ module.exports = {
   },
 
   getData(){
-    var json = [];
+    let json = [];
     for(const suite of this.suites){
       json.push(suite.getData());
     }
