@@ -27,7 +27,7 @@ module.exports = {
     <li class="run-card task-card">
         <div class="collapsible-header row unselectable-text">
             <div class="col s4">
-                <strong class="truncate">{{task.title}} {{task.order}}</strong>
+                <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
                 <div class="truncate task-time">{{executionTime}}</div>
