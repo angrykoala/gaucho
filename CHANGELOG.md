@@ -1,6 +1,8 @@
 0.3.1 / ####-##-##
 ==================
 
+  * Bottom bar text not selectable anymore
+  * Added pre-commit hook
 
 0.3.0 / 2017-08-29
 ==================
