@@ -3,11 +3,13 @@
 const TaskInput = require('./task_input');
 
 module.exports = {
+    props: ['tasks'],
     data() {
         return {
             title: "",
             command: "",
             path: "",
+            order: 0,
         };
     },
     template: `
@@ -19,7 +21,7 @@ module.exports = {
             </strong>
         </div>
         <div class="collapsible-body container task-card-body">
-            <task-input v-on:save="addTask"></task-input>
+            <task-input v-bind:order="tasks.length + 1" v-on:save="addTask"></task-input>
         </div>
     </li>    
     `,
