@@ -24,17 +24,17 @@ module.exports = {
         "progress-spinner": ProgressSpinner
     },
     template: `
-    <li class="run-card">
+    <li class="run-card task-card">
         <div class="collapsible-header row unselectable-text">
             <div class="col s4">
                 <strong class="truncate">{{task.title}} {{task.order}}</strong>
             </div>
-            <div class="col s2">
+            <div class="col s3">
                 <div class="truncate task-time">{{executionTime}}</div>
             </div>
-            <div class="col s2">
-                <i v-if="AppStatus.editMode" class="small material-icons" v-on:click="(ev) => { changeItemOrder(ev, 'desc', task) }">arrow_downward</i>
-                <i v-if="AppStatus.editMode" class="small material-icons" v-on:click="(ev) => { changeItemOrder(ev, 'asc', task) }">arrow_upward</i>
+            <div class="col s1">
+                <i v-if="AppStatus.editMode" class="tiny material-icons" v-on:click="(evt) => changeItemOrder(evt, {oldIndex: task.order - 1, newIndex: task.order - 2})">arrow_upward</i>
+                <i v-if="AppStatus.editMode" class="tiny material-icons" v-on:click="(evt) => changeItemOrder(evt, {oldIndex: task.order - 1, newIndex: task.order})">arrow_downward</i>
             </div>
             <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
@@ -74,15 +74,9 @@ module.exports = {
             this.deleteTask();
 
         },
-        changeItemOrder(ev, order, task) {
-            ev.stopPropagation();
-            // if (order === "asc") {
-            //   task.order = task.order + 1;
-            // } else {
-            //   task.order = task.order - 1;
-            // }
-            // this.$emit('edit', task);
-            this.$emit('reStructureTasks', order, task);
+        changeItemOrder(event, object) {
+            event.stopPropagation();
+            this.$emit('reStructureTasks', object);
         },
         deleteTask() {
             this.stop();

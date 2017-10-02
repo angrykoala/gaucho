@@ -22,14 +22,12 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <ul style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion">
-                <draggable v-model="orderTasks" @end="reStructureTasks">
-                    <template v-for="(task,i) in orderTasks">
-                        <task-card v-bind:task="task" v-on:reStructureTasks="reStructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
-                    </template>
-                </draggable>
-                <add-task v-bind:tasks="orderTasks" v-on:add="addTask" v-if="showAddTab"></add-task>
-            </ul>
+            <draggable element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="orderTasks" @end="reStructureTasks" :move="checkMove">
+                <template v-for="(task,i) in orderTasks">
+                    <task-card v-bind:task="task" v-on:reStructureTasks="reStructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
+                </template>
+            <add-task v-bind:tasks="orderTasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            </draggable>
         </div>
     `,
     mounted() {
@@ -43,26 +41,23 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
-        reStructureTasks(order, task) {
-            const tasks = this.suite.tasks;
-            const currentIndex = tasks.indexOf(task);
-            if (order === "desc") {
-                if (tasks[currentIndex + 1]) {
-                    tasks[currentIndex + 1].order += 1;
-                    this.editTask(currentIndex + 1, tasks[currentIndex + 1]);
-                }
-
-                task.order -= 1;
-                this.editTask(currentIndex, task);
+        checkMove() {
+            if (AppStatus.editMode) {
+                return true;
             }
-            if (order === "asc") {
-                if (tasks[currentIndex - 1]) {
-                    tasks[currentIndex - 1].order -= 1;
-                    this.editTask(currentIndex - 1, tasks[currentIndex - 1]);
-                }
+            return false;
+        },
+        reStructureTasks(event) {
+            const tasks = this.suite.tasks.sort((a, b) => a.order - b.order);
+            const movedTask = tasks[event.oldIndex];
+            const targetedTask = tasks[event.newIndex];
 
-                task.order += 1;
-                this.editTask(currentIndex, task);
+            if (targetedTask) {
+              movedTask.order = event.newIndex + 1;
+              this.editTask(event.oldIndex, movedTask);
+
+              targetedTask.order = event.oldIndex + 1;
+              this.editTask(event.newIndex, targetedTask);
             }
         },
         addTask(task) {
@@ -99,7 +94,7 @@ module.exports = {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
         orderTasks() {
-            return this.suite.tasks.sort((a, b) => b.order - a.order);
+            return this.suite.tasks.sort((a, b) => a.order - b.order);
         }
     }
 };
