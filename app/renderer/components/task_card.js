@@ -26,15 +26,16 @@ module.exports = {
     template: `
     <li class="run-card task-card">
         <div class="collapsible-header row unselectable-text">
-            <div class="col s4">
+        
+            
+            <div class="col s1" v-if="AppStatus.editMode">
+                <i class="tiny material-icons">drag_handle</i>
+            </div>
+            <div class="col" v-bind:class="{ s4: AppStatus.editMode, s5: !AppStatus.editMode }">
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
                 <div class="truncate task-time">{{executionTime}}</div>
-            </div>
-            <div class="col s1">
-                <i v-if="AppStatus.editMode" class="tiny material-icons" v-on:click="(evt) => changeItemOrder(evt, {oldIndex: task.order - 1, newIndex: task.order - 2})">arrow_upward</i>
-                <i v-if="AppStatus.editMode" class="tiny material-icons" v-on:click="(evt) => changeItemOrder(evt, {oldIndex: task.order - 1, newIndex: task.order})">arrow_downward</i>
             </div>
             <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
@@ -73,10 +74,6 @@ module.exports = {
             ev.stopPropagation();
             this.deleteTask();
 
-        },
-        changeItemOrder(event, object) {
-            event.stopPropagation();
-            this.$emit('reStructureTasks', object);
         },
         deleteTask() {
             this.stop();
