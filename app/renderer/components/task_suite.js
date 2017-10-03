@@ -50,15 +50,13 @@ module.exports = {
         reStructureTasks(event) {
             const tasks = this.suite.tasks.sort((a, b) => a.order - b.order);
             const movedTask = tasks[event.oldIndex];
-            const targetedTask = tasks[event.newIndex];
-
-            if (targetedTask) {
-              movedTask.order = event.newIndex + 1;
-              this.editTask(event.oldIndex, movedTask);
-
-              targetedTask.order = event.oldIndex + 1;
-              this.editTask(event.newIndex, targetedTask);
-            }
+            this.event.emit("collapseTask");
+            tasks.splice(event.oldIndex, 1);
+            tasks.splice(event.newIndex, 0, movedTask);
+            tasks.forEach(function(task, index) {
+                task.order = index + 1;
+                this.editTask(index, task);
+            }.bind(this));
         },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {

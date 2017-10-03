@@ -60,6 +60,7 @@ module.exports = {
     mounted() {
         this.event.on("run", this.run);
         this.event.on("stop", this.stop);
+        this.event.on("collapseTask", this.collapseTask);
     },
     beforeDestroy() {
         this.removeListeners();
