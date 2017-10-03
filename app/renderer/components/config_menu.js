@@ -47,7 +47,6 @@ module.exports = {
     `,
 
   methods: {
-
     exportTasks(){
       let content = TaskConfig.getData() ;
       content = JSON.stringify(content) ;
@@ -56,13 +55,13 @@ module.exports = {
 
           { name: 'gtasks', extensions: ['json'] }
 
-        ]}, function (fileName) {
+        ]}, (filename)=> {
 
-          if(fileName === undefined) return ;
-
-          fs.writeFile(fileName, content, (err) => {
-            if(err) console.log(err);
-          });
+          if(filename){
+                     fs.writeFile(filename, content, (err) => {
+                       if(err) console.warn(err);
+                     });
+          }
         });
     },
 
