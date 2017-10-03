@@ -1,6 +1,6 @@
 {
   "name": "gaucho",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
@@ -19,6 +19,7 @@
     "istanbul": "^0.4.5",
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
+    "pre-commit": "^1.2.2",
     "sinon": "^4.0.0"
   },
   "config": {
@@ -34,6 +35,9 @@
     "clean": "rm -rf builds config.json tasks.json coverage",
     "jshint": "jshint *.js app test"
   },
+  "pre-commit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angrykoala/gaucho.git"
