@@ -4,13 +4,12 @@ const Task = require('../task');
 const Material = require('../materialize');
 
 module.exports = {
-    props: ['task', 'order'],
+    props: ['task'],
     data() {
         return {
             title: "",
             command: "",
             path: "",
-            order: 0,
         };
     },
     template: `
@@ -45,12 +44,12 @@ module.exports = {
     methods: {
         saveTask() {
             if (this.canSave) {
-                this.$emit('save', new Task(this.title, this.path, this.command, this.order));
+                this.$emit('save', new Task(this.title, this.path, this.command));
                 this.clear();
             }
         },
         clear() {
-            this.title = this.command = this.path = this.order = "";
+            this.title = this.command = this.path = "";
             this.$nextTick(() => {
                 Material.updateInput();
             });
@@ -60,7 +59,6 @@ module.exports = {
                 this.title = this.task.title;
                 this.command = this.task.command;
                 this.path = this.task.path;
-                this.order = this.task.order;
                 this.$nextTick(() => {
                     Material.updateInput();
                 });

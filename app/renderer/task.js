@@ -12,7 +12,7 @@ const TaskEvents = new EventEmitter();
 TaskTimer(TaskEvents, 1000);
 
 class Task {
-    constructor(title, path, command, order) {
+    constructor(title, path, command) {
         this.title = title.trim() || "";
         this.command = command || "";
         this.path = path || "";
@@ -22,7 +22,6 @@ class Task {
         this.finishTime = null;
         this.elapsedTime = null;
         this.onTimeUpdate = null;
-        this.order = order || 0;
     }
 
     run(stdout, done) {
@@ -65,7 +64,6 @@ class Task {
         let res = {
             title: this.title,
             command: this.command,
-            order: this.order,
         };
         if (this.path !== "") res.path = this.path;
         return res;

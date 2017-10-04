@@ -52,8 +52,7 @@ describe("Tasks", () => {
         const taskData = testTask.getData();
         const expectedResult = {
             title: "Test",
-            command: taskCommand,
-            order: 0
+            command: taskCommand
         };
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
     });
@@ -64,7 +63,6 @@ describe("Tasks", () => {
         const expectedResult = {
             title: "Test",
             command: taskCommand,
-            order: 0,
             path: "a/path"
         };
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));

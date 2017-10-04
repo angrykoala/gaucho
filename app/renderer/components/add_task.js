@@ -21,7 +21,7 @@ module.exports = {
             </strong>
         </div>
         <div class="collapsible-body container task-card-body">
-            <task-input v-bind:order="tasks.length + 1" v-on:save="addTask"></task-input>
+            <task-input v-on:save="addTask"></task-input>
         </div>
     </li>    
     `,
