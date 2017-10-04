@@ -8,8 +8,7 @@ module.exports = {
         return {
             title: "",
             command: "",
-            path: "",
-            order: 0,
+            path: ""
         };
     },
     template: `
