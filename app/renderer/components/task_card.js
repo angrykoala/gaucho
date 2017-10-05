@@ -24,9 +24,14 @@ module.exports = {
         "progress-spinner": ProgressSpinner
     },
     template: `
-    <li class="run-card">
+    <li class="run-card task-card">
         <div class="collapsible-header row unselectable-text">
-            <div class="col s5">
+        
+            
+            <div class="col s1" v-if="AppStatus.editMode">
+                <i class="tiny material-icons">drag_handle</i>
+            </div>
+            <div class="col" v-bind:class="{ s4: AppStatus.editMode, s5: !AppStatus.editMode }">
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
@@ -55,6 +60,7 @@ module.exports = {
     mounted() {
         this.event.on("run", this.run);
         this.event.on("stop", this.stop);
+        this.event.on("collapseTask", this.collapseTask);
     },
     beforeDestroy() {
         this.removeListeners();
