@@ -1,7 +1,7 @@
 "use strict";
 
 const Store = require('electron-store');
-
+const { isDevEnv } = require('./utils');
 
 const defaultData = {
     windowSize: [500, 600],
@@ -18,8 +18,9 @@ const key = "ro64wz3l7d";
 
 module.exports = class AppConfig {
     constructor() {
+        const configName = isDevEnv() ? "gaucho_dev_config" : "gaucho_config";
         this.store = new Store({
-            name: "gaucho_config",
+            name: configName,
             defaults: defaultData,
             encryptionKey: key
         });

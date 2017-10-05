@@ -4,11 +4,7 @@ const path = require('path');
 
 const MainWindow = require('./app/main/main_window');
 const AppEvents = require('./app/main/app_events');
-
-
-function isDevEnv() {
-    return process.env.NODE_ENV === "dev";
-}
+const { isDevEnv } = require('./app/common/utils');
 
 //Global reference to window
 let win = null;
