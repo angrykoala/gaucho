@@ -22,11 +22,11 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <draggable element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="orderTasks" @end="restructureTasks" :move="checkMove">
-                <template v-for="(task,i) in orderTasks">
+            <draggable element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
+                <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-            <add-task v-bind:tasks="orderTasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
             </draggable>
         </div>
     `,
@@ -45,13 +45,12 @@ module.exports = {
             return AppStatus.editMode;
         },
         restructureTasks(event) {
-            const tasks = this.suite.tasks.sort((a, b) => a.order - b.order);
+            const tasks = this.suite.tasks;
             const movedTask = tasks[event.oldIndex];
             this.event.emit("collapseTask");
             tasks.splice(event.oldIndex, 1);
             tasks.splice(event.newIndex, 0, movedTask);
             tasks.forEach(function(task, index) {
-                task.order = index + 1;
                 this.editTask(index, task);
             }.bind(this));
         },
@@ -88,8 +87,8 @@ module.exports = {
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
-        orderTasks() {
-            return this.suite.tasks.sort((a, b) => a.order - b.order);
+        draggableTasks() {
+            return this.suite.tasks;
         }
     }
 };
