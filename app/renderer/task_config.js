@@ -74,7 +74,7 @@ module.exports = {
         return data.map((suite) => {
             let result = new Suite(suite.title);
             result.tasks = suite.tasks.map((task) => {
-                return new Task(task.title, task.path, task.command, task.order);
+                return new Task(task.title, task.path, task.command);
             });
             return result;
         });
