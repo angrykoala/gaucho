@@ -49,6 +49,11 @@ module.exports = {
   methods: {
     exportTasks(){
       let content = TaskConfig.getData() ;
+      content = {
+        "suites":content,
+        "version":"0.3.4"
+      };
+
       content = JSON.stringify(content) ;
 
         dialog.showSaveDialog({ filters: [
