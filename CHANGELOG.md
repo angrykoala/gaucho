@@ -1,6 +1,7 @@
 0.3.1 / ####-##-##
 ==================
 
+  * Tasks can now be reordered within a suite while in edit mode
   * Bottom bar text not selectable anymore
   * Added pre-commit hook
 
