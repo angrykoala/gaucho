@@ -13,12 +13,12 @@ module.exports = {
         return {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
-                animatedSpinner: AppStatus.config.animatedSpinner,
+                animatedSpinner: AppStatus.config.animatedSpinner
             }
         };
     },
     components: {
-        "switch-form": SwitchForm,
+        "switch-form": SwitchForm
     },
     template: `
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
@@ -53,23 +53,20 @@ module.exports = {
         "suites":content,
         "version":"0.3.4"
       };
-
       content = JSON.stringify(content) ;
-
-        dialog.showSaveDialog({ filters: [
-
-          { name: 'json', extensions: ['json'] }
-
-        ]}, (filename)=> {
-
-          if(filename){
-                     fs.writeFile(filename, content, (err) => {
-                       if(err) console.warn(err);
-                     });
-          }
-        });
+      dialog.showSaveDialog(
+        {
+          defaultPath: require('os').homedir() + "/gtask.json",
+          filters: [
+            { name: 'json', extensions: ['json'] }
+          ]}, (filename)=> {
+            if(filename){
+              fs.writeFile(filename, content, (err) => {
+                if(err) console.warn(err);
+              });
+            }
+          });
     },
-
     clearTasks() {
       TaskConfig.clearTasks();
       AppStatus.activeSuite = 0;
