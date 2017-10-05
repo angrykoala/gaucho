@@ -21,8 +21,8 @@ ipcRenderer.on('before-close', () => {
     const promises = suites.map((s) => {
         return s.stopAll();
     });
-    Promise.all(promises).then(() => {
-        ipcRenderer.send("close-app");
+  Promise.all(promises).then(() => {
+    ipcRenderer.send("close-app");
     });
 });
 

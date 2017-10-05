@@ -53,7 +53,7 @@ module.exports = {
 
         dialog.showSaveDialog({ filters: [
 
-          { name: 'gtasks', extensions: ['json'] }
+          { name: 'json', extensions: ['json'] }
 
         ]}, (filename)=> {
 
