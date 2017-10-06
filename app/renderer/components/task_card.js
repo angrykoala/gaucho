@@ -1,3 +1,4 @@
+/* globals swal */
 "use strict";
 
 const AppStatus = require('../app_status');
@@ -77,8 +78,18 @@ module.exports = {
 
         },
         deleteTask() {
-            this.stop();
-            this.$emit('remove');
+            swal({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this task after deletion!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#ee6e73",
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            }).then(function() {
+                this.stop();
+                this.$emit('remove');
+            }.bind(this));
         },
         saveTask(task) {
             this.stop();
