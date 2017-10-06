@@ -73,6 +73,12 @@
     cursor: default;
 }
 
+.open a.edit-button.tap-target-origin, .open a.edit-button.tap-target-origin:hover {
+    background: rgba(238, 110, 115, 0.94);
+    padding: 0 20px;
+    border-radius: 100%;
+}
+
 .edit-button {
     cursor: default;
 }

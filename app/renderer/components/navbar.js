@@ -3,13 +3,14 @@
 const Suite = require('../suite');
 const Material = require('../materialize');
 const AppStatus = require('../app_status');
-
 const NavbarMenu = require('./navbar_menu');
+const TapTarget = require('./tap_target');
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
+        "tap-target": TapTarget,
     },
     data() {
         return {
@@ -22,11 +23,12 @@ module.exports = {
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="brand-logo main-logo left">
-                <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
-                <a>Gaucho</a>
+                    <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
+                    <a>Gaucho</a>
                 </div>
+                <tap-target v-bind:activates="'tap-edit'" v-bind:title="'Add some tasks !'" v-bind:description="'By pressing this button you can add new tasks to your list below.'"></tap-target>
                 <ul class="right navbar-buttons">
-                    <li><a v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
+                    <li><a id="tap-edit" v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" data-activates='navbar-menu' data-gutter="30"><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
                 <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites"></navbar-menu>
@@ -50,6 +52,9 @@ module.exports = {
     </div>
     </div>
     `,
+    mounted() {
+        Material.checkFirstTimeTap(".tap-target");
+    },
     methods: {
         addSuite() {
             if (this.suites.length < AppStatus.maxSuites) {

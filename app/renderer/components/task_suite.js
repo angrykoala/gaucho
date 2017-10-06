@@ -22,7 +22,10 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <draggable element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
+            <div class="row" v-if="hideMessage">
+                <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
+            </div>
+            <draggable v-show="suite.tasks.length > 0 || AppStatus.editMode" element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
@@ -86,6 +89,9 @@ module.exports = {
         },
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+        },
+        hideMessage() {
+            return this.suite.tasks.length === 0 && !AppStatus.editMode;
         },
         draggableTasks() {
             return this.suite.tasks;
