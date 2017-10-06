@@ -2,6 +2,7 @@
 ==================
 
   * Tasks can now be reordered within a suite while in edit mode
+  * Added an initial message, noting the edit button to new users
   * Bottom bar text not selectable anymore
   * Added pre-commit hook
 
