@@ -6,6 +6,7 @@
   * Tasks with no path defined will now be executed on user home directory
   * Bottom bar text not selectable anymore
   * Added pre-commit hook
+  * Added a dev config environment
 
 0.3.0 / 2017-08-29
 ==================
