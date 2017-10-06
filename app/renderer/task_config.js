@@ -3,10 +3,11 @@ const Store = require('electron-store');
 
 const Suite = require('./suite');
 const Task = require('./task');
+const utils = require('../common/utils');
 
 // Just for basic offuscation of the config file
 const key = "Z4xu6Nzj";
-
+const storeName = utils.isDevEnv() ? "gaucho_dev_tasks" : "gaucho_tasks";
 
 const defaultTasks = [{
     "title": "My Project",
@@ -33,11 +34,12 @@ const defaultTasks = [{
     }]
 }];
 
+
 module.exports = {
     suites: [],
     loadTasks() {
         const store = new Store({
-            name: "gaucho_tasks",
+            name: storeName,
             encryptionKey: key
         });
         let suites = store.get("suites");
@@ -48,7 +50,7 @@ module.exports = {
     },
     saveTasks() {
         const store = new Store({
-            name: "gaucho_tasks",
+            name: storeName,
             encryptionKey: key
         });
         const data = this.suites.map((suite) => {
