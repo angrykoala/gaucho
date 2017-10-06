@@ -35,6 +35,9 @@ module.exports = {
             alignment: 'left'
         });
     },
+    toggleTap(selector, status) {
+        $(selector).tapTarget(status);
+    },
     updateInput() {
         Materialize.updateTextFields();
     },

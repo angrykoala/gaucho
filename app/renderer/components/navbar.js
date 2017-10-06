@@ -1,16 +1,16 @@
-/* globals $ */
 "use strict";
 
 const Suite = require('../suite');
 const Material = require('../materialize');
 const AppStatus = require('../app_status');
-
 const NavbarMenu = require('./navbar_menu');
+const TapTarget = require('./tap_target');
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
+        "tap-target": TapTarget,
     },
     data() {
         return {
@@ -26,12 +26,7 @@ module.exports = {
                     <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
                     <a>Gaucho</a>
                 </div>
-                <div class="tap-target" data-activates="tap-edit">
-                    <div class="tap-target-content">
-                        <h5>Add some tasks !</h5>
-                        <p style="line-height: 22.5px;">By pressing this button you can add new tasks to your list below.</p>
-                    </div>
-                </div>
+                <tap-target v-bind:title="'Add some tasks !'" v-bind:description="'By pressing this button you can add new tasks to your list below.'"></tap-target>
                 <ul class="right navbar-buttons">
                     <li><a id="tap-edit" v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" data-activates='navbar-menu' data-gutter="30"><i class="material-icons small unselectable-text">menu</i></a></li>
@@ -85,7 +80,6 @@ module.exports = {
             });
         },
         toggleEdit() {
-            $(".tap-target").tapTarget('close');
             AppStatus.toggleEdit();
         },
         onMenuSelection(selection) {
