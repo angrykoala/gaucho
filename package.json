@@ -28,7 +28,7 @@
     "icon": "resources/icon.png"
   },
   "scripts": {
-    "test": "npm run clean && istanbul cover _mocha && npm run jshint",
+    "test": "istanbul cover _mocha && npm run jshint",
     "start": "electron .",
     "start-dev": "cross-env NODE_ENV=dev npm start",
     "build-electron": "electron-packager . --overwrite --out builds --ignore $npm_package_config_ignore --icon=$npm_package_config_icon",
@@ -37,7 +37,8 @@
     "jshint": "jshint *.js app test"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "clean"
   ],
   "repository": {
     "type": "git",
