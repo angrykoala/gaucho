@@ -1,4 +1,8 @@
 "use strict";
+
+const os = require('os');
+const path = require('app');
+
 const app = require('electron').remote;
 const dialog = app.dialog;
 const fs = require('fs');
@@ -51,21 +55,20 @@ module.exports = {
       let content = TaskConfig.getData() ;
       content = {
         "suites":content,
-        "version":"0.3.4"
+        "version":AppStatus.version
       };
       content = JSON.stringify(content) ;
-      dialog.showSaveDialog(
-        {
-          defaultPath: require('os').homedir() + "/gtask.json",
-          filters: [
-            { name: 'json', extensions: ['json'] }
-          ]}, (filename)=> {
-            if(filename){
-              fs.writeFile(filename, content, (err) => {
-                if(err) console.warn(err);
-              });
-            }
-          });
+      dialog.showSaveDialog({
+        defaultPath: path.join(os.homedir(),"gtask.json"),
+        filters: [
+          { name: 'json', extensions: ['json'] }
+        ]}, (filename)=> {
+          if(filename){
+            fs.writeFile(filename, content, (err) => {
+              if(err) console.warn(err);
+            });
+          }
+        });
     },
     clearTasks() {
       TaskConfig.clearTasks();
