@@ -1,9 +1,10 @@
-0.3.1 / ####-##-##
+0.4.0 / ####-##-##
 ==================
 
   * Tasks can now be reordered within a suite while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
+  * Added "export tasks" feature
   * Bottom bar text not selectable anymore
   * Added pre-commit hook
   * Added a dev config environment
