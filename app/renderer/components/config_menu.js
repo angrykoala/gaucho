@@ -1,7 +1,7 @@
 "use strict";
 
 const os = require('os');
-const path = require('app');
+const path = require('path');
 
 const app = require('electron').remote;
 const dialog = app.dialog;
@@ -61,7 +61,7 @@ module.exports = {
       dialog.showSaveDialog({
         defaultPath: path.join(os.homedir(),"gtask.json"),
         filters: [
-          { name: 'json', extensions: ['json'] }
+          {extensions: ['json'] }
         ]}, (filename)=> {
           if(filename){
             fs.writeFile(filename, content, (err) => {
