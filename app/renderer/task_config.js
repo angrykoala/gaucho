@@ -3,10 +3,11 @@ const Store = require('electron-store');
 
 const Suite = require('./suite');
 const Task = require('./task');
+const utils = require('../common/utils');
 
 // Just for basic offuscation of the config file
 const key = "Z4xu6Nzj";
-
+const storeName = utils.isDevEnv() ? "gaucho_dev_tasks" : "gaucho_tasks";
 
 const defaultTasks = [{
   "title": "My Project",
@@ -33,27 +34,28 @@ const defaultTasks = [{
   }]
 }];
 
+
 module.exports = {
-  suites: [],
-  loadTasks() {
-    const store = new Store({
-      name: "gaucho_tasks",
-      encryptionKey: key
-    });
-    let suites = store.get("suites");
-    if (!this.isValid(suites)) {
-      suites = defaultTasks;
-    }
-    this.suites = this.parseData(suites);
-  },
-  saveTasks() {
-    const store = new Store({
-      name: "gaucho_tasks",
-      encryptionKey: key
-    });
-    const data = this.suites.map((suite) => {
-      return suite.getData();
-    });
+    suites: [],
+    loadTasks() {
+        const store = new Store({
+            name: storeName,
+            encryptionKey: key
+        });
+        let suites = store.get("suites");
+        if (!this.isValid(suites)) {
+            suites = defaultTasks;
+        }
+        this.suites = this.parseData(suites);
+    },
+    saveTasks() {
+        const store = new Store({
+            name: storeName,
+            encryptionKey: key
+        });
+        const data = this.suites.map((suite) => {
+            return suite.getData();
+        });
 
     if (this.isValid(data)) {
       store.set("suites", data);

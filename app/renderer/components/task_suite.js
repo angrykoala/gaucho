@@ -1,6 +1,7 @@
 "use strict";
 
 const EventEmitter = require('events');
+const Draggable = require('vuedraggable');
 
 const TaskCard = require('./task_card');
 const AddTask = require('./add_task');
@@ -16,16 +17,20 @@ module.exports = {
     },
     components: {
         "task-card": TaskCard,
-        "add-task": AddTask
+        "add-task": AddTask,
+        "draggable": Draggable
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <ul style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion">
+            <div class="row" v-if="hideMessage">
+                <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
+            </div>
+            <draggable v-show="suite.tasks.length > 0 || AppStatus.editMode" element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
                 <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
+                    <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-                <add-task v-on:add="addTask" v-if="showAddTab"></add-task>
-            </ul>
+            <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            </draggable>
         </div>
     `,
     mounted() {
@@ -38,6 +43,19 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
+        checkMove() {
+            return AppStatus.editMode;
+        },
+        restructureTasks(event) {
+            const tasks = this.suite.tasks;
+            const movedTask = tasks[event.oldIndex];
+            this.event.emit("collapseTask");
+            tasks.splice(event.oldIndex, 1);
+            tasks.splice(event.newIndex, 0, movedTask);
+            tasks.forEach(function(task, index) {
+                this.editTask(index, task);
+            }.bind(this));
+        },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
                 this.suite.addTask(task);
@@ -70,7 +88,12 @@ module.exports = {
         },
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+        },
+        hideMessage() {
+            return this.suite.tasks.length === 0 && !AppStatus.editMode;
+        },
+        draggableTasks() {
+            return this.suite.tasks;
         }
-
     }
 };

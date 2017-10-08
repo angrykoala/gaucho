@@ -3,11 +3,12 @@
 const TaskInput = require('./task_input');
 
 module.exports = {
+    props: ['tasks'],
     data() {
         return {
             title: "",
             command: "",
-            path: "",
+            path: ""
         };
     },
     template: `
