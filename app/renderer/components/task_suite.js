@@ -46,15 +46,15 @@ module.exports = {
         checkMove() {
             return AppStatus.editMode;
         },
-        restructureTasks(event) {
+        restructureTasks(ev) {
             const tasks = this.suite.tasks;
-            const movedTask = tasks[event.oldIndex];
+            const movedTask = tasks[ev.oldIndex];
             this.event.emit("collapseTask");
-            tasks.splice(event.oldIndex, 1);
-            tasks.splice(event.newIndex, 0, movedTask);
-            tasks.forEach(function(task, index) {
+            tasks.splice(ev.oldIndex, 1);
+            tasks.splice(ev.newIndex, 0, movedTask);
+            tasks.forEach((task, index) => {
                 this.editTask(index, task);
-            }.bind(this));
+            });
         },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
