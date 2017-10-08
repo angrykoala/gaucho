@@ -52,18 +52,18 @@ module.exports = {
 
   methods: {
     exportTasks(){
-      let content = TaskConfig.getData() ;
-      content = {
-        "suites":content,
-        "version":AppStatus.version
-      };
-      content = JSON.stringify(content) ;
       dialog.showSaveDialog({
         defaultPath: path.join(os.homedir(),"gtask.json"),
         filters: [
           {extensions: ['json'] }
         ]}, (filename)=> {
           if(filename){
+            let content = TaskConfig.getData() ;
+            content = {
+              "suites":content,
+              "version":AppStatus.version
+            };
+            content = JSON.stringify(content) ;
             fs.writeFile(filename, content, (err) => {
               if(err) console.warn(err);
             });
