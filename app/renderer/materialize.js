@@ -12,7 +12,7 @@ module.exports = {
         this.updateModals();
     },
     checkFirstTimeTap(selector) {
-        const appConfig = new AppConfig();
+        const appConfig = new AppConfig.User();
         setTimeout(()=> {
             if (!appConfig.get('firstVisit')) {
                 $(selector).tapTarget('open');
