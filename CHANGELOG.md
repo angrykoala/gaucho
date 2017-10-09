@@ -4,7 +4,9 @@
   * Tasks can now be reordered within a suite while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
-  * Added "export tasks" feature
+  * Added "export tasks" button in config
+  * Added confirmation popup when deleting a task
+  * About menu style improved
   * Bottom bar text not selectable anymore
   * Fixed bug that prevented running tasks to be killed when closing Gaucho
   * Fixed bug where deleting a suite doesn't update total tasks in the bottom bar
