@@ -1,16 +1,11 @@
 "use strict";
-const shell = require('electron').shell;
-
 const AppStatus = require('../app_status');
-const AppAlert = require('../app_alert');
+const About = require('./about');
 
 module.exports = {
     props: ['suites'],
-    data() {
-        return {
-            version: AppStatus.version,
-            canOpenLink: true
-        };
+    components: {
+        "about": About
     },
     template: `
     <ul id='navbar-menu' class='dropdown-content'>
@@ -24,25 +19,10 @@ module.exports = {
         </template>
         <li class="divider"></li>
         <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal">Configuration</a></li>
-        <li class="unselectable-text menu-button"><a class="modal-trigger" v-on:click="openAbout">About</a></li>
+        <li class="unselectable-text menu-button"><about></about></li>
     </ul>
     `,
     methods: {
-        openAbout() {
-            AppAlert.toggle(
-                '<h4>Gaucho</h4>',
-                '',
-                {
-                    html:
-                    `<i>Version: ${AppStatus.version}</i>` +
-                    '<p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>' +
-                    '<a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>',
-                    showCloseButton: true,
-                    confirmButtonColor: "#ee6e73",
-                    confirmButtonText: 'Close'
-                }
-            );
-        },
         selected(ev, selection, ignoreSelection) {
             if (!ignoreSelection) {
                 this.$emit("selection", selection);
@@ -52,15 +32,6 @@ module.exports = {
         },
         invalidClick(ev) {
             ev.stopPropagation();
-        },
-        openLink() {
-            if (this.canOpenLink) {
-                this.canOpenLink = false;
-                shell.openExternal('https://github.com/angrykoala/gaucho', {}, (err) => {
-                    if (err) console.error(err);
-                this.canOpenLink = true;
-            });
-            }
         }
     },
     computed: {
