@@ -6,7 +6,7 @@ const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
 const Material = require('../materialize');
-const SweetAlert = require('../sweetalert');
+const AppAlert = require('../app_alert');
 const Utils = require('../../common/utils');
 
 const config = AppStatus.config;
@@ -78,7 +78,7 @@ module.exports = {
 
         },
         deleteTask() {
-            SweetAlert.toggleModal(
+            AppAlert.toggle(
                 'Are you sure?',
                 'warning',
                 {

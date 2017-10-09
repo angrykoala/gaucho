@@ -1,10 +1,8 @@
 "use strict";
-const {
-    shell
-} = require('electron');
+const shell = require('electron').shell;
 
 const AppStatus = require('../app_status');
-const SweetAlert = require('../sweetalert');
+const AppAlert = require('../app_alert');
 
 module.exports = {
     props: ['suites'],
@@ -31,7 +29,7 @@ module.exports = {
     `,
     methods: {
         openAbout() {
-            SweetAlert.toggleModal(
+            AppAlert.toggle(
                 '<h4>Gaucho</h4>',
                 '',
                 {
