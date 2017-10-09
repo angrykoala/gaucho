@@ -27,8 +27,8 @@ module.exports = {
     template: `
     <li class="run-card task-card">
         <div class="collapsible-header row unselectable-text">
-        
-            
+
+
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
@@ -92,6 +92,8 @@ module.exports = {
             .then(() => {
                 this.stop();
                 this.$emit('remove');
+            }, () => {
+                return;
             });
         },
         saveTask(task) {
