@@ -7,6 +7,7 @@
   * Added "export tasks" feature
   * Bottom bar text not selectable anymore
   * Fixed bug that prevented running tasks to be killed when closing Gaucho
+  * Fixed bug where deleting a suite doesn't update total tasks in the bottom bar
   * Added pre-commit hook
   * Added a dev config environment
 
