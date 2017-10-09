@@ -1,8 +1,7 @@
 "use strict";
-const {
-    shell
-} = require('electron');
+const shell = require('electron').shell;
 const AppStatus = require('../app_status');
+const AppAlert = require('../app_alert');
 
 module.exports = {
     data() {
@@ -12,19 +11,24 @@ module.exports = {
         };
     },
     template: `
-    <div id="about-modal" class="modal">
-      <div class="modal-content">
-        <h4>Gaucho</h4>
-        <p>Version: {{version}} </p>
-        <i>by @angrykoala</i>
-        <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br><a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
-    </div>
+      <a v-on:click="openAbout">About</a>
     `,
     methods: {
+        openAbout() {
+            AppAlert.toggle(
+                '<h4>Gaucho</h4>',
+                '',
+                {
+                    html:
+                    `<i>Version: ${AppStatus.version}</i>` +
+                    '<p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>' +
+                    '<a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>',
+                    showCloseButton: true,
+                    confirmButtonColor: "#ee6e73",
+                    confirmButtonText: 'Close'
+                }
+            );
+        },
         openLink() {
             if (this.canOpenLink) {
                 this.canOpenLink = false;

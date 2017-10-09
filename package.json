@@ -8,6 +8,7 @@
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
     "materialize-css": "^0.99.0",
+    "sweetalert2": "^6.10.1",
     "vue": "^2.0.8",
     "vuedraggable": "^2.14.1",
     "yerbamate": "^2.0.1"
