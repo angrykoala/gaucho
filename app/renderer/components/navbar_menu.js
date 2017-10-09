@@ -1,10 +1,10 @@
-/* globals swal */
 "use strict";
 const {
     shell
 } = require('electron');
 
 const AppStatus = require('../app_status');
+const SweetAlert = require('../sweetalert');
 
 module.exports = {
     props: ['suites'],
@@ -31,18 +31,19 @@ module.exports = {
     `,
     methods: {
         openAbout() {
-            swal({
-                title: '<h4>Gaucho</h4>',
-                html:
-                '<p>Version: ' + AppStatus.version + ' </p></br>' +
-                '<i>by @angrykoala</i></br>' +
-                '<p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>' +
-                '<a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>',
-                showCloseButton: true,
-                focusConfirm: false,
-                confirmButtonColor: "#ee6e73",
-                confirmButtonText: '<i class="material-icons">thumb_up</i> Great!'
-            });
+            SweetAlert.toggleModal(
+                '<h4>Gaucho</h4>',
+                '',
+                {
+                    html:
+                    `<i>Version: ${AppStatus.version}</i>` +
+                    '<p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>' +
+                    '<a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>',
+                    showCloseButton: true,
+                    confirmButtonColor: "#ee6e73",
+                    confirmButtonText: 'Close'
+                }
+            );
         },
         selected(ev, selection, ignoreSelection) {
             if (!ignoreSelection) {

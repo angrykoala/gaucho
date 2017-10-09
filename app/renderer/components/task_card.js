@@ -1,4 +1,3 @@
-/* globals swal */
 "use strict";
 
 const AppStatus = require('../app_status');
@@ -7,6 +6,7 @@ const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
 const Material = require('../materialize');
+const SweetAlert = require('../sweetalert');
 const Utils = require('../../common/utils');
 
 const config = AppStatus.config;
@@ -78,18 +78,21 @@ module.exports = {
 
         },
         deleteTask() {
-            swal({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this task after deletion!',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: "#ee6e73",
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
-            }).then(function() {
+            SweetAlert.toggleModal(
+                'Are you sure?',
+                'warning',
+                {
+                    text: 'You will not be able to recover this task after deletion!',
+                    showCancelButton: true,
+                    confirmButtonColor: "#ee6e73",
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, keep it'
+                }
+            )
+            .then(() => {
                 this.stop();
                 this.$emit('remove');
-            }.bind(this));
+            });
         },
         saveTask(task) {
             this.stop();
