@@ -65,6 +65,7 @@ module.exports = {
         deleteSuite() {
             if (this.suites.length > 1) {
                 this.suites[AppStatus.activeSuite].stopAll();
+                AppStatus.totalTasks -= this.suites[AppStatus.activeSuite].length;
                 this.suites.splice(AppStatus.activeSuite, 1);
                 this.selectTab(AppStatus.activeSuite);
             }
