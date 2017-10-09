@@ -9,10 +9,11 @@ module.exports = {
         this.updateCollapsible();
         this.updateTabs();
         this.updateDropdown();
+        this.updateModals();
     },
     checkFirstTimeTap(selector) {
         const appConfig = new AppConfig.User();
-        setTimeout(()=> {
+        setTimeout(() => {
             if (!appConfig.get('firstVisit')) {
                 $(selector).tapTarget('open');
                 appConfig.set('firstVisit', true);
@@ -39,5 +40,8 @@ module.exports = {
     },
     selectTab(selector, tabId) {
         $(selector).tabs('select_tab', tabId);
+    },
+    updateModals() {
+        $('.modal').modal();
     }
 };
