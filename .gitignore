@@ -43,3 +43,4 @@ config.json
 builds
 package-lock.json
 .vscode
+test/temp
