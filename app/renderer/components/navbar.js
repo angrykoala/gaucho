@@ -64,18 +64,13 @@ module.exports = {
             }
         },
         deleteSuite() {
-            AppAlert.toggle(
-                'Are you sure?',
-                'warning',
-                {
-                    text: 'You will not be able to recover this suite after deletion!',
-                    showCancelButton: true,
-                    confirmButtonColor: "#ee6e73",
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, keep it'
-                }
-            )
-            .then(() => {
+            AppAlert.toggle('Are you sure?', 'warning', {
+                text: 'You will not be able to recover this suite after deletion!',
+                showCancelButton: true,
+                confirmButtonColor: "#ee6e73",
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            }).then(() => {
                 if (this.suites.length > 1) {
                     this.suites[AppStatus.activeSuite].stopAll();
                     AppStatus.totalTasks -= this.suites[AppStatus.activeSuite].length;

@@ -15,19 +15,14 @@ module.exports = {
     `,
     methods: {
         openAbout() {
-            AppAlert.toggle(
-                '<h4>Gaucho</h4>',
-                '',
-                {
-                    html:
-                    `<i>Version: ${AppStatus.version}</i>` +
+            AppAlert.toggle('<h4>Gaucho</h4>', '', {
+                html: `<i>Version: ${AppStatus.version}</i>` +
                     '<p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>' +
                     '<a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>',
-                    showCloseButton: true,
-                    confirmButtonColor: "#ee6e73",
-                    confirmButtonText: 'Close'
-                }
-            );
+                showCloseButton: true,
+                confirmButtonColor: "#ee6e73",
+                confirmButtonText: 'Close'
+            });
         },
         openLink() {
             if (this.canOpenLink) {

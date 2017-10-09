@@ -78,18 +78,13 @@ module.exports = {
 
         },
         deleteTask() {
-            AppAlert.toggle(
-                'Are you sure?',
-                'warning',
-                {
-                    text: 'You will not be able to recover this task after deletion!',
-                    showCancelButton: true,
-                    confirmButtonColor: "#ee6e73",
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, keep it'
-                }
-            )
-            .then(() => {
+            AppAlert.toggle('Are you sure?', 'warning', {
+                text: 'You will not be able to recover this task after deletion!',
+                showCancelButton: true,
+                confirmButtonColor: "#ee6e73",
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            }).then(() => {
                 this.stop();
                 this.$emit('remove');
             }, () => {
@@ -105,7 +100,7 @@ module.exports = {
             this.output = "";
             AppStatus.runningTasks++;
             this.task.run(this.print, () => {
-                    AppStatus.runningTasks--;
+                AppStatus.runningTasks--;
             });
         },
         stop() {
