@@ -39,15 +39,6 @@ module.exports = {
     isValid(data) {
         return (Array.isArray(data) && data.length >= 1);
     },
-
-    getData() {
-        let json = [];
-        for (const suite of this.suites) {
-            json.push(suite.getData());
-        }
-        return (json);
-
-    },
     parseData(data) {
         return data.map((suite) => {
             let result = new Suite(suite.title);

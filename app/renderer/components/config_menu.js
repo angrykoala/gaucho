@@ -5,11 +5,11 @@ const path = require('path');
 
 const app = require('electron').remote;
 const dialog = app.dialog;
-const fs = require('fs');
 
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TaskConfig = require('../task_config');
+const TaskImporter = require('../../common/task_importer');
 
 
 module.exports = {
@@ -50,41 +50,36 @@ module.exports = {
     </div>
     `,
 
-  methods: {
-    exportTasks(){
-      dialog.showSaveDialog({
-        defaultPath: path.join(os.homedir(),"gtask.json"),
-        filters: [
-          {extensions: ['json'] }
-        ]}, (filename)=> {
-          if(filename){
-            let content = TaskConfig.getData() ;
-            content = {
-              "suites":content,
-              "version":AppStatus.version
-            };
-            content = JSON.stringify(content) ;
-            fs.writeFile(filename, content, (err) => {
-              if(err) console.warn(err);
+    methods: {
+        exportTasks() {
+            dialog.showSaveDialog({
+                defaultPath: path.join(os.homedir(), "gtask.json"),
+                filters: [{
+                    extensions: ['json']
+                }]
+            }, (filename) => {
+                if (filename) {
+                    TaskImporter.export(filename, TaskConfig.suites, AppStatus.version).catch((err) => {
+                        console.warn(err);
+                    });
+                }
             });
-          }
-        });
-    },
-    clearTasks() {
-      TaskConfig.clearTasks();
-      AppStatus.activeSuite = 0;
-    },
-    resetConfig() {
-      this.config.bottomBar=true;
-      this.config.animatedSpinner=true;
-    },
-    onClose() {
-      this.config.bottomBar = AppStatus.config.bottomBar;
-      this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-    },
-    onSave() {
-      AppStatus.config.bottomBar = this.config.bottomBar;
-      AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+        },
+        clearTasks() {
+            TaskConfig.clearTasks();
+            AppStatus.activeSuite = 0;
+        },
+        resetConfig() {
+            this.config.bottomBar = true;
+            this.config.animatedSpinner = true;
+        },
+        onClose() {
+            this.config.bottomBar = AppStatus.config.bottomBar;
+            this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+        },
+        onSave() {
+            AppStatus.config.bottomBar = this.config.bottomBar;
+            AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+        }
     }
-  }
 };
