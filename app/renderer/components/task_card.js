@@ -6,7 +6,7 @@ const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
 const Material = require('../materialize');
-const AppAlert = require('../app_alert');
+const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 
 const config = AppStatus.config;
@@ -78,18 +78,11 @@ module.exports = {
 
         },
         deleteTask() {
-            AppAlert.toggle('Are you sure?', 'warning', {
-                text: 'You will not be able to recover this task after deletion!',
-                showCancelButton: true,
-                confirmButtonColor: "#ee6e73",
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
-            }).then(() => {
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
+            confirmationAlert.toggle().then(() => {
                 this.stop();
                 this.$emit('remove');
-            }, () => {
-                return;
-            });
+            }, () => {});
         },
         saveTask(task) {
             this.stop();

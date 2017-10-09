@@ -5,7 +5,7 @@ const Material = require('../materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const AppAlert = require('../app_alert');
+const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     props: ['suites'],
@@ -64,22 +64,15 @@ module.exports = {
             }
         },
         deleteSuite() {
-            AppAlert.toggle('Are you sure?', 'warning', {
-                text: 'You will not be able to recover this suite after deletion!',
-                showCancelButton: true,
-                confirmButtonColor: "#ee6e73",
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
-            }).then(() => {
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this suite after deletion!");
+            confirmationAlert.toggle().then(() => {
                 if (this.suites.length > 1) {
                     this.suites[AppStatus.activeSuite].stopAll();
                     AppStatus.totalTasks -= this.suites[AppStatus.activeSuite].length;
                     this.suites.splice(AppStatus.activeSuite, 1);
                     this.selectTab(AppStatus.activeSuite);
                 }
-            }, () => {
-                return;
-            });
+            }, () => {});
         },
         onTabSelected(index) {
             AppStatus.activeSuite = index;
