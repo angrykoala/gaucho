@@ -5,8 +5,7 @@
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
   * Added "export tasks" button in config
-  * Added confirmation popup when deleting a task
-  * Added confirmation popup when deleting a suite
+  * Added confirmation popup when deleting a task or suite
   * About menu style improved
   * Bottom bar text not selectable anymore
   * Fixed bug that prevented running tasks to be killed when closing Gaucho
