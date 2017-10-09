@@ -4,7 +4,7 @@ const AppConfig = require('../common/app_config');
 
 module.exports = class AppConfigStatus {
     constructor() {
-        this.appConfig = new AppConfig();
+        this.appConfig = new AppConfig.User();
         this._bottomBar = this.appConfig.get("bottomBar");
         this._animatedSpinner = this.appConfig.get("animatedSpinner");
     }

@@ -1,6 +1,6 @@
 {
   "name": "gaucho",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "chai": "^4.0.2",
+    "cross-env": "^5.0.5",
     "electron": "^1.6.7",
     "electron-packager": "^9.1.0",
     "istanbul": "^0.4.5",
@@ -28,16 +29,17 @@
     "icon": "resources/icon.png"
   },
   "scripts": {
-    "test": "npm run clean && istanbul cover _mocha && npm run jshint",
+    "test": "istanbul cover _mocha && npm run jshint",
     "start": "electron .",
-    "start-dev": "NODE_ENV=dev npm start",
+    "start-dev": "cross-env NODE_ENV=dev npm start",
     "build-electron": "electron-packager . --overwrite --out builds --ignore $npm_package_config_ignore --icon=$npm_package_config_icon",
     "build-electron-all": "npm run clean && npm run build-electron -- --platform=win32 && npm run build-electron -- --platform=linux && npm run build-electron -- --platform=darwin",
     "clean": "rm -rf builds config.json tasks.json coverage",
     "jshint": "jshint *.js app test"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "clean"
   ],
   "repository": {
     "type": "git",

@@ -1,6 +1,7 @@
 "use strict";
 
 const EventEmitter = require('events');
+const os = require('os');
 
 const yerbamate = require('yerbamate');
 
@@ -31,7 +32,9 @@ class Task {
         this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
-        this.proc = yerbamate.run(this.processCommand(), this.path, {
+        let executionPath = this.path;
+        if (!executionPath) executionPath = this.generateDefaultPath();
+        this.proc = yerbamate.run(this.processCommand(), executionPath, {
                 stderr: stdout,
                 stdout: stdout
             },
@@ -79,6 +82,10 @@ class Task {
 
     processCommand() {
         return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
+    }
+
+    generateDefaultPath() {
+        return os.homedir();
     }
 }
 

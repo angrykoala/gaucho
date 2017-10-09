@@ -23,5 +23,8 @@ module.exports = {
         res += seconds;
 
         return res;
-    }
+    },
+    isDevEnv() {
+        return process.env.NODE_ENV === "dev";
+    },
 };

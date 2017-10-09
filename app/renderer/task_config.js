@@ -1,62 +1,31 @@
 "use strict";
-const Store = require('electron-store');
 
 const Suite = require('./suite');
 const Task = require('./task');
-
-// Just for basic offuscation of the config file
-const key = "Z4xu6Nzj";
-
-
-const defaultTasks = [{
-    "title": "My Project",
-    "tasks": [{
-        "title": "Install",
-        "command": "npm install"
-    }, {
-        "title": "Test",
-        "command": "npm test"
-    }, {
-        "title": "Another awesome task",
-        "command": "echo 'The result of my awesome task'"
-
-    }, {
-        "title": "Start",
-        "command": "npm start"
-
-    }]
-}, {
-    "title": "Suite 2",
-    "tasks": [{
-        "title": "Hello World 2",
-        "command": "echo 'hello world'"
-    }]
-}];
+const AppConfig = require('../common/app_config');
 
 module.exports = {
     suites: [],
     loadTasks() {
-        const store = new Store({
-            name: "gaucho_tasks",
-            encryptionKey: key
-        });
-        let suites = store.get("suites");
+        const tasksConfig = new AppConfig.Tasks();
+        let suites = tasksConfig.get("suites");
         if (!this.isValid(suites)) {
-            suites = defaultTasks;
+            console.error("Loaded tasks are not valid");
+            suites = [{
+                title: "Default Suite",
+                tasks: []
+            }];
         }
         this.suites = this.parseData(suites);
     },
     saveTasks() {
-        const store = new Store({
-            name: "gaucho_tasks",
-            encryptionKey: key
-        });
+        const tasksConfig = new AppConfig.Tasks();
         const data = this.suites.map((suite) => {
             return suite.getData();
         });
 
         if (this.isValid(data)) {
-            store.set("suites", data);
+            tasksConfig.set("suites", data);
         }
     },
     clearTasks() {
@@ -69,6 +38,15 @@ module.exports = {
     },
     isValid(data) {
         return (Array.isArray(data) && data.length >= 1);
+    },
+
+    getData() {
+        let json = [];
+        for (const suite of this.suites) {
+            json.push(suite.getData());
+        }
+        return (json);
+
     },
     parseData(data) {
         return data.map((suite) => {

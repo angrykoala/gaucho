@@ -1,13 +1,24 @@
+/* globals $, Materialize */
 "use strict";
 
+const AppConfig = require('../common/app_config');
+
 //Methods interface with jQuery
-/* jshint ignore:start */
 module.exports = {
     init() {
         this.updateCollapsible();
         this.updateTabs();
         this.updateDropdown();
         this.updateModals();
+    },
+    checkFirstTimeTap(selector) {
+        const appConfig = new AppConfig.User();
+        setTimeout(()=> {
+            if (!appConfig.get('firstVisit')) {
+                $(selector).tapTarget('open');
+                appConfig.set('firstVisit', true);
+            }
+        }, 1000);
     },
     updateCollapsible() {
         $('.collapsible').collapsible();
@@ -34,5 +45,3 @@ module.exports = {
         $('.modal').modal();
     }
 };
-
-/* jshint ignore:end */

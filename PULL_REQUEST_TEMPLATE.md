@@ -10,8 +10,7 @@ Please, before doing the PR make sure that you are following the intructions des
 **Checklist**
 - [ ] Your PR is done against the `dev` branch
 - [ ] Your origin branch is updated with the latest changes from `dev`
-- [ ] All the tests and jshint are passing (`npm run test`)
-- [ ] Changelog is updated with a brief description of your changes (if required)
+- [ ] All the tests and linters are passing (`npm run test`)
 - [ ] Your changes have tests
 
 Thanks for contributing to Gaucho

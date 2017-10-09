@@ -1,5 +1,12 @@
 "use strict";
 
+const os = require('os');
+const path = require('path');
+
+const app = require('electron').remote;
+const dialog = app.dialog;
+const fs = require('fs');
+
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TaskConfig = require('../task_config');
@@ -10,12 +17,12 @@ module.exports = {
         return {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
-                animatedSpinner: AppStatus.config.animatedSpinner,
+                animatedSpinner: AppStatus.config.animatedSpinner
             }
         };
     },
     components: {
-        "switch-form": SwitchForm,
+        "switch-form": SwitchForm
     },
     template: `
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
@@ -29,6 +36,10 @@ module.exports = {
                     <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
+                     </br>
+                     <a class="waves-effect waves-light btn" v-on:click="exportTasks">Export Tasks</a>
+                    <label>Export the tasks.json to be able to load it into a different gaucho instance
+                    </label>
                 </div>
             </div>
         </div>
@@ -39,22 +50,41 @@ module.exports = {
     </div>
     `,
 
-    methods: {
-        clearTasks() {
-            TaskConfig.clearTasks();
-            AppStatus.activeSuite = 0;
-        },
-        resetConfig() {
-            this.config.bottomBar=true;
-            this.config.animatedSpinner=true;
-        },
-        onClose() {
-            this.config.bottomBar = AppStatus.config.bottomBar;
-            this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-        },
-        onSave() {
-            AppStatus.config.bottomBar = this.config.bottomBar;
-            AppStatus.config.animatedSpinner = this.config.animatedSpinner;
-        }
+  methods: {
+    exportTasks(){
+      dialog.showSaveDialog({
+        defaultPath: path.join(os.homedir(),"gtask.json"),
+        filters: [
+          {extensions: ['json'] }
+        ]}, (filename)=> {
+          if(filename){
+            let content = TaskConfig.getData() ;
+            content = {
+              "suites":content,
+              "version":AppStatus.version
+            };
+            content = JSON.stringify(content) ;
+            fs.writeFile(filename, content, (err) => {
+              if(err) console.warn(err);
+            });
+          }
+        });
+    },
+    clearTasks() {
+      TaskConfig.clearTasks();
+      AppStatus.activeSuite = 0;
+    },
+    resetConfig() {
+      this.config.bottomBar=true;
+      this.config.animatedSpinner=true;
+    },
+    onClose() {
+      this.config.bottomBar = AppStatus.config.bottomBar;
+      this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+    },
+    onSave() {
+      AppStatus.config.bottomBar = this.config.bottomBar;
+      AppStatus.config.animatedSpinner = this.config.animatedSpinner;
     }
+  }
 };

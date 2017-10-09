@@ -1,3 +1,4 @@
+/* globals Vue */
 "use strict";
 
 const ipcRenderer = require('electron').ipcRenderer;
@@ -13,11 +14,10 @@ const components = {
     "config-menu": require('./app/renderer/components/config_menu')
 };
 
-let suites = [];
 
 ipcRenderer.on('before-close', () => {
     TaskConfig.saveTasks();
-    const promises = suites.map((s) => {
+    const promises = TaskConfig.suites.map((s) => {
         return s.stopAll();
     });
     Promise.all(promises).then(() => {
@@ -28,7 +28,7 @@ ipcRenderer.on('before-close', () => {
 const app = new Vue({ // jshint ignore:line
     el: '#app',
     data: {
-        suites: suites,
+        suites: [],
         loaded: false,
         AppStatus: AppStatus
     },

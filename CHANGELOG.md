@@ -1,9 +1,14 @@
-0.3.1 / ####-##-##
+0.4.0 / ####-##-##
 ==================
 
   * Tasks can now be reordered within a suite while in edit mode
+  * Added an initial message, noting the edit button to new users
+  * Tasks with no path defined will now be executed on user home directory
+  * Added "export tasks" feature
   * Bottom bar text not selectable anymore
+  * Fixed bug that prevented running tasks to be killed when closing Gaucho
   * Added pre-commit hook
+  * Added a dev config environment
 
 0.3.0 / 2017-08-29
 ==================
