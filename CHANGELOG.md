@@ -12,6 +12,7 @@
   * Fixed bug where deleting a suite doesn't update total tasks in the bottom bar
   * Added pre-commit hook
   * Added a dev config environment
+  * Minor code refactoring in several components and modules
 
 0.3.0 / 2017-08-29
 ==================
