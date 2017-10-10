@@ -63,18 +63,6 @@ module.exports = {
                     Material.updateInput();
                 });
             }
-        },
-        onCommandTabPressed(ev) {
-            ev.preventDefault();
-            const target = ev.target;
-            const selection = target.selectionStart;
-
-            let value = this.command;
-            this.command = target.value = value.substring(0, selection) +
-                "    " +
-                value.substring(selection, value.length);
-
-            target.selectionStart = target.selectionEnd = selection + 4;
         }
     },
     computed: {
