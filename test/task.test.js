@@ -10,7 +10,7 @@ const TaskStatus = require('../app/common/task_status');
 
 describe("Tasks", () => {
     let testTask;
-    const taskCommand = "node " + path.join(config.testResources, config.taskFiles.helloWorld);
+    const taskCommand = `node ${path.join(config.testResources, config.taskFiles.helloWorld)}`;
     beforeEach(() => {
         testTask = new Task("Test", "", taskCommand);
     });
