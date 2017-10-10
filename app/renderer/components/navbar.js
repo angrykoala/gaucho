@@ -59,7 +59,7 @@ module.exports = {
     methods: {
         addSuite() {
             if (this.suites.length < AppStatus.maxSuites) {
-                this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
+                this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
                 this.selectTab(this.suites.length - 1);
             }
         },
@@ -80,7 +80,7 @@ module.exports = {
         selectTab(index) {
             if (index >= this.suites.length) index = this.suites.length - 1;
             this.$nextTick(() => {
-                Material.selectTab("#navbar-tabs", 'tab' + index);
+                Material.selectTab("#navbar-tabs", `tab${index}`);
                 AppStatus.activeSuite = index;
             });
         },

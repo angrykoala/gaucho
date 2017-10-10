@@ -17,15 +17,13 @@ const components = {
 
 ipcRenderer.on('before-close', () => {
     TaskConfig.saveTasks();
-    const promises = TaskConfig.suites.map((s) => {
-        return s.stopAll();
-    });
+    const promises = TaskConfig.suites.map((s) => s.stopAll());
     Promise.all(promises).then(() => {
         ipcRenderer.send("close-app");
     });
 });
 
-const app = new Vue({ // jshint ignore:line
+const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
     data: {
         suites: [],

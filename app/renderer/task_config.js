@@ -20,9 +20,7 @@ module.exports = {
     },
     saveTasks() {
         const tasksConfig = new AppConfig.Tasks();
-        const data = this.suites.map((suite) => {
-            return suite.getData();
-        });
+        const data = this.suites.map((suite) => suite.getData());
 
         if (this.isValid(data)) {
             tasksConfig.set("suites", data);
@@ -42,9 +40,7 @@ module.exports = {
     parseData(data) {
         return data.map((suite) => {
             let result = new Suite(suite.title);
-            result.tasks = suite.tasks.map((task) => {
-                return new Task(task.title, task.path, task.command);
-            });
+            result.tasks = suite.tasks.map((task) => new Task(task.title, task.path, task.command));
             return result;
         });
     }

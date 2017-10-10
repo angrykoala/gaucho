@@ -13,7 +13,7 @@ function initApp() {
     function createWindow() {
         if (win === null) {
             const iconPath = path.join(__dirname, 'resources', 'icon.png');
-            const htmlUrl = "file://" + __dirname + "/index.html";
+            const htmlUrl = `file://${__dirname}/index.html`;
 
             win = new MainWindow()
                 .setIcon(iconPath)
