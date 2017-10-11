@@ -5,9 +5,9 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
-const Material = require('../materialize');
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
+const Materialize = require('../materialize');
 
 const config = AppStatus.config;
 
@@ -117,11 +117,7 @@ module.exports = {
             }
         },
         collapseTask() {
-            const elements = this.$el.getElementsByClassName('collapsible-header');
-            if (elements[0]) {
-                elements[0].classList.remove("active");
-                Material.updateCollapsible();
-            }
+            Materialize.collapseHeader(this.$el);
         }
     },
     computed: {
