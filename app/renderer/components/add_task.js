@@ -1,7 +1,6 @@
 "use strict";
 
 const TaskInput = require('./task_input');
-const Utils = require('../../common/utils');
 const Materialize = require('../materialize');
 
 module.exports = {
