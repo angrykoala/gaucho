@@ -1,6 +1,7 @@
 "use strict";
 
 const TaskInput = require('./task_input');
+const Utils = require('../../common/utils');
 
 module.exports = {
     props: ['tasks'],
@@ -27,6 +28,7 @@ module.exports = {
     methods: {
         addTask(task) {
             this.$emit('add', task);
+            Utils.collapseHeader(this.$el);
         }
     },
     components: {

@@ -1,5 +1,7 @@
 "use strict";
 
+const Material = require('../renderer/materialize');
+
 module.exports = {
     generateTimeString(time) {
         const seconds = time % 60;
@@ -26,5 +28,12 @@ module.exports = {
     },
     isDevEnv() {
         return process.env.NODE_ENV === "dev";
+    },
+    collapseHeader($el) {
+        const elements = $el.getElementsByClassName('collapsible-header');
+        if (elements[0]) {
+            elements[0].classList.remove("active");
+            Material.updateCollapsible();
+        }
     },
 };

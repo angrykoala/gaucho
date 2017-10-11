@@ -117,11 +117,7 @@ module.exports = {
             }
         },
         collapseTask() {
-            const elements = this.$el.getElementsByClassName('collapsible-header');
-            if (elements[0]) {
-                elements[0].classList.remove("active");
-                Material.updateCollapsible();
-            }
+            Utils.collapseHeader(this.$el);
         }
     },
     computed: {
