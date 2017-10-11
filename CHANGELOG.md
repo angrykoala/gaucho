@@ -13,6 +13,7 @@
   * Added pre-commit hook
   * Added a dev config environment
   * Minor code refactoring in several components and modules
+  * Code linting rules changed, using eslint instead of jshint
 
 0.3.0 / 2017-08-29
 ==================
