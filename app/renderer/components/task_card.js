@@ -104,7 +104,7 @@ module.exports = {
             this.event.removeListener("stop", this.stop);
         },
         print(out) {
-            this.output += "\n" + out;
+            this.output += `\n${out}`;
             this.output = this.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
         },

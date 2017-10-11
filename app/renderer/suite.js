@@ -51,26 +51,22 @@ class Suite {
     getData() {
         return {
             title: this.title,
-            tasks: this.tasks.map((task) => {
-                return task.getData();
-            })
+            tasks: this.tasks.map((task) => task.getData())
         };
     }
 
     getValidName(name) {
         let index = 2;
         if (!this.existTaskName(name)) return name;
-        while (this.existTaskName(name + " (" + index + ")")) {
+        while (this.existTaskName(`${name  } (${  index  })`)) {
             index++;
         }
-        return name + " (" + index + ")";
+        return `${name  } (${  index  })`;
     }
 
     existTaskName(name) {
         name = name.trim();
-        let index = this.tasks.find((task) => {
-            return task.title === name;
-        });
+        let index = this.tasks.find((task) => task.title === name);
         return index !== undefined;
     }
 }
