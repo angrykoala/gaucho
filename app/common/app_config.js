@@ -3,6 +3,12 @@
 const Store = require('electron-store');
 const utils = require('./utils');
 
+const FIELDS = {
+    WINDOW_SIZE: "windowSize",
+    DEVTOOLS_SIZE: "devToolsSize",
+    MAXIMIZED: "maximized",
+};
+
 const defaultUserConfig = {
     windowSize: [500, 600],
     devToolsSize: 300,
@@ -75,6 +81,7 @@ class TasksConfig extends AppConfig {
 }
 
 module.exports = {
+    FIELDS,
     User: UserConfig,
     Tasks: TasksConfig
 };
