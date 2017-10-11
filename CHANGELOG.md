@@ -1,12 +1,12 @@
 0.4.0 / ####-##-##
 ==================
 
-  * After adding a task the form collapses
   * Tasks can now be reordered within a suite while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
   * Added "export tasks" button in config
   * Added confirmation popup when deleting a task or suite
+  * Add Task form now collapses after adding a task
   * About menu style improved
   * Bottom bar text not selectable anymore
   * Fixed bug that prevented running tasks to be killed when closing Gaucho
