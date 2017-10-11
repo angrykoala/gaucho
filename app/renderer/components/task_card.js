@@ -7,6 +7,7 @@ const ProgressSpinner = require('./progress_spinner');
 
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
+const Materialize = require('../materialize');
 
 const config = AppStatus.config;
 
@@ -116,7 +117,7 @@ module.exports = {
             }
         },
         collapseTask() {
-            Utils.collapseHeader(this.$el);
+            Materialize.collapseHeader(this.$el);
         }
     },
     computed: {

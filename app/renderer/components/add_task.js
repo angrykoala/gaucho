@@ -2,6 +2,7 @@
 
 const TaskInput = require('./task_input');
 const Utils = require('../../common/utils');
+const Materialize = require('../materialize');
 
 module.exports = {
     props: ['tasks'],
@@ -28,7 +29,7 @@ module.exports = {
     methods: {
         addTask(task) {
             this.$emit('add', task);
-            Utils.collapseHeader(this.$el);
+            Materialize.collapseHeader(this.$el);
         }
     },
     components: {
