@@ -1,9 +1,9 @@
 "use strict";
 const Store = require('electron-store');
-
 const Suite = require('./suite');
 const Task = require('./task');
 const utils = require('../common/utils');
+
 
 // Just for basic offuscation of the config file
 const key = "Z4xu6Nzj";
