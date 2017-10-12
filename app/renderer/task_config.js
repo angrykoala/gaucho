@@ -48,6 +48,11 @@ module.exports = {
         }
         this.suites = this.parseData(suites);
     },
+  loadTasksFrom(data){
+    let json = JSON.parse(data);
+    this.suites = this.parseData(json.suites) ;
+    this.saveTasks();
+  },
     saveTasks() {
         const store = new Store({
             name: storeName,
