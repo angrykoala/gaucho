@@ -52,6 +52,18 @@ module.exports = {
     `,
 
     methods: {
+          importTasks(){
+      TaskConfig.clearTasks();
+      dialog.showOpenDialog({ filters: [
+        { name: 'json', extensions: ['json'] }
+      ]},function (fileNames) {
+        if (fileNames === undefined) return;
+        let fileName = fileNames[0];
+        fs.readFile(fileName, 'utf-8', function (err, data) {
+          TaskConfig.loadTasksFrom(data);
+        });
+      });
+    },
         exportTasks() {
             dialog.showSaveDialog({
                 defaultPath: path.join(os.homedir(), "gtask.json"),
@@ -64,6 +76,7 @@ module.exports = {
                         console.warn(err);
                     });
                 }
+  methods: {
             });
         },
         clearTasks() {
