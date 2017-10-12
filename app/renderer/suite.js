@@ -11,7 +11,7 @@ class Suite {
     }
 
     addTask(task) {
-        let title = this.getValidName(task.title);
+        const title = this.getValidName(task.title);
         task.title = title;
         this.tasks.push(task);
     }
@@ -22,7 +22,7 @@ class Suite {
 
     replaceTask(index, task) {
         if (this.tasks[index].title !== task.title) {
-            let title = this.getValidName(task.title);
+            const title = this.getValidName(task.title);
             task.title = title;
         }
         this.tasks.splice(index, 1, task);
@@ -43,7 +43,7 @@ class Suite {
     }
 
     runAll() {
-        for (const task of this.tasks) {
+        for (let task of this.tasks) {
             if (!task.isRunning()) task.run();
         }
     }
@@ -58,16 +58,15 @@ class Suite {
     getValidName(name) {
         let index = 2;
         if (!this.existTaskName(name)) return name;
-        while (this.existTaskName(`${name  } (${  index  })`)) {
+        while (this.existTaskName(`${name} (${index})`)) {
             index++;
         }
-        return `${name  } (${  index  })`;
+        return `${name} (${index})`;
     }
 
     existTaskName(name) {
         name = name.trim();
-        let index = this.tasks.find((task) => task.title === name);
-        return index !== undefined;
+        return this.tasks.find(task => task.title === name) !== undefined;
     }
 }
 
