@@ -68,6 +68,7 @@ module.exports = {
         clearTasks() {
             TaskConfig.clearTasks();
             AppStatus.activeSuite = 0;
+            AppStatus.totalTasks = 0;
         },
         resetConfig() {
             this.config.bottomBar = true;
