@@ -17,6 +17,7 @@
     "chai": "^4.0.2",
     "cross-env": "^5.0.5",
     "electron": "^1.7.8",
+    "electron-builder": "^19.36.0",
     "electron-packager": "^9.1.0",
     "eslint": "^4.8.0",
     "eslint-config-vue": "^2.0.2",
@@ -36,8 +37,26 @@
     "start-dev": "cross-env NODE_ENV=dev npm start",
     "build-electron": "electron-packager . --overwrite --out builds --ignore $npm_package_config_ignore --icon=$npm_package_config_icon",
     "build-electron-all": "npm run clean && npm run build-electron -- --platform=win32 && npm run build-electron -- --platform=linux && npm run build-electron -- --platform=darwin",
-    "clean": "rm -rf builds config.json tasks.json coverage",
-    "lint": "eslint *.js app test"
+    "clean": "rm -rf builds config.json tasks.json coverage dist",
+    "lint": "eslint *.js app test",
+    "dist": "npm run clean && electron-builder -wl"
+  },
+  "build":{
+      "appId": "angrykoala.gaucho",
+      "linux":{
+          "target": ["deb", "rpm", "AppImage"],
+          "category": "Utility"
+      },
+      "win": {
+          "target": ["nsis", "portable"]
+      },
+      "mac": {
+          "target": ["dir"],
+          "category": "public.app-category.developer-tools"
+      },
+      "directories":{
+          "buildResources": "build_resources"
+      }
   },
   "pre-commit": [
     "test",
