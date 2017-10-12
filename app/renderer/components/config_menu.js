@@ -53,6 +53,7 @@ module.exports = {
 
   methods: {
     importTasks(){
+      TaskConfig.clearTasks();
 
     },
     exportTasks(){
