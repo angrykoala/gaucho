@@ -33,13 +33,14 @@ module.exports = {
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
 
                 <div class="center-align buttons-form container">
-                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
+                     <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
-                    <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
+                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
                      </br>
                      <a class="waves-effect waves-light btn" v-on:click="exportTasks">Export Tasks</a>
-                    <label>Export the tasks.json to be able to load it into a different gaucho instance
-                    </label>
+                    <label>Export the tasks.json to be able to load it into a different gaucho instance</label>
+                     <a class="waves-effect waves-light btn" v-on:click="exportTasks">Import Tasks</a>
+                    <label><em>ALERT! this will override your previous tasks</em></label>
                 </div>
             </div>
         </div>
