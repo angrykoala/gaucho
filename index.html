@@ -21,7 +21,7 @@
 
         <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }">
             <template v-for="(suite,index) in suites">
-                    <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+                    <task-suite v-bind:suites="suites" v-bind:index="index"></task-suite>
                 </template>
         </main>
 

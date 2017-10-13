@@ -8,7 +8,7 @@ const AddTask = require('./add_task');
 const AppStatus = require('../app_status');
 
 module.exports = {
-    props: ['suite', 'index'],
+    props: ['suites', 'index'],
     data() {
         return {
             AppStatus: AppStatus,
@@ -25,18 +25,24 @@ module.exports = {
             <div class="row" v-if="hideMessage">
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
-            <draggable v-show="suite.tasks.length > 0 || AppStatus.editMode" element="ul" :options="{draggable:'.task-card'}" style="margin-bottom:0; margin-top:0 " class="collapsible" data-collapsible="accordion" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
-                <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
+            <draggable v-show="suites[index].tasks.length > 0 || AppStatus.editMode" element="ul" 
+            :options="{draggable:'.task-card', group:'tasks'}" 
+            style="margin-bottom:0; margin-top:0 " 
+            class="collapsible" 
+            data-collapsible="accordion" 
+            v-model="suites[index].tasks"
+            :move="checkMove">
+                <template v-for="(task,i) in suites[index].tasks">
+                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-            <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            <add-task v-bind:tasks="suites[index].tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
             </draggable>
         </div>
     `,
     mounted() {
         AppStatus.events.on("run-suite", this.onRunSuite);
         AppStatus.events.on("stop-suite", this.onStopSuite);
-        AppStatus.totalTasks += this.suite.length;
+        AppStatus.totalTasks += this.suites[this.index].length;
     },
     beforeDestroy() {
         AppStatus.events.removeListener("run-suite", this.onRunSuite);
@@ -46,29 +52,19 @@ module.exports = {
         checkMove() {
             return AppStatus.editMode;
         },
-        restructureTasks(ev) {
-            const tasks = this.suite.tasks;
-            const movedTask = tasks[ev.oldIndex];
-            this.event.emit("collapseTask");
-            tasks.splice(ev.oldIndex, 1);
-            tasks.splice(ev.newIndex, 0, movedTask);
-            tasks.forEach((task, index) => {
-                this.editTask(index, task);
-            });
-        },
         addTask(task) {
-            if (this.suite.length < AppStatus.maxTasksPerSuite) {
-                this.suite.addTask(task);
+            if (this.suites[this.index].length < AppStatus.maxTasksPerSuite) {
+                this.suites[this.index].addTask(task);
                 AppStatus.totalTasks++;
             }
         },
         removeTask(i) {
-            this.suite.removeTask(i);
+            this.suites[this.index].removeTask(i);
             this.$forceUpdate();
             AppStatus.totalTasks--;
         },
         editTask(i, task) {
-            this.suite.replaceTask(i, task);
+          this.suites[this.index].replaceTask(i, task);
             this.$forceUpdate();
         },
         onRunSuite() {
@@ -87,13 +83,10 @@ module.exports = {
             return "tab" + this.index;
         },
         showAddTab() {
-            return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+            return AppStatus.editMode && this.suites[this.index].length < AppStatus.maxTasksPerSuite;
         },
         hideMessage() {
-            return this.suite.tasks.length === 0 && !AppStatus.editMode;
-        },
-        draggableTasks() {
-            return this.suite.tasks;
+            return this.suites[this.index].tasks.length === 0 && !AppStatus.editMode;
         }
     }
 };

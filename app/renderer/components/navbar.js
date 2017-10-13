@@ -37,7 +37,7 @@ module.exports = {
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
                         <template v-for="(suite,index) in suites">
-                        <li class="tab col s3 unselectable-text">
+                        <li class="tab col s3 unselectable-text" v-on:dragover="dragOver(index)">
                             <a draggable="false" class="tab-button" v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
                                 <template v-if="editMode && index===AppStatus.activeSuite">
                                     <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
@@ -57,6 +57,9 @@ module.exports = {
         Material.checkFirstTimeTap(".tap-target");
     },
     methods: {
+        dragOver(index) {
+          this.selectTab(index);
+        },
         addSuite() {
             if (this.suites.length < AppStatus.maxSuites) {
                 this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
