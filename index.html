@@ -16,7 +16,7 @@
     <section id="app">
         <config-menu></config-menu>
         <header id="main-header" class="margin-bottom" style="height:100px">
-            <navbar v-bind:suites="suites" v-if="loaded"></navbar>
+            <navbar v-bind:suites="suites"></navbar>
         </header>
 
         <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }">
