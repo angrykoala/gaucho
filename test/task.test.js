@@ -79,13 +79,13 @@ describe("Tasks", () => {
 
     it("Update Execution Time", () => {
         assert.throws(() => {
-            testTask.updateElapsedTime();
+            testTask._updateElapsedTime();
         });
         assert.isNull(testTask.elapsedTime);
 
         testTask.run(() => {}, () => {});
         assert.doesNotThrow(() => {
-            testTask.updateElapsedTime();
+            testTask._updateElapsedTime();
         });
         assert.isNumber(testTask.elapsedTime);
     });
