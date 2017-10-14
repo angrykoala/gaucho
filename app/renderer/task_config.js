@@ -19,12 +19,12 @@ module.exports = {
         }
         this.suites = this.parseData(suites);
     },
-  loadTasksFrom(data){
-    let json = JSON.parse(data);
-    this.suites = this.parseData(json.suites) ;
-    this.saveTasks();
-    AppStatus.events.emit('update-suites') ;
-  },
+    loadTasksFrom(data){
+      let json = JSON.parse(data);
+      this.suites = this.parseData(json.suites) ;
+      this.saveTasks();
+      AppStatus.events.emit('update-suites') ;
+    },
     saveTasks() {
         const tasksConfig = new AppConfig.Tasks();
         const data = this.suites.map((suite) => suite.getData());

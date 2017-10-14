@@ -36,10 +36,9 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         TaskConfig.loadTasks();
         this.suites = TaskConfig.suites;
         this.loaded = true;
-        const updateApp = function(){
-          app.suites = TaskConfig.suites;
-        };
-        AppStatus.events.on("update-suites", updateApp) ;
+      AppStatus.events.on("update-suites", ()=>{
+        this.suites = TaskConfig.suites ;
+      }) ;
     },
     updated() {
         this.$nextTick(() => {
