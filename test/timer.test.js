@@ -1,7 +1,7 @@
 "use strict";
 
 const EventEmitter = require('events');
-const TaskTimer = require('../app/common/timer');
+const TaskTimer = require('../app/common/utils').timer;
 
 
 describe("Timer", () => {

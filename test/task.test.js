@@ -5,7 +5,7 @@ const assert = require('chai').assert;
 
 const config = require('./config');
 
-const Task = require('../app/renderer/task');
+const Task = require('../app/common/task');
 const TaskStatus = require('../app/common/task_status');
 
 describe("Tasks", () => {

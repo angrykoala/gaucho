@@ -6,7 +6,7 @@ const os = require('os');
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
-const TaskTimer = require('../common/timer');
+const TaskTimer = require('../common/utils').timer;
 
 
 const TaskEvents = new EventEmitter();

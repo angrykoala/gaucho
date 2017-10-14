@@ -3,8 +3,8 @@
 const assert = require('chai').assert;
 const sinon = require('sinon');
 
-const Suite = require('../app/renderer/suite');
-const Task = require('../app/renderer/task');
+const Suite = require('../app/common/suite');
+const Task = require('../app/common/task');
 const TaskStatus = require('../app/common/task_status');
 
 describe("Suite", () => {
