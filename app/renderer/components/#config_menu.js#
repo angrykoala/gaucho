@@ -67,7 +67,7 @@ module.exports = {
                 fs.readFile(fileName, 'utf-8', (err, data) =>{
                   TaskConfig.loadTasksFrom(data);
                 });
-            }, () => {});
+              }, () => {});
             });
         },
         exportTasks() {
