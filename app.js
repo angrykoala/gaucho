@@ -14,12 +14,6 @@ const components = {
     "config-menu": require('./app/renderer/components/config_menu')
 };
 
-const updateApp = function(){
-  app.suites = TaskConfig.suites;
-};
-
-
-
 let suites = [];
 
 ipcRenderer.on('before-close', () => {
@@ -51,3 +45,7 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         });
     }
 });
+
+const updateApp = function(){
+  app.suites = TaskConfig.suites;
+};

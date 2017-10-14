@@ -2,7 +2,6 @@
 
 const Suite = require('./suite');
 const Task = require('./task');
-const utils = require('../common/utils');
 const AppStatus = require('./app_status');
 const AppConfig = require('../common/app_config');
 

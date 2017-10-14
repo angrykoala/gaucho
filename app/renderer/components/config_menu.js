@@ -2,7 +2,7 @@
 
 const os = require('os');
 const path = require('path');
-
+const fs = require('fs');
 const app = require('electron').remote;
 const dialog = app.dialog;
 
@@ -50,21 +50,22 @@ module.exports = {
         </div>
     </div>
     `,
-
-    methods: {
-          importTasks(){
-      TaskConfig.clearTasks();
-      dialog.showOpenDialog({ filters: [
-        { name: 'json', extensions: ['json'] }
-      ]},function (fileNames) {
-        if (fileNames === undefined) return;
-        let fileName = fileNames[0];
-        fs.readFile(fileName, 'utf-8', function (err, data) {
-          TaskConfig.loadTasksFrom(data);
-        });
-      });
-      AppStatus.activeSuite = 0;
-    },
+   methods: {
+        importTasks() {
+            TaskConfig.clearTasks();
+            dialog.showOpenDialog({
+                filters: [{
+                    name: 'json',
+                    extensions: ['json']
+                }]
+            }, function(fileNames) {
+                if (fileNames === undefined) return;
+                let fileName = fileNames[0];
+                fs.readFile(fileName, 'utf-8', function(err, data) {
+                    TaskConfig.loadTasksFrom(data);
+                });
+            });
+        },
         exportTasks() {
             dialog.showSaveDialog({
                 defaultPath: path.join(os.homedir(), "gtask.json"),
@@ -77,7 +78,7 @@ module.exports = {
                         console.warn(err);
                     });
                 }
-  methods: {
+
             });
         },
         clearTasks() {
