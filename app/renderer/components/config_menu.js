@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const app = require('electron').remote;
 const dialog = app.dialog;
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TaskConfig = require('../task_config');
@@ -60,13 +60,13 @@ module.exports = {
             }, (fileNames) =>{
                 if (fileNames === undefined) return;
               let fileName = fileNames[0];
-              const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover your suites after deletion!");
+              const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
               confirmationAlert.toggle().then(() => {
                 TaskConfig.clearTasks();
                 fs.readFile(fileName, 'utf-8', (err, data) =>{
                   TaskConfig.loadTasksFrom(data);
                 });
-              }, () => {});
+            }, () => {});
             });
         },
         exportTasks() {
