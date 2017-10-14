@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const app = require('electron').remote;
 const dialog = app.dialog;
-
+const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TaskConfig = require('../task_config');
