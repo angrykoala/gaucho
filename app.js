@@ -14,6 +14,13 @@ const components = {
     "config-menu": require('./app/renderer/components/config_menu')
 };
 
+const updateApp = function(){
+  app.suites = TaskConfig.suites;
+};
+
+
+
+let suites = [];
 
 ipcRenderer.on('before-close', () => {
     TaskConfig.saveTasks();
@@ -30,12 +37,13 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         loaded: false,
         AppStatus: AppStatus
     },
-    components: components,
+  components: components,
     mounted() {
         Material.init();
         TaskConfig.loadTasks();
         this.suites = TaskConfig.suites;
         this.loaded = true;
+        AppStatus.events.on("update", updateApp) ;
     },
     updated() {
         this.$nextTick(() => {

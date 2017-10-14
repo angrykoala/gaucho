@@ -2,6 +2,8 @@
 
 const Suite = require('./suite');
 const Task = require('./task');
+const utils = require('../common/utils');
+const AppStatus = require('./app_status');
 const AppConfig = require('../common/app_config');
 
 module.exports = {
@@ -22,6 +24,7 @@ module.exports = {
     let json = JSON.parse(data);
     this.suites = this.parseData(json.suites) ;
     this.saveTasks();
+    AppStatus.events.emit('update') ;
   },
     saveTasks() {
         const tasksConfig = new AppConfig.Tasks();

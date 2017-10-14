@@ -63,6 +63,7 @@ module.exports = {
           TaskConfig.loadTasksFrom(data);
         });
       });
+      AppStatus.activeSuite = 0;
     },
         exportTasks() {
             dialog.showSaveDialog({
