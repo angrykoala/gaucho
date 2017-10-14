@@ -56,7 +56,7 @@ module.exports = {
     mounted() {
         Material.checkFirstTimeTap(".tap-target");
     },
-    methods: {
+  methods: {
         addSuite() {
             if (this.suites.length < AppStatus.maxSuites) {
                 this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
