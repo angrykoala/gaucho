@@ -3,7 +3,7 @@
 
 const ipcRenderer = require('electron').ipcRenderer;
 
-const TaskConfig = require('./app/renderer/task_config');
+const TasksHandler = require('./app/renderer/tasks_handler');
 const AppStatus = require('./app/renderer/app_status');
 const Material = require('./app/renderer/materialize');
 
@@ -16,8 +16,8 @@ const components = {
 
 
 ipcRenderer.on('before-close', () => {
-    TaskConfig.saveTasks();
-    const promises = TaskConfig.suites.map((s) => s.stopAll());
+    TasksHandler.saveTasks();
+    const promises = TasksHandler.suites.map((s) => s.stopAll());
     Promise.all(promises).then(() => {
         ipcRenderer.send("close-app");
     });
@@ -26,13 +26,12 @@ ipcRenderer.on('before-close', () => {
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
     data: {
-        suites: [],
+        suites: TasksHandler.suites,
         AppStatus: AppStatus
     },
     components: components,
     beforeMount() {
-        TaskConfig.loadTasks();
-        this.suites = TaskConfig.suites;
+        TasksHandler.loadTasks();
     },
     mounted() {
         Material.init();
