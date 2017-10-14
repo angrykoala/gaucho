@@ -30,8 +30,8 @@ module.exports = {
         for (const suite of this.suites) {
             suite.stopAll();
         }
-        this.suites[0] = new Suite("Default Suite");
-        this.suites.splice(1, this.suites.length);
+        this.suites.splice(0, this.suites.length);
+        this.suites.push(new Suite("Suite 0"));
         this.saveTasks();
     },
     isValid(data) {
