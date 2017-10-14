@@ -60,14 +60,13 @@ module.exports = {
             }, (fileNames) =>{
                 if (fileNames === undefined) return;
               let fileName = fileNames[0];
-              console.log("pepinillo");
               const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover your suites after deletion!");
               confirmationAlert.toggle().then(() => {
                 TaskConfig.clearTasks();
                 fs.readFile(fileName, 'utf-8', (err, data) =>{
                   TaskConfig.loadTasksFrom(data);
                 });
-            }, () => {});
+              }, () => {});
             });
         },
         exportTasks() {
