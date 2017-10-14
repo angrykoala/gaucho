@@ -26,9 +26,10 @@ module.exports = {
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text">
-
-
+        <div class="menu" ref="menu">
+            <div class="menu-item" v-on:click="console.log(123)">{{running? "Stop" : "Run"}}</div>
+        </div>
+        <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="openContextMenu">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
@@ -67,6 +68,19 @@ module.exports = {
         this.removeListeners();
     },
     methods: {
+        openContextMenu(event) {
+            var left = event.clientX;
+            var top = event.clientY;
+            console.log(event);
+            console.log(this.$refs);
+            let menuBox = this.$refs.menu;
+            console.log(menuBox);
+            menuBox.style.left = left + "px";
+            menuBox.style.top = top + "px";
+            menuBox.style.display = "block";
+
+            arguments[0].preventDefault();
+        },
         toggleRun(ev) {
             ev.stopPropagation();
             if (this.running) this.stop();

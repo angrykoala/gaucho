@@ -25,6 +25,7 @@ module.exports = {
         return res;
     },
     isDevEnv() {
-        return process.env.NODE_ENV === "dev";
+        return true;
+        // return process.env.NODE_ENV === "dev";
     },
 };
