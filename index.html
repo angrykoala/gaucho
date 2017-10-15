@@ -33,6 +33,12 @@
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
         window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
+        window.document.body.addEventListener('click', function (ev) {
+           if (AppStatus.contextMenuEl != null) {
+               AppStatus.contextMenuEl.style.display = 'none';
+               AppStatus.contextMenuEl = null;
+           }
+        });
     </script>
     <script src="./node_modules/jquery-ui/build/release.js"></script>
     <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>

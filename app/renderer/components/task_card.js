@@ -11,7 +11,6 @@ const Materialize = require('../materialize');
 
 const config = AppStatus.config;
 
-
 module.exports = {
     props: ['task', 'event'],
     data() {
@@ -27,7 +26,8 @@ module.exports = {
     template: `
     <li class="run-card task-card">
         <div class="menu" ref="menu">
-            <div class="menu-item" v-on:click="console.log(123)">{{running? "Stop" : "Run"}}</div>
+            <div class="menu-item" v-on:click="menuClick($event, 'toggle-run')">{{running? "Stop" : "Run"}}</div>
+            <div class="menu-item" v-on:click="menuClick($event, 'toggle-edit')">Edit</div>
         </div>
         <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="openContextMenu">
             <div class="col s1" v-if="AppStatus.editMode">
@@ -69,17 +69,20 @@ module.exports = {
     },
     methods: {
         openContextMenu(event) {
-            var left = event.clientX;
-            var top = event.clientY;
-            console.log(event);
-            console.log(this.$refs);
-            let menuBox = this.$refs.menu;
-            console.log(menuBox);
-            menuBox.style.left = left + "px";
-            menuBox.style.top = top + "px";
-            menuBox.style.display = "block";
-
-            arguments[0].preventDefault();
+            AppStatus.openContextMenu(this.$refs.menu, event);
+        },
+        menuClick(event, action) {
+            this.$refs.menu.style.display = 'none';
+            switch (action) {
+                case 'toggle-run':
+                    this.toggleRun(event);
+                    break;
+                case 'toggle-edit':
+                    AppStatus.toggleEdit();
+                    break;
+                default:
+                    break;
+            }
         },
         toggleRun(ev) {
             ev.stopPropagation();

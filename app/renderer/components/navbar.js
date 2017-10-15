@@ -20,7 +20,11 @@ module.exports = {
     },
     template: `
     <div>
-    <div class="navbar-fixed">
+    <div class="menu" ref="menu">
+        <div class="menu-item" v-on:click="$refs.navMenu.$refs.about.openAbout()">About</div>
+        <div class="menu-item" v-on:click="$refs.navMenu.$refs.config.click()">Configuration</div>
+    </div>
+    <div class="navbar-fixed" v-on:contextmenu.prevent="AppStatus.openContextMenu($refs.menu, $event)">
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="brand-logo main-logo left">
@@ -32,7 +36,7 @@ module.exports = {
                     <li><a id="tap-edit" v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
                     <li><a class="navbar-menu-button" data-activates='navbar-menu' data-gutter="30"><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
-                <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites"></navbar-menu>
+                <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites" ref="navMenu"></navbar-menu>
 
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
