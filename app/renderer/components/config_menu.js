@@ -58,7 +58,8 @@ module.exports = {
                     extensions: ['json']
                 }]
             }, (fileNames) =>{
-                if (!filename || !FileNames[0]) return;
+              if (!fileNames) return;
+              if (!fileNames[0]) return ;
               const fileName = fileNames[0];
               const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
               confirmationAlert.toggle().then(() => {
