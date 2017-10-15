@@ -8,17 +8,17 @@ const TapTarget = require('./tap_target');
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
-    props: ['suites'],
-    components: {
-        "navbar-menu": NavbarMenu,
-        "tap-target": TapTarget,
-    },
-    data() {
-        return {
-            AppStatus: AppStatus
-        };
-    },
-    template: `
+  props: ['suites'],
+  components: {
+    "navbar-menu": NavbarMenu,
+    "tap-target": TapTarget,
+  },
+  data() {
+    return {
+      AppStatus: AppStatus
+    };
+  },
+  template: `
     <div>
     <div class="navbar-fixed">
         <nav class="nav-extended">
@@ -53,59 +53,59 @@ module.exports = {
     </div>
     </div>
     `,
-    mounted() {
-        Material.checkFirstTimeTap(".tap-target");
-    },
+  mounted() {
+    Material.checkFirstTimeTap(".tap-target");
+  },
   methods: {
-        addSuite() {
-            if (this.suites.length < AppStatus.maxSuites) {
-                this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
-                this.selectTab(this.suites.length - 1);
-            }
-        },
-        deleteSuite() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this suite after deletion!");
-            confirmationAlert.toggle().then(() => {
-                if (this.suites.length > 1) {
-                    this.suites[AppStatus.activeSuite].stopAll();
-                    AppStatus.totalTasks -= this.suites[AppStatus.activeSuite].length;
-                    this.suites.splice(AppStatus.activeSuite, 1);
-                    this.selectTab(AppStatus.activeSuite);
-                }
-            }, () => {});
-        },
-        onTabSelected(index) {
-            AppStatus.activeSuite = index;
-        },
-        selectTab(index) {
-            if (index >= this.suites.length) index = this.suites.length - 1;
-            this.$nextTick(() => {
-                Material.selectTab("#navbar-tabs", `tab${index}`);
-                AppStatus.activeSuite = index;
-            });
-        },
-        toggleEdit() {
-            AppStatus.toggleEdit();
-        },
-        onMenuSelection(selection) {
-            switch (selection) {
-                case "add-suite":
-                    this.addSuite();
-                    break;
-                case "delete-suite":
-                    this.deleteSuite();
-                    break;
-                default:
-                    this.AppStatus.events.emit(selection);
-            }
-        }
+    addSuite() {
+      if (this.suites.length < AppStatus.maxSuites) {
+        this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
+        this.selectTab(this.suites.length - 1);
+      }
     },
-    computed: {
-        currentSuite() {
-            return this.suites[AppStatus.activeSuite];
-        },
-        editMode() {
-            return AppStatus.editMode;
+    deleteSuite() {
+      const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this suite after deletion!");
+      confirmationAlert.toggle().then(() => {
+        if (this.suites.length > 1) {
+          this.suites[AppStatus.activeSuite].stopAll();
+          AppStatus.totalTasks -= this.suites[AppStatus.activeSuite].length;
+          this.suites.splice(AppStatus.activeSuite, 1);
+          this.selectTab(AppStatus.activeSuite);
         }
+      }, () => {});
+    },
+    onTabSelected(index) {
+      AppStatus.activeSuite = index;
+    },
+    selectTab(index) {
+      if (index >= this.suites.length) index = this.suites.length - 1;
+      this.$nextTick(() => {
+        Material.selectTab("#navbar-tabs", `tab${index}`);
+        AppStatus.activeSuite = index;
+      });
+    },
+    toggleEdit() {
+      AppStatus.toggleEdit();
+    },
+    onMenuSelection(selection) {
+      switch (selection) {
+        case "add-suite":
+          this.addSuite();
+          break;
+        case "delete-suite":
+          this.deleteSuite();
+          break;
+        default:
+          this.AppStatus.events.emit(selection);
+      }
     }
+  },
+  computed: {
+    currentSuite() {
+      return this.suites[AppStatus.activeSuite];
+    },
+    editMode() {
+      return AppStatus.editMode;
+    }
+  }
 };
