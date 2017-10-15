@@ -40,7 +40,7 @@ module.exports = {
                      <a class="waves-effect waves-light btn" v-on:click="exportTasks">Export Tasks</a>
                     <label>Export the tasks.json to be able to load it into a different gaucho instance</label>
                      <a class="waves-effect waves-light btn" v-on:click="importTasks">Import Tasks</a>
-                    <label><em>ALERT! this will override your previous tasks</em></label>
+                    <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
                 </div>
             </div>
         </div>

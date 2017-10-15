@@ -308,6 +308,6 @@ html, body {
     margin-top: 10px;
 }
 
-em{
-    color: #fe4a49;
+.warning-text{
+    color: #26a69a ;
 }
