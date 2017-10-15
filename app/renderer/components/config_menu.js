@@ -58,16 +58,18 @@ module.exports = {
                     extensions: ['json']
                 }]
             }, (fileNames) =>{
-              if (!fileNames) return;
-              if (!fileNames[0]) return ;
-              const fileName = fileNames[0];
-              const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
-              confirmationAlert.toggle().then(() => {
-                TaskConfig.clearTasks();
-                fs.readFile(fileName, 'utf-8', (err, data) =>{
-                  TaskConfig.loadTasksFrom(data);
-                });
-            }, () => {});
+              if (fileNames){
+                if (fileNames[0]){
+                  const fileName = fileNames[0];
+                  const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
+                  confirmationAlert.toggle().then(() => {
+                    TaskConfig.clearTasks();
+                    fs.readFile(fileName, 'utf-8', (err, data) =>{
+                      TaskConfig.loadTasksFrom(data);
+                    });
+                  }, () => {});
+                }
+              }
             });
         },
         exportTasks() {
@@ -82,7 +84,6 @@ module.exports = {
                         console.warn(err);
                     });
                 }
-
             });
         },
         clearTasks() {
