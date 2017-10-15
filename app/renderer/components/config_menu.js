@@ -57,19 +57,17 @@ module.exports = {
                     name: 'json',
                     extensions: ['json']
                 }]
-            }, (fileNames) =>{
-              if (fileNames){
-                if (fileNames[0]){
-                  const fileName = fileNames[0];
+            }, (filenames) =>{
+              if (filenames && filenames[0]){
+                  const filename = filenames[0];
                   const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
                   confirmationAlert.toggle().then(() => {
                     TaskConfig.clearTasks();
-                    fs.readFile(fileName, 'utf-8', (err, data) =>{
+                    fs.readFile(filename, 'utf-8', (err, data) =>{
                       TaskConfig.loadTasksFrom(data);
                     });
                   }, () => {});
                 }
-              }
             });
         },
         exportTasks() {
