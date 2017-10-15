@@ -4,8 +4,8 @@ const assert = require('chai').assert;
 const fs = require('fs');
 const path = require('path');
 
-const Task = require('../app/renderer/task');
-const Suite = require('../app/renderer/suite');
+const Task = require('../app/common/task');
+const Suite = require('../app/common/suite');
 const TaskImporter = require('../app/common/task_importer');
 
 describe("Task Importer", () => {

@@ -2,7 +2,7 @@
 
 const EventEmitter = require('events');
 
-const TaskConfig = require('./task_config');
+const TasksHandler = require('./tasks_handler');
 const version = require('../../package.json').version;
 const AppConfigStatus = require('./app_config_status');
 
@@ -12,7 +12,7 @@ module.exports = {
     events: new EventEmitter(),
     toggleEdit() {
         this.editMode = !this.editMode;
-        TaskConfig.saveTasks();
+        TasksHandler.saveTasks();
     },
     config: new AppConfigStatus(),
     maxSuites: 6,

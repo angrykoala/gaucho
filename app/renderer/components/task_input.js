@@ -1,6 +1,6 @@
 "use strict";
 
-const Task = require('../task');
+const Task = require('../../common/task');
 const Material = require('../materialize');
 
 module.exports = {
@@ -29,8 +29,8 @@ module.exports = {
         <div class="row task-input-send-row">
         <button class="btn waves-effect waves-light save-task-button" v-bind:class="{ disabled: !canSave }" v-on:click="saveTask">Save
             <i class="material-icons right">send</i>
-        </button>   
-        </div> 
+        </button>
+        </div>
     </div>
     `,
     mounted() {
