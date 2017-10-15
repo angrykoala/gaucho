@@ -10,7 +10,7 @@ const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
-
+const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     data() {
@@ -66,9 +66,12 @@ module.exports = {
             });
         },
         clearTasks() {
-            TasksHandler.clearTasks();
-            AppStatus.activeSuite = 0;
-            AppStatus.totalTasks = 0;
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!");
+                confirmationAlert.toggle().then(() => {
+                    TasksHandler.clearTasks();
+                    AppStatus.activeSuite = 0;
+                    AppStatus.totalTasks = 0;
+                }, () => {});
         },
         resetConfig() {
             this.config.bottomBar = true;
