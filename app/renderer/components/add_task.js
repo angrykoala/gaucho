@@ -1,7 +1,7 @@
 "use strict";
 
 const TaskInput = require('./task_input');
-const Material = require('../materialize');
+const Materialize = require('../materialize');
 
 module.exports = {
     props: ['tasks'],
@@ -28,11 +28,12 @@ module.exports = {
     </ul>    
     `,
     mounted() {
-        Material.updateCollapsible();
+        Materialize.updateCollapsible();
     },
     methods: {
         addTask(task) {
             this.$emit('add', task);
+            Materialize.collapseHeader(this.$el);
         }
     },
     components: {

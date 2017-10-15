@@ -6,7 +6,7 @@ const os = require('os');
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
-const TaskTimer = require('../common/timer');
+const TaskTimer = require('../common/utils').timer;
 
 
 const TaskEvents = new EventEmitter();
@@ -33,23 +33,23 @@ class Task {
         this.beginTime = Date.now();
         this.finishTime = null;
         let executionPath = this.path;
-        if (!executionPath) executionPath = this.generateDefaultPath();
-        this.proc = yerbamate.run(this.processCommand(), executionPath, {
+        if (!executionPath) executionPath = this._generateDefaultPath();
+        this.proc = yerbamate.run(this._processCommand(), executionPath, {
                 stderr: stdout,
                 stdout: stdout
             },
             (code) => {
                 if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
                 this.finishTime = Date.now();
-                this.updateElapsedTime();
+                this._updateElapsedTime();
                 TaskEvents.removeListener("time-update", this.onTimeUpdate);
                 done();
             });
         this.onTimeUpdate = () => {
-            this.updateElapsedTime();
+            this._updateElapsedTime();
         };
         TaskEvents.on("time-update", this.onTimeUpdate);
-        this.updateElapsedTime();
+        this._updateElapsedTime();
     }
 
     stop(cb) {
@@ -72,7 +72,7 @@ class Task {
         return res;
     }
 
-    updateElapsedTime() {
+    _updateElapsedTime() {
         if (this.beginTime === null) throw new Error("Error, cant update time");
         let finishTime = this.finishTime;
         if (finishTime === null) finishTime = Date.now();
@@ -80,11 +80,11 @@ class Task {
         this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
     }
 
-    processCommand() {
+    _processCommand() {
         return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
     }
 
-    generateDefaultPath() {
+    _generateDefaultPath() {
         return os.homedir();
     }
 }

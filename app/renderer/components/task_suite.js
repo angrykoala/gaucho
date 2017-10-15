@@ -79,7 +79,7 @@ module.exports = {
     },
     computed: {
         id() {
-            return "tab" + this.index;
+            return `tab${this.index}`;
         },
         showAddTab() {
             return AppStatus.editMode && this.suites[this.index].length < AppStatus.maxTasksPerSuite;

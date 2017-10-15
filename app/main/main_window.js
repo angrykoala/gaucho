@@ -27,7 +27,7 @@ module.exports = class MainWindow {
 
     initWindow(devWindow) {
         let win;
-        const windowSize = this.userConfig.get("windowSize");
+        const windowSize = this.userConfig.get(AppConfig.FIELDS.WINDOW_SIZE);
 
         let winConfig = {
             width: windowSize[0],
@@ -40,7 +40,7 @@ module.exports = class MainWindow {
             frame: true
         };
         if (devWindow) {
-            winConfig.width += this.userConfig.get("devToolsSize");
+            winConfig.width += this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
         }
 
         win = new BrowserWindow(winConfig);
@@ -50,24 +50,24 @@ module.exports = class MainWindow {
 
         if (devWindow) win.webContents.openDevTools();
 
-        if (this.userConfig.get("maximized") === true) {
+        if (this.userConfig.get(AppConfig.FIELDS.MAXIMIZED) === true) {
             win.maximize();
         }
 
         win.on('resize', () => {
-            if (this.userConfig.get("maximized") !== true) {
+            if (this.userConfig.get(AppConfig.FIELDS.MAXIMIZED) !== true) {
                 let size = win.getSize();
-                if (devWindow) size[0] -= this.userConfig.get("devToolsSize");
-                this.userConfig.set("windowSize", size);
+                if (devWindow) size[0] -= this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
+                this.userConfig.set(AppConfig.FIELDS.WINDOW_SIZE, size);
             }
         });
 
         win.on('maximize', () => {
-            this.userConfig.set("maximized", true);
+            this.userConfig.set(AppConfig.FIELDS.MAXIMIZED, true);
         });
 
         win.on('unmaximize', () => {
-            this.userConfig.set("maximized", false);
+            this.userConfig.set(AppConfig.FIELDS.MAXIMIZED, false);
         });
 
         let first = true;

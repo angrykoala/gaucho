@@ -23,6 +23,13 @@ module.exports = {
     updateCollapsible() {
         $('.collapsible').collapsible();
     },
+    collapseHeader($el) {
+        const elements = $el.getElementsByClassName('collapsible-header');
+        if (elements[0]) {
+            elements[0].classList.remove("active");
+            this.updateCollapsible();
+        }
+    },
     updateTabs() {
         $('ul.tabs').tabs();
     },

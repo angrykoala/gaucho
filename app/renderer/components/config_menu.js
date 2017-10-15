@@ -8,7 +8,7 @@ const dialog = app.dialog;
 
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
-const TaskConfig = require('../task_config');
+const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 
 
@@ -59,15 +59,16 @@ module.exports = {
                 }]
             }, (filename) => {
                 if (filename) {
-                    TaskImporter.export(filename, TaskConfig.suites, AppStatus.version).catch((err) => {
+                    TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
                         console.warn(err);
                     });
                 }
             });
         },
         clearTasks() {
-            TaskConfig.clearTasks();
+            TasksHandler.clearTasks();
             AppStatus.activeSuite = 0;
+            AppStatus.totalTasks = 0;
         },
         resetConfig() {
             this.config.bottomBar = true;

@@ -5,12 +5,12 @@ const assert = require('chai').assert;
 
 const config = require('./config');
 
-const Task = require('../app/renderer/task');
+const Task = require('../app/common/task');
 const TaskStatus = require('../app/common/task_status');
 
 describe("Tasks", () => {
     let testTask;
-    const taskCommand = "node " + path.join(config.testResources, config.taskFiles.helloWorld);
+    const taskCommand = `node ${path.join(config.testResources, config.taskFiles.helloWorld)}`;
     beforeEach(() => {
         testTask = new Task("Test", "", taskCommand);
     });
@@ -79,13 +79,13 @@ describe("Tasks", () => {
 
     it("Update Execution Time", () => {
         assert.throws(() => {
-            testTask.updateElapsedTime();
+            testTask._updateElapsedTime();
         });
         assert.isNull(testTask.elapsedTime);
 
         testTask.run(() => {}, () => {});
         assert.doesNotThrow(() => {
-            testTask.updateElapsedTime();
+            testTask._updateElapsedTime();
         });
         assert.isNumber(testTask.elapsedTime);
     });

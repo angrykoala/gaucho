@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gaucho Task Launcher</title>
-    <link href="./resources/material_icons/material-icons.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./node_modules/material-design-icons-iconfont/dist/material-design-icons.css" />
     <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="./resources/styles.css" />
@@ -16,7 +16,7 @@
     <section id="app">
         <config-menu></config-menu>
         <header id="main-header" class="margin-bottom" style="height:100px">
-            <navbar v-bind:suites="suites" v-if="loaded"></navbar>
+            <navbar v-bind:suites="suites"></navbar>
         </header>
 
         <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }">
