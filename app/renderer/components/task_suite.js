@@ -26,17 +26,16 @@ module.exports = {
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
             <draggable v-show="suites[index].tasks.length > 0 || AppStatus.editMode" element="ul" 
-            :options="{draggable:'.task-card', group:'tasks'}" 
-            style="margin-bottom:0; margin-top:0 " 
-            class="collapsible" 
+            :options="{draggable:'.task-card', group:'tasks'}"
+            class="collapsible no-margin" 
             data-collapsible="accordion" 
             v-model="suites[index].tasks"
             :move="checkMove">
                 <template v-for="(task,i) in suites[index].tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-            <add-task v-bind:tasks="suites[index].tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
             </draggable>
+            <add-task v-bind:tasks="suites[index].tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
         </div>
     `,
     mounted() {
