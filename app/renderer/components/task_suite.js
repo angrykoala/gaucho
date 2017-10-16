@@ -12,7 +12,8 @@ module.exports = {
     data() {
         return {
             AppStatus: AppStatus,
-            event: new EventEmitter()
+            event: new EventEmitter(),
+            suite: this.suites[this.index]
         };
     },
     components: {
@@ -25,23 +26,23 @@ module.exports = {
             <div class="row" v-if="hideMessage">
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
-            <draggable v-show="suites[index].tasks.length > 0 || AppStatus.editMode" element="ul" 
+            <draggable v-show="suite.tasks.length > 0 || AppStatus.editMode" element="ul" 
             :options="{draggable:'.task-card', group:'tasks'}"
             class="collapsible no-margin" 
             data-collapsible="accordion" 
-            v-model="suites[index].tasks"
+            v-model="suite.tasks"
             :move="checkMove">
-                <template v-for="(task,i) in suites[index].tasks">
+                <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
             </draggable>
-            <add-task v-bind:tasks="suites[index].tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
         </div>
     `,
     mounted() {
         AppStatus.events.on("run-suite", this.onRunSuite);
         AppStatus.events.on("stop-suite", this.onStopSuite);
-        AppStatus.totalTasks += this.suites[this.index].length;
+        AppStatus.totalTasks += this.suite.length;
     },
     beforeDestroy() {
         AppStatus.events.removeListener("run-suite", this.onRunSuite);
@@ -52,18 +53,18 @@ module.exports = {
             return AppStatus.editMode;
         },
         addTask(task) {
-            if (this.suites[this.index].length < AppStatus.maxTasksPerSuite) {
-                this.suites[this.index].addTask(task);
+            if (this.suite.length < AppStatus.maxTasksPerSuite) {
+                this.suite.addTask(task);
                 AppStatus.totalTasks++;
             }
         },
         removeTask(i) {
-            this.suites[this.index].removeTask(i);
+            this.suite.removeTask(i);
             this.$forceUpdate();
             AppStatus.totalTasks--;
         },
         editTask(i, task) {
-          this.suites[this.index].replaceTask(i, task);
+          this.suite.replaceTask(i, task);
             this.$forceUpdate();
         },
         onRunSuite() {
@@ -82,10 +83,10 @@ module.exports = {
             return `tab${this.index}`;
         },
         showAddTab() {
-            return AppStatus.editMode && this.suites[this.index].length < AppStatus.maxTasksPerSuite;
+            return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
         hideMessage() {
-            return this.suites[this.index].tasks.length === 0 && !AppStatus.editMode;
+            return this.suite.tasks.length === 0 && !AppStatus.editMode;
         }
     }
 };
