@@ -11,6 +11,7 @@ const SwitchForm = require('./switch_form');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const Materialize = require('../materialize');
 
 module.exports = {
     data() {
@@ -71,7 +72,7 @@ module.exports = {
                     TasksHandler.clearTasks();
                     AppStatus.activeSuite = 0;
                     AppStatus.totalTasks = 0;
-                    $('#config-modal').modal('close');
+                    Materialize.closeModals();
                 }, () => {});
         },
         resetConfig() {

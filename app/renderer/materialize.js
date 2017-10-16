@@ -50,5 +50,8 @@ module.exports = {
     },
     updateModals() {
         $('.modal').modal();
-    }
+    },
+	closeModals() {
+        $('#config-modal').modal('close');
+	}
 };
