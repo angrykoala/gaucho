@@ -8,12 +8,11 @@ const AddTask = require('./add_task');
 const AppStatus = require('../app_status');
 
 module.exports = {
-    props: ['suites', 'index'],
+    props: ['suite', 'index'],
     data() {
         return {
             AppStatus: AppStatus,
-            event: new EventEmitter(),
-            suite: this.suites[this.index]
+            event: new EventEmitter()
         };
     },
     components: {
@@ -86,7 +85,7 @@ module.exports = {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
         hideMessage() {
-            return this.suite.tasks.length === 0 && !AppStatus.editMode;
+          return this.suite.tasks.length === 0 && !AppStatus.editMode;
         }
     }
 };
