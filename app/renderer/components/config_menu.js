@@ -71,6 +71,7 @@ module.exports = {
                     TasksHandler.clearTasks();
                     AppStatus.activeSuite = 0;
                     AppStatus.totalTasks = 0;
+                    $('#config-modal').modal('close');
                 }, () => {});
         },
         resetConfig() {
