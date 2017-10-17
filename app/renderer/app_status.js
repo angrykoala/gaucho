@@ -22,12 +22,12 @@ module.exports = {
     version: version,
     contextMenuEl: null,
     openContextMenu: function (el, event) {
-        if (this.contextMenuEl != null) {
+        if (this.contextMenuEl !== null) {
             this.contextMenuEl.style.display = 'none';
         }
         this.contextMenuEl = el;
-        this.contextMenuEl.style.left = event.clientX + "px";
-        this.contextMenuEl.style.top = event.clientY + "px";
+        this.contextMenuEl.style.left = `${event.clientX}px`;
+        this.contextMenuEl.style.top = `${event.clientY}px`;
         this.contextMenuEl.style.display = "block";
         event.preventDefault();
     }
