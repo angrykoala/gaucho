@@ -8,6 +8,7 @@ const ProgressSpinner = require('./progress_spinner');
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 const Materialize = require('../materialize');
+const ContextMenu = require('./context-menu');
 
 const config = AppStatus.config;
 
@@ -16,19 +17,17 @@ module.exports = {
     data() {
         return {
             output: "",
-            AppStatus: AppStatus
+            AppStatus: AppStatus,
         };
     },
     components: {
         "task-input": TaskInput,
-        "progress-spinner": ProgressSpinner
+        "progress-spinner": ProgressSpinner,
+        "context-menu": ContextMenu
     },
     template: `
     <li class="run-card task-card">
-        <div class="menu" ref="menu">
-            <div class="menu-item" v-on:click="menuClick($event, 'toggle-run')">{{running? "Stop" : "Run"}}</div>
-            <div class="menu-item" v-on:click="menuClick($event, 'toggle-edit')">Edit</div>
-        </div>
+        <context-menu ref="menu" v-bind:menuItems="menuItems"></context-menu>
         <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="openContextMenu">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
@@ -69,19 +68,8 @@ module.exports = {
     },
     methods: {
         openContextMenu(event) {
-            AppStatus.openContextMenu(this.$refs.menu, event);
-        },
-        menuClick(event, action) {
-            this.$refs.menu.style.display = 'none';
-            switch (action) {
-                case 'toggle-run':
-                    this.toggleRun(event);
-                    break;
-                case 'toggle-edit':
-                    AppStatus.toggleEdit();
-                    break;
-                default:
-                    break;
+            if (!AppStatus.editMode) {  // can't use in edit mode because of draggable
+                AppStatus.openContextMenu(this.$refs.menu.$el, event);
             }
         },
         toggleRun(ev) {
@@ -138,6 +126,12 @@ module.exports = {
         }
     },
     computed: {
+        menuItems() {
+            return [
+                { name: this.running ? 'Stop' : 'Run', click: this.toggleRun },
+                { name: AppStatus.editMode ? 'Done Editing' : 'Edit', click: function () {AppStatus.toggleEdit();} }
+            ];
+        },
         statusColor() {
             switch (this.task.status) {
                 case TaskStatus.idle:

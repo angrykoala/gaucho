@@ -22,17 +22,13 @@ module.exports = {
     version: version,
     contextMenuEl: null,
     openContextMenu: function (el, event) {
-        // todo maybe move this check into individual components so that it isn't a requirement of all menus?
-        // the only reason it's needed is because draggable is interfering with task_card context menu clicks
-        if (!this.editMode) {
-            if (this.contextMenuEl != null) {
-                this.contextMenuEl.style.display = 'none';
-            }
-            this.contextMenuEl = el;
-            this.contextMenuEl.style.left = event.clientX + "px";
-            this.contextMenuEl.style.top = event.clientY + "px";
-            this.contextMenuEl.style.display = "block";
-            event.preventDefault();
+        if (this.contextMenuEl != null) {
+            this.contextMenuEl.style.display = 'none';
         }
+        this.contextMenuEl = el;
+        this.contextMenuEl.style.left = event.clientX + "px";
+        this.contextMenuEl.style.top = event.clientY + "px";
+        this.contextMenuEl.style.display = "block";
+        event.preventDefault();
     }
 };
