@@ -308,31 +308,10 @@ html, body {
     margin-top: 10px;
 }
 
-.menu
+.context-menu
 {
-    width: 150px;
-    box-shadow: 3px 3px 5px #888888;
-    border-style: solid;
-    border-width: 1px;
-    border-color: grey;
-    border-radius: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    position: fixed;
-    background-color: white;
-    z-index: 1000;
+    min-width: 100px;
     display: none;
-}
-
-.menu-item
-{
-    height: 20px;
-}
-
-.menu-item:hover
-{
-    background-color: #6CB5FF;
-    cursor: pointer;
+    opacity: 1;
+    position: fixed;
 }

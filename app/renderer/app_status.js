@@ -20,15 +20,16 @@ module.exports = {
     totalTasks: 0,
     runningTasks: 0,
     version: version,
-    contextMenuEl: null,
-    openContextMenu: function (el, event) {
-        if (this.contextMenuEl !== null) {
-            this.contextMenuEl.style.display = 'none';
+    currentContextMenu: null,
+    openContextMenu: function (menu, event) {
+        if (this.currentContextMenu !== null) {
+            this.currentContextMenu.$el.style.display = 'none';
         }
-        this.contextMenuEl = el;
-        this.contextMenuEl.style.left = `${event.clientX}px`;
-        this.contextMenuEl.style.top = `${event.clientY}px`;
-        this.contextMenuEl.style.display = "block";
+        this.currentContextMenu = menu;
+        let menuElement = menu.$el;
+        menuElement.style.left = `${event.clientX}px`;
+        menuElement.style.top = `${event.clientY}px`;
+        menuElement.style.display = "block";
         event.preventDefault();
     }
 };

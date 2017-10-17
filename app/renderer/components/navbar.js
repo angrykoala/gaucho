@@ -5,7 +5,7 @@ const Material = require('../materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const ContextMenu = require('./context-menu');
+const ContextMenu = require('./context_menu');
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
     template: `
     <div>
     <context-menu v-bind:menuItems="menuItems" ref="menu"></context-menu>
-    <div class="navbar-fixed" v-on:contextmenu.prevent="AppStatus.openContextMenu($refs.menu.$el, $event)">
+    <div class="navbar-fixed" v-on:contextmenu.prevent="AppStatus.openContextMenu($refs.menu, $event)">
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="brand-logo main-logo left">

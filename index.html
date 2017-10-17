@@ -34,9 +34,9 @@
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
         window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
         window.document.body.addEventListener('click', function (ev) {
-           if (AppStatus.contextMenuEl != null) {
-               AppStatus.contextMenuEl.style.display = 'none';
-               AppStatus.contextMenuEl = null;
+           if (AppStatus.currentContextMenu != null) {
+               AppStatus.currentContextMenu.$el.style.display = 'none';
+               AppStatus.currentContextMenu = null;
            }
         });
     </script>

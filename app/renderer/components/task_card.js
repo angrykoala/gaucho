@@ -8,7 +8,7 @@ const ProgressSpinner = require('./progress_spinner');
 const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 const Materialize = require('../materialize');
-const ContextMenu = require('./context-menu');
+const ContextMenu = require('./context_menu');
 
 const config = AppStatus.config;
 
@@ -69,7 +69,7 @@ module.exports = {
     methods: {
         openContextMenu(event) {
             if (!AppStatus.editMode) {  // can't use in edit mode because of draggable
-                AppStatus.openContextMenu(this.$refs.menu.$el, event);
+                AppStatus.openContextMenu(this.$refs.menu, event);
             }
         },
         toggleRun(ev) {
