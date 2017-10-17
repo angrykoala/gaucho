@@ -20,16 +20,5 @@ module.exports = {
     totalTasks: 0,
     runningTasks: 0,
     version: version,
-    currentContextMenu: null,
-    openContextMenu: function (menu, event) {
-        if (this.currentContextMenu !== null) {
-            this.currentContextMenu.$el.style.display = 'none';
-        }
-        this.currentContextMenu = menu;
-        let menuElement = menu.$el;
-        menuElement.style.left = `${event.clientX}px`;
-        menuElement.style.top = `${event.clientY}px`;
-        menuElement.style.display = "block";
-        event.preventDefault();
-    }
+    currentContextMenu: null
 };

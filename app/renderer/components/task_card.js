@@ -28,7 +28,7 @@ module.exports = {
     template: `
     <li class="run-card task-card">
         <context-menu ref="menu" v-bind:menuItems="menuItems"></context-menu>
-        <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="openContextMenu">
+        <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="openContextMenu($event)">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
@@ -69,7 +69,7 @@ module.exports = {
     methods: {
         openContextMenu(event) {
             if (!AppStatus.editMode) {  // can't use in edit mode because of draggable
-                AppStatus.openContextMenu(this.$refs.menu, event);
+                this.$refs.menu.openContextMenu(event);
             }
         },
         toggleRun(ev) {

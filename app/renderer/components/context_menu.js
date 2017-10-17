@@ -1,4 +1,5 @@
 "use strict";
+const AppStatus = require('../app_status');
 
 module.exports = {
     replace: false,
@@ -9,5 +10,18 @@ module.exports = {
                 <a v-on:click="menuItem.click">{{menuItem.name}}</a>
             </li>
         </ul>
-  `
+  `,
+    methods: {
+        openContextMenu(event) {
+            if (AppStatus.currentContextMenu !== null) {
+                AppStatus.currentContextMenu.$el.style.display = 'none';
+            }
+            AppStatus.currentContextMenu = this;
+            let menuElement = this.$el;
+            menuElement.style.left = `${event.clientX}px`;
+            menuElement.style.top = `${event.clientY}px`;
+            menuElement.style.display = "block";
+            event.preventDefault();
+        }
+    }
 };

@@ -23,7 +23,7 @@ module.exports = {
     template: `
     <div>
     <context-menu v-bind:menuItems="menuItems" ref="menu"></context-menu>
-    <div class="navbar-fixed" v-on:contextmenu.prevent="AppStatus.openContextMenu($refs.menu, $event)">
+    <div class="navbar-fixed" v-on:contextmenu.prevent="$refs.menu.openContextMenu($event)">
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="brand-logo main-logo left">
