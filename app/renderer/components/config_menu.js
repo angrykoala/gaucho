@@ -10,7 +10,7 @@ const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
-
+const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     data() {
@@ -33,7 +33,7 @@ module.exports = {
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
 
                 <div class="center-align buttons-form container">
-                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
+                    <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
                      </br>
@@ -66,9 +66,12 @@ module.exports = {
             });
         },
         clearTasks() {
-            TasksHandler.clearTasks();
-            AppStatus.activeSuite = 0;
-            AppStatus.totalTasks = 0;
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!");
+                confirmationAlert.toggle().then(() => {
+                    TasksHandler.clearTasks();
+                    AppStatus.activeSuite = 0;
+                    AppStatus.totalTasks = 0;
+                }, () => {});
         },
         resetConfig() {
             this.config.bottomBar = true;

@@ -19,7 +19,7 @@ module.exports = {
             <label for="title">Task Title *</label>
         </div>
         <div class="input-field">
-            <textarea id="command" class="materialize-textarea" v-model="command" v-on:keydown.9="onCommandTabPressed"></textarea>
+            <textarea id="command" class="materialize-textarea" v-model="command"></textarea>
             <label>Command *</label>
         </div>
         <div class="input-field">
