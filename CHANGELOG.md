@@ -1,6 +1,7 @@
 0.4.0 / ####-##-##
 ==================
 
+  * Added context menus to the application
   * Tasks can now be reordered within a suite while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
