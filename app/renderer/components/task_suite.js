@@ -26,7 +26,7 @@ module.exports = {
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
             <draggable v-show="suite.tasks.length > 0 || AppStatus.editMode" element="ul" 
-            :options="{draggable:'.task-card', group:'tasks'}"
+            :options="{filter:'.no-draggable', group:'tasks'}"
             class="collapsible no-margin" 
             data-collapsible="accordion" 
             v-model="suite.tasks"
@@ -34,8 +34,8 @@ module.exports = {
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-            </draggable>
             <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            </draggable>
         </div>
     `,
     mounted() {
@@ -48,8 +48,8 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
-        checkMove() {
-            return AppStatus.editMode;
+        checkMove(evt) {
+            return AppStatus.editMode && !(evt.related.classList.contains('no-draggable') && evt.willInsertAfter);
         },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {

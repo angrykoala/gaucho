@@ -13,8 +13,7 @@ module.exports = {
         };
     },
     template: `
-    <ul class="run-card collapsible no-margin" data-collapsible="accordion" >
-        <li>
+        <li class="no-draggable">
             <div class="collapsible-header row center-align add-task-header">
                 <strong class="unselectable-text">
                     <span class="small material-icons">add</span>
@@ -25,11 +24,7 @@ module.exports = {
                 <task-input v-on:save="addTask"></task-input>
             </div>
         </li>
-    </ul>    
     `,
-    mounted() {
-        Materialize.updateCollapsible();
-    },
     methods: {
         addTask(task) {
             this.$emit('add', task);
