@@ -26,7 +26,7 @@ module.exports = {
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text">
+        <div class="collapsible-header row unselectable-text" v-on:click="autoScroll">
 
 
             <div class="col s1" v-if="AppStatus.editMode">
@@ -111,9 +111,9 @@ module.exports = {
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
             if (container && container.scrollTop === container.scrollHeight - container.clientHeight) {
-                this.$nextTick(() => {
+                setTimeout(() => {
                     container.scrollTop = container.scrollHeight;
-                });
+                }, 0);  // don't scroll till next event loop
             }
         },
         collapseTask() {
