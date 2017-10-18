@@ -1,6 +1,6 @@
 0.4.0 / ####-##-##
 ==================
-
+  * Auto scroll working on logs
   * Tasks can now be reordered within a suite while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
