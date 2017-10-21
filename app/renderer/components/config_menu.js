@@ -10,8 +10,8 @@ const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
-const Materialize = require('../materialize');
+const DeleteConfirmationAlert = require('../api/app_alerts');
+const Materialize = require('../api/materialize');
 
 module.exports = {
     data() {

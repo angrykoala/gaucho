@@ -5,13 +5,13 @@ const Task = require('../common/task');
 const AppConfig = require('../common/app_config');
 
 const suites = [];
-module.exports = {
+class TasksHandler {
     get suites() {
         return suites;
-    },
+    }
     addSuite(suite) {
         suites.push(suite);
-    },
+    }
     loadTasks() {
         const tasksConfig = new AppConfig.Tasks();
         let suites = tasksConfig.get("suites");
@@ -26,7 +26,7 @@ module.exports = {
         loadedSuites.forEach((suite) => {
             this.addSuite(suite);
         })
-    },
+    }
     saveTasks() {
         const tasksConfig = new AppConfig.Tasks();
         const data = this.suites.map((suite) => suite.getData());
@@ -34,7 +34,7 @@ module.exports = {
         if (this._isValid(data)) {
             tasksConfig.set("suites", data);
         }
-    },
+    }
     clearTasks() {
         for (const suite of this.suites) {
             suite.stopAll();
@@ -42,10 +42,10 @@ module.exports = {
         this.suites.splice(0, this.suites.length);
         this.suites.push(new Suite("Suite 0"));
         this.saveTasks();
-    },
+    }
     _isValid(data) {
         return (Array.isArray(data) && data.length >= 1);
-    },
+    }
     _parseData(data) {
         return data.map((suite) => {
             let result = new Suite(suite.title);
@@ -53,4 +53,6 @@ module.exports = {
             return result;
         });
     }
-};
+}
+
+module.exports = new TasksHandler();

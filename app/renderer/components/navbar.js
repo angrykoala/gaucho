@@ -1,11 +1,11 @@
 "use strict";
 
 const Suite = require('../../common/suite');
-const Material = require('../materialize');
+const Material = require('../api/materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../api/app_alerts');
 
 module.exports = {
     props: ['suites'],

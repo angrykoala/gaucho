@@ -1,7 +1,7 @@
 "use strict";
 const shell = require('electron').shell;
 const AppStatus = require('../app_status');
-const AppAlert = require('../app_alerts').AppAlert;
+const AppAlert = require('../api/app_alerts').AppAlert;
 
 
 const aboutHtml = `<i>Version: ${AppStatus.version}</i>
