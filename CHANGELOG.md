@@ -16,7 +16,7 @@
   * Added a dev config environment
   * Code refactoring in several components and modules
   * Code linting rules changed, using eslint instead of jshint
-  * Wrote more descriptive and appropriate alert messages and button text
+  * Wrote more descriptive and appropriate alert messages
 
 0.3.0 / 2017-08-29
 ==================
