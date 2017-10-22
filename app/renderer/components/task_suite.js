@@ -7,12 +7,20 @@ const TaskCard = require('./task_card');
 const AddTask = require('./add_task');
 const AppStatus = require('../app_status');
 
+
+const draggableOptions = {
+    draggable: '.task-card',
+    handle: '.collapsible-header.edit-mode',
+    filter: '.btn'
+};
+
 module.exports = {
     props: ['suite', 'index'],
     data() {
         return {
             AppStatus: AppStatus,
-            event: new EventEmitter()
+            event: new EventEmitter(),
+            draggableOptions: draggableOptions
         };
     },
     components: {
@@ -22,10 +30,10 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <div class="row" v-if="hideMessage">
+            <div class="row" v-if="emptySuite">
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
-            <draggable v-show="suite.tasks.length > 0 || AppStatus.editMode" class="collapsible task-list" data-collapsible="accordion" element="ul" :options="{draggable:'.task-card', handle: '.collapsible-header.edit-mode', filter: '.btn'}" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
+            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" :options="draggableOptions" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
@@ -89,7 +97,7 @@ module.exports = {
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
-        hideMessage() {
+        emptySuite() {
             return this.suite.tasks.length === 0 && !AppStatus.editMode;
         },
         draggableTasks() {
