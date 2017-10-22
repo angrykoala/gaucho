@@ -308,6 +308,11 @@ html, body {
     margin-top: 10px;
 }
 
-.warning-text{
-    color: #26a69a ;
+.warning-text {
+    color: #26a69a;
+}
+
+.task-list {
+    margin-bottom: 0;
+    margin-top: 0;
 }
