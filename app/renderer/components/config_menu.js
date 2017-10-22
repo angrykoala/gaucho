@@ -60,7 +60,7 @@ module.exports = {
             }, (filenames) => {
                 if (filenames && filenames[0]) {
                     const filename = filenames[0];
-                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks. Are you sure you want to continue?",
+                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.",
                          {confirmButtonText: "Yes, import tasks", cancelButtonText: "No, cancel import"});
                     confirmationAlert.toggle().then(() => {
                         TasksHandler.clearTasks();
@@ -86,7 +86,8 @@ module.exports = {
             });
         },
         clearTasks() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!");
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!",
+                {confirmButtonText: "Yes, clear them!", cancelButtonText: "No, keep them"});
             confirmationAlert.toggle().then(() => {
                 TasksHandler.clearTasks();
                 TasksHandler.addDefaultSuite()
