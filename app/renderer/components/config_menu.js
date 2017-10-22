@@ -60,7 +60,8 @@ module.exports = {
             }, (filenames) => {
                 if (filenames && filenames[0]) {
                     const filename = filenames[0];
-                    const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
+                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks. Are you sure you want to continue?",
+                         {confirmButtonText: "Yes, import tasks", cancelButtonText: "No, cancel import"});
                     confirmationAlert.toggle().then(() => {
                         TasksHandler.clearTasks();
                         fs.readFile(filename, 'utf-8', (err, data) => {
