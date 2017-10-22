@@ -45,7 +45,7 @@ class TasksHandler {
         }
     }
     addDefaultSuite(){
-        suites.push(new Suite("Suite 0"));
+        suites.push(new Suite("Suite 1"));
         this.saveTasks();
     }
     clearTasks() {
