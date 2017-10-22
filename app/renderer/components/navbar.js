@@ -6,7 +6,7 @@ const AppStatus = require('../app_status');
 const GauchoActions = require('../api/gaucho_actions');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const DeleteConfirmationAlert = require('../api/app_alerts');
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     props: ['suites'],

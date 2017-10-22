@@ -307,3 +307,7 @@ html, body {
     width: 100%;
     margin-top: 10px;
 }
+
+.warning-text{
+    color: #26a69a ;
+}

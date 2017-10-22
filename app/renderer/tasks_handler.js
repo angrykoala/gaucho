@@ -27,6 +27,15 @@ class TasksHandler {
             this.addSuite(suite);
         })
     }
+    loadTasksFrom(data) {
+        const json = JSON.parse(data);
+        const loadedSuites = this._parseData(json.suites);
+        this._clearAllTasks();
+        loadedSuites.forEach((suite) => {
+            this.addSuite(suite);
+        })
+        this.saveTasks();
+    }
     saveTasks() {
         const tasksConfig = new AppConfig.Tasks();
         const data = this.suites.map((suite) => suite.getData());
@@ -36,12 +45,15 @@ class TasksHandler {
         }
     }
     clearTasks() {
+        this._clearAllTasks();
+        this.suites.push(new Suite("Suite 0"));
+        this.saveTasks();
+    }
+    _clearAllTasks() {
         for (const suite of this.suites) {
             suite.stopAll();
         }
         this.suites.splice(0, this.suites.length);
-        this.suites.push(new Suite("Suite 0"));
-        this.saveTasks();
     }
     _isValid(data) {
         return (Array.isArray(data) && data.length >= 1);
