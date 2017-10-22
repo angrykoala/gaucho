@@ -4,7 +4,7 @@
   * Tasks can now be reordered within a suite while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
-  * Added "export tasks" button in config
+  * Added import and export options in config
   * Added confirmation popup when deleting a task, suite or clearing all tasks
   * Add Task form now collapses after adding a task
   * About menu style improved

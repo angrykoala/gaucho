@@ -88,6 +88,7 @@ module.exports = {
             const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!");
             confirmationAlert.toggle().then(() => {
                 TasksHandler.clearTasks();
+                TasksHandler.addDefaultSuite()
                 AppStatus.activeSuite = 0;
                 AppStatus.totalTasks = 0;
                 Materialize.closeModals();

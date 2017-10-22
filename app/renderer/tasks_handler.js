@@ -30,7 +30,7 @@ class TasksHandler {
     loadTasksFrom(data) {
         const json = JSON.parse(data);
         const loadedSuites = this._parseData(json.suites);
-        this._clearAllTasks();
+        this.clearTasks();
         loadedSuites.forEach((suite) => {
             this.addSuite(suite);
         })
@@ -44,12 +44,11 @@ class TasksHandler {
             tasksConfig.set("suites", data);
         }
     }
-    clearTasks() {
-        this._clearAllTasks();
-        this.suites.push(new Suite("Suite 0"));
+    addDefaultSuite(){
+        suites.push(new Suite("Suite 0"));
         this.saveTasks();
     }
-    _clearAllTasks() {
+    clearTasks() {
         for (const suite of this.suites) {
             suite.stopAll();
         }
