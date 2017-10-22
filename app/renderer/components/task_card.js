@@ -26,7 +26,7 @@ module.exports = {
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text">
+        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
