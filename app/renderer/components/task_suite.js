@@ -11,7 +11,7 @@ const AppStatus = require('../app_status');
 const draggableOptions = {
     draggable: '.task-card',
     handle: '.collapsible-header.edit-mode',
-    filter: '.btn'
+    filter: '.btn',
 };
 
 module.exports = {
@@ -33,7 +33,7 @@ module.exports = {
             <div class="row" v-if="emptySuite">
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
-            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" v-bind:options="draggableOptions" v-model="draggableTasks" @start="onDragStart" @end="onDragEnd">
+            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" v-bind:options="draggableOptions" v-model="suite.tasks" @start="onDragStart">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
@@ -53,15 +53,6 @@ module.exports = {
     methods: {
         onDragStart(){
             this.event.emit("collapseTask");
-        },
-        onDragEnd(ev) {
-            const tasks = this.suite.tasks;
-            const movedTask = tasks[ev.oldIndex];
-            tasks.splice(ev.oldIndex, 1);
-            tasks.splice(ev.newIndex, 0, movedTask);
-            tasks.forEach((task, index) => {
-                this.editTask(index, task);
-            });
         },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
@@ -98,9 +89,6 @@ module.exports = {
         },
         emptySuite() {
             return this.suite.tasks.length === 0 && !AppStatus.editMode;
-        },
-        draggableTasks() {
-            return this.suite.tasks;
         }
     }
 };
