@@ -13,7 +13,9 @@ module.exports = {
         };
     },
     template: `
-        <li class="no-draggable">
+        <li class="no-draggable"  v-on:pointerdown="preventDragStart($event)" 
+        v-on:mousedown="preventDragStart($event)"
+        v-on:touchstart="preventDragStart($event)">
             <div class="collapsible-header row center-align add-task-header">
                 <strong class="unselectable-text">
                     <span class="small material-icons">add</span>
@@ -29,6 +31,9 @@ module.exports = {
         addTask(task) {
             this.$emit('add', task);
             Materialize.collapseHeader(this.$el);
+        },
+        preventDragStart(ev) {
+            ev.stopPropagation();
         }
     },
     components: {
