@@ -33,9 +33,9 @@ module.exports = {
             <div class="row" v-if="emptySuite">
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
-            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" :options="draggableOptions" v-model="draggableTasks" @end="restructureTasks" :move="checkMove">
+            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" v-bind:options="draggableOptions" v-model="draggableTasks" @end="restructureTasks">
                 <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" v-on:edit="editTask(i, $event)" v-bind:event="event"></task-card>
+                    <task-card v-bind:task="task" v-on:restructureTasks="restructureTasks" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
             <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
             </draggable>
@@ -51,9 +51,6 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
-        checkMove() {
-            return AppStatus.editMode;
-        },
         restructureTasks(ev) {
             const tasks = this.suite.tasks;
             const movedTask = tasks[ev.oldIndex];
