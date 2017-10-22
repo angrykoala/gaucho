@@ -1,9 +1,9 @@
 /* globals $, Materialize */
 "use strict";
 
-const AppConfig = require('../common/app_config');
+const AppConfig = require('../../common/app_config');
 
-//Methods interface with jQuery
+// Methods interface with jQuery
 module.exports = {
     init() {
         this.updateCollapsible();
@@ -50,5 +50,8 @@ module.exports = {
     },
     updateModals() {
         $('.modal').modal();
-    }
+    },
+	closeModals() {
+        $('#config-modal').modal('close');
+	}
 };

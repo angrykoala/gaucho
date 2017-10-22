@@ -5,9 +5,9 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
-const Materialize = require('../materialize');
+const Materialize = require('../api/materialize');
 
 const config = AppStatus.config;
 
@@ -26,9 +26,7 @@ module.exports = {
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text">
-
-
+        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>

@@ -1,22 +1,18 @@
 "use strict";
 
 const Suite = require('../../common/suite');
-const Material = require('../materialize');
+const Material = require('../api/materialize');
 const AppStatus = require('../app_status');
+const GauchoActions = require('../api/gaucho_actions');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
         "tap-target": TapTarget,
-    },
-    data() {
-        return {
-            AppStatus: AppStatus
-        };
     },
     template: `
     <div>
@@ -88,7 +84,7 @@ module.exports = {
             });
         },
         toggleEdit() {
-            AppStatus.toggleEdit();
+            GauchoActions.toggleEdit();
         },
         onMenuSelection(selection) {
             switch (selection) {
