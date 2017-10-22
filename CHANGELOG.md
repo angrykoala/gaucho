@@ -12,6 +12,7 @@
   * Fixed bug that prevented running tasks to be killed when closing Gaucho
   * Fixed bug where deleting a suite doesn't update total tasks in the bottom bar
   * Fixed bug where clearing all tasks doesn't update total tasks
+  * Fixed bug where clearing all tasks sometimes broke the Add-task button
   * Added pre-commit hook
   * Added a dev config environment
   * Code refactoring in several components and modules
