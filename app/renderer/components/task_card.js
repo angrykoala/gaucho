@@ -5,7 +5,7 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
-const DeleteConfirmationAlert = require('../api/app_alerts');
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
 
