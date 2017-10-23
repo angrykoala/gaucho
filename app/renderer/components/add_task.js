@@ -13,7 +13,7 @@ module.exports = {
         };
     },
     template: `
-        <li class="no-draggable"  v-on:pointerdown="preventDragStart($event)" 
+        <li class="run-card no-draggable"  v-on:pointerdown="preventDragStart($event)" 
         v-on:mousedown="preventDragStart($event)"
         v-on:touchstart="preventDragStart($event)">
             <div class="collapsible-header row center-align add-task-header">
