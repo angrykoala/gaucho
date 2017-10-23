@@ -46,14 +46,14 @@ module.exports = {
             </div>
         </div>
 
-    <div class="collapsible-body task-card-body">
-        <div v-if="!AppStatus.editMode" class="run-output">
-            <pre>{{output}}</pre>
-        </div>
-        <div v-else class="container">
-            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-        </div>
-    </div>
+      <div class="collapsible-body task-card-body">
+          <div v-if="!AppStatus.editMode" class="run-output">
+              <pre>{{output}}</pre>
+          </div>
+          <div v-else class="container">
+              <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
+          </div>
+      </div>
   </li>
   `,
     mounted() {
