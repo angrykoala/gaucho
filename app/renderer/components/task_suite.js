@@ -9,9 +9,10 @@ const AppStatus = require('../app_status');
 
 
 const draggableOptions = {
-    draggable: '.task-card',
     handle: '.collapsible-header.edit-mode',
-    filter: '.btn'
+    filter: '.no-draggable, .btn',
+    preventOnFilter: false,
+    group: 'tasks'
 };
 
 module.exports = {
@@ -34,7 +35,7 @@ module.exports = {
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
             <draggable v-else element="ul" 
-            :options="{filter:'.no-draggable', group:'tasks'}"
+            :options="draggableOptions"
             class="collapsible no-margin task-list" 
             data-collapsible="accordion" 
             v-model="suite.tasks"
