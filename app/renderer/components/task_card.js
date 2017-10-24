@@ -11,12 +11,10 @@ const Utils = require('../../common/utils');
 
 const config = AppStatus.config;
 
-
 module.exports = {
     props: ['task', 'event'],
     data() {
         return {
-            output: "",
             AppStatus: AppStatus
         };
     },
@@ -50,7 +48,7 @@ module.exports = {
 
     <div class="collapsible-body task-card-body">
         <div v-if="!AppStatus.editMode" class="run-output">
-            <pre>{{output}}</pre>
+            <pre>{{task.output}}</pre>
         </div>
         <div v-else class="container">
             <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
@@ -90,7 +88,7 @@ module.exports = {
             this.$emit('edit', task);
         },
         run() {
-            this.output = "";
+            this.task.output = "";
             AppStatus.runningTasks++;
             this.task.run(this.print, () => {
                 AppStatus.runningTasks--;
@@ -104,8 +102,8 @@ module.exports = {
             this.event.removeListener("stop", this.stop);
         },
         print(out) {
-            this.output += "\n" + out;
-            this.output = this.output.slice(-config.outputMaxSize).trim();
+            this.task.output += "\n" + out;
+            this.task.output = this.task.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
         },
         autoScroll() {
