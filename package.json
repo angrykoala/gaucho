@@ -42,22 +42,31 @@
     "lint": "eslint *.js app test",
     "dist": "npm run clean && electron-builder -wl"
   },
-  "build":{
-      "appId": "angrykoala.gaucho",
-      "linux":{
-          "target": ["deb", "rpm", "AppImage"],
-          "category": "Utility"
-      },
-      "win": {
-          "target": ["nsis", "portable"]
-      },
-      "mac": {
-          "target": ["dir"],
-          "category": "public.app-category.developer-tools"
-      },
-      "directories":{
-          "buildResources": "build_resources"
-      }
+  "build": {
+    "appId": "angrykoala.gaucho",
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage"
+      ],
+      "category": "Utility"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dir"
+      ],
+      "category": "public.app-category.developer-tools"
+    },
+    "directories": {
+      "buildResources": "build_resources"
+    }
   },
   "pre-commit": [
     "test",

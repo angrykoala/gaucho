@@ -5,7 +5,7 @@ const ipcRenderer = require('electron').ipcRenderer;
 
 const TasksHandler = require('./app/renderer/tasks_handler');
 const AppStatus = require('./app/renderer/app_status');
-const Material = require('./app/renderer/materialize');
+const Material = require('./app/renderer/api/materialize');
 
 const components = {
     "task-suite": require('./app/renderer/components/task_suite'),

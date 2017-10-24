@@ -2,16 +2,15 @@
 
 const os = require('os');
 const path = require('path');
-
+const fs = require('fs');
 const app = require('electron').remote;
 const dialog = app.dialog;
-
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
-const Materialize = require('../materialize');
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const Materialize = require('../api/materialize');
 
 module.exports = {
     data() {
@@ -34,13 +33,14 @@ module.exports = {
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
 
                 <div class="center-align buttons-form container">
-                    <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
+                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
-                     </br>
-                     <a class="waves-effect waves-light btn" v-on:click="exportTasks">Export Tasks</a>
-                    <label>Export the tasks.json to be able to load it into a different gaucho instance
-                    </label>
+                    </br>
+                    <a class="waves-effect waves-light btn" v-on:click="exportTasks">Export Tasks</a>
+                    <label>Export the tasks.json to be able to load it into a different gaucho instance</label>
+                    <a class="waves-effect waves-light btn" v-on:click="importTasks">Import Tasks</a>
+                    <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
                 </div>
             </div>
         </div>
@@ -50,8 +50,27 @@ module.exports = {
         </div>
     </div>
     `,
-
     methods: {
+        importTasks() {
+            dialog.showOpenDialog({
+                filters: [{
+                    name: 'json',
+                    extensions: ['json']
+                }]
+            }, (filenames) => {
+                if (filenames && filenames[0]) {
+                    const filename = filenames[0];
+                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.",
+                         {confirmButtonText: "Yes, import tasks", cancelButtonText: "No, cancel import"});
+                    confirmationAlert.toggle().then(() => {
+                        TasksHandler.clearTasks();
+                        fs.readFile(filename, 'utf-8', (err, data) => {
+                            TasksHandler.loadTasksFrom(data);
+                        });
+                    }, () => {});
+                }
+            });
+        },
         exportTasks() {
             dialog.showSaveDialog({
                 defaultPath: path.join(os.homedir(), "gtask.json"),
@@ -67,13 +86,18 @@ module.exports = {
             });
         },
         clearTasks() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!");
-                confirmationAlert.toggle().then(() => {
-                    TasksHandler.clearTasks();
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!",
+                {confirmButtonText: "Yes, clear them!", cancelButtonText: "No, keep them"});
+            confirmationAlert.toggle().then(() => {
+                TasksHandler.clearTasks();
+                TasksHandler.addDefaultSuite();
+                this.$nextTick(() => {
+                    Materialize.selectTab("#navbar-tabs", `tab0`);
                     AppStatus.activeSuite = 0;
-                    AppStatus.totalTasks = 0;
-                    Materialize.closeModals();
-                }, () => {});
+                });
+                AppStatus.totalTasks = 0;
+                Materialize.closeModals();
+            }, () => {});
         },
         resetConfig() {
             this.config.bottomBar = true;

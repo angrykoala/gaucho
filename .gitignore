@@ -36,6 +36,9 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+# emacs temporal files
+\#*\#
+.\#*
 
 # Custom
 tasks.json
@@ -45,3 +48,4 @@ dist
 package-lock.json
 .vscode
 test/temp
+

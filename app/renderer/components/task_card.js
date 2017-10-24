@@ -5,9 +5,9 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
-const Materialize = require('../materialize');
+const Materialize = require('../api/materialize');
 const ContextMenu = require('./context_menu');
 
 const config = AppStatus.config;
@@ -17,7 +17,7 @@ module.exports = {
     data() {
         return {
             output: "",
-            AppStatus: AppStatus,
+            AppStatus: AppStatus
         };
     },
     components: {
@@ -28,7 +28,7 @@ module.exports = {
     template: `
     <li class="run-card task-card">
         <context-menu ref="menu" v-bind:menuItems="menuItems"></context-menu>
-        <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="openContextMenu($event)">
+        <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="$refs.menu.openContextMenu" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
@@ -48,14 +48,14 @@ module.exports = {
             </div>
         </div>
 
-    <div class="collapsible-body task-card-body">
-        <div v-if="!AppStatus.editMode" class="run-output">
-            <pre>{{output}}</pre>
-        </div>
-        <div v-else class="container">
-            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-        </div>
-    </div>
+      <div class="collapsible-body task-card-body">
+          <div v-if="!AppStatus.editMode" class="run-output">
+              <pre>{{output}}</pre>
+          </div>
+          <div v-else class="container">
+              <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
+          </div>
+      </div>
   </li>
   `,
     mounted() {
@@ -67,13 +67,10 @@ module.exports = {
         this.removeListeners();
     },
     methods: {
-        openContextMenu(event) {
-            if (!AppStatus.editMode) {  // can't use in edit mode because of draggable
-                this.$refs.menu.openContextMenu(event);
-            }
-        },
         toggleRun(ev) {
-            ev.stopPropagation();
+            if (ev.target.classList.contains('btn')) {  // without this check the context menu doesn't close
+                ev.stopPropagation();
+            }
             if (this.running) this.stop();
             else this.run();
         },

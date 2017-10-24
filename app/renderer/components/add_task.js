@@ -1,7 +1,7 @@
 "use strict";
 
 const TaskInput = require('./task_input');
-const Materialize = require('../materialize');
+const Materialize = require('../api/materialize');
 
 module.exports = {
     props: ['tasks'],

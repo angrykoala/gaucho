@@ -1,7 +1,7 @@
 "use strict";
 
 const Task = require('../../common/task');
-const Material = require('../materialize');
+const Material = require('../api/materialize');
 
 module.exports = {
     props: ['task'],
