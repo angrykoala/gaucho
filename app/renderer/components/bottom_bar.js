@@ -25,5 +25,5 @@ module.exports = {
             </div>
         </nav>
     </div>
-    `,
+    `
 };

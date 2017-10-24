@@ -24,7 +24,7 @@ module.exports = {
         </template>
         <li class="divider"></li>
         <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal" ref="config">Configuration</a></li>
-        <li class="unselectable-text menu-button"><about ref="about"></about></li>
+        <li class="unselectable-text menu-button"><about></about></li>
     </ul>
     `,
     methods: {

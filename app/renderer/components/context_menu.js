@@ -21,6 +21,7 @@ module.exports = {
             let menuElement = this.$el;
             menuElement.style.display = "block";
             let bounds = menuElement.getBoundingClientRect();
+            // Math.min here to avoid the menu going off the side of the screen
             menuElement.style.left = Math.min(window.innerWidth - bounds.width - 3, event.clientX) + 'px';
             menuElement.style.top = Math.min(window.innerHeight - bounds.height - 5, event.clientY) + 'px';
             event.preventDefault();
@@ -28,15 +29,15 @@ module.exports = {
     },
     computed: {
         _menuItems() {
-            if (this.menuItems != null) {
+            if (this.menuItems != null) {   // if menu items are set use them
                 return this.menuItems;
-            } else {
-                return [
-                    {name: 'About', click: GauchoActions.toggleAbout },
-                    {name: 'Configuration', click: GauchoActions.toggleConfig },
-                    {name: AppStatus.editMode ? "Cancel Edit" : "Edit", click: GauchoActions.toggleEdit }
-                ];
             }
+            // otherwise use default
+            return [
+                {name: 'About', click: GauchoActions.toggleAbout },
+                {name: 'Configuration', click: GauchoActions.toggleConfig },
+                {name: AppStatus.editMode ? "Cancel Edit" : "Edit", click: GauchoActions.toggleEdit }
+            ];
         }
     }
 };

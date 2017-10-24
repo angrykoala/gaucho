@@ -9,6 +9,7 @@ const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationA
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
 const ContextMenu = require('./context_menu');
+const GauchoActions = require('../api/gaucho_actions');
 
 const config = AppStatus.config;
 
@@ -126,7 +127,7 @@ module.exports = {
         menuItems() {
             return [
                 { name: this.running ? 'Stop' : 'Run', click: this.toggleRun },
-                { name: AppStatus.editMode ? 'Done Editing' : 'Edit', click: function () {AppStatus.toggleEdit();} }
+                { name: AppStatus.editMode ? 'Done Editing' : 'Edit', click: GauchoActions.toggleEdit }
             ];
         },
         statusColor() {
