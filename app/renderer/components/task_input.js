@@ -1,7 +1,7 @@
 "use strict";
 
-const Task = require('../task');
-const Material = require('../materialize');
+const Task = require('../../common/task');
+const Material = require('../api/materialize');
 
 module.exports = {
     props: ['task'],
@@ -19,7 +19,7 @@ module.exports = {
             <label for="title">Task Title *</label>
         </div>
         <div class="input-field">
-            <textarea id="command" class="materialize-textarea" v-model="command" v-on:keydown.9="onCommandTabPressed"></textarea>
+            <textarea id="command" class="materialize-textarea" v-model="command"></textarea>
             <label>Command *</label>
         </div>
         <div class="input-field">
@@ -29,8 +29,8 @@ module.exports = {
         <div class="row task-input-send-row">
         <button class="btn waves-effect waves-light save-task-button" v-bind:class="{ disabled: !canSave }" v-on:click="saveTask">Save
             <i class="material-icons right">send</i>
-        </button>   
-        </div> 
+        </button>
+        </div>
     </div>
     `,
     mounted() {

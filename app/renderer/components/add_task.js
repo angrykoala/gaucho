@@ -1,6 +1,7 @@
 "use strict";
 
 const TaskInput = require('./task_input');
+const Materialize = require('../api/materialize');
 
 module.exports = {
     props: ['tasks'],
@@ -27,6 +28,7 @@ module.exports = {
     methods: {
         addTask(task) {
             this.$emit('add', task);
+            Materialize.collapseHeader(this.$el);
         }
     },
     components: {

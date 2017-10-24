@@ -1,22 +1,18 @@
 "use strict";
 
-const Suite = require('../suite');
-const Material = require('../materialize');
+const Suite = require('../../common/suite');
+const Material = require('../api/materialize');
 const AppStatus = require('../app_status');
+const GauchoActions = require('../api/gaucho_actions');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
         "tap-target": TapTarget,
-    },
-    data() {
-        return {
-            AppStatus: AppStatus
-        };
     },
     template: `
     <div>
@@ -59,7 +55,7 @@ module.exports = {
     methods: {
         addSuite() {
             if (this.suites.length < AppStatus.maxSuites) {
-                this.suites.push(new Suite("Suite " + (this.suites.length + 1)));
+                this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
                 this.selectTab(this.suites.length - 1);
             }
         },
@@ -80,12 +76,12 @@ module.exports = {
         selectTab(index) {
             if (index >= this.suites.length) index = this.suites.length - 1;
             this.$nextTick(() => {
-                Material.selectTab("#navbar-tabs", 'tab' + index);
+                Material.selectTab("#navbar-tabs", `tab${index}`);
                 AppStatus.activeSuite = index;
             });
         },
         toggleEdit() {
-            AppStatus.toggleEdit();
+            GauchoActions.toggleEdit();
         },
         onMenuSelection(selection) {
             switch (selection) {

@@ -1,9 +1,9 @@
 /* globals $, Materialize */
 "use strict";
 
-const AppConfig = require('../common/app_config');
+const AppConfig = require('../../common/app_config');
 
-//Methods interface with jQuery
+// Methods interface with jQuery
 module.exports = {
     init() {
         this.updateCollapsible();
@@ -22,6 +22,13 @@ module.exports = {
     },
     updateCollapsible() {
         $('.collapsible').collapsible();
+    },
+    collapseHeader($el) {
+        const elements = $el.getElementsByClassName('collapsible-header');
+        if (elements[0]) {
+            elements[0].classList.remove("active");
+            this.updateCollapsible();
+        }
     },
     updateTabs() {
         $('ul.tabs').tabs();
@@ -43,5 +50,8 @@ module.exports = {
     },
     updateModals() {
         $('.modal').modal();
-    }
+    },
+	closeModals() {
+        $('#config-modal').modal('close');
+	}
 };

@@ -4,9 +4,7 @@ const fs = require('fs');
 
 module.exports = {
     parseToJson(suites, version) {
-        const parsedSuites = suites.map((suite) => {
-            return suite.getData();
-        });
+        const parsedSuites = suites.map((suite) => suite.getData());
         const content = {
             "suites": parsedSuites,
             "version": version

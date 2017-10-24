@@ -5,9 +5,9 @@ const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
 
-const Material = require('../materialize');
-const DeleteConfirmationAlert = require('../app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
+const Materialize = require('../api/materialize');
 
 const config = AppStatus.config;
 
@@ -24,9 +24,7 @@ module.exports = {
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text">
-
-
+        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
@@ -46,14 +44,14 @@ module.exports = {
             </div>
         </div>
 
-    <div class="collapsible-body task-card-body">
-        <div v-if="!AppStatus.editMode" class="run-output">
-            <pre>{{task.output}}</pre>
-        </div>
-        <div v-else class="container">
-            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-        </div>
-    </div>
+      <div class="collapsible-body task-card-body">
+          <div v-if="!AppStatus.editMode" class="run-output">
+              <pre>{{task.output}}</pre>
+          </div>
+          <div v-else class="container">
+              <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
+          </div>
+      </div>
   </li>
   `,
     mounted() {
@@ -102,7 +100,7 @@ module.exports = {
             this.event.removeListener("stop", this.stop);
         },
         print(out) {
-            this.task.output += "\n" + out;
+            this.task.output += `\n${out}`;
             this.task.output = this.task.output.slice(-config.outputMaxSize).trim();
             this.autoScroll();
         },
@@ -115,11 +113,7 @@ module.exports = {
             }
         },
         collapseTask() {
-            const elements = this.$el.getElementsByClassName('collapsible-header');
-            if (elements[0]) {
-                elements[0].classList.remove("active");
-                Material.updateCollapsible();
-            }
+            Materialize.collapseHeader(this.$el);
         }
     },
     computed: {
