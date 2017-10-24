@@ -14,18 +14,19 @@
 
 <body>
     <section id="app">
+        <context-menu ref="menu"></context-menu>
         <config-menu></config-menu>
-        <header id="main-header" class="margin-bottom" style="height:100px">
+        <header id="main-header" class="margin-bottom" style="height:100px" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
             <navbar v-bind:suites="suites"></navbar>
         </header>
 
-        <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }">
+        <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
             <template v-for="(suite,index) in suites">
                     <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
                 </template>
         </main>
 
-        <footer v-if="AppStatus.config.bottomBar">
+        <footer v-if="AppStatus.config.bottomBar" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
             <bottom-bar></bottom-bar>
         </footer>
     </section>

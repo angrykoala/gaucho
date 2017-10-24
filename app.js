@@ -11,7 +11,8 @@ const components = {
     "task-suite": require('./app/renderer/components/task_suite'),
     "navbar": require('./app/renderer/components/navbar'),
     "bottom-bar": require('./app/renderer/components/bottom_bar'),
-    "config-menu": require('./app/renderer/components/config_menu')
+    "config-menu": require('./app/renderer/components/config_menu'),
+    "context-menu": require('./app/renderer/components/context_menu')
 };
 
 

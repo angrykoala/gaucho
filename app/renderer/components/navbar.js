@@ -6,20 +6,17 @@ const AppStatus = require('../app_status');
 const GauchoActions = require('../api/gaucho_actions');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
-const ContextMenu = require('./context_menu');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
-        "tap-target": TapTarget,
-        "context-menu": ContextMenu
+        "tap-target": TapTarget
     },
     template: `
     <div>
-    <context-menu ref="menu"></context-menu>
-    <div class="navbar-fixed" v-on:contextmenu.prevent="$refs.menu.openContextMenu($event)">
+    <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="brand-logo main-logo left">

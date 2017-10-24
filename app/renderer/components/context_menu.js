@@ -25,6 +25,7 @@ module.exports = {
             menuElement.style.left = `${Math.min(window.innerWidth - bounds.width - 3, event.clientX)}px`;
             menuElement.style.top = `${Math.min(window.innerHeight - bounds.height - 5, event.clientY)}px`;
             event.preventDefault();
+            event.stopPropagation();
         }
     },
     computed: {
