@@ -86,7 +86,6 @@ module.exports = {
             this.$emit('edit', task);
         },
         run() {
-            this.task.output = "";
             AppStatus.runningTasks++;
             this.task.run(this.print, () => {
                 AppStatus.runningTasks--;

@@ -19,6 +19,7 @@ class Task {
         this.path = path || "";
         this.status = TaskStatus.idle;
 
+        this.output = null;
         this.beginTime = null;
         this.finishTime = null;
         this.elapsedTime = null;
@@ -29,6 +30,7 @@ class Task {
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
+        this.output = "";
         this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
