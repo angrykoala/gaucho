@@ -9,8 +9,6 @@ const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationA
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
 
-const config = AppStatus.config;
-
 module.exports = {
     props: ['task', 'event'],
     data() {
@@ -87,7 +85,7 @@ module.exports = {
         },
         run() {
             AppStatus.runningTasks++;
-            this.task.run(this.print, () => {
+            this.task.run(this.autoScroll, () => {
                 AppStatus.runningTasks--;
             });
         },
@@ -97,11 +95,6 @@ module.exports = {
         removeListeners() {
             this.event.removeListener("run", this.run);
             this.event.removeListener("stop", this.stop);
-        },
-        print(out) {
-            this.task.output += `\n${out}`;
-            this.task.output = this.task.output.slice(-config.outputMaxSize).trim();
-            this.autoScroll();
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");

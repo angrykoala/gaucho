@@ -30,7 +30,6 @@ class Task {
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
-        this.output = "";
         this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
@@ -40,8 +39,9 @@ class Task {
                 stderr: stdout,
                 stdout: stdout
             },
-            (code) => {
+            (code, out) => {
                 if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
+                this.output = `\n${out.join("\n")}`.trim();
                 this.finishTime = Date.now();
                 this._updateElapsedTime();
                 TaskEvents.removeListener("time-update", this.onTimeUpdate);
