@@ -18,7 +18,7 @@ module.exports = {
     },
     template: `
     <div>
-    <context-menu v-bind:menuItems="menuItems" ref="menu"></context-menu>
+    <context-menu ref="menu"></context-menu>
     <div class="navbar-fixed" v-on:contextmenu.prevent="$refs.menu.openContextMenu($event)">
         <nav class="nav-extended">
             <div class="nav-wrapper">
@@ -86,12 +86,6 @@ module.exports = {
         toggleEdit() {
             GauchoActions.toggleEdit();
         },
-        openAbout() {
-            this.$refs.navMenu.$refs.about.openAbout();
-        },
-        openConfig() {
-            this.$refs.navMenu.$refs.config.click();
-        },
         onMenuSelection(selection) {
             switch (selection) {
                 case "add-suite":
@@ -111,13 +105,6 @@ module.exports = {
         },
         editMode() {
             return AppStatus.editMode;
-        },
-        menuItems() {
-            return [
-                { name: "About", click: this.openAbout },
-                { name: "Configuration", click: this.openConfig },
-                { name: this.editMode ? "Cancel Edit" : "Edit", click: this.toggleEdit }
-            ];
         }
     }
 };

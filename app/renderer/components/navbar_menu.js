@@ -1,11 +1,16 @@
 "use strict";
 const AppStatus = require('../app_status');
 const About = require('./about');
+const GauchoActions = require('../api/gaucho_actions');
+
 
 module.exports = {
     props: ['suites'],
     components: {
         "about": About
+    },
+    mounted() {
+        GauchoActions.on('toggle-config', this.toggleConfig);
     },
     template: `
     <ul id='navbar-menu' class='dropdown-content'>
@@ -23,6 +28,9 @@ module.exports = {
     </ul>
     `,
     methods: {
+        toggleConfig() {
+            this.$refs.config.click();
+        },
         selected(ev, selection, ignoreSelection) {
             if (!ignoreSelection) {
                 this.$emit("selection", selection);

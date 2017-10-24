@@ -2,6 +2,7 @@
 const shell = require('electron').shell;
 const AppStatus = require('../app_status');
 const AppAlert = require('../api/app_alerts').AppAlert;
+const GauchoActions = require('../api/gaucho_actions');
 
 
 const aboutHtml = `<i>Version: ${AppStatus.version}</i>
@@ -18,6 +19,9 @@ module.exports = {
                 confirmButtonText: "Close"
             }).html(aboutHtml)
         };
+    },
+    mounted() {
+        GauchoActions.on('toggle-about', this.openAbout);
     },
     template: `<a v-on:click="openAbout">About</a>`,
     methods: {
