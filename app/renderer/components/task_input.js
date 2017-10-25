@@ -2,6 +2,7 @@
 
 const Task = require('../task');
 const Material = require('../materialize');
+const config = require('../app_status').config;
 
 module.exports = {
     props: ['task'],
@@ -10,6 +11,7 @@ module.exports = {
             title: "",
             command: "",
             path: "",
+            config
         };
     },
     template: `
@@ -44,7 +46,7 @@ module.exports = {
     methods: {
         saveTask() {
             if (this.canSave) {
-                this.$emit('save', new Task(this.title, this.path, this.command));
+                this.$emit('save', new Task(this.title, this.path, this.command, this.config));
                 this.clear();
             }
         },

@@ -6,16 +6,16 @@ const yerbamate = require("yerbamate");
 
 const TaskStatus = require("../common/task_status");
 const TaskTimer = require("../common/timer");
-const AppStatus = require("./app_status");
 
 const TaskEvents = new EventEmitter();
 
 class Task {
-  constructor(title, path, command) {
+  constructor(title, path, command, config) {
     this.title = title.trim() || "";
     this.command = command || "";
     this.path = path || "";
     this.status = TaskStatus.idle;
+    this.config = config;
 
     this.beginTime = null;
     this.finishTime = null;
@@ -24,8 +24,7 @@ class Task {
   }
 
   run(stdout, done) {
-    const showTimer = AppStatus.config.showTimer;
-    if (showTimer) {
+    if (this.config && this.config.showTimer) {
       TaskTimer(TaskEvents, 1000);
     }
 
@@ -44,7 +43,7 @@ class Task {
         if (this.status !== TaskStatus.stopped)
           this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
 
-        if (showTimer) {
+        if (this.config && this.config.showTimer) {
           this.finishTime = Date.now();
           this.updateElapsedTime();
           TaskEvents.removeListener("time-update", this.onTimeUpdate);
@@ -53,7 +52,7 @@ class Task {
       }
     );
 
-    if (showTimer) {
+    if (this.config && this.config.showTimer) {
       this.beginTime = Date.now();
       this.finishTime = null;
 
