@@ -17,7 +17,8 @@ module.exports = {
         return {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
-                animatedSpinner: AppStatus.config.animatedSpinner
+                animatedSpinner: AppStatus.config.animatedSpinner,
+                showTimer: AppStatus.config.showTimer
             }
         };
     },
@@ -31,6 +32,7 @@ module.exports = {
             <div class="container config-form">
                 <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
+                <switch-form v-bind:title="'Show Timer'" v-model="config.showTimer"></switch-form>
 
                 <div class="center-align buttons-form container">
                     <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
@@ -102,14 +104,17 @@ module.exports = {
         resetConfig() {
             this.config.bottomBar = true;
             this.config.animatedSpinner = true;
+            this.config.showTimer = true;
         },
         onClose() {
             this.config.bottomBar = AppStatus.config.bottomBar;
             this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+            this.config.showTimer = AppStatus.config.showTimer;
         },
         onSave() {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+            AppStatus.config.showTimer = this.config.showTimer;
         }
     }
 };

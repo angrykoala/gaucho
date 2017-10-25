@@ -16,7 +16,8 @@ const defaultUserConfig = {
     maximized: false,
     bottomBar: true,
     animatedSpinner: true,
-    firstVisit: false
+    firstVisit: false,
+    showTimer: true
 };
 
 const defaultTasks = {
@@ -45,7 +46,6 @@ const defaultTasks = {
         }]
     }]
 };
-
 
 // Just for basic offuscation of the config file
 const defaultKey = "ro64wz3l7d";
