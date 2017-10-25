@@ -3,6 +3,7 @@ const Store = require('electron-store');
 
 const Suite = require('./suite');
 const Task = require('./task');
+const config = require("./app_status").config;
 
 // Just for basic offuscation of the config file
 const key = "Z4xu6Nzj";
@@ -74,7 +75,7 @@ module.exports = {
         return data.map((suite) => {
             let result = new Suite(suite.title);
             result.tasks = suite.tasks.map((task) => {
-                return new Task(task.title, task.path, task.command);
+                return new Task(task.title, task.path, task.command, config);
             });
             return result;
         });

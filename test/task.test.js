@@ -9,10 +9,11 @@ const Task = require('../app/renderer/task');
 const TaskStatus = require('../app/common/task_status');
 
 describe("Tasks", () => {
-    let testTask;
+    let testTask, testTaskNotToUpdate;
     const taskCommand = "node " + path.join(config.testResources, config.taskFiles.helloWorld);
     beforeEach(() => {
-        testTask = new Task("Test", "", taskCommand);
+        testTask = new Task("Test", "", taskCommand, {showTimer: true});
+        testTaskNotToUpdate = new Task("Test", "", taskCommand, {showTimer: false});
     });
 
     afterEach(() => {
@@ -88,6 +89,19 @@ describe("Tasks", () => {
             testTask.updateElapsedTime();
         });
         assert.isNumber(testTask.elapsedTime);
+    });
+
+    it("Does Not Update Execution Time", () => {
+        assert.throws(() => {
+            testTaskNotToUpdate.updateElapsedTime();
+        });
+        assert.isNull(testTaskNotToUpdate.elapsedTime);
+
+        testTaskNotToUpdate.run(() => {}, () => {});
+        assert.throws(() => {
+            testTaskNotToUpdate.updateElapsedTime();
+        });
+        assert.isNull(testTaskNotToUpdate.elapsedTime);
     });
 
     it("Stop task", (done) => {

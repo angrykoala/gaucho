@@ -1,36 +1,35 @@
 "use strict";
 
-const AppStatus = require('../app_status');
-const TaskInput = require('./task_input');
-const TaskStatus = require('../../common/task_status');
-const ProgressSpinner = require('./progress_spinner');
+const AppStatus = require("../app_status");
+const TaskInput = require("./task_input");
+const TaskStatus = require("../../common/task_status");
+const ProgressSpinner = require("./progress_spinner");
 
-const Material = require('../materialize');
-const Utils = require('../../common/utils');
+const Material = require("../materialize");
+const Utils = require("../../common/utils");
 
 const config = AppStatus.config;
 
-
 module.exports = {
-    props: ['task', 'event'],
-    data() {
-        return {
-            output: "",
-            AppStatus: AppStatus
-        };
-    },
-    components: {
-        "task-input": TaskInput,
-        "progress-spinner": ProgressSpinner
-    },
-    template: `
+  props: ["task", "event"],
+  data() {
+    return {
+      output: "",
+      AppStatus: AppStatus
+    };
+  },
+  components: {
+    "task-input": TaskInput,
+    "progress-spinner": ProgressSpinner
+  },
+  template: `
     <li class="run-card">
         <div class="collapsible-header row unselectable-text">
             <div class="col s5">
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
-                <div class="truncate task-time">{{executionTime}}</div>
+                <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
             </div>
             <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
@@ -52,90 +51,92 @@ module.exports = {
     </div>
   </li>
   `,
-    mounted() {
-        this.event.on("run", this.run);
-        this.event.on("stop", this.stop);
+  mounted() {
+    this.event.on("run", this.run);
+    this.event.on("stop", this.stop);
+  },
+  beforeDestroy() {
+    this.removeListeners();
+  },
+  methods: {
+    toggleRun(ev) {
+      ev.stopPropagation();
+      if (this.running) this.stop();
+      else this.run();
     },
-    beforeDestroy() {
-        this.removeListeners();
+    onDeleteClick(ev) {
+      ev.stopPropagation();
+      this.deleteTask();
     },
-    methods: {
-        toggleRun(ev) {
-            ev.stopPropagation();
-            if (this.running) this.stop();
-            else this.run();
-        },
-        onDeleteClick(ev) {
-            ev.stopPropagation();
-            this.deleteTask();
-
-        },
-        deleteTask() {
-            this.stop();
-            this.$emit('remove');
-        },
-        saveTask(task) {
-            this.stop();
-            this.collapseTask();
-            this.$emit('edit', task);
-        },
-        run() {
-            this.output = "";
-            AppStatus.runningTasks++;
-            this.task.run(this.print, () => {
-                    AppStatus.runningTasks--;
-            });
-        },
-        stop() {
-            this.task.stop();
-        },
-        removeListeners() {
-            this.event.removeListener("run", this.run);
-            this.event.removeListener("stop", this.stop);
-        },
-        print(out) {
-            this.output += "\n" + out;
-            this.output = this.output.slice(-config.outputMaxSize).trim();
-            this.autoScroll();
-        },
-        autoScroll() {
-            let container = this.$el.querySelector(".run-output");
-            if (container && container.scrollTop === container.scrollHeight - container.clientHeight) {
-                this.$nextTick(() => {
-                    container.scrollTop = container.scrollHeight;
-                });
-            }
-        },
-        collapseTask() {
-            const elements = this.$el.getElementsByClassName('collapsible-header');
-            if (elements[0]) {
-                elements[0].classList.remove("active");
-                Material.updateCollapsible();
-            }
-        }
+    deleteTask() {
+      this.stop();
+      this.$emit("remove");
     },
-    computed: {
-        statusColor() {
-            switch (this.task.status) {
-                case TaskStatus.idle:
-                case TaskStatus.stopped:
-                    return "black";
-                case TaskStatus.error:
-                    return "red";
-                case TaskStatus.running:
-                    return "blue";
-                case TaskStatus.ok:
-                    return "green";
-                default:
-                    return "grey";
-            }
-        },
-        running() {
-            return this.task.isRunning();
-        },
-        executionTime() {
-            if (this.task.beginTime === null) return "-";
-            return Utils.generateTimeString(this.task.elapsedTime);
-        }
+    saveTask(task) {
+      this.stop();
+      this.collapseTask();
+      this.$emit("edit", task);
+    },
+    run() {
+      this.output = "";
+      AppStatus.runningTasks++;
+      this.task.run(this.print, () => {
+        AppStatus.runningTasks--;
+      });
+    },
+    stop() {
+      this.task.stop();
+    },
+    removeListeners() {
+      this.event.removeListener("run", this.run);
+      this.event.removeListener("stop", this.stop);
+    },
+    print(out) {
+      this.output += "\n" + out;
+      this.output = this.output.slice(-config.outputMaxSize).trim();
+      this.autoScroll();
+    },
+    autoScroll() {
+      let container = this.$el.querySelector(".run-output");
+      if (
+        container &&
+        container.scrollTop === container.scrollHeight - container.clientHeight
+      ) {
+        this.$nextTick(() => {
+          container.scrollTop = container.scrollHeight;
+        });
+      }
+    },
+    collapseTask() {
+      const elements = this.$el.getElementsByClassName("collapsible-header");
+      if (elements[0]) {
+        elements[0].classList.remove("active");
+        Material.updateCollapsible();
+      }
     }
+  },
+  computed: {
+    statusColor() {
+      switch (this.task.status) {
+        case TaskStatus.idle:
+        case TaskStatus.stopped:
+          return "black";
+        case TaskStatus.error:
+          return "red";
+        case TaskStatus.running:
+          return "blue";
+        case TaskStatus.ok:
+          return "green";
+        default:
+          return "grey";
+      }
+    },
+    running() {
+      return this.task.isRunning();
+    },
+    executionTime() {
+      if (this.task.beginTime === null) return "-";
+      return Utils.generateTimeString(this.task.elapsedTime);
+    }
+  }
 };
