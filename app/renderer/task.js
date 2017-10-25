@@ -7,7 +7,6 @@ const yerbamate = require("yerbamate");
 const TaskStatus = require("../common/task_status");
 const TaskTimer = require("../common/timer");
 const AppStatus = require("./app_status");
-const showTimer = AppStatus.config.showTimer;
 
 const TaskEvents = new EventEmitter();
 
@@ -26,7 +25,9 @@ class Task {
 
   run(stdout, done) {
     const showTimer = AppStatus.config.showTimer;
-    showTimer && TaskTimer(TaskEvents, 1000);
+    if (showTimer) {
+      TaskTimer(TaskEvents, 1000);
+    }
 
     if (this.isRunning()) {
       throw new Error("Trying to run task without stopping it first");
@@ -41,9 +42,7 @@ class Task {
       },
       code => {
         if (this.status !== TaskStatus.stopped)
-          this.status = yerbamate.successCode(code)
-            ? TaskStatus.ok
-            : TaskStatus.error;
+          this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
 
         if (showTimer) {
           this.finishTime = Date.now();
