@@ -9,9 +9,10 @@ const AppStatus = require('../app_status');
 
 
 const draggableOptions = {
-    draggable: '.task-card',
     handle: '.collapsible-header.edit-mode',
-    filter: '.btn',
+    filter: '.no-draggable, .btn',
+    preventOnFilter: false,
+    group: 'tasks'
 };
 
 module.exports = {
@@ -33,7 +34,13 @@ module.exports = {
             <div class="row" v-if="emptySuite">
                 <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
             </div>
-            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" v-bind:options="draggableOptions" v-model="suite.tasks" @start="onDragStart">
+            <draggable v-else element="ul" 
+            :options="draggableOptions"
+            class="collapsible no-margin task-list" 
+            data-collapsible="accordion" 
+            v-model="suite.tasks"
+            @start="onDragStart"
+            :move="checkMove">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
@@ -51,6 +58,9 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
+        checkMove(evt) {
+            return !(evt.related.classList.contains('no-draggable') && evt.willInsertAfter);
+        },
         onDragStart(){
             this.event.emit("collapseTask");
         },
@@ -66,7 +76,7 @@ module.exports = {
             AppStatus.totalTasks--;
         },
         editTask(i, task) {
-            this.suite.replaceTask(i, task);
+          this.suite.replaceTask(i, task);
             this.$forceUpdate();
         },
         onRunSuite() {
@@ -88,7 +98,7 @@ module.exports = {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
         emptySuite() {
-            return this.suite.tasks.length === 0 && !AppStatus.editMode;
+          return this.suite.tasks.length === 0 && !AppStatus.editMode;
         }
     }
 };
