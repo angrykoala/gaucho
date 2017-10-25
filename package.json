@@ -24,7 +24,7 @@
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^3.13.1",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "mocha": "^4.0.0",
     "pre-commit": "^1.2.2",
     "sinon": "^4.0.1"
   },
@@ -33,7 +33,7 @@
     "icon": "resources/icon.png"
   },
   "scripts": {
-    "test": "istanbul cover _mocha && npm run lint",
+    "test": "istanbul cover _mocha -- --exit && npm run lint",
     "start": "electron .",
     "start-dev": "cross-env NODE_ENV=dev npm start",
     "build-electron": "electron-packager . --overwrite --out builds --ignore $npm_package_config_ignore --icon=$npm_package_config_icon",
