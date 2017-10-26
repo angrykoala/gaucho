@@ -59,7 +59,7 @@ describe("Tasks", () => {
     });
 
     it("Get Task Config with path", () => {
-        const taskConfigTest = new Task("Test", "a/path", taskCommand);
+        const taskConfigTest = new Task("Test", "a/path", taskCommand, { showTimer: true });
         const taskData = taskConfigTest.getData();
         const expectedResult = {
             title: "Test",
@@ -70,7 +70,7 @@ describe("Tasks", () => {
     });
 
     it("Invalid Task Execution", (done) => {
-        let invalidTask = new Task("Invalid test", "", "invalidTask");
+        let invalidTask = new Task("Invalid test", "", "invalidTask", { showTimer: true });
 
         invalidTask.run(() => {}, () => {
             assert.strictEqual(invalidTask.status, TaskStatus.error);
