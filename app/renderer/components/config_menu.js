@@ -42,6 +42,14 @@ module.exports = {
                     <a class="waves-effect waves-light btn" v-on:click="importTasks">Import Tasks</a>
                     <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
                 </div>
+
+                <div class="shortcuts-learn">
+                    <h4>Shortcuts</h4>
+                    <div class="description"><code>CTRL+E</code> Enable/Disable edit</div>
+                    <div class="description"><code>CTRL+M</code> Open menu</div>
+                    <div class="description"><code>CTRL+TAB</code> Jump to the next suite</div>
+                    <div class="description"><code>CTRL+SHIFT+TAB</code> Jump to the previous suite</div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
