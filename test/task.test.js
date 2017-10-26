@@ -18,6 +18,7 @@ describe("Tasks", () => {
 
     afterEach(() => {
         testTask.stop();
+        testTaskNotToUpdate.stop();
     });
 
 
@@ -92,14 +93,13 @@ describe("Tasks", () => {
     });
 
     it("Does Not Update Execution Time", () => {
-        assert.throws(() => {
-            testTaskNotToUpdate.updateElapsedTime();
+        assert.doesNotThrow(() => {
+            testTaskNotToUpdate._updateElapsedTime();
         });
         assert.isNull(testTaskNotToUpdate.elapsedTime);
-
         testTaskNotToUpdate.run(() => {}, () => {});
-        assert.throws(() => {
-            testTaskNotToUpdate.updateElapsedTime();
+        assert.doesNotThrow(() => {
+            testTaskNotToUpdate._updateElapsedTime();
         });
         assert.isNull(testTaskNotToUpdate.elapsedTime);
     });
@@ -113,5 +113,18 @@ describe("Tasks", () => {
             done();
         });
         testTask.stop();
+    });
+
+    it("Trying to run a running task", (done) => {
+        assert.isFalse(testTask.isRunning());
+        assert.strictEqual(testTask.status, TaskStatus.idle);
+
+        testTask.run(() => {}, () => {
+            assert.isFalse(testTask.isRunning());
+            assert.strictEqual(testTask.status, TaskStatus.ok);
+            done();
+        });
+        assert.isTrue(testTask.isRunning());
+        assert.throws(() => testTask.run(() => {}, () => {}))
     });
 });

@@ -81,11 +81,13 @@ class Task {
     }
 
     _updateElapsedTime() {
-        if (this.beginTime === null) throw new Error("Error, cant update time");
-        let finishTime = this.finishTime;
-        if (finishTime === null) finishTime = Date.now();
+        if (this.config.showTimer) {
+            if (this.beginTime === null) throw new Error("Error, cant update time");
+            let finishTime = this.finishTime;
+            if (finishTime === null) finishTime = Date.now();
 
-        this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
+            this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
+        }
     }
 
     _processCommand() {
