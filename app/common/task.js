@@ -8,10 +8,8 @@ const yerbamate = require('yerbamate');
 const TaskStatus = require('../common/task_status');
 const TaskTimer = require('../common/utils').timer;
 
-
 const TaskEvents = new EventEmitter();
 TaskTimer(TaskEvents, 1000);
-
 class Task {
     constructor(title, path, command) {
         this.title = title.trim() || "";
@@ -45,6 +43,7 @@ class Task {
                 TaskEvents.removeListener("time-update", this.onTimeUpdate);
                 done();
             });
+
         this.onTimeUpdate = () => {
             this._updateElapsedTime();
         };
