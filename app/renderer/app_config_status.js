@@ -18,8 +18,8 @@ module.exports = class AppConfigStatus {
         this.appConfig.set("animatedSpinner", value);
     }
     set showTimer(value) {
-      this._showTimer = value;
-      this.appConfig.set("showTimer", value);
+        this._showTimer = value;
+        this.appConfig.set("showTimer", value);
     }
     get bottomBar() {
         return this._bottomBar;
@@ -28,6 +28,6 @@ module.exports = class AppConfigStatus {
         return this._animatedSpinner;
     }
     get showTimer() {
-      return this._showTimer;
+        return this._showTimer;
     }
 };

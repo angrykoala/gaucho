@@ -62,8 +62,10 @@ module.exports = {
             }, (filenames) => {
                 if (filenames && filenames[0]) {
                     const filename = filenames[0];
-                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.",
-                         {confirmButtonText: "Yes, import tasks", cancelButtonText: "No, cancel import"});
+                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.", {
+                        confirmButtonText: "Yes, import tasks",
+                        cancelButtonText: "No, cancel import"
+                    });
                     confirmationAlert.toggle().then(() => {
                         TasksHandler.clearTasks();
                         fs.readFile(filename, 'utf-8', (err, data) => {
@@ -88,8 +90,10 @@ module.exports = {
             });
         },
         clearTasks() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!",
-                {confirmButtonText: "Yes, clear them!", cancelButtonText: "No, keep them"});
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!", {
+                confirmButtonText: "Yes, clear them!",
+                cancelButtonText: "No, keep them"
+            });
             confirmationAlert.toggle().then(() => {
                 TasksHandler.clearTasks();
                 TasksHandler.addDefaultSuite();

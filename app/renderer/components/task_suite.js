@@ -32,12 +32,14 @@ module.exports = {
     template: `
         <div v-bind:id="id" class="no-margin">
             <div class="row" v-if="emptySuite">
-                <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
+                <div class="grey-text text-lighten-1 section center-align" >
+                    You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
+                </div>
             </div>
-            <draggable v-else element="ul" 
+            <draggable v-else element="ul"
             :options="draggableOptions"
-            class="collapsible no-margin task-list" 
-            data-collapsible="accordion" 
+            class="collapsible no-margin task-list"
+            data-collapsible="accordion"
             v-model="suite.tasks"
             @start="onDragStart"
             :move="checkMove">
@@ -61,7 +63,7 @@ module.exports = {
         checkMove(evt) {
             return !(evt.related.classList.contains('no-draggable') && evt.willInsertAfter);
         },
-        onDragStart(){
+        onDragStart() {
             this.event.emit("collapseTask");
         },
         addTask(task) {
@@ -76,7 +78,7 @@ module.exports = {
             AppStatus.totalTasks--;
         },
         editTask(i, task) {
-          this.suite.replaceTask(i, task);
+            this.suite.replaceTask(i, task);
             this.$forceUpdate();
         },
         onRunSuite() {
@@ -98,7 +100,7 @@ module.exports = {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
         emptySuite() {
-          return this.suite.tasks.length === 0 && !AppStatus.editMode;
+            return this.suite.tasks.length === 0 && !AppStatus.editMode;
         }
     }
 };

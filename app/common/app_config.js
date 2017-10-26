@@ -6,7 +6,7 @@ const utils = require('./utils');
 const FIELDS = {
     WINDOW_SIZE: "windowSize",
     DEVTOOLS_SIZE: "devToolsSize",
-    MAXIMIZED: "maximized",
+    MAXIMIZED: "maximized"
 };
 
 const defaultUserConfig = {
@@ -59,7 +59,6 @@ class AppConfig {
             encryptionKey: key
         });
     }
-
     set(key, value) {
         this.store.set(key, value);
     }

@@ -73,7 +73,6 @@ module.exports = {
         onDeleteClick(ev) {
             ev.stopPropagation();
             this.deleteTask();
-
         },
         deleteTask() {
             const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");

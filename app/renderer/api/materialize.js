@@ -51,7 +51,7 @@ module.exports = {
     updateModals() {
         $('.modal').modal();
     },
-	closeModals() {
+    closeModals() {
         $('#config-modal').modal('close');
-	}
+    }
 };

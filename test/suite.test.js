@@ -128,7 +128,7 @@ describe("Suite", () => {
         testSuite.addTask(taskStub);
         testSuite.addTask(taskStub2);
         testSuite.addTask(taskStub3);
-        assert.lengthOf(testSuite.tasks,3);
+        assert.lengthOf(testSuite.tasks, 3);
         assert.strictEqual(testSuite.tasks[0].title, "test");
         assert.strictEqual(testSuite.tasks[1].title, "test (2)");
         assert.strictEqual(testSuite.tasks[2].title, "test (3)");
@@ -145,7 +145,7 @@ describe("Suite", () => {
         testSuite.addTask(taskStub);
         testSuite.addTask(taskStub2);
         testSuite.replaceTask(1, taskStub3);
-        assert.lengthOf(testSuite.tasks,2);
+        assert.lengthOf(testSuite.tasks, 2);
         assert.strictEqual(testSuite.tasks[0].title, "test");
         assert.strictEqual(testSuite.tasks[1].title, "test (2)");
     });
@@ -156,7 +156,7 @@ describe("Suite", () => {
 
         testSuite.addTask(taskStub);
         testSuite.replaceTask(0, taskStub2);
-        assert.lengthOf(testSuite.tasks,1);
+        assert.lengthOf(testSuite.tasks, 1);
         assert.strictEqual(testSuite.tasks[0].title, "test");
     });
 });

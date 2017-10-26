@@ -12,7 +12,7 @@ module.exports = {
     props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
-        "tap-target": TapTarget,
+        "tap-target": TapTarget
     },
     template: `
     <div>
@@ -54,7 +54,7 @@ module.exports = {
     },
     methods: {
         dragOver(index) {
-          this.selectTab(index);
+            this.selectTab(index);
         },
         addSuite() {
             if (this.suites.length < AppStatus.maxSuites) {
