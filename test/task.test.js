@@ -9,18 +9,15 @@ const Task = require('../app/common/task');
 const TaskStatus = require('../app/common/task_status');
 
 describe("Tasks", () => {
-    let testTask, testTaskNotToUpdate;
+    let testTask;
     const taskCommand = `node ${path.join(config.testResources, config.taskFiles.helloWorld)}`;
     beforeEach(() => {
         testTask = new Task("Test", "", taskCommand, {showTimer: true});
-        testTaskNotToUpdate = new Task("Test", "", taskCommand, {showTimer: false});
     });
 
     afterEach(() => {
         testTask.stop();
-        testTaskNotToUpdate.stop();
     });
-
 
     it("Valid Tasks Status", () => {
         assert.isOk(TaskStatus.idle);
@@ -90,18 +87,6 @@ describe("Tasks", () => {
             testTask._updateElapsedTime();
         });
         assert.isNumber(testTask.elapsedTime);
-    });
-
-    it("Does Not Update Execution Time", () => {
-        assert.doesNotThrow(() => {
-            testTaskNotToUpdate._updateElapsedTime();
-        });
-        assert.isNull(testTaskNotToUpdate.elapsedTime);
-        testTaskNotToUpdate.run(() => {}, () => {});
-        assert.doesNotThrow(() => {
-            testTaskNotToUpdate._updateElapsedTime();
-        });
-        assert.isNull(testTaskNotToUpdate.elapsedTime);
     });
 
     it("Stop task", (done) => {

@@ -9,7 +9,7 @@ const TaskStatus = require('../common/task_status');
 const TaskTimer = require('../common/utils').timer;
 
 const TaskEvents = new EventEmitter();
-
+TaskTimer(TaskEvents, 1000);
 class Task {
     constructor(title, path, command, config) {
         this.title = title.trim() || "";
@@ -25,10 +25,6 @@ class Task {
     }
 
     run(stdout, done) {
-        if (this.config.showTimer) {
-          TaskTimer(TaskEvents, 1000);
-        }
-
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
@@ -43,21 +39,17 @@ class Task {
             },
             (code) => {
                 if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
-                if (this.config.showTimer) {
-                  this.finishTime = Date.now();
-                  this._updateElapsedTime();
-                  TaskEvents.removeListener("time-update", this.onTimeUpdate);
-                }
+                this.finishTime = Date.now();
+                this._updateElapsedTime();
+                TaskEvents.removeListener("time-update", this.onTimeUpdate);
                 done();
             });
 
-        if (this.config.showTimer) {
-          this.onTimeUpdate = () => {
-              this._updateElapsedTime();
-          };
-          TaskEvents.on("time-update", this.onTimeUpdate);
-          this._updateElapsedTime();
-        }
+        this.onTimeUpdate = () => {
+            this._updateElapsedTime();
+        };
+        TaskEvents.on("time-update", this.onTimeUpdate);
+        this._updateElapsedTime();
     }
 
     stop(cb) {
@@ -81,13 +73,11 @@ class Task {
     }
 
     _updateElapsedTime() {
-        if (this.config.showTimer) {
-            if (this.beginTime === null) throw new Error("Error, cant update time");
-            let finishTime = this.finishTime;
-            if (finishTime === null) finishTime = Date.now();
+        if (this.beginTime === null) throw new Error("Error, cant update time");
+        let finishTime = this.finishTime;
+        if (finishTime === null) finishTime = Date.now();
 
-            this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
-        }
+        this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
     }
 
     _processCommand() {
