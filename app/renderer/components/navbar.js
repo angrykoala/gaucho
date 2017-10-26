@@ -95,7 +95,7 @@ module.exports = {
                     this.deleteSuite();
                     break;
                 default:
-                    this.AppStatus.events.emit(selection);
+                    AppStatus.events.emit(selection);
             }
         }
     },
