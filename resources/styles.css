@@ -67,7 +67,7 @@
   text-align: center;
   z-index: 997;
   bottom: 40px;
-  right: 0;
+  right: -10px;
   border-radius: 3px;
   padding: 0 10px;
 }
@@ -76,7 +76,7 @@
   content: '';
   position: absolute;
   top: 100%;
-  right: 10px;
+  right: 17px;
   border-width: 5px;
   border-style: solid;
   border-color: black transparent transparent transparent;
