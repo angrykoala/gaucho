@@ -9,7 +9,7 @@
     "jquery-ui": "^1.12.1",
     "material-design-icons-iconfont": "^3.0.3",
     "materialize-css": "^0.99.0",
-    "sweetalert2": "^6.10.1",
+    "sweetalert2": "^6.11.1",
     "vue": "^2.0.8",
     "vuedraggable": "^2.14.1",
     "yerbamate": "^2.0.1"
@@ -17,8 +17,8 @@
   "devDependencies": {
     "chai": "^4.0.2",
     "cross-env": "^5.0.5",
-    "electron": "^1.7.8",
-    "electron-builder": "^19.36.0",
+    "electron": "~1.7.8",
+    "electron-builder": "^19.41.1",
     "electron-packager": "^9.1.0",
     "eslint": "^4.8.0",
     "eslint-config-vue": "^2.0.2",
@@ -26,7 +26,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^4.0.0",
     "pre-commit": "^1.2.2",
-    "sinon": "^4.0.1"
+    "sinon": "^4.0.2"
   },
   "config": {
     "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.eslintrc)",
@@ -40,7 +40,7 @@
     "build-electron-all": "npm run clean && npm run build-electron -- --platform=win32 && npm run build-electron -- --platform=linux && npm run build-electron -- --platform=darwin",
     "clean": "rm -rf builds config.json tasks.json coverage dist",
     "lint": "eslint *.js app test",
-    "dist": "npm run clean && electron-builder -wl"
+    "dist": "npm run clean && electron-builder -wlm"
   },
   "build": {
     "appId": "angrykoala.gaucho",
