@@ -12,7 +12,7 @@ describe("Tasks", () => {
     let testTask;
     const taskCommand = `node ${path.join(config.testResources, config.taskFiles.helloWorld)}`;
     beforeEach(() => {
-        testTask = new Task("Test", "", taskCommand, {showTimer: true});
+        testTask = new Task("Test", "", taskCommand);
     });
 
     afterEach(() => {
@@ -57,7 +57,7 @@ describe("Tasks", () => {
     });
 
     it("Get Task Config with path", () => {
-        const taskConfigTest = new Task("Test", "a/path", taskCommand, { showTimer: true });
+        const taskConfigTest = new Task("Test", "a/path", taskCommand);
         const taskData = taskConfigTest.getData();
         const expectedResult = {
             title: "Test",
@@ -68,7 +68,7 @@ describe("Tasks", () => {
     });
 
     it("Invalid Task Execution", (done) => {
-        let invalidTask = new Task("Invalid test", "", "invalidTask", { showTimer: true });
+        let invalidTask = new Task("Invalid test", "", "invalidTask");
 
         invalidTask.run(() => {}, () => {
             assert.strictEqual(invalidTask.status, TaskStatus.error);

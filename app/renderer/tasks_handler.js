@@ -3,7 +3,6 @@
 const Suite = require('../common/suite');
 const Task = require('../common/task');
 const AppConfig = require('../common/app_config');
-const AppStatus = require("./app_status");
 
 const suites = [];
 class TasksHandler {
@@ -61,7 +60,7 @@ class TasksHandler {
     _parseData(data) {
         return data.map((suite) => {
             let result = new Suite(suite.title);
-            result.tasks = suite.tasks.map((task) => new Task(task.title, task.path, task.command, AppStatus.config));
+            result.tasks = suite.tasks.map((task) => new Task(task.title, task.path, task.command));
             return result;
         });
     }

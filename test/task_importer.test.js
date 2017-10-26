@@ -11,10 +11,9 @@ const TaskImporter = require('../app/common/task_importer');
 describe("Task Importer", () => {
     const tempFolder = path.join(__dirname, "temp");
     const testJsonFile = path.join(tempFolder, "exported_test.json");
-    const config = { showTimer: true };
 
-    const testTask1 = new Task("task1", ".", "test command", config);
-    const testTask2 = new Task("task2", "./path", "test command2", config);
+    const testTask1 = new Task("task1", ".", "test command");
+    const testTask2 = new Task("task2", "./path", "test command2");
     const testSuite1 = new Suite("suite1");
     const testSuite2 = new Suite("suite2");
     testSuite1.addTask(testTask1);

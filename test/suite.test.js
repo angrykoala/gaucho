@@ -10,7 +10,6 @@ const TaskStatus = require('../app/common/task_status');
 describe("Suite", () => {
     let taskStub;
     let testSuite;
-    const config = { showTimer: true };
 
     function createStub(taskStub) {
         sinon.stub(taskStub, "getData").returns("taskStub");
@@ -29,7 +28,7 @@ describe("Suite", () => {
     }
 
     beforeEach(() => {
-        taskStub = new Task("test", "", "command", config);
+        taskStub = new Task("test", "", "command");
         testSuite = new Suite("Test");
         createStub(taskStub);
     });
@@ -55,7 +54,7 @@ describe("Suite", () => {
     });
 
     it("Run Tasks", () => {
-        const taskStub2 = new Task("test2", "", "command", config);
+        const taskStub2 = new Task("test2", "", "command");
         createStub(taskStub2);
         taskStub2.status = TaskStatus.running;
 
@@ -73,7 +72,7 @@ describe("Suite", () => {
     });
 
     it("Stop All Tasks", () => {
-        const taskStub2 = new Task("test2", "", "command", config);
+        const taskStub2 = new Task("test2", "", "command");
         createStub(taskStub2);
         taskStub2.status = TaskStatus.running;
 
@@ -91,7 +90,7 @@ describe("Suite", () => {
     });
 
     it("Replace Tasks", () => {
-        const taskStub2 = new Task("secondTask", "", "command", config);
+        const taskStub2 = new Task("secondTask", "", "command");
         createStub(taskStub2);
 
         testSuite.addTask(taskStub);
@@ -122,9 +121,9 @@ describe("Suite", () => {
     });
 
     it("Add Task With Repeated Name", () => {
-        const taskStub2 = new Task("test", "", "command", config);
+        const taskStub2 = new Task("test", "", "command");
         createStub(taskStub2);
-        const taskStub3 = new Task("test", "", "command", config);
+        const taskStub3 = new Task("test", "", "command");
         createStub(taskStub3);
         testSuite.addTask(taskStub);
         testSuite.addTask(taskStub2);
@@ -139,9 +138,9 @@ describe("Suite", () => {
     });
 
     it("Replace Task With Repeated Name", () => {
-        const taskStub2 = new Task("different_name", "", "command", config);
+        const taskStub2 = new Task("different_name", "", "command");
         createStub(taskStub2);
-        const taskStub3 = new Task("test", "", "command", config);
+        const taskStub3 = new Task("test", "", "command");
         createStub(taskStub3);
         testSuite.addTask(taskStub);
         testSuite.addTask(taskStub2);
@@ -152,7 +151,7 @@ describe("Suite", () => {
     });
 
     it("Replace Task With Same Name", () => {
-        const taskStub2 = new Task("test", "", "command", config);
+        const taskStub2 = new Task("test", "", "command");
         createStub(taskStub2);
 
         testSuite.addTask(taskStub);

@@ -1,6 +1,6 @@
 "use strict";
 
-const EventEmitter = require("events");
+const EventEmitter = require('events');
 
 const version = require('../../package.json').version;
 const AppConfigStatus = require('./app_config_status');

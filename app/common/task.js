@@ -11,11 +11,10 @@ const TaskTimer = require('../common/utils').timer;
 const TaskEvents = new EventEmitter();
 TaskTimer(TaskEvents, 1000);
 class Task {
-    constructor(title, path, command, config) {
+    constructor(title, path, command) {
         this.title = title.trim() || "";
         this.command = command || "";
         this.path = path || "";
-        this.config = config || {};
         this.status = TaskStatus.idle;
 
         this.beginTime = null;
