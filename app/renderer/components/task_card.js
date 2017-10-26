@@ -4,10 +4,10 @@ const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
+const ToolTip = require('./tooltip');
 
-const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const Material = require('../materialize');
 const Utils = require('../../common/utils');
-const Materialize = require('../api/materialize');
 
 module.exports = {
     props: ['task', 'event'],
@@ -18,19 +18,17 @@ module.exports = {
     },
     components: {
         "task-input": TaskInput,
-        "progress-spinner": ProgressSpinner
+        "progress-spinner": ProgressSpinner,
+        "tooltip": ToolTip
     },
     template: `
-    <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
-            <div class="col s1" v-if="AppStatus.editMode">
-                <i class="tiny material-icons">drag_handle</i>
-            </div>
-            <div class="col" v-bind:class="{ s4: AppStatus.editMode, s5: !AppStatus.editMode }">
+    <li class="run-card">
+        <div class="collapsible-header row unselectable-text">
+            <div class="col s5">
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
-                <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
+                <div class="truncate task-time">{{executionTime}}</div>
             </div>
             <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
@@ -39,6 +37,7 @@ module.exports = {
             <div class="col s1">
                 <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
                 <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
+                <tooltip v-bind:color=statusColor></tooltip>
             </div>
         </div>
 
@@ -55,7 +54,6 @@ module.exports = {
     mounted() {
         this.event.on("run", this.run);
         this.event.on("stop", this.stop);
-        this.event.on("collapseTask", this.collapseTask);
     },
     beforeDestroy() {
         this.removeListeners();
@@ -69,13 +67,11 @@ module.exports = {
         onDeleteClick(ev) {
             ev.stopPropagation();
             this.deleteTask();
+
         },
         deleteTask() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
-            confirmationAlert.toggle().then(() => {
-                this.stop();
-                this.$emit('remove');
-            }, () => {});
+            this.stop();
+            this.$emit('remove');
         },
         saveTask(task) {
             this.stop();
@@ -104,7 +100,11 @@ module.exports = {
             }
         },
         collapseTask() {
-            Materialize.collapseHeader(this.$el);
+            const elements = this.$el.getElementsByClassName('collapsible-header');
+            if (elements[0]) {
+                elements[0].classList.remove("active");
+                Material.updateCollapsible();
+            }
         }
     },
     computed: {
