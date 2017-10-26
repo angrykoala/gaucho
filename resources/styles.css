@@ -53,6 +53,38 @@
     vertical-align: middle;
 }
 
+.tooltip {
+  position: relative;
+  height: 42px;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  background-color: black;
+  color: white;
+  text-align: center;
+  z-index: 997;
+  bottom: 40px;
+  right: -10px;
+  border-radius: 3px;
+  padding: 0 10px;
+}
+
+.tooltip .tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 17px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
 .task-input-body {
     padding-bottom: 15px;
     padding-top: 10px;
@@ -71,12 +103,6 @@
 .menu-title {
     color: #ee6e73;
     cursor: default;
-}
-
-.open a.edit-button.tap-target-origin, .open a.edit-button.tap-target-origin:hover {
-    background: rgba(238, 110, 115, 0.94);
-    padding: 0 20px;
-    border-radius: 100%;
 }
 
 .edit-button {
@@ -147,7 +173,6 @@ input.tab-text {
 
 .unselectable-text {
     -webkit-user-select: none;
-    cursor: default;
 }
 
 
@@ -216,6 +241,10 @@ input.tab-text {
     top: 6px;
 }
 
+.progress-spinner {
+  float: left;
+}
+
 footer {
     position: fixed;
     width: 100%;
@@ -250,7 +279,6 @@ main {
     bottom: 56px;
     left: 0;
     right: 0;
-    overflow: auto;
 }
 
 main.full-size {
@@ -306,13 +334,4 @@ html, body {
 .buttons-form .btn {
     width: 100%;
     margin-top: 10px;
-}
-
-.warning-text {
-    color: #26a69a;
-}
-
-.task-list {
-    margin-bottom: 0;
-    margin-top: 0;
 }
