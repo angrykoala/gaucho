@@ -15,7 +15,7 @@ Available versions for Linux, Mac and Windows (64 bits).
 
 To use, unzip in the desired location and execute gaucho (execute file depends on you OS).
 
-If you need a different version, please, follow the _development_ instructions to make your own build from the source code
+If you need a different version, please, follow the [development instructions](#development) to make your own build from the source code
 
 ## Usage
 Gaucho allows you to configure _tasks_ as part of different _suites_ or groups you can access the different suites by clicking on its name in the navbar menu.
