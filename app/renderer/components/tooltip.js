@@ -13,7 +13,7 @@ module.exports = {
         status() {
             switch (this.color) {
                 case "black":
-                    return "Idle";
+                    return "Stopped";
                 case "red":
                     return "Error";
                 case "blue":
