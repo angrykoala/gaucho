@@ -83,8 +83,8 @@ module.exports = {
                     extensions: ['json']
                 }]
             }, (filename) => {
-              if (filename) {
-                ('#config-modal').modal('close');
+                if (filename) {
+                    ('#config-modal').modal('close');
                     TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
                         console.warn(err);
                     });
@@ -96,8 +96,8 @@ module.exports = {
                 confirmButtonText: "Yes, clear them!",
                 cancelButtonText: "No, keep them"
             });
-          confirmationAlert.toggle().then(() => {
-            ('#config-modal').modal('close');
+            confirmationAlert.toggle().then(() => {
+                ('#config-modal').modal('close');
                 TasksHandler.clearTasks();
                 TasksHandler.addDefaultSuite();
                 this.$nextTick(() => {
