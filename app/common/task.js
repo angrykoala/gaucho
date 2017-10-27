@@ -6,12 +6,10 @@ const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
 const taskTimer = require('../common/utils').timer;
-const AppStatus = require('../renderer/app_status');
-
-const config = AppStatus.config;
 
 const TaskEvents = new EventEmitter();
 taskTimer(TaskEvents, 1000);
+const outputMaxSize = 1000;
 
 class Task {
     constructor(title, path, command) {
@@ -39,10 +37,10 @@ class Task {
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
             stderr: stdout,
             stdout: (out) => {
-                    this.output += `\n${out}`;
-                    this.output = this.output.slice(-config.outputMaxSize).trim();stdout(this.output);
-                    stdout(this.output);
-                }
+                this.output += `\n${out}`;
+                this.output = this.output.slice(-outputMaxSize).trim();
+                stdout(this.output);
+            }
         },
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
