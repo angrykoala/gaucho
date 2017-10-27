@@ -11,7 +11,6 @@ const AppStatus = require('../renderer/app_status');
 const config = AppStatus.config;
 
 const TaskEvents = new EventEmitter();
-
 taskTimer(TaskEvents, 1000);
 
 class Task {
@@ -38,21 +37,21 @@ class Task {
         let executionPath = this.path;
         if (!executionPath) executionPath = this._generateDefaultPath();
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
-                stderr: stdout,
-                stdout: (out) => {
+            stderr: stdout,
+            stdout: (out) => {
                     this.output += `\n${out}`;
                     this.output = this.output.slice(-config.outputMaxSize).trim();stdout(this.output);
                     stdout(this.output);
                 }
-            },
-            (code) => {
-                if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
+        },
+        (code) => {
+            if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
 
-                this.finishTime = Date.now();
-                this._updateElapsedTime();
-                TaskEvents.removeListener("time-update", this.onTimeUpdate);
-                done();
-            });
+            this.finishTime = Date.now();
+            this._updateElapsedTime();
+            TaskEvents.removeListener("time-update", this.onTimeUpdate);
+            done();
+        });
         this.onTimeUpdate = () => {
             this._updateElapsedTime();
         };
