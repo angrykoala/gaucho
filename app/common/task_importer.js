@@ -20,7 +20,7 @@ module.exports = {
             });
         });
     },
-    import ( /*content*/ ) {
+    import ( /* content */ ) {
         throw new Error("Not Yet implemented");
     }
 };

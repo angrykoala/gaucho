@@ -1,10 +1,11 @@
 0.4.0 / ####-##-##
 ==================
 
-  * Tasks can now be reordered within a suite while in edit mode
+  * Tasks can now be moved between suites and reordered while in edit mode
   * Added an initial message, noting the edit button to new users
   * Tasks with no path defined will now be executed on user home directory
   * Added import and export options in config
+  * Task timers are now optional
   * Added confirmation popup when deleting a task, suite or clearing all tasks
   * Add Task form now collapses after adding a task
   * About menu style improved

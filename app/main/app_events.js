@@ -17,14 +17,14 @@ module.exports = function(onReadyCallback) {
 
     // Quit when all windows are closed.
     app.on('window-all-closed', () => {
-        //For macOS
+        // For macOS
         if (process.platform !== 'darwin') {
             app.quit();
         }
     });
 
     app.on('activate', () => {
-        //FOR macOS
+        // FOR macOS
         onReadyCallback();
     });
 

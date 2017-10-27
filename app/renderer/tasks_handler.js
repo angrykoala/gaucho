@@ -25,7 +25,7 @@ class TasksHandler {
         const loadedSuites = this._parseData(suites);
         loadedSuites.forEach((suite) => {
             this.addSuite(suite);
-        })
+        });
     }
     loadTasksFrom(data) {
         const json = JSON.parse(data);
@@ -44,7 +44,7 @@ class TasksHandler {
             tasksConfig.set("suites", data);
         }
     }
-    addDefaultSuite(){
+    addDefaultSuite() {
         suites.push(new Suite("Suite 1"));
         this.saveTasks();
     }

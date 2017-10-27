@@ -19,7 +19,6 @@ describe("Tasks", () => {
         testTask.stop();
     });
 
-
     it("Valid Tasks Status", () => {
         assert.isOk(TaskStatus.idle);
         assert.isOk(TaskStatus.error);
@@ -99,5 +98,18 @@ describe("Tasks", () => {
             done();
         });
         testTask.stop();
+    });
+
+    it("Trying to run a running task", (done) => {
+        assert.isFalse(testTask.isRunning());
+        assert.strictEqual(testTask.status, TaskStatus.idle);
+
+        testTask.run(() => {}, () => {
+            assert.isFalse(testTask.isRunning());
+            assert.strictEqual(testTask.status, TaskStatus.ok);
+            done();
+        });
+        assert.isTrue(testTask.isRunning());
+        assert.throws(() => testTask.run(() => {}, () => {}))
     });
 });
