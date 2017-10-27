@@ -34,7 +34,7 @@ module.exports = {
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
-                <div class="truncate task-time">{{executionTime}}</div>
+                <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
             </div>
             <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
@@ -73,7 +73,6 @@ module.exports = {
         onDeleteClick(ev) {
             ev.stopPropagation();
             this.deleteTask();
-
         },
         deleteTask() {
             const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");

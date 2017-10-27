@@ -4,10 +4,10 @@ const path = require('path');
 const url = require('url');
 
 const MainWindow = require('./app/main/main_window');
-const AppEvents = require('./app/main/app_events');
+const appEvents = require('./app/main/app_events');
 const utils = require('./app/common/utils');
 
-//Global reference to window
+// Global reference to window
 let win = null;
 
 function initApp() {
@@ -25,7 +25,7 @@ function initApp() {
                 .initWindow(utils.isDevEnv());
         }
     }
-    AppEvents(createWindow);
+    appEvents(createWindow);
 }
 
 initApp();
