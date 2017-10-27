@@ -2,11 +2,13 @@
 
 const EventEmitter = require('events');
 const os = require('os');
-
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
 const taskTimer = require('../common/utils').timer;
+const AppStatus = require('../renderer/app_status');
+
+const config = AppStatus.config;
 
 const TaskEvents = new EventEmitter();
 
@@ -29,23 +31,28 @@ class Task {
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
+        this.output = "";
         this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
         let executionPath = this.path;
         if (!executionPath) executionPath = this._generateDefaultPath();
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
-            stderr: stdout,
-            stdout: stdout
-        },
-        (code, out) => {
-            if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
-            this.output = `\n${out.join("\n")}`.trim();
-            this.finishTime = Date.now();
-            this._updateElapsedTime();
-            TaskEvents.removeListener("time-update", this.onTimeUpdate);
-            done();
-        });
+                stderr: stdout,
+                stdout: (out) => {
+                    this.output += `\n${out}`;
+                    this.output = this.output.slice(-config.outputMaxSize).trim();stdout(this.output);
+                    stdout(this.output);
+                }
+            },
+            (code) => {
+                if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
+
+                this.finishTime = Date.now();
+                this._updateElapsedTime();
+                TaskEvents.removeListener("time-update", this.onTimeUpdate);
+                done();
+            });
         this.onTimeUpdate = () => {
             this._updateElapsedTime();
         };
