@@ -13,19 +13,19 @@ const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationA
 const Materialize = require('../api/materialize');
 
 module.exports = {
-  data() {
-    return {
-      config: {
-        bottomBar: AppStatus.config.bottomBar,
-        animatedSpinner: AppStatus.config.animatedSpinner,
-        showTimer: AppStatus.config.showTimer
-      }
-    };
-  },
-  components: {
-    "switch-form": SwitchForm
-  },
-  template: `
+    data() {
+        return {
+            config: {
+                bottomBar: AppStatus.config.bottomBar,
+                animatedSpinner: AppStatus.config.animatedSpinner,
+                showTimer: AppStatus.config.showTimer
+            }
+        };
+    },
+    components: {
+        "switch-form": SwitchForm
+    },
+    template: `
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
         <div class="modal-content">
             <h3>Configuration</h3>
@@ -52,76 +52,76 @@ module.exports = {
         </div>
     </div>
     `,
-  methods: {
-    importTasks() {
-      dialog.showOpenDialog({
-        filters: [{
-          name: 'json',
-          extensions: ['json']
-        }]
-      }, (filenames) => {
-        if (filenames && filenames[0]) {
-          const filename = filenames[0];
-          const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.", {
-            confirmButtonText: "Yes, import tasks",
-            cancelButtonText: "No, cancel import"
-          });
+    methods: {
+        importTasks() {
+            dialog.showOpenDialog({
+                filters: [{
+                    name: 'json',
+                    extensions: ['json']
+                }]
+            }, (filenames) => {
+                if (filenames && filenames[0]) {
+                    const filename = filenames[0];
+                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.", {
+                        confirmButtonText: "Yes, import tasks",
+                        cancelButtonText: "No, cancel import"
+                    });
+                  confirmationAlert.toggle().then(() => {
+                        ('#config-modal').modal('close');
+                        TasksHandler.clearTasks();
+                        fs.readFile(filename, 'utf-8', (err, data) => {
+                            TasksHandler.loadTasksFrom(data);
+                        });
+                    }, () => {});
+                }
+            });
+        },
+        exportTasks() {
+            dialog.showSaveDialog({
+                defaultPath: path.join(os.homedir(), "gtask.json"),
+                filters: [{
+                    extensions: ['json']
+                }]
+            }, (filename) => {
+              if (filename) {
+                ('#config-modal').modal('close');
+                    TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
+                        console.warn(err);
+                    });
+                }
+            });
+        },
+        clearTasks() {
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!", {
+                confirmButtonText: "Yes, clear them!",
+                cancelButtonText: "No, keep them"
+            });
           confirmationAlert.toggle().then(() => {
             ('#config-modal').modal('close');
-            TasksHandler.clearTasks();
-            fs.readFile(filename, 'utf-8', (err, data) => {
-              TasksHandler.loadTasksFrom(data);
-            });
-          }, () => {});
+                TasksHandler.clearTasks();
+                TasksHandler.addDefaultSuite();
+                this.$nextTick(() => {
+                    Materialize.selectTab("#navbar-tabs", `tab0`);
+                    AppStatus.activeSuite = 0;
+                });
+                AppStatus.totalTasks = 0;
+                Materialize.closeModals();
+            }, () => {});
+        },
+        resetConfig() {
+            this.config.bottomBar = true;
+            this.config.animatedSpinner = true;
+            this.config.showTimer = true;
+        },
+        onClose() {
+            this.config.bottomBar = AppStatus.config.bottomBar;
+            this.config.animatedSpinner = AppStatus.config.animatedSpinner;
+            this.config.showTimer = AppStatus.config.showTimer;
+        },
+        onSave() {
+            AppStatus.config.bottomBar = this.config.bottomBar;
+            AppStatus.config.animatedSpinner = this.config.animatedSpinner;
+            AppStatus.config.showTimer = this.config.showTimer;
         }
-      });
-    },
-    exportTasks() {
-      dialog.showSaveDialog({
-        defaultPath: path.join(os.homedir(), "gtask.json"),
-        filters: [{
-          extensions: ['json']
-        }]
-      }, (filename) => {
-        if (filename) {
-          ('#config-modal').modal('close');
-          TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
-            console.warn(err);
-          });
-        }
-      });
-    },
-    clearTasks() {
-      const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover these tasks after deletion!", {
-        confirmButtonText: "Yes, clear them!",
-        cancelButtonText: "No, keep them"
-      });
-      confirmationAlert.toggle().then(() => {
-        ('#config-modal').modal('close');
-        TasksHandler.clearTasks();
-        TasksHandler.addDefaultSuite();
-        this.$nextTick(() => {
-          Materialize.selectTab("#navbar-tabs", `tab0`);
-          AppStatus.activeSuite = 0;
-        });
-        AppStatus.totalTasks = 0;
-        Materialize.closeModals();
-      }, () => {});
-    },
-    resetConfig() {
-      this.config.bottomBar = true;
-      this.config.animatedSpinner = true;
-      this.config.showTimer = true;
-    },
-    onClose() {
-      this.config.bottomBar = AppStatus.config.bottomBar;
-      this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-      this.config.showTimer = AppStatus.config.showTimer;
-    },
-    onSave() {
-      AppStatus.config.bottomBar = this.config.bottomBar;
-      AppStatus.config.animatedSpinner = this.config.animatedSpinner;
-      AppStatus.config.showTimer = this.config.showTimer;
     }
-  }
 };
