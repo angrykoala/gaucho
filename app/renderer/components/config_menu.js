@@ -66,7 +66,7 @@ module.exports = {
                         confirmButtonText: "Yes, import tasks",
                         cancelButtonText: "No, cancel import"
                     });
-                  confirmationAlert.toggle().then(() => {
+                    confirmationAlert.toggle().then(() => {
                         ('#config-modal').modal('close');
                         TasksHandler.clearTasks();
                         fs.readFile(filename, 'utf-8', (err, data) => {
