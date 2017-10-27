@@ -53,5 +53,11 @@ module.exports = {
     },
     closeModals() {
         $('#config-modal').modal('close');
+    },
+    getLengthNavBarTabs() {
+        return $('#navbar-tabs .tab-button').length
+    },
+    toggleNavBarMenu() {
+        $('#navBarMenu').click()
     }
 };

@@ -1,7 +1,4 @@
-/* globals $ */
 "use strict";
-
-const Mousetrap = require('mousetrap');
 
 const Suite = require('../../common/suite');
 const Material = require('../api/materialize');
@@ -54,7 +51,6 @@ module.exports = {
     `,
     mounted() {
         Material.checkFirstTimeTap(".tap-target");
-        this.addShortcuts()
     },
     methods: {
         dragOver(index) {
@@ -101,24 +97,6 @@ module.exports = {
                 default:
                     AppStatus.events.emit(selection);
             }
-        },
-        addShortcuts() {
-            Mousetrap.bind('ctrl+tab', () => {
-                const index = (AppStatus.activeSuite === (this.suites.length - 1))
-                    ? 0
-                    : AppStatus.activeSuite + 1
-                this.selectTab(index)
-            });
-    
-            Mousetrap.bind('ctrl+shift+tab', () => {
-                const index = AppStatus.activeSuite === 0
-                    ? this.suites.length - 1
-                    : AppStatus.activeSuite - 1
-                this.selectTab(index)
-            });
-    
-            Mousetrap.bind('ctrl+e', () => this.toggleEdit());
-            Mousetrap.bind('ctrl+m', () => $('#navBarMenu').click());
         }
     },
     computed: {
