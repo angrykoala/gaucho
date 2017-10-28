@@ -40,7 +40,10 @@
     "build-electron-all": "npm run clean && npm run build-electron -- --platform=win32 && npm run build-electron -- --platform=linux && npm run build-electron -- --platform=darwin",
     "clean": "rm -rf builds config.json tasks.json coverage dist",
     "lint": "eslint *.js app test",
-    "dist": "npm run clean && electron-builder -wlm"
+    "dist": "npm run clean && electron-builder -wlm --x64 --ia32",
+    "dist-linux": "npm run clean && electron-builder -l --x64 --ia32",
+    "dist-win": "npm run clean && electron-builder -w --x64 --ia32",
+    "dist-mac": "npm run clean && electron-builder -m"
   },
   "build": {
     "appId": "angrykoala.gaucho",
@@ -48,14 +51,14 @@
       "target": [
         "deb",
         "rpm",
-        "AppImage"
+        "pacman"
       ],
       "category": "Utility"
     },
     "win": {
       "target": [
         "nsis",
-        "portable"
+        "zip"
       ]
     },
     "mac": {
