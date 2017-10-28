@@ -35,7 +35,7 @@ module.exports = {
                 <switch-form v-bind:title="'Show Timer'" v-model="config.showTimer"></switch-form>
 
                 <div class="center-align buttons-form container">
-                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
+                    <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
                     </br>
@@ -67,7 +67,7 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
-                        ('#config-modal').modal('close');
+                        Materialize.closeModals();
                         TasksHandler.clearTasks();
                         fs.readFile(filename, 'utf-8', (err, data) => {
                             TasksHandler.loadTasksFrom(data);
@@ -84,7 +84,7 @@ module.exports = {
                 }]
             }, (filename) => {
                 if (filename) {
-                    ('#config-modal').modal('close');
+                    Materialize.closeModals();
                     TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
                         console.warn(err);
                     });
@@ -97,7 +97,7 @@ module.exports = {
                 cancelButtonText: "No, keep them"
             });
             confirmationAlert.toggle().then(() => {
-                ('#config-modal').modal('close');
+                Materialize.closeModals();
                 TasksHandler.clearTasks();
                 TasksHandler.addDefaultSuite();
                 this.$nextTick(() => {
