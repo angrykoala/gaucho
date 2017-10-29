@@ -9,14 +9,10 @@ const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationA
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
 
-const config = AppStatus.config;
-
-
 module.exports = {
     props: ['task', 'event'],
     data() {
         return {
-            output: "",
             AppStatus: AppStatus
         };
     },
@@ -48,7 +44,7 @@ module.exports = {
 
       <div class="collapsible-body task-card-body">
           <div v-if="!AppStatus.editMode" class="run-output">
-              <pre>{{output}}</pre>
+              <pre>{{task.output}}</pre>
           </div>
           <div v-else class="container">
               <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
@@ -87,9 +83,8 @@ module.exports = {
             this.$emit('edit', task);
         },
         run() {
-            this.output = "";
             AppStatus.runningTasks++;
-            this.task.run(this.print, () => {
+            this.task.run(this.autoScroll, () => {
                 AppStatus.runningTasks--;
             });
         },
@@ -99,11 +94,6 @@ module.exports = {
         removeListeners() {
             this.event.removeListener("run", this.run);
             this.event.removeListener("stop", this.stop);
-        },
-        print(out) {
-            this.output += `\n${out}`;
-            this.output = this.output.slice(-config.outputMaxSize).trim();
-            this.autoScroll();
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");

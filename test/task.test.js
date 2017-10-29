@@ -33,7 +33,7 @@ describe("Tasks", () => {
         assert.strictEqual(testTask.status, TaskStatus.idle);
 
         function stdout(text) {
-            assert.strictEqual(text, "hello\n");
+            assert.strictEqual(text, "hello");
             stdoutCalled = true;
         }
 
