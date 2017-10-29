@@ -13,7 +13,6 @@
     "rules": {
         "camelcase": "error",
         "prefer-arrow-callback": "error",
-        "arrow-body-style": "error",
         "eqeqeq": ["error", "always", {
             "null": "ignore"
         }],
