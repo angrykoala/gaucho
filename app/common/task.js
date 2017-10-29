@@ -9,7 +9,7 @@ const taskTimer = require('../common/utils').timer;
 
 const TaskEvents = new EventEmitter();
 taskTimer(TaskEvents, 1000);
-const outputMaxSize = 1000;
+const outputMaxSize = 6000;
 
 class Task {
     constructor(title, path, command) {
