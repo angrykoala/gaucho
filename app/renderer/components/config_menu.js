@@ -2,7 +2,6 @@
 
 const os = require('os');
 const path = require('path');
-const fs = require('fs');
 const app = require('electron').remote;
 const dialog = app.dialog;
 const AppStatus = require('../app_status');
@@ -35,7 +34,7 @@ module.exports = {
                 <switch-form v-bind:title="'Show Timer'" v-model="config.showTimer"></switch-form>
 
                 <div class="center-align buttons-form container">
-                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
+                    <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
                     </br>
@@ -67,9 +66,11 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
-                        TasksHandler.clearTasks();
-                        fs.readFile(filename, 'utf-8', (err, data) => {
-                            TasksHandler.loadTasksFrom(data);
+                        TaskImporter.import(filename).then((data)=>{
+                            TasksHandler.loadTasksFromData(data);
+                            this._closeConfig();
+                        }).catch((err)=>{
+                            console.warn(err);
                         });
                     }, () => {});
                 }
@@ -83,6 +84,7 @@ module.exports = {
                 }]
             }, (filename) => {
                 if (filename) {
+                    this._closeConfig();
                     TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
                         console.warn(err);
                     });
@@ -102,7 +104,7 @@ module.exports = {
                     AppStatus.activeSuite = 0;
                 });
                 AppStatus.totalTasks = 0;
-                Materialize.closeModals();
+                this._closeConfig();
             }, () => {});
         },
         resetConfig() {
@@ -119,6 +121,10 @@ module.exports = {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
             AppStatus.config.showTimer = this.config.showTimer;
+        },
+        _closeConfig(){
+            this.onClose();
+            Materialize.closeModals();
         }
     }
 };
