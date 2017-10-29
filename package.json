@@ -60,9 +60,7 @@
     },
     "mac": {
       "target": [
-        "dir",
-        "dmg",
-        "pkg"
+        "dir"
       ],
       "category": "public.app-category.developer-tools"
     },
