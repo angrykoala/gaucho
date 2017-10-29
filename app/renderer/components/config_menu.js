@@ -47,8 +47,8 @@ module.exports = {
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" v-on:click="onClose" class="waves-effect waves-green btn-flat left">Close</a>
-            <a href="#!" v-on:click="onSave" class="waves-effect waves-green btn-flat">Save</a>
+            <a href="#!" v-on:click="onClose" class="modal-action modal-close waves-effect waves-green btn-flat left">Close</a>
+            <a href="#!" v-on:click="onSave" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
         </div>
     </div>
     `,
