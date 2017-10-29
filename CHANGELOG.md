@@ -6,6 +6,7 @@
   * Tasks with no path defined will now be executed on user home directory
   * Gaucho icon improved
   * Added import and export options in config
+  * Config menu will automatically close when importing, exporting and clearing tasks
   * Task timers are now optional
   * Added confirmation popup when deleting a task, suite or clearing all tasks
   * Add Task form now collapses after adding a task
