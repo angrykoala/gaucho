@@ -35,7 +35,7 @@ module.exports = {
                 <switch-form v-bind:title="'Show Timer'" v-model="config.showTimer"></switch-form>
 
                 <div class="center-align buttons-form container">
-                    <a class="waves-effect waves-light btn modal-action modal-close " v-on:click="clearTasks">Clear Tasks</a>
+                    <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
                     <label>Warning: This will remove all your suites and tasks</label>
                     <a class="waves-effect waves-light btn" v-on:click="resetConfig">Reset Configuration</a>
                     </br>
@@ -47,8 +47,8 @@ module.exports = {
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" v-on:click="onClose" class="modal-action modal-close waves-effect waves-green btn-flat left">Close</a>
-            <a href="#!" v-on:click="onSave" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+            <a href="#!" v-on:click="onClose" class="waves-effect waves-green btn-flat left">Close</a>
+            <a href="#!" v-on:click="onSave" class="waves-effect waves-green btn-flat">Save</a>
         </div>
     </div>
     `,
@@ -67,6 +67,7 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
+                        Materialize.closeModals();
                         TasksHandler.clearTasks();
                         fs.readFile(filename, 'utf-8', (err, data) => {
                             TasksHandler.loadTasksFrom(data);
@@ -83,6 +84,7 @@ module.exports = {
                 }]
             }, (filename) => {
                 if (filename) {
+                    Materialize.closeModals();
                     TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
                         console.warn(err);
                     });
@@ -95,6 +97,7 @@ module.exports = {
                 cancelButtonText: "No, keep them"
             });
             confirmationAlert.toggle().then(() => {
+                Materialize.closeModals();
                 TasksHandler.clearTasks();
                 TasksHandler.addDefaultSuite();
                 this.$nextTick(() => {
