@@ -48,19 +48,23 @@
       "target": [
         "deb",
         "rpm",
-        "pacman"
+        "pacman",
+        "AppImage"
       ],
       "category": "Utility"
     },
     "win": {
       "target": [
-        "nsis",
-        "zip"
+        "zip",
+        "portable",
+        "nsis"
       ]
     },
     "mac": {
       "target": [
-        "dir"
+        "dir",
+        "dmg",
+        "pkg"
       ],
       "category": "public.app-category.developer-tools"
     },
