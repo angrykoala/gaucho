@@ -66,9 +66,9 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
-                        Materialize.closeModals();
                         TaskImporter.import(filename).then((data)=>{
                             TasksHandler.loadTasksFromData(data);
+                            this._closeConfig();
                         }).catch((err)=>{
                             console.warn(err);
                         });
@@ -84,7 +84,7 @@ module.exports = {
                 }]
             }, (filename) => {
                 if (filename) {
-                    Materialize.closeModals();
+                    this._closeConfig();
                     TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
                         console.warn(err);
                     });
@@ -97,7 +97,6 @@ module.exports = {
                 cancelButtonText: "No, keep them"
             });
             confirmationAlert.toggle().then(() => {
-                Materialize.closeModals();
                 TasksHandler.clearTasks();
                 TasksHandler.addDefaultSuite();
                 this.$nextTick(() => {
@@ -105,7 +104,7 @@ module.exports = {
                     AppStatus.activeSuite = 0;
                 });
                 AppStatus.totalTasks = 0;
-                Materialize.closeModals();
+                this._closeConfig();
             }, () => {});
         },
         resetConfig() {
@@ -122,6 +121,10 @@ module.exports = {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
             AppStatus.config.showTimer = this.config.showTimer;
+        },
+        _closeConfig(){
+            this.onClose();
+            Materialize.closeModals();
         }
     }
 };
