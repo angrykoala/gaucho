@@ -2,15 +2,14 @@
 
 const EventEmitter = require('events');
 const os = require('os');
-
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
 const taskTimer = require('../common/utils').timer;
 
 const TaskEvents = new EventEmitter();
-
 taskTimer(TaskEvents, 1000);
+const outputMaxSize = 1000;
 
 class Task {
     constructor(title, path, command) {
@@ -19,6 +18,7 @@ class Task {
         this.path = path || "";
         this.status = TaskStatus.idle;
 
+        this.output = null;
         this.beginTime = null;
         this.finishTime = null;
         this.elapsedTime = null;
@@ -28,6 +28,7 @@ class Task {
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
+        this.output = "";
         this.status = TaskStatus.running;
         this.beginTime = Date.now();
         this.finishTime = null;
@@ -35,16 +36,20 @@ class Task {
         if (!executionPath) executionPath = this._generateDefaultPath();
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
             stderr: stdout,
-            stdout: stdout
+            stdout: (out) => {
+                this.output += `\n${out}`;
+                this.output = this.output.slice(-outputMaxSize).trim();
+                stdout(this.output);
+            }
         },
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
+
             this.finishTime = Date.now();
             this._updateElapsedTime();
             TaskEvents.removeListener("time-update", this.onTimeUpdate);
             done();
         });
-
         this.onTimeUpdate = () => {
             this._updateElapsedTime();
         };
