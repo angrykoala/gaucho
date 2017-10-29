@@ -2,7 +2,6 @@
 
 const os = require('os');
 const path = require('path');
-const fs = require('fs');
 const app = require('electron').remote;
 const dialog = app.dialog;
 const AppStatus = require('../app_status');
@@ -68,9 +67,10 @@ module.exports = {
                     });
                     confirmationAlert.toggle().then(() => {
                         Materialize.closeModals();
-                        TasksHandler.clearTasks();
-                        fs.readFile(filename, 'utf-8', (err, data) => {
-                            TasksHandler.loadTasksFrom(data);
+                        TaskImporter.import(filename).then((data)=>{
+                            TasksHandler.loadTasksFromData(data);
+                        }).catch((err)=>{
+                            console.warn(err);
                         });
                     }, () => {});
                 }
