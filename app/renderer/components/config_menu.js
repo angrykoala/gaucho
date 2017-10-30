@@ -4,8 +4,10 @@ const os = require('os');
 const path = require('path');
 const app = require('electron').remote;
 const dialog = app.dialog;
+
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
+const ShortcutsLearn = require('./shortcuts-learn');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
@@ -22,7 +24,8 @@ module.exports = {
         };
     },
     components: {
-        "switch-form": SwitchForm
+        "switch-form": SwitchForm,
+        "shortcuts-learn": ShortcutsLearn
     },
     template: `
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
@@ -44,13 +47,7 @@ module.exports = {
                     <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
                 </div>
 
-                <div class="shortcuts-learn">
-                    <h4>Shortcuts</h4>
-                    <div class="description"><code>CTRL+E</code> Enable/Disable edit</div>
-                    <div class="description"><code>CTRL+M</code> Open menu</div>
-                    <div class="description"><code>CTRL+TAB</code> Jump to the next suite</div>
-                    <div class="description"><code>CTRL+SHIFT+TAB</code> Jump to the previous suite</div>
-                </div>
+                <shortcuts-learn />
             </div>
         </div>
         <div class="modal-footer">

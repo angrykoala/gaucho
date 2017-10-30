@@ -34,7 +34,7 @@ module.exports = {
         $('ul.tabs').tabs();
     },
     updateDropdown() {
-        $('.navbar-menu-button').dropdown({
+        $('#navBarMenu').dropdown({
             inDuration: 150,
             outDuration: 100,
             hover: false,
@@ -54,10 +54,8 @@ module.exports = {
     closeModals() {
         $('#config-modal').modal('close');
     },
-    getLengthNavBarTabs() {
-        return $('#navbar-tabs .tab-button').length
-    },
     toggleNavBarMenu() {
-        $('#navBarMenu').click()
+        const elNavBarMenu = $('#navBarMenu')
+        elNavBarMenu.dropdown(elNavBarMenu.hasClass('active') ? 'close' : 'open')
     }
 };
