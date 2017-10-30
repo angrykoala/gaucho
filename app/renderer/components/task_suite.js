@@ -31,12 +31,7 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <div class="row" v-if="emptySuite">
-                <div class="grey-text text-lighten-1 section center-align" >
-                    You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
-                </div>
-            </div>
-            <draggable v-else element="ul"
+            <draggable element="ul"
             :options="draggableOptions"
             class="collapsible no-margin task-list"
             data-collapsible="accordion"
@@ -48,6 +43,11 @@ module.exports = {
                 </template>
             <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
             </draggable>
+            <div class="row" v-if="showEmptySuiteMessage">
+                <div class="grey-text text-lighten-1 section center-align" >
+                    You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
+                </div>
+            </div>
         </div>
     `,
     mounted() {
@@ -99,7 +99,7 @@ module.exports = {
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
-        emptySuite() {
+        showEmptySuiteMessage() {
             return this.suite.tasks.length === 0 && !AppStatus.editMode;
         }
     }

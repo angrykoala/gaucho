@@ -32,7 +32,7 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
     },
     components: components,
     beforeMount() {
-        TasksHandler.loadTasks();
+        TasksHandler.loadTasksFromConfig();
     },
     mounted() {
         Material.init();

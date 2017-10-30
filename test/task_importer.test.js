@@ -8,9 +8,12 @@ const Task = require('../app/common/task');
 const Suite = require('../app/common/suite');
 const TaskImporter = require('../app/common/task_importer');
 
+const config=require('./config');
+
 describe("Task Importer", () => {
     const tempFolder = path.join(__dirname, "temp");
     const testJsonFile = path.join(tempFolder, "exported_test.json");
+    const testTasksFile = path.join(config.testResources, "test_tasks.json");
 
     const testTask1 = new Task("task1", ".", "test command");
     const testTask2 = new Task("task2", "./path", "test command2");
@@ -19,10 +22,8 @@ describe("Task Importer", () => {
     testSuite1.addTask(testTask1);
     testSuite1.addTask(testTask2);
 
-    function assertParsedSuite(content, version) {
-        assert.isOk(content);
-        assert.isString(content);
-        const taskConfig = JSON.parse(content);
+    function assertParsedSuite(taskConfig, version) {
+
         assert.strictEqual(taskConfig.version, version);
         const suites = taskConfig.suites;
         assert.isArray(suites);
@@ -44,8 +45,6 @@ describe("Task Importer", () => {
         assert.strictEqual(suites[1].tasks.length, 0);
     }
 
-
-
     beforeEach((done) => {
         fs.mkdir(tempFolder, () => {
             done();
@@ -59,21 +58,49 @@ describe("Task Importer", () => {
         });
     });
 
-    it("parseToJson", () => {
+    it("Parse to json", () => {
         const result = TaskImporter.parseToJson([testSuite1, testSuite2], "test_version");
-        assertParsedSuite(result, "test_version");
-
+        assert.isOk(result);
+        assert.isString(result);
+        const taskConfig = JSON.parse(result);
+        assertParsedSuite(taskConfig, "test_version");
     });
-    it("export", (done) => {
+
+    it("Export suites", (done) => {
         TaskImporter.export(testJsonFile, [testSuite1, testSuite2], "test_version").then(() => {
             fs.readFile(testJsonFile, 'utf-8', (err, data) => {
                 assert.notOk(err, "Error reading test file");
-                assertParsedSuite(data, "test_version");
+                assert.isOk(data);
+                assert.isString(data);
+                const taskConfig = JSON.parse(data);
+                assertParsedSuite(taskConfig, "test_version");
                 done();
             });
         });
     });
-    it.skip("import", () => {
-        throw new Error("Not implemented");
+
+    it("Import from file", () => {
+        return TaskImporter.import(testTasksFile).then((data)=>{
+            assert.isOk(data);
+            assertParsedSuite(data, "my_version");
+        });
+    });
+
+    it("Import invalid file", (done) => {
+        const testFile=path.join(config.testResources, config.taskFiles.helloWorld);
+        assert.isTrue(fs.existsSync(testFile));
+        TaskImporter.import(testFile).catch((error)=>{
+            assert.ok(error);
+            done();
+        });
+    });
+
+    it("Import invalid path", (done) => {
+        const testFile=path.join("no_file");
+        assert.isFalse(fs.existsSync(testFile));
+        TaskImporter.import(testFile).catch((error)=>{
+            assert.ok(error);
+            done();
+        });
     });
 });

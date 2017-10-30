@@ -6,6 +6,7 @@
   * Tasks with no path defined will now be executed on user home directory
   * Gaucho icon improved
   * Added import and export options in config
+  * Config menu will automatically close when importing, exporting and clearing tasks
   * Task timers are now optional
   * Added confirmation popup when deleting a task, suite or clearing all tasks
   * Add Task form now collapses after adding a task
@@ -15,10 +16,12 @@
   * Fixed bug where deleting a suite doesn't update total tasks in the bottom bar
   * Fixed bug where clearing all tasks doesn't update total tasks
   * Fixed bug where clearing all tasks sometimes broke the Add-task button
+  * Fixed bug updating the tasks log when reordering or deleting them
   * Added pre-commit hook
   * Added a dev config environment
   * Code refactoring in several components and modules
   * Code linting rules changed, using eslint instead of jshint
+  * Electron-packager support dropped, now using electron-builder for better builds
   * Wrote more descriptive and appropriate alert messages
   * Mousetrap integration
   * Added description of Shotcuts in modal Configurations
