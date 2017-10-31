@@ -11,7 +11,7 @@ _Gaucho 0.2.0_
 ## Download
 
 Gaucho can be downloaded [here](https://github.com/angrykoala/gaucho/releases).
-Available versions for Linux, Mac and Windows (64 bits).
+Available versions for Linux, Mac and Windows (32 and 64 bits).
 
 To use, unzip in the desired location and execute gaucho (execute file depends on you OS).
 
