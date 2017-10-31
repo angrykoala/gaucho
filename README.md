@@ -68,7 +68,8 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 2. `npm start` to start _gaucho_.
     * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
 3. `npm run dist` to build and package _gaucho_ for your system. The artifacts are located in `dist/`.
-    * If you want to pass arguments to build to other architectures, platforms and/or targets, add `--` at the end and then write the arguments, like this: `npm run dist -- -l --ia32`
+    * If you want to pass arguments to build to other architectures, platforms and/or targets, add `--` at the end and then write the arguments, like this: `npm run dist -- -l --ia32`. The arguments are documented in [electron-builder docs](https://www.electron.build/cli)
+    * **Experimental**: To get armv7l builds, execute `npm run dist -- --armv7l`
     * If you encounter a problem while building, please, check [Common Issues](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
 4. `npm run dist-all` to build and package _gaucho_ for all supported architectures and platforms.
 5. `npm test` to run the automated tests.
