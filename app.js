@@ -6,6 +6,7 @@ const ipcRenderer = require('electron').ipcRenderer;
 const TasksHandler = require('./app/renderer/tasks_handler');
 const AppStatus = require('./app/renderer/app_status');
 const Material = require('./app/renderer/api/materialize');
+const Shortcuts = require('./app/renderer/api/shortcuts');
 
 const components = {
     "task-suite": require('./app/renderer/components/task_suite'),
@@ -35,6 +36,7 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
     },
     mounted() {
         Material.init();
+        Shortcuts.init();
     },
     updated() {
         this.$nextTick(() => {

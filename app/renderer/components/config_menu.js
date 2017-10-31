@@ -4,8 +4,10 @@ const os = require('os');
 const path = require('path');
 const app = require('electron').remote;
 const dialog = app.dialog;
+
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
+const ShortcutsLearn = require('./shortcuts-learn');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
@@ -22,7 +24,8 @@ module.exports = {
         };
     },
     components: {
-        "switch-form": SwitchForm
+        "switch-form": SwitchForm,
+        "shortcuts-learn": ShortcutsLearn
     },
     template: `
     <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
@@ -43,6 +46,8 @@ module.exports = {
                     <a class="waves-effect waves-light btn" v-on:click="importTasks">Import Tasks</a>
                     <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
                 </div>
+
+                <shortcuts-learn></shortcuts-learn>
             </div>
         </div>
         <div class="modal-footer">

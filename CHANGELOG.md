@@ -23,6 +23,9 @@
   * Code linting rules changed, using eslint instead of jshint
   * Electron-packager support dropped, now using electron-builder for better builds
   * Wrote more descriptive and appropriate alert messages
+  * Mousetrap integration
+  * Added description of Shotcuts in modal Configurations
+  * Insert Shotcuts in navbar component
 
 0.3.0 / 2017-08-29
 ==================
