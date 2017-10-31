@@ -1,13 +1,12 @@
 const Application = require('spectron').Application;
 const assert = require('assert');
-const electron = require('electron-prebuilt');
 
 describe('Application launch', function () {
     this.timeout(10000);
 
     beforeEach(function () {
         this.app = new Application({
-            path: electron,
+            path: './node_modules/.bin/electron',
             args: ['main.js']
         });
         return this.app.start();
