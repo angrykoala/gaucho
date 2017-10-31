@@ -98,14 +98,6 @@ module.exports = {
             this.event.removeListener("run", this.run);
             this.event.removeListener("stop", this.stop);
         },
-<<<<<<< HEAD
-=======
-        print(out) {
-            this.output += `\n${out}`;
-            this.output = this.output.slice(-config.outputMaxSize).trim();
-            this.autoScroll();
-        },
->>>>>>> Added tooltip component
         autoScroll() {
             let container = this.$el.querySelector(".run-output");
             if (container && container.scrollTop === container.scrollHeight - container.clientHeight) {
