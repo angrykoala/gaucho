@@ -37,6 +37,7 @@ module.exports = {
             data-collapsible="accordion"
             v-model="suite.tasks"
             @start="onDragStart"
+            @add="onAdd"
             :move="checkMove">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
@@ -65,6 +66,10 @@ module.exports = {
         },
         onDragStart() {
             this.event.emit("collapseTask");
+        },
+        onAdd(evt){
+            let task = this.suite.tasks[evt.newIndex]
+            task.title = this.suite.getValidName(task.title)
         },
         addTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
