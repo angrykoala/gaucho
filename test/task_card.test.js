@@ -1,7 +1,7 @@
 const Application = require('spectron').Application;
 const assert = require('assert');
 
-describe('Application launch', function () {
+describe('Spectron tests', function () {
     this.timeout(10000);
 
     beforeEach(function () {
@@ -22,5 +22,20 @@ describe('Application launch', function () {
         return this.app.client.getWindowCount().then((count) => {
             assert.equal(count, 1);
         });
+    });
+
+    it('shows tooltip on mouse hover', function () {
+        let selector = '.task-card:nth-child(1) .tooltip';
+        return this.app.client.waitUntilWindowLoaded()
+            .then(() => {
+                this.app.client.moveToObject(selector);
+                return this.app.client.element(selector);
+            })
+            .then((element) => {
+                return this.app.client.elementIdCssProperty(element.value.ELEMENT, 'visibility');
+            })
+            .then((visibility) => {
+                assert.equal(visibility.value, "visible");
+            });
     });
 });
