@@ -20,13 +20,16 @@
     "cross-env": "^5.0.5",
     "electron": "~1.7.8",
     "electron-builder": "^19.41.1",
+    "electron-packager": "^9.1.0",
+    "electron-prebuilt": "^1.4.13",
     "eslint": "^4.8.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^3.13.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.0",
     "pre-commit": "^1.2.2",
-    "sinon": "^4.0.2"
+    "sinon": "^4.0.2",
+    "spectron": "^3.7.2"
   },
   "config": {
     "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.eslintrc)",
