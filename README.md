@@ -8,7 +8,7 @@ _by @angrykoala_
 ![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24731607/1b0278e0-1a63-11e7-84bf-b7340635723a.png)    
 _Gaucho 0.2.0_
 
-## Download
+### Download
 
 Gaucho can be downloaded [here](https://github.com/angrykoala/gaucho/releases).
 Available versions for Linux, Mac and Windows (64 bits).
@@ -17,7 +17,7 @@ To use, unzip in the desired location and execute gaucho (execute file depends o
 
 If you need a different version, please, follow the _development_ instructions to make your own build from the source code
 
-## Usage
+### Usage
 Gaucho allows you to configure _tasks_ as part of different _suites_ or groups you can access the different suites by clicking on its name in the navbar menu.
 
 ### Executing tasks
