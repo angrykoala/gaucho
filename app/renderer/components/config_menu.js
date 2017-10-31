@@ -47,7 +47,7 @@ module.exports = {
                     <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
                 </div>
 
-                <shortcuts-learn />
+                <shortcuts-learn></shortcuts-learn>
             </div>
         </div>
         <div class="modal-footer">

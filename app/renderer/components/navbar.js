@@ -26,7 +26,7 @@ module.exports = {
                 <tap-target v-bind:activates="'tap-edit'" v-bind:title="'Add some tasks !'" v-bind:description="'By pressing this button you can add new tasks to your list below.'"></tap-target>
                 <ul class="right navbar-buttons">
                     <li><a id="tap-edit" v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
-                    <li><a id="navBarMenu" class="navbar-menu-button" data-activates='navbar-menu' data-gutter="30"><i class="material-icons small unselectable-text">menu</i></a></li>
+                    <li><a id="navbar-menu-button" data-activates='navbar-menu' data-gutter="30"><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
                 <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites"></navbar-menu>
 
