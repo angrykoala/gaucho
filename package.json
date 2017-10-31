@@ -20,8 +20,6 @@
     "cross-env": "^5.0.5",
     "electron": "~1.7.8",
     "electron-builder": "^19.41.1",
-    "electron-packager": "^9.1.0",
-    "electron-prebuilt": "^1.4.13",
     "eslint": "^4.8.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^3.13.1",
