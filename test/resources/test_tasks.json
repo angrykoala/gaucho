@@ -1,0 +1,19 @@
+{
+    "suites": [{
+        "title": "suite1",
+        "tasks": [{
+            "title": "task1",
+            "command": "test command",
+            "path": "."
+        }, {
+            "title": "task2",
+            "command": "test command2",
+            "path": "./path"
+
+        }]
+    }, {
+        "title": "suite2",
+        "tasks": []
+    }],
+    "version": "my_version"
+}

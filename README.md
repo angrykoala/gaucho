@@ -15,7 +15,7 @@ Available versions for Linux, Mac and Windows (64 bits).
 
 To use, unzip in the desired location and execute gaucho (execute file depends on you OS).
 
-If you need a different version, please, follow the _development_ instructions to make your own build from the source code
+If you need a different version, please, follow the [development instructions](#development) to make your own build from the source code
 
 ## Usage
 Gaucho allows you to configure _tasks_ as part of different _suites_ or groups you can access the different suites by clicking on its name in the navbar menu.
@@ -67,8 +67,8 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 1. `npm install` to install electron and all the dependencies.
 2. `npm start` to start _gaucho_.
     * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
-3. `npm run build-electron` to build _gaucho_ for your system (build will be placed in `builds` folder).
-    * `npm run build-electron-all` to make builds for windows, linux and mac.
+3. `npm run dist` to build _gaucho_ for your system (build will be placed in `builds` folder).
+    * If you encounter a problem while building, please, check [Common Issues](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
 4. `npm test` to run the automated tests.
     * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
 

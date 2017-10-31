@@ -193,7 +193,7 @@ input.tab-text {
     color: #5f9ea0;
 }
 
-.navbar-menu-button {
+#navbar-menu-button {
     cursor: default;
 }
 
@@ -315,4 +315,25 @@ html, body {
 .task-list {
     margin-bottom: 0;
     margin-top: 0;
+}
+
+.shortcuts-learn h4 {
+    font-size: 15px;
+    color: #9e9e9e;
+    margin-top: 25px;
+}
+
+.shortcuts-learn .description {
+    align-items: center;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.shortcuts-learn code {
+    border: 1px solid;
+    padding: 1px;
+    border-radius: 4px;
+    text-transform: lowercase;
+    font-size: small;
+    margin-right: 5px;
 }
