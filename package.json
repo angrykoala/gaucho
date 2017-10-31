@@ -26,7 +26,8 @@
     "istanbul": "^0.4.5",
     "mocha": "^4.0.0",
     "pre-commit": "^1.2.2",
-    "sinon": "^4.0.2"
+    "sinon": "^4.0.2",
+    "spectron": "^3.7.2"
   },
   "config": {
     "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.eslintrc)",
