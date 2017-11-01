@@ -54,7 +54,7 @@
 }
 
 .tooltip {
-  position: relative;
+  position: absolute;
   height: 42px;
   width: 30px;
 }
@@ -251,10 +251,8 @@ input.tab-text {
 }
 
 footer {
-    position: fixed;
     width: 100%;
-    left: 0;
-    bottom: 0;
+    flex: 0 0 auto;
 }
 
 .left-content {
@@ -275,20 +273,22 @@ footer {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-    position: absolute;
-    top: 104px;
-    bottom: 56px;
-    left: 0;
-    right: 0;
-    overflow: auto;
+    flex: 1 1 auto;
+    overflow-y: scroll;
 }
 
 main.full-size {
     bottom: 0px;
+}
+
+#main-header {
+    height: 100px;
+    flex: 0 0 auto;
 }
 
 html, body {
