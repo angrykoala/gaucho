@@ -71,6 +71,7 @@
   padding: 0 10px;
   opacity: 0;
   transition: opacity 0.5s ease;
+  visibility: hidden;
 }
 
 .tooltip .tooltip-text::after {
@@ -85,6 +86,7 @@
 
 .tooltip:hover .tooltip-text {
   opacity: 1;
+  visibility: visible;
 }
 
 .task-input-body {
