@@ -2,7 +2,7 @@ const Application = require('spectron').Application;
 const assert = require('assert');
 
 describe('Front-end tests for task card', function () {
-    this.timeout(10000); // needed for Travis builds
+    this.timeout(20000); // needed for Travis builds
 
     beforeEach(() => {
         this.app = new Application({
