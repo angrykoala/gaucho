@@ -60,7 +60,6 @@
 }
 
 .tooltip .tooltip-text {
-  visibility: hidden;
   position: absolute;
   background-color: black;
   color: white;
@@ -70,6 +69,8 @@
   right: 0;
   border-radius: 3px;
   padding: 0 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .tooltip .tooltip-text::after {
@@ -83,7 +84,7 @@
 }
 
 .tooltip:hover .tooltip-text {
-  visibility: visible;
+  opacity: 1;
 }
 
 .task-input-body {
