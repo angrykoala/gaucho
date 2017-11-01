@@ -24,7 +24,7 @@ module.exports = {
                 case TaskStatus.ok:
                     return "OK";
                 default:
-                    return this.task.status;
+                    return this.taskStatus;
             }
         }
     }
