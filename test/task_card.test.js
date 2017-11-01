@@ -1,7 +1,9 @@
 const Application = require('spectron').Application;
 const assert = require('assert');
 
-describe('Front-end tests for task card', () => {
+describe('Front-end tests for task card', function () {
+    this.timeout(10000);
+
     beforeEach(() => {
         this.app = new Application({
             path: './node_modules/.bin/electron',
