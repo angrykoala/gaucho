@@ -3,7 +3,7 @@
 const TaskStatus = require('../../common/task_status');
 
 module.exports = {
-    props: ['task'],
+    props: ['taskStatus'],
     template: `
     <div class="tooltip">
         <div class="tooltip-text">
@@ -13,7 +13,7 @@ module.exports = {
     `,
     computed: {
         status() {
-            switch (this.task.status) {
+            switch (this.taskStatus) {
                 case TaskStatus.idle:
                 case TaskStatus.stopped:
                     return "Stopped";

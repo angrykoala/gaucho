@@ -41,7 +41,7 @@ module.exports = {
             <div class="col s1">
                 <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
                 <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
-                <tooltip v-bind:task="task"></tooltip>
+                <tooltip v-bind:taskStatus="task.status"></tooltip>
             </div>
         </div>
 

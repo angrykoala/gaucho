@@ -54,7 +54,7 @@
 }
 
 .tooltip {
-  position: absolute;
+  position: relative;
   height: 42px;
   width: 30px;
 }
@@ -107,6 +107,12 @@
 .menu-title {
     color: #ee6e73;
     cursor: default;
+}
+
+.open a.edit-button.tap-target-origin, .open a.edit-button.tap-target-origin:hover {
+    background: rgba(238, 110, 115, 0.94);
+    padding: 0 20px;
+    border-radius: 100%;
 }
 
 .edit-button {
@@ -279,7 +285,8 @@ footer {
 
 main {
     flex: 1 1 auto;
-    overflow-y: scroll;
+    overflow-y: auto;
+    padding-top: 100px;
 }
 
 main.full-size {
@@ -287,6 +294,7 @@ main.full-size {
 }
 
 #main-header {
+    position: absolute;
     height: 100px;
     flex: 0 0 auto;
 }
