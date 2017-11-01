@@ -1,7 +1,9 @@
 "use strict";
 
+const TaskStatus = require('../../common/task_status');
+
 module.exports = {
-    props: ['color'],
+    props: ['task'],
     template: `
     <div class="tooltip">
         <div class="tooltip-text">
@@ -11,18 +13,18 @@ module.exports = {
     `,
     computed: {
         status() {
-            switch (this.color) {
-                case "black":
+            switch (this.task.status) {
+                case TaskStatus.idle:
+                case TaskStatus.stopped:
                     return "Stopped";
-                case "red":
+                case TaskStatus.error:
                     return "Error";
-                case "blue":
+                case TaskStatus.running:
                     return "Running";
-                case "green":
+                case TaskStatus.ok:
                     return "OK";
-                case "grey":
                 default:
-                    return "N/A";
+                    return this.task.status;
             }
         }
     }

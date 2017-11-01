@@ -1,10 +1,8 @@
 const Application = require('spectron').Application;
 const assert = require('assert');
 
-describe('Spectron tests', function () {
-    this.timeout(10000);
-
-    beforeEach(function () {
+describe('Front-end tests for task card', () => {
+    beforeEach(() => {
         this.app = new Application({
             path: './node_modules/.bin/electron',
             args: ['main.js']
@@ -12,20 +10,20 @@ describe('Spectron tests', function () {
         return this.app.start();
     });
 
-    afterEach(function () {
+    afterEach(() => {
         if (this.app && this.app.isRunning()) {
             return this.app.stop();
         }
     });
 
-    it('shows an initial window', function () {
+    it('shows an initial window', () => {
         return this.app.client.getWindowCount().then((count) => {
             assert.equal(count, 1);
         });
     });
 
-    it('shows tooltip on mouse hover', function () {
-        let selector = '.task-card:nth-child(1) .tooltip';
+    it('shows tooltip on mouse hover', () => {
+        const selector = '.task-card:nth-child(1) .tooltip';
         return this.app.client.waitUntilWindowLoaded()
             .then(() => {
                 this.app.client.moveToObject(selector);
