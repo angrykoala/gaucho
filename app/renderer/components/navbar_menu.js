@@ -1,9 +1,12 @@
 "use strict";
-
 const AppStatus = require('../app_status');
+const About = require('./about');
 
 module.exports = {
     props: ['suites'],
+    components: {
+        "about": About
+    },
     template: `
     <ul id='navbar-menu' class='dropdown-content'>
         <template v-if="!editMode">
@@ -16,11 +19,10 @@ module.exports = {
         </template>
         <li class="divider"></li>
         <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal">Configuration</a></li>
-        <li class="unselectable-text menu-button"><a class="modal-trigger" href="#about-modal">About</a></li>
+        <li class="unselectable-text menu-button"><about></about></li>
     </ul>
     `,
     methods: {
-        // <a class="waves-effect waves-light btn" href="#about-modal">Modal</a>
         selected(ev, selection, ignoreSelection) {
             if (!ignoreSelection) {
                 this.$emit("selection", selection);

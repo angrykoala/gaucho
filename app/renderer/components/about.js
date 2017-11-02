@@ -1,30 +1,29 @@
 "use strict";
-const {
-    shell
-} = require('electron');
+const shell = require('electron').shell;
 const AppStatus = require('../app_status');
+const AppAlert = require('../api/app_alerts').AppAlert;
+
+
+const aboutHtml = `<i>Version: ${AppStatus.version}</i>
+    <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>
+    <a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>`;
 
 module.exports = {
     data() {
         return {
-            version: AppStatus.version,
-            canOpenLink: true
+            canOpenLink: true,
+            aboutModal: new AppAlert("<h4>Gaucho</h4>", {
+                showCloseButton: true,
+                confirmButtonColor: "#ee6e73",
+                confirmButtonText: "Close"
+            }).html(aboutHtml)
         };
     },
-    template: `
-    <div id="about-modal" class="modal">
-      <div class="modal-content">
-        <h4>Gaucho</h4>
-        <p>Version: {{version}} </p>
-        <i>by @angrykoala</i>
-        <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br><a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
-    </div>
-    `,
+    template: `<a v-on:click="openAbout">About</a>`,
     methods: {
+        openAbout() {
+            this.aboutModal.toggle();
+        },
         openLink() {
             if (this.canOpenLink) {
                 this.canOpenLink = false;

@@ -1,38 +1,78 @@
 {
   "name": "gaucho",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
     "electron-store": "^1.3.0",
-    "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
+    "jquery": "^3.1.1",
+    "material-design-icons-iconfont": "^3.0.3",
     "materialize-css": "^0.99.0",
+    "mousetrap": "^1.6.1",
+    "sweetalert2": "^6.11.1",
     "vue": "^2.0.8",
+    "vuedraggable": "^2.14.1",
     "yerbamate": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^4.0.2",
-    "electron": "^1.6.7",
-    "electron-packager": "^9.1.0",
+    "cross-env": "^5.0.5",
+    "electron": "~1.7.8",
+    "electron-builder": "^19.41.1",
+    "eslint": "^4.8.0",
+    "eslint-plugin-vue": "^3.13.1",
     "istanbul": "^0.4.5",
-    "jshint": "^2.9.4",
-    "mocha": "^3.2.0",
-    "sinon": "^4.0.0"
+    "mocha": "^4.0.0",
+    "pre-commit": "^1.2.2",
+    "sinon": "^4.0.2",
+    "spectron": "^3.7.2"
   },
-  "config":{
-      "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.jshintrc)",
-      "icon": "resources/icon.png"
+  "config": {
+    "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.eslintrc)",
+    "icon": "resources/icon.png"
   },
   "scripts": {
-    "test": "npm run clean && istanbul cover _mocha && npm run jshint",
+    "test": "istanbul cover _mocha -- --exit && npm run lint",
     "start": "electron .",
-    "start-dev": "NODE_ENV=dev npm start",
-    "build-electron": "electron-packager . --overwrite --out builds --ignore $npm_package_config_ignore --icon=$npm_package_config_icon",
-    "build-electron-all": "npm run clean && npm run build-electron -- --platform=win32 && npm run build-electron -- --platform=linux && npm run build-electron -- --platform=darwin",
-    "clean": "rm -rf builds config.json tasks.json coverage",
-    "jshint": "jshint *.js app test"
+    "start-dev": "cross-env NODE_ENV=dev npm start",
+    "clean": "rm -rf config.json tasks.json coverage dist",
+    "lint": "eslint *.js app test",
+    "dist": "electron-builder",
+    "dist-all": "npm run clean && electron-builder -wlm --x64 --ia32"
   },
+  "build": {
+    "appId": "angrykoala.gaucho",
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "pacman",
+        "AppImage"
+      ],
+      "category": "Utility"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "portable",
+        "nsis"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dir"
+      ],
+      "category": "public.app-category.developer-tools"
+    },
+    "directories": {
+      "buildResources": "build_resources"
+    }
+  },
+  "pre-commit": [
+    "test",
+    "clean"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angrykoala/gaucho.git"

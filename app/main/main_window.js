@@ -1,33 +1,29 @@
 "use strict";
 
 const {
-    BrowserWindow,
+    BrowserWindow
 } = require('electron');
 
 const AppConfig = require('../common/app_config');
-
 
 module.exports = class MainWindow {
     constructor() {
         this.win = null;
         this.iconPath = null;
         this.indexPath = null;
-        this.appConfig = new AppConfig();
+        this.userConfig = new AppConfig.User();
     }
-
     setIcon(path) {
         this.iconPath = path;
         return this;
     }
-
     setIndex(htmlFile) {
         this.indexPath = htmlFile;
         return this;
     }
-
     initWindow(devWindow) {
         let win;
-        const windowSize = this.appConfig.get("windowSize");
+        const windowSize = this.userConfig.get(AppConfig.FIELDS.WINDOW_SIZE);
 
         let winConfig = {
             width: windowSize[0],
@@ -40,7 +36,7 @@ module.exports = class MainWindow {
             frame: true
         };
         if (devWindow) {
-            winConfig.width += this.appConfig.get("devToolsSize");
+            winConfig.width += this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
         }
 
         win = new BrowserWindow(winConfig);
@@ -50,24 +46,24 @@ module.exports = class MainWindow {
 
         if (devWindow) win.webContents.openDevTools();
 
-        if (this.appConfig.get("maximized") === true) {
+        if (this.userConfig.get(AppConfig.FIELDS.MAXIMIZED) === true) {
             win.maximize();
         }
 
         win.on('resize', () => {
-            if (this.appConfig.get("maximized") !== true) {
+            if (this.userConfig.get(AppConfig.FIELDS.MAXIMIZED) !== true) {
                 let size = win.getSize();
-                if (devWindow) size[0] -= this.appConfig.get("devToolsSize");
-                this.appConfig.set("windowSize", size);
+                if (devWindow) size[0] -= this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
+                this.userConfig.set(AppConfig.FIELDS.WINDOW_SIZE, size);
             }
         });
 
         win.on('maximize', () => {
-            this.appConfig.set("maximized", true);
+            this.userConfig.set(AppConfig.FIELDS.MAXIMIZED, true);
         });
 
         win.on('unmaximize', () => {
-            this.appConfig.set("maximized", false);
+            this.userConfig.set(AppConfig.FIELDS.MAXIMIZED, false);
         });
 
         let first = true;

@@ -21,8 +21,8 @@ Found a bug, have some feedback or really want some feature? Lock in an Issue. H
  - Provide as many details as you can about the bug. How can it be reproduced? What have you tried so far?
  - For feature requests, really explain why your feature is important. How does it improve the library and help the developers using it?
  - Go through existing issues. Make sure that it hasn't already been opened.
- - If planning on helping close an issue, don't be shy. Ask questions and get more information before sending your PR.
-
+ - If planning on helping close an issue, don't be shy. Ask questions and get more information before sending your PR. Make sure people know you are working on that particular issue.
+ - Make sure the title of the issue is clear and begins with uppercase
 
 
 ## Pull Requests
