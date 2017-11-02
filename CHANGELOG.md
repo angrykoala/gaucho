@@ -26,6 +26,7 @@
   * Wrote more descriptive and appropriate alert messages
   * Support for 32 bits architecture
   * Logo improvements
+  * Tooltips with information about task status when hovering
 
 0.3.0 / 2017-08-29
 ==================
