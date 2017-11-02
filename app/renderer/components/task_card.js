@@ -4,6 +4,7 @@ const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
+const ToolTip = require('./tooltip');
 
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
@@ -18,7 +19,8 @@ module.exports = {
     },
     components: {
         "task-input": TaskInput,
-        "progress-spinner": ProgressSpinner
+        "progress-spinner": ProgressSpinner,
+        "tooltip": ToolTip
     },
     template: `
     <li class="run-card task-card">
@@ -39,17 +41,18 @@ module.exports = {
             <div class="col s1">
                 <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
                 <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
+                <tooltip v-bind:taskStatus="task.status"></tooltip>
             </div>
         </div>
 
-      <div class="collapsible-body task-card-body">
-          <div v-if="!AppStatus.editMode" class="run-output">
-              <pre>{{task.output}}</pre>
-          </div>
-          <div v-else class="container">
-              <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-          </div>
-      </div>
+        <div class="collapsible-body task-card-body">
+            <div v-if="!AppStatus.editMode" class="run-output">
+                <pre>{{task.output}}</pre>
+            </div>
+            <div v-else class="container">
+                <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
+            </div>
+        </div>
   </li>
   `,
     mounted() {
