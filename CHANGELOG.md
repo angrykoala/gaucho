@@ -18,7 +18,6 @@
   * Fixed bug where clearing all tasks doesn't update total tasks
   * Fixed bug where clearing all tasks sometimes broke the Add-task button
   * Fixed bug updating the tasks log when reordering or deleting them
-  * Support for 32 bits architecture
   * Electron-packager support dropped, now using electron-builder for better builds
   * Bottom bar text not selectable anymore
   * Code linting rules changed, using eslint instead of jshint

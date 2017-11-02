@@ -39,7 +39,7 @@
     "clean": "rm -rf config.json tasks.json coverage dist",
     "lint": "eslint *.js app test",
     "dist": "electron-builder",
-    "dist-all": "npm run clean && electron-builder -wlm --x64 --ia32"
+    "dist-all": "npm run clean && electron-builder -wlm --x64"
   },
   "build": {
     "appId": "angrykoala.gaucho",
@@ -54,7 +54,6 @@
     },
     "win": {
       "target": [
-        "zip",
         "portable",
         "nsis"
       ]
