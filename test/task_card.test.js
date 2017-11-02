@@ -18,13 +18,13 @@ describe('Front-end tests for task card', function () {
         }
     });
 
-    it('shows an initial window', () => {
+    it('Shows an initial window', () => {
         return this.app.client.getWindowCount().then((count) => {
             assert.equal(count, 1);
         });
     });
 
-    it('shows tooltip on mouse hover', () => {
+    it('Shows tooltip on mouse hover', () => {
         const selector = '.task-card:nth-child(1) .tooltip';
         return this.app.client.waitUntilWindowLoaded()
             .then(() => {
