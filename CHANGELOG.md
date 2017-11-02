@@ -1,32 +1,30 @@
 0.4.0 / ####-##-##
 ==================
 
+  * Added tasks import and export options
   * Tasks can now be moved between suites and reordered while in edit mode
-  * Added an initial message, noting the edit button to new users
-  * Tasks with no path defined will now be executed on user home directory
   * Added keyboard shortcuts to some common operations
   * Gaucho icon improved
-  * Added import and export options in config
-  * Config menu will automatically close when importing, exporting and clearing tasks
-  * Task timers are now optional
   * Added confirmation popup when deleting a task, suite or clearing all tasks
+  * Tooltips with information about task status when hovering
+  * Task timers are now optional
+  * Added an initial message, showing the edit button to new users
+  * Tasks with no path defined will now be executed on user home directory
+  * Config menu will automatically close when importing, exporting and clearing tasks
   * Add Task form now collapses after adding a task
   * About menu style improved
-  * Bottom bar text not selectable anymore
   * Fixed bug that prevented running tasks to be killed when closing Gaucho
   * Fixed bug where deleting a suite doesn't update total tasks in the bottom bar
   * Fixed bug where clearing all tasks doesn't update total tasks
   * Fixed bug where clearing all tasks sometimes broke the Add-task button
   * Fixed bug updating the tasks log when reordering or deleting them
+  * Support for 32 bits architecture
+  * Electron-packager support dropped, now using electron-builder for better builds
+  * Bottom bar text not selectable anymore
+  * Code linting rules changed, using eslint instead of jshint
   * Added pre-commit hook
   * Added a dev config environment
   * Code refactoring in several components and modules
-  * Code linting rules changed, using eslint instead of jshint
-  * Electron-packager support dropped, now using electron-builder for better builds
-  * Wrote more descriptive and appropriate alert messages
-  * Support for 32 bits architecture
-  * Logo improvements
-  * Tooltips with information about task status when hovering
 
 0.3.0 / 2017-08-29
 ==================

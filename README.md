@@ -5,8 +5,8 @@ _by @angrykoala_
 
 > Minimalistic task launcher
 
-![Gaucho Screenshot](https://cloud.githubusercontent.com/assets/5960567/24731607/1b0278e0-1a63-11e7-84bf-b7340635723a.png)    
-_Gaucho 0.2.0_
+![Gaucho Screenshot](https://user-images.githubusercontent.com/5960567/32335225-a59d59d2-bfec-11e7-9f5f-73b432d5e82d.png)   
+_Gaucho 0.4.0_
 
 ## Download
 
@@ -85,3 +85,5 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
+
+> You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)
