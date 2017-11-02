@@ -10,6 +10,7 @@
     "material-design-icons-iconfont": "^3.0.3",
     "materialize-css": "^0.99.0",
     "mousetrap": "^1.6.1",
+    "sortablejs": "RubaXa/Sortable#passive",
     "sweetalert2": "^6.11.1",
     "vue": "^2.0.8",
     "vuedraggable": "^2.14.1",
