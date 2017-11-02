@@ -1,4 +1,4 @@
-0.4.0 / ####-##-##
+0.4.0 / 2017-10-02
 ==================
 
   * Added tasks import and export options
