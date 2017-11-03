@@ -60,7 +60,7 @@
     },
     "mac": {
       "target": [
-        "dir"
+        "zip"
       ],
       "category": "public.app-category.developer-tools"
     },
