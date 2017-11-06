@@ -7,7 +7,8 @@ describe('Front-end tests', function () {
     beforeEach(() => {
         this.app = new Application({
             path: './node_modules/.bin/electron',
-            args: ['main.js']
+            args: ['main.js'],
+            startTimeout: 20000 // timeout for ChromeDriver start
         });
         return this.app.start();
     });
