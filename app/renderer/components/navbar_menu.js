@@ -1,8 +1,6 @@
 "use strict";
 const AppStatus = require('../app_status');
 const About = require('./about');
-const GauchoActions = require('../api/gaucho_actions');
-
 
 module.exports = {
     props: ['suites'],
@@ -10,7 +8,7 @@ module.exports = {
         "about": About
     },
     mounted() {
-        GauchoActions.on('toggle-config', this.toggleConfig);
+        AppStatus.events.on('toggle-config', this.toggleConfig);
     },
     template: `
     <ul id='navbar-menu' class='dropdown-content'>

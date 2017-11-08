@@ -38,6 +38,13 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
     mounted() {
         Material.init();
         Shortcuts.init();
+
+        window.document.body.addEventListener('click', () => {
+            if (AppStatus.currentContextMenu != null) {
+                AppStatus.currentContextMenu.$el.style.display = 'none';
+                AppStatus.currentContextMenu = null;
+            }
+        });
     },
     updated() {
         this.$nextTick(() => {

@@ -30,15 +30,13 @@ module.exports = {
     },
     computed: {
         _menuItems() {
-            if (this.menuItems) {   // if menu items are set use them
+            if (this.menuItems) { // if menu items are set use them
                 return this.menuItems;
             }
             // otherwise use default
-            return [
-                {name: 'About', click: GauchoActions.toggleAbout },
+            return [{name: 'About', click: GauchoActions.toggleAbout },
                 {name: 'Configuration', click: GauchoActions.toggleConfig },
-                {name: AppStatus.editMode ? "Cancel Edit" : "Edit", click: GauchoActions.toggleEdit }
-            ];
+                {name: AppStatus.editMode ? "Cancel Edit" : "Edit", click: GauchoActions.toggleEdit }];
         }
     }
 };

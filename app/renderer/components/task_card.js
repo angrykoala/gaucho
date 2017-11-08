@@ -69,7 +69,7 @@ module.exports = {
     },
     methods: {
         toggleRun(ev) {
-            if (ev.target.classList.contains('btn')) {  // without this check the context menu doesn't close
+            if (ev.target.classList.contains('btn')) { // without this check the context menu doesn't close
                 ev.stopPropagation();
             }
             if (this.running) this.stop();
@@ -118,10 +118,8 @@ module.exports = {
     },
     computed: {
         menuItems() {
-            return [
-                { name: this.running ? 'Stop' : 'Run', click: this.toggleRun },
-                { name: AppStatus.editMode ? 'Done Editing' : 'Edit', click: GauchoActions.toggleEdit }
-            ];
+            return [{ name: this.running ? 'Stop' : 'Run', click: this.toggleRun },
+                { name: AppStatus.editMode ? 'Done Editing' : 'Edit', click: GauchoActions.toggleEdit }];
         },
         statusColor() {
             switch (this.task.status) {

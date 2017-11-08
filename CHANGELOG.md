@@ -2,10 +2,6 @@
 ==================
 
   * Added context menus to the application
-  * Tasks can now be reordered within a suite while in edit mode
-  * Added an initial message, noting the edit button to new users
-  * Tasks with no path defined will now be executed on user home directory
-  * Added import and export options in config
   * Added tasks import and export options
   * Tasks can now be moved between suites and reordered while in edit mode
   * Added keyboard shortcuts to some common operations

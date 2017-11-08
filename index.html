@@ -17,14 +17,13 @@
         <context-menu ref="menu"></context-menu>
         <config-menu></config-menu>
         <header id="main-header" class="margin-bottom" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
-        <header id="main-header" class="margin-bottom">
             <navbar v-bind:suites="suites"></navbar>
         </header>
 
         <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
             <template v-for="(suite,index) in suites">
-                    <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
-                </template>
+                <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+            </template>
         </main>
 
         <footer v-if="AppStatus.config.bottomBar" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
@@ -35,12 +34,6 @@
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
         window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
-        window.document.body.addEventListener('click', function (ev) {
-           if (AppStatus.currentContextMenu != null) {
-               AppStatus.currentContextMenu.$el.style.display = 'none';
-               AppStatus.currentContextMenu = null;
-           }
-        });
     </script>
     <script src="./node_modules/jquery-ui/build/release.js"></script>
     <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>

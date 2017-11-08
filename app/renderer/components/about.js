@@ -2,8 +2,6 @@
 const shell = require('electron').shell;
 const AppStatus = require('../app_status');
 const AppAlert = require('../api/app_alerts').AppAlert;
-const GauchoActions = require('../api/gaucho_actions');
-
 
 const aboutHtml = `<i>Version: ${AppStatus.version}</i>
     <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>
@@ -21,7 +19,7 @@ module.exports = {
         };
     },
     mounted() {
-        GauchoActions.on('toggle-about', this.openAbout);
+        AppStatus.events.on('toggle-about', this.openAbout);
     },
     template: `<a v-on:click="openAbout">About</a>`,
     methods: {
