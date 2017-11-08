@@ -52,7 +52,7 @@
             "beforeColon": false,
             "afterColon": true
         }],
-        "lines-between-class-members": ["warn", "never"],
+        "lines-between-class-members": ["warn", "always"],
         "max-lines": ["error", 300],
         "max-len": ["off", 140],
         "max-params": ["error", 4],
@@ -61,9 +61,9 @@
         "new-parens": "error",
         "no-trailing-spaces": "error",
         "spaced-comment": "warn",
-        "vue/jsx-uses-vars": "error",
-        "vue/valid-v-if": "error",
         "no-new-require": "error",
-        "no-mixed-requires": "warn"
+        "no-mixed-requires": "warn",
+        "vue/jsx-uses-vars": "error",
+        "vue/valid-v-if": "error"
     }
 }
