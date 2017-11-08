@@ -9,9 +9,10 @@ const AppStatus = require('../app_status');
 
 
 const draggableOptions = {
-    draggable: '.task-card',
     handle: '.collapsible-header.edit-mode',
-    filter: '.btn',
+    filter: '.no-draggable, .btn',
+    preventOnFilter: false,
+    group: 'tasks'
 };
 
 module.exports = {
@@ -30,15 +31,24 @@ module.exports = {
     },
     template: `
         <div v-bind:id="id" class="no-margin">
-            <div class="row" v-if="emptySuite">
-                <div class="grey-text text-lighten-1 section center-align" >You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top</div>
-            </div>
-            <draggable v-else class="collapsible task-list" data-collapsible="accordion" element="ul" v-bind:options="draggableOptions" v-model="suite.tasks" @start="onDragStart">
+            <draggable element="ul"
+            :options="draggableOptions"
+            class="collapsible no-margin task-list"
+            data-collapsible="accordion"
+            v-model="suite.tasks"
+            @start="onDragStart"
+            @add="onTaskDraggedIn"
+            :move="checkMove">
                 <template v-for="(task,i) in suite.tasks">
                     <task-card v-bind:task="task" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
                 </template>
-            <add-task v-bind:tasks="suite.tasks" v-on:add="addTask" v-if="showAddTab"></add-task>
+            <add-task v-bind:tasks="suite.tasks" v-on:add="addNewTask" v-if="showAddTab"></add-task>
             </draggable>
+            <div class="row" v-if="showEmptySuiteMessage">
+                <div class="grey-text text-lighten-1 section center-align" >
+                    You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
+                </div>
+            </div>
         </div>
     `,
     mounted() {
@@ -51,10 +61,17 @@ module.exports = {
         AppStatus.events.removeListener("stop-suite", this.onStopSuite);
     },
     methods: {
-        onDragStart(){
+        checkMove(evt) {
+            return !(evt.related.classList.contains('no-draggable') && evt.willInsertAfter);
+        },
+        onDragStart() {
             this.event.emit("collapseTask");
         },
-        addTask(task) {
+        onTaskDraggedIn(evt){
+            const task = this.suite.tasks[evt.newIndex]
+            task.title = this.suite.getValidName(task.title)
+        },
+        addNewTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
                 this.suite.addTask(task);
                 AppStatus.totalTasks++;
@@ -87,7 +104,7 @@ module.exports = {
         showAddTab() {
             return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
-        emptySuite() {
+        showEmptySuiteMessage() {
             return this.suite.tasks.length === 0 && !AppStatus.editMode;
         }
     }

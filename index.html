@@ -16,7 +16,8 @@
     <section id="app">
         <context-menu ref="menu"></context-menu>
         <config-menu></config-menu>
-        <header id="main-header" class="margin-bottom" style="height:100px" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
+        <header id="main-header" class="margin-bottom" v-on:contextmenu.prevent="$refs.menu.openContextMenu">
+        <header id="main-header" class="margin-bottom">
             <navbar v-bind:suites="suites"></navbar>
         </header>
 

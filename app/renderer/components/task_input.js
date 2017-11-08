@@ -9,7 +9,7 @@ module.exports = {
         return {
             title: "",
             command: "",
-            path: "",
+            path: ""
         };
     },
     template: `

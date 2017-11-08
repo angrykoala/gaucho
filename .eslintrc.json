@@ -1,0 +1,69 @@
+{
+    "env": {
+        "mocha": true,
+        "node": true,
+        "es6": true
+    },
+    "plugins": ["vue"],
+    "globals": {},
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended"
+    ],
+    "rules": {
+        "camelcase": "error",
+        "prefer-arrow-callback": "error",
+        "eqeqeq": ["error", "always", {
+            "null": "ignore"
+        }],
+        "complexity": ["warn", 6],
+        "max-depth": ["error", 6],
+        "no-empty": "error",
+        "no-extend-native": "error",
+        "no-new": "error",
+        "no-sequences": "error",
+        "no-template-curly-in-string": "warn",
+        "no-use-before-define": "error",
+        "no-var": "error",
+        "no-eval": "error",
+        "no-extra-bind": "error",
+        "no-console": ["warn", {
+            "allow": ["warn", "error"]
+        }],
+        "no-floating-decimal": "error",
+        "no-implicit-coercion": "warn",
+        "no-labels": "error",
+        "no-multi-spaces": "error",
+        "no-new-wrappers": "error",
+        "no-with": "error",
+        "prefer-template": "error",
+        "array-bracket-newline": ["error", "never"],
+        "brace-style": ["error", "1tbs"],
+        "comma-dangle": ["error", "never"],
+        "comma-spacing": ["error", {
+            "before": false,
+            "after": true
+        }],
+        "comma-style": ["error", "last"],
+        "indent": ["error", 4, {
+            "SwitchCase": 1
+        }],
+        "key-spacing": ["error", {
+            "beforeColon": false,
+            "afterColon": true
+        }],
+        "lines-between-class-members": ["warn", "never"],
+        "max-lines": ["error", 300],
+        "max-len": ["off", 140],
+        "max-params": ["error", 4],
+        "max-nested-callbacks": ["error", 4],
+        "new-cap": "error",
+        "new-parens": "error",
+        "no-trailing-spaces": "error",
+        "spaced-comment": "warn",
+        "vue/jsx-uses-vars": "error",
+        "vue/valid-v-if": "error",
+        "no-new-require": "error",
+        "no-mixed-requires": "warn"
+    }
+}

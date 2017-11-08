@@ -9,5 +9,5 @@ module.exports = {
             <p style="line-height: 22.5px;">{{description}}</p>
         </div>
     </div>
-    `,
+    `
 };

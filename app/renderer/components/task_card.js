@@ -4,6 +4,7 @@ const AppStatus = require('../app_status');
 const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
 const ProgressSpinner = require('./progress_spinner');
+const ToolTip = require('./tooltip');
 
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
@@ -11,20 +12,18 @@ const Materialize = require('../api/materialize');
 const ContextMenu = require('./context_menu');
 const GauchoActions = require('../api/gaucho_actions');
 
-const config = AppStatus.config;
-
 module.exports = {
     props: ['task', 'event'],
     data() {
         return {
-            output: "",
             AppStatus: AppStatus
         };
     },
     components: {
         "task-input": TaskInput,
+        "context-menu": ContextMenu,
         "progress-spinner": ProgressSpinner,
-        "context-menu": ContextMenu
+        "tooltip": ToolTip
     },
     template: `
     <li class="run-card task-card">
@@ -37,7 +36,7 @@ module.exports = {
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
-                <div class="truncate task-time">{{executionTime}}</div>
+                <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
             </div>
             <div class="col s3">
                 <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
@@ -46,17 +45,18 @@ module.exports = {
             <div class="col s1">
                 <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
                 <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
+                <tooltip v-bind:taskStatus="task.status"></tooltip>
             </div>
         </div>
 
-      <div class="collapsible-body task-card-body">
-          <div v-if="!AppStatus.editMode" class="run-output">
-              <pre>{{output}}</pre>
-          </div>
-          <div v-else class="container">
-              <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-          </div>
-      </div>
+        <div class="collapsible-body task-card-body">
+            <div v-if="!AppStatus.editMode" class="run-output">
+                <pre>{{task.output}}</pre>
+            </div>
+            <div v-else class="container">
+                <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
+            </div>
+        </div>
   </li>
   `,
     mounted() {
@@ -78,7 +78,6 @@ module.exports = {
         onDeleteClick(ev) {
             ev.stopPropagation();
             this.deleteTask();
-
         },
         deleteTask() {
             const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
@@ -93,9 +92,8 @@ module.exports = {
             this.$emit('edit', task);
         },
         run() {
-            this.output = "";
             AppStatus.runningTasks++;
-            this.task.run(this.print, () => {
+            this.task.run(this.autoScroll, () => {
                 AppStatus.runningTasks--;
             });
         },
@@ -105,11 +103,6 @@ module.exports = {
         removeListeners() {
             this.event.removeListener("run", this.run);
             this.event.removeListener("stop", this.stop);
-        },
-        print(out) {
-            this.output += `\n${out}`;
-            this.output = this.output.slice(-config.outputMaxSize).trim();
-            this.autoScroll();
         },
         autoScroll() {
             let container = this.$el.querySelector(".run-output");

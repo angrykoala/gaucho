@@ -1,7 +1,7 @@
 "use strict";
 
-const AppStatus=require('../app_status');
-const TasksHandler=require('../tasks_handler');
+const AppStatus = require('../app_status');
+const TasksHandler = require('../tasks_handler');
 const EventEmitter = require('events');
 const GauchoEvents = new EventEmitter(); //EventEmitter singleton
 
@@ -13,6 +13,9 @@ module.exports = class GauchoActions {
     static toggleEdit() {
         AppStatus.editMode = !AppStatus.editMode;
         TasksHandler.saveTasks();
+    }
+    static toggleActiveSuite(suite) {
+        AppStatus.activeSuite = suite;
     }
 
     static toggleAbout() {

@@ -7,6 +7,7 @@ module.exports = class AppConfigStatus {
         this.appConfig = new AppConfig.User();
         this._bottomBar = this.appConfig.get("bottomBar");
         this._animatedSpinner = this.appConfig.get("animatedSpinner");
+        this._showTimer = this.appConfig.get("showTimer");
     }
     set bottomBar(value) {
         this._bottomBar = value;
@@ -16,10 +17,17 @@ module.exports = class AppConfigStatus {
         this._animatedSpinner = value;
         this.appConfig.set("animatedSpinner", value);
     }
+    set showTimer(value) {
+        this._showTimer = value;
+        this.appConfig.set("showTimer", value);
+    }
     get bottomBar() {
         return this._bottomBar;
     }
     get animatedSpinner() {
         return this._animatedSpinner;
+    }
+    get showTimer() {
+        return this._showTimer;
     }
 };

@@ -1,11 +1,10 @@
 "use strict";
 
 const {
-    BrowserWindow,
+    BrowserWindow
 } = require('electron');
 
 const AppConfig = require('../common/app_config');
-
 
 module.exports = class MainWindow {
     constructor() {
@@ -14,17 +13,14 @@ module.exports = class MainWindow {
         this.indexPath = null;
         this.userConfig = new AppConfig.User();
     }
-
     setIcon(path) {
         this.iconPath = path;
         return this;
     }
-
     setIndex(htmlFile) {
         this.indexPath = htmlFile;
         return this;
     }
-
     initWindow(devWindow) {
         let win;
         const windowSize = this.userConfig.get(AppConfig.FIELDS.WINDOW_SIZE);
