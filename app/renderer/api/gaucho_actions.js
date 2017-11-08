@@ -11,4 +11,10 @@ module.exports = class GauchoActions {
     static toggleActiveSuite(suite) {
         AppStatus.activeSuite = suite;
     }
+    static toggleAbout() {
+        AppStatus.events.emit('toggle-about');
+    }
+    static toggleConfig() {
+        AppStatus.events.emit('toggle-config');
+    }
 };

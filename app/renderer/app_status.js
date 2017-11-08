@@ -14,5 +14,6 @@ module.exports = {
     maxTasksPerSuite: 8,
     totalTasks: 0,
     runningTasks: 0,
-    version: version
+    version: version,
+    currentContextMenu: null
 };

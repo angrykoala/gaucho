@@ -6,6 +6,7 @@
 0.4.0 / 2017-10-02
 ==================
 
+  * Added context menus to the application
   * Added tasks import and export options
   * Tasks can now be moved between suites and reordered while in edit mode
   * Added keyboard shortcuts to some common operations

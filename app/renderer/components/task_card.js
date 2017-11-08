@@ -9,6 +9,8 @@ const ToolTip = require('./tooltip');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
+const ContextMenu = require('./context_menu');
+const GauchoActions = require('../api/gaucho_actions');
 
 module.exports = {
     props: ['task', 'event'],
@@ -19,12 +21,14 @@ module.exports = {
     },
     components: {
         "task-input": TaskInput,
+        "context-menu": ContextMenu,
         "progress-spinner": ProgressSpinner,
         "tooltip": ToolTip
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
+        <context-menu ref="menu" v-bind:menuItems="menuItems"></context-menu>
+        <div class="collapsible-header row unselectable-text" v-on:contextmenu.prevent="$refs.menu.openContextMenu" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
             <div class="col s1" v-if="AppStatus.editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
@@ -65,7 +69,9 @@ module.exports = {
     },
     methods: {
         toggleRun(ev) {
-            ev.stopPropagation();
+            if (ev.target.classList.contains('btn')) { // without this check the context menu doesn't close
+                ev.stopPropagation();
+            }
             if (this.running) this.stop();
             else this.run();
         },
@@ -111,6 +117,10 @@ module.exports = {
         }
     },
     computed: {
+        menuItems() {
+            return [{ name: this.running ? 'Stop' : 'Run', click: this.toggleRun },
+                { name: AppStatus.editMode ? 'Done Editing' : 'Edit', click: GauchoActions.toggleEdit }];
+        },
         statusColor() {
             switch (this.task.status) {
                 case TaskStatus.idle:
