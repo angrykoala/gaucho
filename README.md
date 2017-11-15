@@ -2,6 +2,7 @@ Gaucho
 ======
 _by @angrykoala_    
 [![Build Status](https://travis-ci.org/angrykoala/gaucho.svg?branch=master)](https://travis-ci.org/angrykoala/gaucho)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fangrykoala%2Fgaucho.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fangrykoala%2Fgaucho?ref=badge_shield)
 
 > Minimalistic task launcher
 
@@ -87,3 +88,6 @@ Gaucho is being developed and maintained as Open-Source software by @angrykoala 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
 
 > You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fangrykoala%2Fgaucho.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fangrykoala%2Fgaucho?ref=badge_large)
