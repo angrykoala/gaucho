@@ -19,7 +19,7 @@ module.exports = {
             }).html(aboutHtml)
         };
     },
-    template: `<a v-on:click="openAbout">About</a>`,
+    template: `<a v-on:click="openAbout" v-bind:href="'#tab3'">About</a>`,
     methods: {
         openAbout() {
             this.aboutModal.toggle();
