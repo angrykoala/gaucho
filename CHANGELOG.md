@@ -1,7 +1,7 @@
 0.4.1 / ####-##-##
 ==================
 
-
+  * It is possible to navigate the menu using tab
 
 0.4.0 / 2017-10-02
 ==================
