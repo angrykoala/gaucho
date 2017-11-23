@@ -35,13 +35,14 @@ class Task {
         this.finishTime = null;
         let executionPath = this.path;
         if (!executionPath) executionPath = this._generateDefaultPath();
+        const onOutput=(out)=>{
+            this.output += `\n${out}`;
+            this.output = this.output.slice(-outputMaxSize).trim();
+            stdout(this.output);
+        }
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
-            stderr: stdout,
-            stdout: (out) => {
-                this.output += `\n${out}`;
-                this.output = this.output.slice(-outputMaxSize).trim();
-                stdout(this.output);
-            }
+            stderr: onOutput,
+            stdout: onOutput
         },
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;

@@ -2,6 +2,7 @@
 ==================
 
   * It is possible to navigate the menu using tab
+  * Fixed bug where stderr was not being displayed
 
 0.4.0 / 2017-10-02
 ==================
