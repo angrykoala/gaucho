@@ -8,10 +8,12 @@ class AppAlert {
             title: title
         }, options);
     }
+
     html(html) {
         this.alertOptions.html = html;
         return this;
     }
+
     toggle() {
         return swal(this.alertOptions);
     }

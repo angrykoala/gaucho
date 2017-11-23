@@ -8,6 +8,7 @@ module.exports = class GauchoActions {
         AppStatus.editMode = !AppStatus.editMode;
         TasksHandler.saveTasks();
     }
+
     static toggleActiveSuite(suite) {
         AppStatus.activeSuite = suite;
     }

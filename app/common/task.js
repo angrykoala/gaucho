@@ -24,6 +24,7 @@ class Task {
         this.elapsedTime = null;
         this.onTimeUpdate = null;
     }
+
     run(stdout, done) {
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
@@ -56,15 +57,18 @@ class Task {
         TaskEvents.on("time-update", this.onTimeUpdate);
         this._updateElapsedTime();
     }
+
     stop(cb) {
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
             this.status = TaskStatus.stopped;
         } else if (cb) cb();
     }
+
     isRunning() {
         return this.status === TaskStatus.running;
     }
+
     getData() {
         let res = {
             title: this.title,
@@ -73,6 +77,7 @@ class Task {
         if (this.path !== "") res.path = this.path;
         return res;
     }
+
     _updateElapsedTime() {
         if (this.beginTime === null) throw new Error("Error, cant update time");
         let finishTime = this.finishTime;
@@ -80,9 +85,11 @@ class Task {
 
         this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
     }
+
     _processCommand() {
         return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
     }
+
     _generateDefaultPath() {
         return os.homedir();
     }

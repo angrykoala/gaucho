@@ -59,9 +59,11 @@ class AppConfig {
             encryptionKey: key
         });
     }
+
     set(key, value) {
         this.store.set(key, value);
     }
+
     get(key) {
         const result = this.store.get(key);
         return result;

@@ -9,9 +9,11 @@ class TasksHandler {
     get suites() {
         return suites;
     }
+
     addSuite(suite) {
         suites.push(suite);
     }
+
     loadTasksFromConfig() {
         const tasksConfig = new AppConfig.Tasks();
         let suites = tasksConfig.get("suites");
@@ -24,10 +26,12 @@ class TasksHandler {
         }
         this._loadTasks(suites);
     }
+
     loadTasksFromData(data) {
         this._loadTasks(data.suites);
         this.saveTasks();
     }
+
     _loadTasks(suites){
         this.clearTasks();
         const loadedSuites = this._parseData(suites);
@@ -35,6 +39,7 @@ class TasksHandler {
             this.addSuite(suite);
         });
     }
+
     saveTasks() {
         const tasksConfig = new AppConfig.Tasks();
         const data = this.suites.map((suite) => suite.getData());
@@ -43,19 +48,23 @@ class TasksHandler {
             tasksConfig.set("suites", data);
         }
     }
+
     addDefaultSuite() {
         suites.push(new Suite("Suite 1"));
         this.saveTasks();
     }
+
     clearTasks() {
         for (const suite of this.suites) {
             suite.stopAll();
         }
         this.suites.splice(0, this.suites.length);
     }
+
     _isValid(data) {
         return (Array.isArray(data) && data.length >= 1);
     }
+
     _parseData(data) {
         return data.map((suite) => {
             let result = new Suite(suite.title);
