@@ -7,6 +7,7 @@ const dialog = app.dialog;
 
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form');
+const RangeForm = require('./range_form');
 const ShortcutsLearn = require('./shortcuts-learn');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
@@ -19,12 +20,17 @@ module.exports = {
             config: {
                 bottomBar: AppStatus.config.bottomBar,
                 animatedSpinner: AppStatus.config.animatedSpinner,
-                showTimer: AppStatus.config.showTimer
+                showTimer: AppStatus.config.showTimer,
+                maxSuites: AppStatus.config.maxSuites,
+                maxTasksPerSuite: AppStatus.config.maxTasksPerSuite,
+                maxSuitesRange: AppStatus.maxSuitesRange,
+                maxTasksPerSuiteRange: AppStatus.maxTasksPerSuiteRange
             }
         };
     },
     components: {
         "switch-form": SwitchForm,
+        "range-form": RangeForm,
         "shortcuts-learn": ShortcutsLearn
     },
     template: `
@@ -35,6 +41,8 @@ module.exports = {
                 <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
                 <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
                 <switch-form v-bind:title="'Show Timer'" v-model="config.showTimer"></switch-form>
+                <range-form v-bind:title="'Max Suites'" v-bind:min="config.maxSuitesRange.min" v-bind:max="config.maxSuitesRange.max" v-model="config.maxSuites"></range-form>
+                <range-form v-bind:title="'Max Tasks Per Suite'" v-bind:min="config.maxTasksPerSuiteRange.min" v-bind:max="config.maxTasksPerSuiteRange.max" v-model="config.maxTasksPerSuite"></range-form>
 
                 <div class="center-align buttons-form container">
                     <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
@@ -126,6 +134,8 @@ module.exports = {
             AppStatus.config.bottomBar = this.config.bottomBar;
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
             AppStatus.config.showTimer = this.config.showTimer;
+            AppStatus.config.maxSuites = this.config.maxSuites;
+            AppStatus.config.maxTasksPerSuite = this.config.maxTasksPerSuite;
         },
         _closeConfig(){
             this.onClose();

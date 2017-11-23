@@ -57,7 +57,7 @@ module.exports = {
             this.selectTab(index);
         },
         addSuite() {
-            if (this.suites.length < AppStatus.maxSuites) {
+            if (this.suites.length < AppStatus.config.maxSuites) {
                 this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
                 this.selectTab(this.suites.length - 1);
             }

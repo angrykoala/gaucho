@@ -10,9 +10,15 @@ module.exports = {
     activeSuite: 0,
     events: new EventEmitter(),
     config: new AppConfigStatus(),
-    maxSuites: 6,
-    maxTasksPerSuite: 8,
     totalTasks: 0,
     runningTasks: 0,
-    version: version
+    version: version,
+    maxSuitesRange: {
+        min: 1,
+        max: 6
+    },
+    maxTasksPerSuiteRange: {
+        min: 1,
+        max: 8
+    }
 };
