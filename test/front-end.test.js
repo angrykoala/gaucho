@@ -1,12 +1,21 @@
 const Application = require('spectron').Application;
 const assert = require('assert');
 
+// Handle testing in Windows environments
+const appPath = (() => {
+    if(process.platform === 'win32') {
+        return './node_modules/electron-prebuilt/dist/electron.exe'
+    } else {
+        return './node_modules/.bin/electron'
+    }
+})();
+
 describe('Front-end tests', function () {
     this.timeout(20000); // needed for Travis builds
 
     beforeEach(() => {
         this.app = new Application({
-            path: './node_modules/.bin/electron',
+            path: appPath,
             args: ['main.js'],
             startTimeout: 20000 // timeout for ChromeDriver start
         });

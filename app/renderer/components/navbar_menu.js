@@ -36,10 +36,10 @@ module.exports = {
     },
     computed: {
         editMode() {
-            return AppStatus.editMode;
+            return AppStatus.config.maxSuites;
         },
         canAddSuite() {
-            return this.suites.length < AppStatus.maxSuites;
+            return this.suites.length < AppStatus.config.maxSuites;
         },
         canDeleteSuite() {
             return this.suites.length > 1;

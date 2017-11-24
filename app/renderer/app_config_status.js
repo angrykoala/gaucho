@@ -8,6 +8,8 @@ module.exports = class AppConfigStatus {
         this._bottomBar = this.appConfig.get("bottomBar");
         this._animatedSpinner = this.appConfig.get("animatedSpinner");
         this._showTimer = this.appConfig.get("showTimer");
+        this._maxSuites = this.appConfig.get("maxSuites");
+        this._maxTasksPerSuite = this.appConfig.get("maxTasksPerSuite")
     }
 
     set bottomBar(value) {
@@ -25,6 +27,16 @@ module.exports = class AppConfigStatus {
         this.appConfig.set("showTimer", value);
     }
 
+    set maxSuites(value) {
+        this._maxSuites = value;
+        this.appConfig.set("maxSuites", value);
+    }
+
+    set maxTasksPerSuite(value) {
+        this._maxTasksPerSuite = value;
+        this.appConfig.set("maxTasksPerSuite", value);
+    }
+
     get bottomBar() {
         return this._bottomBar;
     }
@@ -35,5 +47,13 @@ module.exports = class AppConfigStatus {
 
     get showTimer() {
         return this._showTimer;
+    }
+
+    get maxSuites() {
+        return this._maxSuites;
+    }
+
+    get maxTasksPerSuite() {
+        return this._maxTasksPerSuite;
     }
 };

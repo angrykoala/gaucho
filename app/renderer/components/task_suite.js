@@ -72,7 +72,7 @@ module.exports = {
             task.title = this.suite.getValidName(task.title)
         },
         addNewTask(task) {
-            if (this.suite.length < AppStatus.maxTasksPerSuite) {
+            if (this.suite.length < AppStatus.config.maxTasksPerSuite) {
                 this.suite.addTask(task);
                 AppStatus.totalTasks++;
             }
@@ -102,7 +102,7 @@ module.exports = {
             return `tab${this.index}`;
         },
         showAddTab() {
-            return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+            return AppStatus.editMode && this.suite.length < AppStatus.config.maxTasksPerSuite;
         },
         showEmptySuiteMessage() {
             return this.suite.tasks.length === 0 && !AppStatus.editMode;
