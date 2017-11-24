@@ -26,14 +26,17 @@ module.exports = class AppConfigStatus {
         this._showTimer = value;
         this.appConfig.set("showTimer", value);
     }
+
     set maxSuites(value) {
         this._maxSuites = value;
         this.appConfig.set("maxSuites", value);
     }
+
     set maxTasksPerSuite(value) {
         this._maxTasksPerSuite = value;
         this.appConfig.set("maxTasksPerSuite", value);
     }
+
     get bottomBar() {
         return this._bottomBar;
     }
@@ -45,9 +48,11 @@ module.exports = class AppConfigStatus {
     get showTimer() {
         return this._showTimer;
     }
+
     get maxSuites() {
         return this._maxSuites;
     }
+
     get maxTasksPerSuite() {
         return this._maxTasksPerSuite;
     }
