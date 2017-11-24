@@ -14,11 +14,11 @@ module.exports = {
     runningTasks: 0,
     version: version,
     maxSuitesRange: {
-        min: 1,
-        max: 6
+        min: 6,
+        max: 12
     },
     maxTasksPerSuiteRange: {
-        min: 1,
-        max: 8
+        min: 8,
+        max: 20
     }
 };
