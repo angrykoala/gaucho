@@ -90,7 +90,7 @@ module.exports = {
             }, (filename) => {
                 if (filename) {
                     this._closeConfig();
-                    TaskImporter.export(filename, TasksHandler.suites, AppStatus.version).catch((err) => {
+                    TaskImporter.export(filename, TasksHandler.suites, this.$store.getters.version).catch((err) => {
                         console.warn(err);
                     });
                 }

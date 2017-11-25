@@ -2,6 +2,7 @@
 const Vuex = require('vuex');
 const TasksHandler = require('./tasks_handler');
 
+const version = require('../../package.json').version;
 
 module.exports = new Vuex.Store({
     state: {
@@ -9,7 +10,9 @@ module.exports = new Vuex.Store({
         activeSuite: 0
     },
     getters: {
-
+        version() {
+            return version;
+        }
     },
     mutations: {
         toggleEdit(state) {
