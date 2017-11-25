@@ -87,12 +87,12 @@ module.exports = {
             this.$forceUpdate();
         },
         onRunSuite() {
-            if (this.index === AppStatus.activeSuite) {
+            if (this.index === this.$store.state.activeSuite) {
                 this.event.emit("run");
             }
         },
         onStopSuite() {
-            if (this.index === AppStatus.activeSuite) {
+            if (this.index === this.$store.state.activeSuite) {
                 this.event.emit("stop");
             }
         }

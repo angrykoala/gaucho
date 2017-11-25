@@ -7,7 +7,6 @@ const AppConfigStatus = require('./app_config_status');
 
 // TODO: move this to vuex storage
 module.exports = {
-    activeSuite: 0,
     events: new EventEmitter(),
     config: new AppConfigStatus(),
     maxSuites: 6,

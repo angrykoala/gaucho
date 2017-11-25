@@ -5,7 +5,8 @@ const TasksHandler = require('./tasks_handler');
 
 module.exports = new Vuex.Store({
     state: {
-        editMode: false
+        editMode: false,
+        activeSuite: 0
     },
     getters: {
 
@@ -14,6 +15,9 @@ module.exports = new Vuex.Store({
         toggleEdit(state) {
             state.editMode = !state.editMode;
             TasksHandler.saveTasks();
+        },
+        toggleActiveSuite(state, suite) {
+            state.activeSuite = suite; // TODO: make checks
         }
     },
     actions: {

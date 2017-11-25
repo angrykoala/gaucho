@@ -106,7 +106,7 @@ module.exports = {
                 TasksHandler.addDefaultSuite();
                 this.$nextTick(() => {
                     Materialize.selectTab("#navbar-tabs", `tab0`);
-                    AppStatus.activeSuite = 0;
+                    this.$store.state.activeSuite = 0;
                 });
                 AppStatus.totalTasks = 0;
                 this._closeConfig();

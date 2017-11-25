@@ -34,10 +34,10 @@ module.exports = {
                         <template v-for="(suite,index) in suites">
                         <li class="tab col s3 unselectable-text" v-on:dragover="dragOver(index)">
                             <a draggable="false" class="tab-button" v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
-                                <template v-if="editMode && index===AppStatus.activeSuite">
+                                <template v-if="editMode && index===activeSuite">
                                     <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
                                 </template>
-                                <span class="tab-text" v-show="!editMode || index!==AppStatus.activeSuite">{{suite.title}}</span>
+                                <span class="tab-text" v-show="!editMode || index!==activeSuite">{{suite.title}}</span>
                             </a>
                         </li>
                         </template>
@@ -65,21 +65,21 @@ module.exports = {
             const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this suite after deletion!");
             confirmationAlert.toggle().then(() => {
                 if (this.suites.length > 1) {
-                    this.suites[AppStatus.activeSuite].stopAll();
-                    AppStatus.totalTasks -= this.suites[AppStatus.activeSuite].length;
-                    this.suites.splice(AppStatus.activeSuite, 1);
-                    this.selectTab(AppStatus.activeSuite);
+                    this.suites[this.activeSuite].stopAll();
+                    AppStatus.totalTasks -= this.suites[this.activeSuite].length;
+                    this.suites.splice(this.activeSuite, 1);
+                    this.selectTab(this.activeSuite);
                 }
             }, () => {});
         },
         onTabSelected(index) {
-            AppStatus.activeSuite = index;
+            this.$store.commit("toggleActiveSuite", index);
         },
         selectTab(index) {
             if (index >= this.suites.length) index = this.suites.length - 1;
             this.$nextTick(() => {
                 Material.selectTab("#navbar-tabs", `tab${index}`);
-                AppStatus.activeSuite = index;
+                this.$store.commit("toggleActiveSuite", index);
             });
         },
         toggleEdit() {
@@ -100,7 +100,10 @@ module.exports = {
     },
     computed: {
         currentSuite() {
-            return this.suites[AppStatus.activeSuite];
+            return this.suites[this.activeSuite];
+        },
+        activeSuite() {
+            return this.$store.state.activeSuite;
         },
         editMode() {
             return this.$store.state.editMode;
