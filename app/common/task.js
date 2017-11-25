@@ -35,11 +35,11 @@ class Task {
         this.finishTime = null;
         let executionPath = this.path;
         if (!executionPath) executionPath = this._generateDefaultPath();
-        const onOutput=(out)=>{
+        const onOutput = (out) => {
             this.output += `\n${out}`;
             this.output = this.output.slice(-outputMaxSize).trim();
             stdout(this.output);
-        }
+        };
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
             stderr: onOutput,
             stdout: onOutput

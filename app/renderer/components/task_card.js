@@ -24,18 +24,18 @@ module.exports = {
     },
     template: `
     <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
-            <div class="col s1" v-if="AppStatus.editMode">
+        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': editMode}">
+            <div class="col s1" v-if="editMode">
                 <i class="tiny material-icons">drag_handle</i>
             </div>
-            <div class="col" v-bind:class="{ s4: AppStatus.editMode, s5: !AppStatus.editMode }">
+            <div class="col" v-bind:class="{ s4: editMode, s5: !editMode }">
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
                 <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
             </div>
             <div class="col s3">
-                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
+                <a v-if="editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
@@ -46,7 +46,7 @@ module.exports = {
         </div>
 
         <div class="collapsible-body task-card-body">
-            <div v-if="!AppStatus.editMode" class="run-output">
+            <div v-if="!editMode" class="run-output">
                 <pre>{{task.output}}</pre>
             </div>
             <div v-else class="container">
@@ -111,6 +111,9 @@ module.exports = {
         }
     },
     computed: {
+        editMode() {
+            return this.$store.state.editMode;
+        },
         statusColor() {
             switch (this.task.status) {
                 case TaskStatus.idle:

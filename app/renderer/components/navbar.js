@@ -3,7 +3,6 @@
 const Suite = require('../../common/suite');
 const Material = require('../api/materialize');
 const AppStatus = require('../app_status');
-const GauchoActions = require('../api/gaucho_actions');
 const NavbarMenu = require('./navbar_menu');
 const TapTarget = require('./tap_target');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
@@ -84,7 +83,7 @@ module.exports = {
             });
         },
         toggleEdit() {
-            GauchoActions.toggleEdit();
+            this.$store.commit("toggleEdit");
         },
         onMenuSelection(selection) {
             switch (selection) {
@@ -104,7 +103,7 @@ module.exports = {
             return this.suites[AppStatus.activeSuite];
         },
         editMode() {
-            return AppStatus.editMode;
+            return this.$store.state.editMode;
         }
     }
 };

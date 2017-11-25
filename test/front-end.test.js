@@ -78,6 +78,6 @@ describe('Front-end tests', function () {
                     .then((display) => {
                         assert.equal(display.value, 'block');
                     });
-            })
+            });
     });
 });

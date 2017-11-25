@@ -71,10 +71,10 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
-                        TaskImporter.import(filename).then((data)=>{
+                        TaskImporter.import(filename).then((data) => {
                             TasksHandler.loadTasksFromData(data);
                             this._closeConfig();
-                        }).catch((err)=>{
+                        }).catch((err) => {
                             console.warn(err);
                         });
                     }, () => {});
@@ -127,7 +127,7 @@ module.exports = {
             AppStatus.config.animatedSpinner = this.config.animatedSpinner;
             AppStatus.config.showTimer = this.config.showTimer;
         },
-        _closeConfig(){
+        _closeConfig() {
             this.onClose();
             Materialize.closeModals();
         }

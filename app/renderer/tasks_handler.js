@@ -32,7 +32,7 @@ class TasksHandler {
         this.saveTasks();
     }
 
-    _loadTasks(suites){
+    _loadTasks(suites) {
         this.clearTasks();
         const loadedSuites = this._parseData(suites);
         loadedSuites.forEach((suite) => {

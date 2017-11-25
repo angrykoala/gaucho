@@ -36,7 +36,7 @@ module.exports = {
     },
     computed: {
         editMode() {
-            return AppStatus.editMode;
+            return this.$store.state.editMode;
         },
         canAddSuite() {
             return this.suites.length < AppStatus.maxSuites;

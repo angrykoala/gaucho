@@ -67,9 +67,9 @@ module.exports = {
         onDragStart() {
             this.event.emit("collapseTask");
         },
-        onTaskDraggedIn(evt){
-            const task = this.suite.tasks[evt.newIndex]
-            task.title = this.suite.getValidName(task.title)
+        onTaskDraggedIn(evt) {
+            const task = this.suite.tasks[evt.newIndex];
+            task.title = this.suite.getValidName(task.title);
         },
         addNewTask(task) {
             if (this.suite.length < AppStatus.maxTasksPerSuite) {
@@ -102,10 +102,10 @@ module.exports = {
             return `tab${this.index}`;
         },
         showAddTab() {
-            return AppStatus.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+            return this.$store.state.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
         },
         showEmptySuiteMessage() {
-            return this.suite.tasks.length === 0 && !AppStatus.editMode;
+            return this.suite.tasks.length === 0 && !this.$store.state.editMode;
         }
     }
 };

@@ -5,8 +5,8 @@ const EventEmitter = require('events');
 const version = require('../../package.json').version;
 const AppConfigStatus = require('./app_config_status');
 
+// TODO: move this to vuex storage
 module.exports = {
-    editMode: false,
     activeSuite: 0,
     events: new EventEmitter(),
     config: new AppConfigStatus(),
