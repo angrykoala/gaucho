@@ -27,6 +27,9 @@ module.exports = {
     isDevEnv() {
         return process.env.NODE_ENV === "dev";
     },
+    isTestEnv() {
+        return process.env.NODE_ENV === "test";
+    },
     timer(eventEmitter, intervalTime) {
         setInterval(() => {
             eventEmitter.emit("time-update");
