@@ -55,6 +55,7 @@ class AppConfig {
         if (utils.isDevEnv()) configName += "_dev";
         if (utils.isTestEnv()) {
             this.store = new Map(Object.entries(defaultData));
+            this.store.set("firstVisit", true);
         } else {
             this.store = new Store({
                 name: configName,

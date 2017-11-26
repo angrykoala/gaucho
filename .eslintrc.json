@@ -2,8 +2,10 @@
     "env": {
         "mocha": true,
         "node": true,
-        "es6": true,
         "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 8
     },
     "plugins": ["vue"],
     "globals": {},
