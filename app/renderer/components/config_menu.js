@@ -16,11 +16,9 @@ const Materialize = require('../api/materialize');
 module.exports = {
     data() {
         return {
-            config: {
-                bottomBar: AppStatus.config.bottomBar,
-                animatedSpinner: AppStatus.config.animatedSpinner,
-                showTimer: AppStatus.config.showTimer
-            }
+            bottomBar: this.$store.state.userConfig.bottomBar,
+            animatedSpinner: this.$store.state.userConfig.animatedSpinner,
+            showTimer: this.$store.state.userConfig.showTimer
         };
     },
     components: {
@@ -32,9 +30,9 @@ module.exports = {
         <div class="modal-content">
             <h3>Configuration</h3>
             <div class="container config-form">
-                <switch-form v-bind:title="'Bottom Bar'" v-model="config.bottomBar"></switch-form>
-                <switch-form v-bind:title="'Animated Progress Icon'" v-model="config.animatedSpinner"></switch-form>
-                <switch-form v-bind:title="'Show Timer'" v-model="config.showTimer"></switch-form>
+                <switch-form v-bind:title="'Bottom Bar'" v-model="bottomBar"></switch-form>
+                <switch-form v-bind:title="'Animated Progress Icon'" v-model="animatedSpinner"></switch-form>
+                <switch-form v-bind:title="'Show Timer'" v-model="showTimer"></switch-form>
 
                 <div class="center-align buttons-form container">
                     <a class="waves-effect waves-light btn " v-on:click="clearTasks">Clear Tasks</a>
@@ -113,19 +111,19 @@ module.exports = {
             }, () => {});
         },
         resetConfig() {
-            this.config.bottomBar = true;
-            this.config.animatedSpinner = true;
-            this.config.showTimer = true;
+            this.bottomBar = true;
+            this.animatedSpinner = true;
+            this.showTimer = true;
         },
         onClose() {
-            this.config.bottomBar = AppStatus.config.bottomBar;
-            this.config.animatedSpinner = AppStatus.config.animatedSpinner;
-            this.config.showTimer = AppStatus.config.showTimer;
+            this.bottomBar = this.$store.state.userConfig.bottomBar;
+            this.animatedSpinner = this.$store.state.userConfig.animatedSpinner;
+            this.showTimer = this.$store.state.userConfig.showTimer;
         },
         onSave() {
-            AppStatus.config.bottomBar = this.config.bottomBar;
-            AppStatus.config.animatedSpinner = this.config.animatedSpinner;
-            AppStatus.config.showTimer = this.config.showTimer;
+            if(this.bottomBar !== this.$store.state.userConfig.bottomBar) this.$store.commit("toggleBottomBar");
+            if(this.animatedSpinner !== this.$store.state.userConfig.animatedSpinner) this.$store.commit("toggleAnimatedSpinner");
+            if(this.showTimer !== this.$store.state.userConfig.showTimer) this.$store.commit("toggleShowTimer");
         },
         _closeConfig() {
             this.onClose();

@@ -2,12 +2,9 @@
 
 const EventEmitter = require('events');
 
-const AppConfigStatus = require('./app_config_status');
-
 // TODO: move this to vuex storage
 module.exports = {
     events: new EventEmitter(),
-    config: new AppConfigStatus(),
     maxSuites: 6,
     maxTasksPerSuite: 8,
     totalTasks: 0,

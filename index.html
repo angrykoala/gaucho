@@ -19,13 +19,13 @@
             <navbar v-bind:suites="suites"></navbar>
         </header>
 
-        <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }">
+        <main v-bind:class="{ 'full-size': !$store.state.userConfig.bottomBar }">
             <template v-for="(suite,index) in suites">
                     <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
                 </template>
         </main>
 
-        <footer v-if="AppStatus.config.bottomBar">
+        <footer v-if="$store.state.userConfig.bottomBar">
             <bottom-bar></bottom-bar>
         </footer>
     </section>

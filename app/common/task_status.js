@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
     idle: "do_not_disturb_off",
     error: "error",

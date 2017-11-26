@@ -32,14 +32,14 @@ module.exports = {
                 <strong class="truncate">{{task.title}}</strong>
             </div>
             <div class="col s3">
-                <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
+                <div class="truncate task-time" v-if="$store.state.userConfig.showTimer">{{executionTime}}</div>
             </div>
             <div class="col s3">
                 <a v-if="editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
                 <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
             </div>
             <div class="col s1">
-                <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
+                <progress-spinner v-if="running && $store.state.userConfig.animatedSpinner"></progress-spinner>
                 <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
                 <tooltip v-bind:taskStatus="task.status"></tooltip>
             </div>
