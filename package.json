@@ -34,7 +34,7 @@
     "icon": "resources/icon.png"
   },
   "scripts": {
-    "test": "NODE_ENV=test istanbul cover _mocha -- --exit && npm run lint",
+    "test": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint",
     "start": "electron .",
     "start-dev": "cross-env NODE_ENV=dev npm start",
     "clean": "rm -rf config.json tasks.json coverage dist",
