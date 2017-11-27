@@ -5,7 +5,8 @@
         "browser": true
     },
     "parserOptions": {
-        "ecmaVersion": 8
+        "ecmaVersion": 8,
+        "sourceType": "script"
     },
     "plugins": ["vue"],
     "globals": {},
@@ -19,6 +20,7 @@
         "eqeqeq": ["error", "always", {
             "null": "ignore"
         }],
+        "strict": ["error", "global"],
         "complexity": ["warn", 6],
         "space-infix-ops": "warn",
         "max-depth": ["error", 6],

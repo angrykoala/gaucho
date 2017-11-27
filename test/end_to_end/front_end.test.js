@@ -1,13 +1,11 @@
-const Application = require('spectron').Application;
+"use strict";
+
 const assert = require('chai').assert;
+const testConfig = require('./config');
 
 describe('Frontend tests', function () {
     this.timeout(20000); // needed for Travis builds
-    const app = new Application({
-        path: './node_modules/.bin/electron',
-        args: ['main.js'],
-        startTimeout: 20000 // timeout for ChromeDriver start
-    });
+    const app = testConfig.testBrowserSetup();
     let browser;
     beforeEach(() => {
         return app.start().then(() => {
@@ -21,43 +19,28 @@ describe('Frontend tests', function () {
         }
     });
 
-    it('Shows Initial Window', () => {
-        return app.client.getWindowCount().then((count) => {
-            assert.equal(count, 1);
-        });
+    it('Shows Initial Window', async () => {
+        const count = await app.client.getWindowCount();
+        assert.strictEqual(count, 1);
     });
 
-    it('Shows Task Status Tooltip On Hover', () => {
+    it('Shows Task Status Tooltip On Hover', async () => {
         const selector = '.task-card:nth-child(1) .tooltip';
-        return app.client.waitUntilWindowLoaded().then(() => {
-            app.client.moveToObject(selector);
-            return app.client.element(selector);
-        }).then((element) => {
-            return app.client.elementIdCssProperty(element.value.ELEMENT, 'visibility');
-        }).then((visibility) => {
-            assert.equal(visibility.value, "visible");
-        });
+        await browser.waitUntilWindowLoaded();
+        await browser.moveToObject(selector);
+        const element = await browser.element(selector);
+        const visibility = await browser.elementIdCssProperty(element.value.ELEMENT, 'visibility');
+        assert.equal(visibility.value, "visible");
     });
 
-    it('Menu using Tab', () => {
-        const menuSelector = '#navbar-menu';
-
-        return app.client.waitUntilWindowLoaded()
-            .then(() => {
-                app.client.keys(['Tab', 'Enter']);
-                return app.client.element(menuSelector);
-            }).then((element) => {
-                return app.client.elementIdCssProperty(element.value.ELEMENT, 'display');
-            }).then((display) => {
-                assert.equal(display.value, 'block');
-                app.client.keys(['Tab']);
-                return app.client.hasFocus("#navbar-menu a:nth-child(1)");
-            }).then((hasFocus) => {
-                assert.isTrue(hasFocus);
-            });
+    it('Menu using Tab', async () => {
+        await app.client.waitUntilWindowLoaded();
+        await app.client.keys(['Tab', 'Enter']);
+        await browser.waitForVisible("#navbar-menu");
+        app.client.keys(['Tab']);
+        const hasFocus = await app.client.hasFocus("#navbar-menu a:nth-child(1)");
+        assert.isTrue(hasFocus);
     });
-
-
 
     it("Open Config Menu", async () => {
         await browser.waitUntilWindowLoaded();
@@ -68,6 +51,7 @@ describe('Frontend tests', function () {
         const isVisible = await browser.isVisible("#config-modal");
         assert.isTrue(isVisible);
     });
+
     it("Open About Menu", async () => {
         await browser.waitUntilWindowLoaded();
         await browser.click("#navbar-menu-button");
