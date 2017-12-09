@@ -4,6 +4,7 @@
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
+    "browserify-fs": "^1.0.0",
     "electron-store": "^1.3.0",
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
@@ -11,23 +12,29 @@
     "materialize-css": "^0.99.0",
     "mousetrap": "^1.6.1",
     "sweetalert2": "^6.11.1",
-    "vue": "^2.0.8",
+    "vue": "^2.5.9",
     "vuedraggable": "^2.14.1",
     "vuex": "^3.0.1",
     "yerbamate": "^2.0.1"
   },
   "devDependencies": {
+    "browserify": "^14.5.0",
     "chai": "^4.0.2",
     "cross-env": "^5.0.5",
     "electron": "~1.7.8",
     "electron-builder": "^19.41.1",
+    "electron-renderify": "0.0.2",
     "eslint": "^4.8.0",
     "eslint-plugin-vue": "^3.13.1",
+    "gulp": "^3.9.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.0",
     "pre-commit": "^1.2.2",
     "sinon": "^4.0.2",
-    "spectron": "^3.7.2"
+    "spectron": "^3.7.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vueify": "^9.4.1"
   },
   "config": {
     "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.eslintrc)",
@@ -36,11 +43,12 @@
   "scripts": {
     "test": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint",
     "start": "electron .",
-    "start-dev": "cross-env NODE_ENV=dev npm start",
+    "start-dev": "npm run gulp && cross-env NODE_ENV=dev npm start",
     "clean": "rm -rf config.json tasks.json coverage dist",
     "lint": "eslint *.js app test",
     "dist": "electron-builder",
-    "dist-all": "npm run clean && electron-builder -wlm --x64"
+    "dist-all": "npm run clean && electron-builder -wlm --x64",
+    "gulp": "gulp build"
   },
   "build": {
     "appId": "angrykoala.gaucho",

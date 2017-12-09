@@ -1,3 +1,7 @@
+<template>
+    <a v-on:click="openAbout" v-bind:href="'#tab3'">About</a>
+</template>
+<script>
 "use strict";
 const shell = require('electron').shell;
 const AppAlert = require('../api/app_alerts').AppAlert;
@@ -5,7 +9,8 @@ const AppAlert = require('../api/app_alerts').AppAlert;
 module.exports = {
     data() {
 
-        const aboutHtml = `<i>Version: ${this.$store.getters.version}</i>
+        const aboutHtml =
+            `<i>Version: ${this.$store.getters.version}</i>
             <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>
             <a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>`;
 
@@ -18,7 +23,6 @@ module.exports = {
             }).html(aboutHtml)
         };
     },
-    template: `<a v-on:click="openAbout" v-bind:href="'#tab3'">About</a>`,
     methods: {
         openAbout() {
             this.aboutModal.toggle();
@@ -34,3 +38,4 @@ module.exports = {
         }
     }
 };
+</script>

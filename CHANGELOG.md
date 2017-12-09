@@ -3,6 +3,7 @@
 
   * It is possible to navigate the menu using tab
   * Fixed bug where stderr was not being displayed
+  * VUe components are now described using single file components syntax
 
 0.4.0 / 2017-10-02
 ==================

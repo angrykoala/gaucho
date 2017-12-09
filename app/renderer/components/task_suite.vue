@@ -1,10 +1,27 @@
+<template>
+<div v-bind:id="id" class="no-margin">
+    <draggable element="ul" :options="draggableOptions" class="collapsible no-margin task-list" data-collapsible="accordion" v-model="suite.tasks" @start="onDragStart" @add="onTaskDraggedIn" :move="checkMove">
+        <template v-for="(task,i) in suite.tasks">
+                <task-card v-bind:task="task" v-bind:key="i" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
+            </template>
+        <add-task v-bind:tasks="suite.tasks" v-on:add="addNewTask" v-if="showAddTab"></add-task>
+    </draggable>
+    <div class="row" v-if="showEmptySuiteMessage">
+        <div class="grey-text text-lighten-1 section center-align">
+            You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
 "use strict";
 
 const EventEmitter = require('events');
 const Draggable = require('vuedraggable');
 
-const TaskCard = require('./task_card');
-const AddTask = require('./add_task');
+const TaskCard = require('./task_card.vue');
+const AddTask = require('./add_task.vue');
 const AppStatus = require('../app_status');
 
 
@@ -29,28 +46,6 @@ module.exports = {
         "add-task": AddTask,
         "draggable": Draggable
     },
-    template: `
-        <div v-bind:id="id" class="no-margin">
-            <draggable element="ul"
-            :options="draggableOptions"
-            class="collapsible no-margin task-list"
-            data-collapsible="accordion"
-            v-model="suite.tasks"
-            @start="onDragStart"
-            @add="onTaskDraggedIn"
-            :move="checkMove">
-                <template v-for="(task,i) in suite.tasks">
-                    <task-card v-bind:task="task" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
-                </template>
-            <add-task v-bind:tasks="suite.tasks" v-on:add="addNewTask" v-if="showAddTab"></add-task>
-            </draggable>
-            <div class="row" v-if="showEmptySuiteMessage">
-                <div class="grey-text text-lighten-1 section center-align" >
-                    You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
-                </div>
-            </div>
-        </div>
-    `,
     mounted() {
         AppStatus.events.on("run-suite", this.onRunSuite);
         AppStatus.events.on("stop-suite", this.onStopSuite);
@@ -109,3 +104,4 @@ module.exports = {
         }
     }
 };
+</script>

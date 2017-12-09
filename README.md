@@ -65,6 +65,7 @@ If you want to contribute to Gaucho, create a new different version of Gaucho, o
 Clone/download source code from the github repo. Make sure you have _node_ and _npm_ already installed in your system:
 
 1. `npm install` to install electron and all the dependencies.
+    * `npm run gulp` to compile and bundle the project
 2. `npm start` to start _gaucho_.
     * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
     * `NODE_ENV=test npm start` will run Gaucho in test mode, which will not store or change any configuration or tasks.

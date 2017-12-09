@@ -1,20 +1,5 @@
-"use strict";
-
-const Suite = require('../../common/suite');
-const Material = require('../api/materialize');
-const AppStatus = require('../app_status');
-const NavbarMenu = require('./navbar_menu');
-const TapTarget = require('./tap_target');
-const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
-
-module.exports = {
-    props: ['suites'],
-    components: {
-        "navbar-menu": NavbarMenu,
-        "tap-target": TapTarget
-    },
-    template: `
-    <div>
+<template>
+<div>
     <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="nav-wrapper">
@@ -37,8 +22,8 @@ module.exports = {
                                 <template v-if="editMode && index===activeSuite">
                                     <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
                                 </template>
-                                <span class="tab-text" v-show="!editMode || index!==activeSuite">{{suite.title}}</span>
-                            </a>
+                        <span class="tab-text" v-show="!editMode || index!==activeSuite">{{suite.title}}</span>
+                        </a>
                         </li>
                         </template>
                     </ul>
@@ -46,8 +31,24 @@ module.exports = {
             </div>
         </nav>
     </div>
-    </div>
-    `,
+</div>
+</template>
+<script>
+"use strict";
+
+const Suite = require('../../common/suite');
+const Material = require('../api/materialize');
+const AppStatus = require('../app_status');
+const NavbarMenu = require('./navbar_menu.vue');
+const TapTarget = require('./tap_target.vue');
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+
+module.exports = {
+    props: ['suites'],
+    components: {
+        "navbar-menu": NavbarMenu,
+        "tap-target": TapTarget
+    },
     mounted() {
         Material.checkFirstTimeTap(".tap-target");
     },
@@ -110,3 +111,4 @@ module.exports = {
         }
     }
 };
+</script>

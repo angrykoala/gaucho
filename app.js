@@ -13,10 +13,10 @@ const Shortcuts = require('./app/renderer/api/shortcuts');
 const store = require('./app/renderer/store');
 
 const components = {
-    "task-suite": require('./app/renderer/components/task_suite'),
-    "navbar": require('./app/renderer/components/navbar'),
-    "bottom-bar": require('./app/renderer/components/bottom_bar'),
-    "config-menu": require('./app/renderer/components/config_menu')
+    "task-suite": require('./app/renderer/components/task_suite.vue'),
+    "navbar": require('./app/renderer/components/navbar.vue'),
+    "bottom-bar": require('./app/renderer/components/bottom_bar.vue'),
+    "config-menu": require('./app/renderer/components/config_menu.vue')
 };
 
 
