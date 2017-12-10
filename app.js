@@ -5,12 +5,11 @@ const ipcRenderer = require('electron').ipcRenderer;
 // Some heavy vuex magic happening here
 // const Vuex = require('vuex'); // eslint-disable-line no-unused-vars
 
-const TasksHandler = require('./app/renderer/tasks_handler');
 const AppStatus = require('./app/renderer/app_status');
 const Material = require('./app/renderer/api/materialize');
 const Shortcuts = require('./app/renderer/api/shortcuts');
 
-const store = require('./app/renderer/store');
+const store = require('./app/renderer/stores/main');
 
 const components = {
     "task-suite": require('./app/renderer/components/task_suite.vue'),
@@ -21,9 +20,8 @@ const components = {
 
 
 ipcRenderer.on('before-close', () => {
-    TasksHandler.saveTasks();
-    const promises = TasksHandler.suites.map((s) => s.stopAll());
-    Promise.all(promises).then(() => {
+    store.dispatch("saveTasks");
+    store.dispatch("stopAllTasks").then(() => {
         ipcRenderer.send("close-app");
     });
 });
@@ -34,13 +32,13 @@ ipcRenderer.on('before-close', () => {
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
     data: {
-        suites: TasksHandler.suites,
+        suites: store.getters.suites,
         AppStatus: AppStatus
     },
     components: components,
     store: store,
     beforeMount() {
-        TasksHandler.loadTasksFromConfig();
+        store.dispatch("loadTasks");
     },
     mounted() {
         Material.init();

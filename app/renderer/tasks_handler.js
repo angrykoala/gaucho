@@ -5,6 +5,7 @@ const Task = require('../common/task');
 const AppConfig = require('../common/app_config');
 
 const suites = [];
+
 class TasksHandler {
     get suites() {
         return suites;

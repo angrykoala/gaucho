@@ -2,7 +2,7 @@
 
 const Mousetrap = require('mousetrap');
 
-const Store = require('../store');
+const Store = require('../stores/main');
 const Material = require('./materialize');
 const TasksHandle = require('../tasks_handler');
 

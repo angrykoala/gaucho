@@ -22,7 +22,7 @@
         <main v-bind:class="{ 'full-size': !$store.state.userConfig.bottomBar }">
             <template v-for="(suite,index) in suites">
                     <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
-                </template>
+            </template>
         </main>
 
         <footer v-if="$store.state.userConfig.bottomBar">

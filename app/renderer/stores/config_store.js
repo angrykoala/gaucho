@@ -1,6 +1,6 @@
 "use strict";
 
-const AppConfig = require('../common/app_config');
+const AppConfig = require('../../common/app_config');
 
 const appConfig = new AppConfig.User();
 

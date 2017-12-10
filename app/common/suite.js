@@ -1,9 +1,9 @@
 "use strict";
 
 class Suite {
-    constructor(title) {
+    constructor(title, tasks) {
         this.title = title || "";
-        this.tasks = [];
+        this.tasks = tasks || [];
     }
 
     get length() {

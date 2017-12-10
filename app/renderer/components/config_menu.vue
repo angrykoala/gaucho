@@ -41,8 +41,7 @@ const dialog = app.dialog;
 const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form.vue');
 const ShortcutsLearn = require('./shortcuts_learn.vue');
-const TasksHandler = require('../tasks_handler');
-const TaskImporter = require('../../common/task_importer');
+
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Materialize = require('../api/materialize');
 
@@ -73,13 +72,12 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
-                        TaskImporter.import(filename).then((data) => {
-                            TasksHandler.loadTasksFromData(data);
+                        return this.$store.dispatch("importTasks", filename).then(() => {
                             this._closeConfig();
-                        }).catch((err) => {
-                            console.warn(err);
                         });
-                    }, () => {});
+                    }).catch((err) => {
+                        console.warn(err);
+                    });
                 }
             });
         },
@@ -92,7 +90,7 @@ module.exports = {
             }, (filename) => {
                 if (filename) {
                     this._closeConfig();
-                    TaskImporter.export(filename, TasksHandler.suites, this.$store.getters.version).catch((err) => {
+                    this.$store.dispatch("exportTasks", filename).catch((err) => {
                         console.warn(err);
                     });
                 }
@@ -104,8 +102,7 @@ module.exports = {
                 cancelButtonText: "No, keep them"
             });
             confirmationAlert.toggle().then(() => {
-                TasksHandler.clearTasks();
-                TasksHandler.addDefaultSuite();
+                this.$store.commit("resetTasks");
                 this.$nextTick(() => {
                     Materialize.selectTab("#navbar-tabs", `tab0`);
                     this.$store.state.activeSuite = 0;

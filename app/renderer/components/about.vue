@@ -1,8 +1,10 @@
 <template>
     <a v-on:click="openAbout" v-bind:href="'#tab3'">About</a>
 </template>
+
 <script>
 "use strict";
+
 const shell = require('electron').shell;
 const AppAlert = require('../api/app_alerts').AppAlert;
 
