@@ -102,7 +102,7 @@ module.exports = {
                 cancelButtonText: "No, keep them"
             });
             confirmationAlert.toggle().then(() => {
-                this.$store.commit("resetTasks");
+                this.$store.dispatch("resetTasks");
                 this.$nextTick(() => {
                     Materialize.selectTab("#navbar-tabs", `tab0`);
                     this.$store.state.activeSuite = 0;

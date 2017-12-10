@@ -1,6 +1,6 @@
 "use strict";
 
-// const Suite = require('../../common/suite');
+const Suite = require('../../common/suite');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 
@@ -8,40 +8,52 @@ const TaskImporter = require('../../common/task_importer');
 
 module.exports = {
     state: {
-        tasksHandler: TasksHandler,
         suites: []
     },
     getters: {
         suites(state) {
-            return state.tasksHandler.suites;
+            return state.suites;
         }
     },
     mutations: {
         addNewSuite(state, suite) {
-            state.tasksHandler.addSuite(suite);
+            state.suites.push(suite);
         },
-        clearTasks(state) {
-            state.tasksHandler.clearTasks();
-        },
-        resetTasks(state) {
-            state.tasksHandler.clearTasks();
-            state.tasksHandler.addDefaultSuite();
+        setSuites(state, suites) {
+            // TODO: fix this
+            state.suites.splice(0, state.suites.length);
+            suites.forEach((suite) => {
+                state.suites.push(suite);
+            });
         }
     },
     actions: {
         saveTasks(context) {
-            context.state.tasksHandler.saveTasks();
+            TasksHandler.saveTasks(context.getters.suites);
         },
         loadTasks(context) {
-            context.state.tasksHandler.loadTasksFromConfig();
+            const loadedSuites = TasksHandler.loadTasksFromConfig();
+            context.commit("setSuites", loadedSuites);
         },
         stopAllTasks(context) {
-            const promises = context.state.tasksHandler.suites.map((s) => s.stopAll());
+            const promises = context.getters.suites.map((s) => s.stopAll());
             return Promise.all(promises);
+        },
+        clearTasks(context) {
+            return context.dispatch("stopAllTasks").then(() => {
+                context.commit("setSuites", []);
+            });
+        },
+        resetTasks(context) {
+            return context.dispatch("clearTasks").then(() => {
+                context.commit("addNewSuite", new Suite("Suite 1"));
+            });
         },
         importTasks(context, filename) {
             return TaskImporter.import(filename).then((data) => {
-                context.state.tasksHandler.loadTasksFromData(data);
+                const loadedSuites = TasksHandler.loadTasksFromData(data);
+                context.commit("setSuites", loadedSuites);
+                context.dispatch("saveTasks");
             });
         },
         exportTasks(context, filename) {

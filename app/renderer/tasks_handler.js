@@ -4,75 +4,49 @@ const Suite = require('../common/suite');
 const Task = require('../common/task');
 const AppConfig = require('../common/app_config');
 
-const suites = [];
 
-class TasksHandler {
-    get suites() {
-        return suites;
-    }
+module.exports = class TasksHandler {
 
-    addSuite(suite) {
-        suites.push(suite);
-    }
-
-    loadTasksFromConfig() {
+    static loadTasksFromConfig() {
         const tasksConfig = new AppConfig.Tasks();
-        let suites = tasksConfig.get("suites");
-        if (!this._isValid(suites)) {
+        let rawSuites = tasksConfig.get("suites");
+        if (!this._isValid(rawSuites)) {
             console.error("Loaded tasks are not valid");
-            suites = [{
+            rawSuites = [{
                 title: "Default Suite",
                 tasks: []
             }];
         }
-        this._loadTasks(suites);
+        return this._loadTasks(rawSuites);
     }
 
-    loadTasksFromData(data) {
-        this._loadTasks(data.suites);
-        this.saveTasks();
+    static loadTasksFromData(data) {
+        return this._loadTasks(data.suites);
     }
 
-    _loadTasks(suites) {
-        this.clearTasks();
-        const loadedSuites = this._parseData(suites);
-        loadedSuites.forEach((suite) => {
-            this.addSuite(suite);
-        });
-    }
-
-    saveTasks() {
+    static saveTasks(suites) {
         const tasksConfig = new AppConfig.Tasks();
-        const data = this.suites.map((suite) => suite.getData());
+        const data = suites.map((suite) => suite.getData());
 
         if (this._isValid(data)) {
             tasksConfig.set("suites", data);
         }
     }
 
-    addDefaultSuite() {
-        suites.push(new Suite("Suite 1"));
-        this.saveTasks();
+    static _loadTasks(rawSuites) {
+        return this._parseData(rawSuites);
     }
 
-    clearTasks() {
-        for (const suite of this.suites) {
-            suite.stopAll();
-        }
-        this.suites.splice(0, this.suites.length);
-    }
 
-    _isValid(data) {
+    static _isValid(data) {
         return (Array.isArray(data) && data.length >= 1);
     }
 
-    _parseData(data) {
+    static _parseData(data) {
         return data.map((suite) => {
             let result = new Suite(suite.title);
             result.tasks = suite.tasks.map((task) => new Task(task.title, task.path, task.command));
             return result;
         });
     }
-}
-
-module.exports = new TasksHandler();
+};
