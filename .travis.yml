@@ -4,7 +4,7 @@ os:
     - windows
 node_js:
     - "stable"
-    - "6.9.1"
+    - "8.9.3"
 sudo: false
 before_script:
   - "export DISPLAY=:99.0"

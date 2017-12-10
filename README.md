@@ -62,6 +62,8 @@ All tasks and user changes are saved automatically when closing gaucho. This inc
 ## Development
 If you want to contribute to Gaucho, create a new different version of Gaucho, or compile it from source code, follow these instructions.
 
+> Node 8.9.3 or higher required
+
 Clone/download source code from the github repo. Make sure you have _node_ and _npm_ already installed in your system:
 
 1. `npm install` to install electron and all the dependencies.
