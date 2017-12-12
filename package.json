@@ -46,8 +46,8 @@
     "start-dev": "npm run gulp && cross-env NODE_ENV=dev npm start",
     "clean": "rm -rf config.json tasks.json coverage dist",
     "lint": "eslint *.js app test",
-    "dist": "electron-builder",
-    "dist-all": "npm run clean && electron-builder -wlm --x64",
+    "dist": "npm run gulp && electron-builder",
+    "dist-all": "npm run gulp && npm run clean && electron-builder -wlm --x64",
     "gulp": "gulp build"
   },
   "build": {

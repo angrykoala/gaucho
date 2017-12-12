@@ -12,7 +12,7 @@
                     <li><a id="tap-edit" v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
                     <li><a id="navbar-menu-button" data-activates='navbar-menu' data-gutter="30" v-bind:href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
-                <navbar-menu v-on:selection="onMenuSelection" v-bind:suites="suites"></navbar-menu>
+                <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
 
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
@@ -36,7 +36,6 @@
 <script>
 "use strict";
 
-const Suite = require('../../common/suite');
 const Material = require('../api/materialize');
 const AppStatus = require('../app_status');
 const NavbarMenu = require('./navbar_menu.vue');
@@ -57,8 +56,8 @@ module.exports = {
             this.selectTab(index);
         },
         addSuite() {
-            if (this.suites.length < AppStatus.maxSuites) {
-                this.suites.push(new Suite(`Suite ${(this.suites.length + 1)}`));
+            if (this.$store.getters.canAddSuite) {
+                this.$store.commit("addSuite");
                 this.selectTab(this.suites.length - 1);
             }
         },

@@ -1,9 +1,11 @@
-/* globals Vue */
 "use strict";
 
 const ipcRenderer = require('electron').ipcRenderer;
 // Some heavy vuex magic happening here
-// const Vuex = require('vuex'); // eslint-disable-line no-unused-vars
+
+const Vue = require('vue/dist/vue.common');
+const Vuex = require('vuex'); // eslint-disable-line no-unused-vars
+Vue.use(Vuex);
 
 const AppStatus = require('./app/renderer/app_status');
 const Material = require('./app/renderer/api/materialize');
@@ -27,7 +29,6 @@ ipcRenderer.on('before-close', () => {
 });
 
 // If magic is not happening, uncomment
-// Vue.use(Vuex);
 
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',

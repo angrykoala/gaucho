@@ -18,11 +18,9 @@
 <script>
 "use strict";
 
-const AppStatus = require('../app_status');
 const About = require('./about.vue');
 
 module.exports = {
-    props: ['suites'],
     components: {
         "about": About
     },
@@ -39,11 +37,14 @@ module.exports = {
         }
     },
     computed: {
+        suites() {
+            return this.$store.getters.suites;
+        },
         editMode() {
             return this.$store.state.editMode;
         },
         canAddSuite() {
-            return this.suites.length < AppStatus.maxSuites;
+            return this.$store.getters.canAddSuite;
         },
         canDeleteSuite() {
             return this.suites.length > 1;

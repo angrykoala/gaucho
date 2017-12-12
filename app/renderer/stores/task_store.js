@@ -4,7 +4,7 @@ const Suite = require('../../common/suite');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 
-// const AppConfig = require('../../app_config.json');
+const AppConfig = require('../../app_config.json');
 
 module.exports = {
     state: {
@@ -13,11 +13,19 @@ module.exports = {
     getters: {
         suites(state) {
             return state.suites;
+        },
+        canAddSuite(state) {
+            return state.suites.length < AppConfig.maxSuites;
         }
     },
     mutations: {
-        addNewSuite(state, suite) {
-            state.suites.push(suite);
+        addSuite(state, suite) {
+            if (state.suites.length < AppConfig.maxSuites) {
+                if(!suite) {
+                    suite = new Suite(`Suite ${(state.suites.length + 1)}`);
+                }
+                state.suites.push(suite);
+            }
         },
         setSuites(state, suites) {
             // TODO: fix this
@@ -46,7 +54,7 @@ module.exports = {
         },
         resetTasks(context) {
             return context.dispatch("clearTasks").then(() => {
-                context.commit("addNewSuite", new Suite("Suite 1"));
+                context.commit("addSuite");
             });
         },
         importTasks(context, filename) {

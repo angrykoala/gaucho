@@ -1,6 +1,6 @@
-/* globals swal */
 "use strict";
 
+const swal=require('sweetalert2');
 
 class AppAlert {
     constructor(title, options = {}) {

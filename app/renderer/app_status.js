@@ -5,7 +5,6 @@ const EventEmitter = require('events');
 // TODO: move this to vuex storage
 module.exports = {
     events: new EventEmitter(),
-    maxSuites: 6,
     maxTasksPerSuite: 8,
     totalTasks: 0,
     runningTasks: 0
