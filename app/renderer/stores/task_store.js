@@ -16,6 +16,9 @@ module.exports = {
         },
         canAddSuite(state) {
             return state.suites.length < AppConfig.maxSuites;
+        },
+        maxTasksPerSuite() {
+            return AppConfig.maxTasksPerSuite;
         }
     },
     mutations: {
@@ -27,8 +30,12 @@ module.exports = {
                 state.suites.push(suite);
             }
         },
+        addTask(state, {index, task}) {
+            if(state.suites[index].length < AppConfig.maxTasksPerSuite) {
+                state.suites[index].addTask(task);
+            }
+        },
         setSuites(state, suites) {
-            // TODO: fix this
             state.suites.splice(0, state.suites.length);
             suites.forEach((suite) => {
                 state.suites.push(suite);

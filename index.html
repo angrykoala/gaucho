@@ -13,22 +13,22 @@
 </head>
 
 <body>
-    <section id="app">
+    <div id="app">
         <config-menu></config-menu>
         <header id="main-header" class="margin-bottom">
-            <navbar v-bind:suites="suites"></navbar>
+            <navbar :suites="suites"></navbar>
         </header>
 
-        <main v-bind:class="{ 'full-size': !$store.state.userConfig.bottomBar }">
+        <main :class="{ 'full-size': !showBottomBar }">
             <template v-for="(suite,index) in suites">
-                    <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
+                    <task-suite :index="index" :key="index"></task-suite>
             </template>
         </main>
 
-        <footer v-if="$store.state.userConfig.bottomBar">
+        <footer v-if="showBottomBar">
             <bottom-bar></bottom-bar>
         </footer>
-    </section>
+    </div>
 
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');

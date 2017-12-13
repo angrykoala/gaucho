@@ -7,17 +7,16 @@ const Vue = require('vue/dist/vue.common');
 const Vuex = require('vuex'); // eslint-disable-line no-unused-vars
 Vue.use(Vuex);
 
-const AppStatus = require('./app/renderer/app_status');
 const Material = require('./app/renderer/api/materialize');
 const Shortcuts = require('./app/renderer/api/shortcuts');
 
 const store = require('./app/renderer/stores/main');
 
 const components = {
+    "config-menu": require('./app/renderer/components/config_menu.vue'),
     "task-suite": require('./app/renderer/components/task_suite.vue'),
     "navbar": require('./app/renderer/components/navbar.vue'),
-    "bottom-bar": require('./app/renderer/components/bottom_bar.vue'),
-    "config-menu": require('./app/renderer/components/config_menu.vue')
+    "bottom-bar": require('./app/renderer/components/bottom_bar.vue')
 };
 
 
@@ -28,14 +27,9 @@ ipcRenderer.on('before-close', () => {
     });
 });
 
-// If magic is not happening, uncomment
 
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
-    data: {
-        suites: store.getters.suites,
-        AppStatus: AppStatus
-    },
     components: components,
     store: store,
     beforeMount() {
@@ -49,5 +43,13 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         this.$nextTick(() => {
             Material.init();
         });
+    },
+    computed: {
+        suites() {
+            return this.$store.getters.suites;
+        },
+        showBottomBar() {
+            return this.$store.state.userConfig.bottomBar;
+        }
     }
 });

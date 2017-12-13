@@ -33,7 +33,7 @@ const draggableOptions = {
 };
 
 module.exports = {
-    props: ['suite', 'index'],
+    props: ['index'],
     data() {
         return {
             AppStatus: AppStatus,
@@ -67,10 +67,10 @@ module.exports = {
             task.title = this.suite.getValidName(task.title);
         },
         addNewTask(task) {
-            if (this.suite.length < AppStatus.maxTasksPerSuite) {
-                this.suite.addTask(task);
-                AppStatus.totalTasks++;
-            }
+            this.$store.commit("addTask", {
+                index: this.index,
+                task: task
+            });
         },
         removeTask(i) {
             this.suite.removeTask(i);
@@ -96,8 +96,11 @@ module.exports = {
         id() {
             return `tab${this.index}`;
         },
+        suite() {
+            return this.$store.getters.suites[this.index];
+        },
         showAddTab() {
-            return this.$store.state.editMode && this.suite.length < AppStatus.maxTasksPerSuite;
+            return this.$store.state.editMode && this.suite.length < this.$store.getters.maxTasksPerSuite;
         },
         showEmptySuiteMessage() {
             return this.suite.tasks.length === 0 && !this.$store.state.editMode;
