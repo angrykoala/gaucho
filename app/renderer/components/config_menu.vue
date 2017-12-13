@@ -38,7 +38,6 @@ const path = require('path');
 const app = require('electron').remote;
 const dialog = app.dialog;
 
-const AppStatus = require('../app_status');
 const SwitchForm = require('./switch_form.vue');
 const ShortcutsLearn = require('./shortcuts_learn.vue');
 
@@ -107,7 +106,6 @@ module.exports = {
                     Materialize.selectTab("#navbar-tabs", `tab0`);
                     this.$store.state.activeSuite = 0;
                 });
-                AppStatus.totalTasks = 0;
                 this._closeConfig();
             }, () => {});
         },

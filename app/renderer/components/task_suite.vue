@@ -49,7 +49,6 @@ module.exports = {
     mounted() {
         AppStatus.events.on("run-suite", this.onRunSuite);
         AppStatus.events.on("stop-suite", this.onStopSuite);
-        AppStatus.totalTasks += this.suite.length;
     },
     beforeDestroy() {
         AppStatus.events.removeListener("run-suite", this.onRunSuite);
@@ -75,7 +74,6 @@ module.exports = {
         removeTask(i) {
             this.suite.removeTask(i);
             this.$forceUpdate();
-            AppStatus.totalTasks--;
         },
         editTask(i, task) {
             this.suite.replaceTask(i, task);

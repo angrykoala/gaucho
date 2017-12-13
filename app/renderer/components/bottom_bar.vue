@@ -2,7 +2,7 @@
 <div class="bottom-bar unselectable-text">
     <nav class="navbar navbar-inverse">
         <div class="left-content">
-            <b>Total Tasks:</b> {{AppStatus.totalTasks}}
+            <b>Total Tasks:</b> {{totalTasks}}
         </div>
         <div class="right-content">
             <b>Running Tasks:</b> {{AppStatus.runningTasks}}
@@ -21,6 +21,11 @@ module.exports = {
         return {
             AppStatus: AppStatus
         };
+    },
+    computed: {
+        totalTasks() {
+            return this.$store.getters.totalTasks;
+        }
     }
 };
 </script>

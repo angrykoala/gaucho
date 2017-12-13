@@ -66,7 +66,6 @@ module.exports = {
             confirmationAlert.toggle().then(() => {
                 if (this.suites.length > 1) {
                     this.suites[this.activeSuite].stopAll();
-                    AppStatus.totalTasks -= this.suites[this.activeSuite].length;
                     this.suites.splice(this.activeSuite, 1);
                     this.selectTab(this.activeSuite);
                 }

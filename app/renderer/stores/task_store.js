@@ -19,6 +19,11 @@ module.exports = {
         },
         maxTasksPerSuite() {
             return AppConfig.maxTasksPerSuite;
+        },
+        totalTasks(state) {
+            return state.suites.reduce((total, s) => {
+                return total + s.length;
+            }, 0);
         }
     },
     mutations: {
