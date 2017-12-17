@@ -34,6 +34,7 @@
     "spectron": "^3.7.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
+    "vue-devtools": "^3.1.9",
     "vueify": "^9.4.1"
   },
   "config": {

@@ -40,8 +40,8 @@ module.exports = class MainWindow {
         };
         if (devWindow) {
             winConfig.width += this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
+            require('vue-devtools').install()
         }
-
         win = new BrowserWindow(winConfig);
         win.setMenu(null);
 
