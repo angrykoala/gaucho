@@ -38,11 +38,13 @@ const path = require('path');
 const app = require('electron').remote;
 const dialog = app.dialog;
 
-const SwitchForm = require('./switch_form.vue');
-const ShortcutsLearn = require('./shortcuts_learn.vue');
-
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Materialize = require('../api/materialize');
+
+const components = {
+    "switch-form": require('./common/switch_form.vue'),
+    "shortcuts-learn": require('./shortcuts_learn.vue')
+};
 
 module.exports = {
     data() {
@@ -52,10 +54,7 @@ module.exports = {
             showTimer: this.$store.state.userConfig.showTimer
         };
     },
-    components: {
-        "switch-form": SwitchForm,
-        "shortcuts-learn": ShortcutsLearn
-    },
+    components: components,
     methods: {
         importTasks() {
             dialog.showOpenDialog({
@@ -114,9 +113,7 @@ module.exports = {
             this.showTimer = true;
         },
         onClose() {
-            this.bottomBar = this.$store.state.userConfig.bottomBar;
-            this.animatedSpinner = this.$store.state.userConfig.animatedSpinner;
-            this.showTimer = this.$store.state.userConfig.showTimer;
+            this._loadConfig();
         },
         onSave() {
             if (this.bottomBar !== this.$store.state.userConfig.bottomBar) this.$store.commit("toggleBottomBar");
@@ -126,6 +123,11 @@ module.exports = {
         _closeConfig() {
             this.onClose();
             Materialize.closeModals();
+        },
+        _loadConfig() {
+            this.bottomBar = this.$store.state.userConfig.bottomBar;
+            this.animatedSpinner = this.$store.state.userConfig.animatedSpinner;
+            this.showTimer = this.$store.state.userConfig.showTimer;
         }
     }
 };
