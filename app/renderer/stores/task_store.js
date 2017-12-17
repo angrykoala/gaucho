@@ -40,7 +40,7 @@ module.exports = {
                 state.suites[index].addTask(task);
             }
         },
-        setSuites(state, suites) {
+        _setSuites(state, suites) {
             state.suites.splice(0, state.suites.length);
             suites.forEach((suite) => {
                 state.suites.push(suite);
@@ -53,7 +53,7 @@ module.exports = {
         },
         loadTasks(context) {
             const loadedSuites = TasksHandler.loadTasksFromConfig();
-            context.commit("setSuites", loadedSuites);
+            context.commit("_setSuites", loadedSuites);
         },
         stopAllTasks(context) {
             const promises = context.getters.suites.map((s) => s.stopAll());
@@ -61,19 +61,16 @@ module.exports = {
         },
         clearTasks(context) {
             return context.dispatch("stopAllTasks").then(() => {
-                context.commit("setSuites", []);
-            });
-        },
-        resetTasks(context) {
-            return context.dispatch("clearTasks").then(() => {
-                context.commit("addSuite");
+                context.commit("_setSuites", [new Suite("Suite 1")]);
             });
         },
         importTasks(context, filename) {
             return TaskImporter.import(filename).then((data) => {
                 const loadedSuites = TasksHandler.loadTasksFromData(data);
-                context.commit("setSuites", loadedSuites);
-                context.dispatch("saveTasks");
+                return context.dispatch("stopAllTasks").then(() => {
+                    context.commit("_setSuites", loadedSuites);
+                    context.dispatch("saveTasks");
+                });
             });
         },
         exportTasks(context, filename) {
