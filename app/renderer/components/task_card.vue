@@ -36,14 +36,17 @@
 "use strict";
 
 const AppStatus = require('../app_status');
-const TaskInput = require('./task_input.vue');
 const TaskStatus = require('../../common/task_status');
-const ProgressSpinner = require('./progress_spinner.vue');
-const ToolTip = require('./tooltip.vue');
 
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
+
+const components = {
+    "task-input": require('./task_input.vue'),
+    "progress-spinner": require('./common/progress_spinner.vue'),
+    "tooltip": require('./tooltip.vue')
+};
 
 module.exports = {
     props: ['task', 'event'],
@@ -52,11 +55,7 @@ module.exports = {
             AppStatus: AppStatus
         };
     },
-    components: {
-        "task-input": TaskInput,
-        "progress-spinner": ProgressSpinner,
-        "tooltip": ToolTip
-    },
+    components: components,
     mounted() {
         this.event.on("run", this.run);
         this.event.on("stop", this.stop);
