@@ -43,7 +43,6 @@ const TapTarget = require('./tap_target.vue');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 
 module.exports = {
-    props: ['suites'],
     components: {
         "navbar-menu": NavbarMenu,
         "tap-target": TapTarget
@@ -106,6 +105,9 @@ module.exports = {
         },
         editMode() {
             return this.$store.state.editMode;
+        },
+        suites() {
+            return this.$store.getters.suites;
         }
     }
 };
