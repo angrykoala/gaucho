@@ -75,10 +75,12 @@ module.exports = {
         },
         selectTab(index) {
             if (index >= this.suites.length) index = this.suites.length - 1;
-            this.$nextTick(() => {
+            // this.$nextTick(() => {
+            setTimeout(() => {
                 Material.selectTab("#navbar-tabs", `tab${index}`);
                 this.$store.commit("toggleActiveSuite", index);
-            });
+            }, 0);
+            // });
         },
         toggleEdit() {
             this.$store.commit("toggleEdit");
