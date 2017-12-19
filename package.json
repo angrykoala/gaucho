@@ -37,10 +37,6 @@
     "vue-devtools": "^3.1.9",
     "vueify": "^9.4.1"
   },
-  "config": {
-    "ignore": "(coverage|\\.travis.yml|\\.gitignore|test|\\.eslintrc)",
-    "icon": "resources/icon.png"
-  },
   "scripts": {
     "test": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint",
     "start": "electron .",
