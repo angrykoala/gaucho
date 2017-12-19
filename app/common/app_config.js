@@ -53,18 +53,24 @@ const defaultKey = "ro64wz3l7d";
 class AppConfig {
     constructor(configName, key, defaultData = {}) {
         if (utils.isDevEnv()) configName += "_dev";
-        this.store = new Store({
-            name: configName,
-            defaults: defaultData,
-            encryptionKey: key
-        });
+        if (utils.isTestEnv()) {
+            this.store = new Map(Object.entries(defaultData));
+            this.store.set("firstVisit", true);
+        } else {
+            this.store = new Store({
+                name: configName,
+                defaults: defaultData,
+                encryptionKey: key
+            });
+        }
     }
+
     set(key, value) {
         this.store.set(key, value);
     }
+
     get(key) {
-        const result = this.store.get(key);
-        return result;
+        return this.store.get(key);
     }
 }
 

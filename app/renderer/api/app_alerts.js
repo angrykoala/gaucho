@@ -1,6 +1,6 @@
-/* globals swal */
 "use strict";
 
+const swal = require('sweetalert2');
 
 class AppAlert {
     constructor(title, options = {}) {
@@ -8,10 +8,12 @@ class AppAlert {
             title: title
         }, options);
     }
+
     html(html) {
         this.alertOptions.html = html;
         return this;
     }
+
     toggle() {
         return swal(this.alertOptions);
     }

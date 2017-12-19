@@ -62,11 +62,15 @@ All tasks and user changes are saved automatically when closing gaucho. This inc
 ## Development
 If you want to contribute to Gaucho, create a new different version of Gaucho, or compile it from source code, follow these instructions.
 
+> Node 8.9.3 or higher required
+
 Clone/download source code from the github repo. Make sure you have _node_ and _npm_ already installed in your system:
 
 1. `npm install` to install electron and all the dependencies.
+    * `npm run gulp` to compile and bundle the project
 2. `npm start` to start _gaucho_.
     * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
+    * `NODE_ENV=test npm start` will run Gaucho in test mode, which will not store or change any configuration or tasks.
 3. `npm run dist` to build and package _gaucho_ for your system. The artifacts are located in `dist/`.
     * If you want to pass arguments to build to other architectures, platforms and/or targets, add `--` at the end and then write the arguments, like this: `npm run dist -- -l --ia32`. The arguments are documented in [electron-builder docs](https://www.electron.build/cli)
     * **Experimental**: To get armv7l builds, execute `npm run dist -- --armv7l`

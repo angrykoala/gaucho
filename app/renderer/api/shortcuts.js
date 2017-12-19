@@ -2,8 +2,7 @@
 
 const Mousetrap = require('mousetrap');
 
-const AppStatus = require('../app_status');
-const GauchoActions = require('./gaucho_actions');
+const Store = require('../stores/main');
 const Material = require('./materialize');
 const TasksHandle = require('../tasks_handler');
 
@@ -16,19 +15,18 @@ module.exports = {
         this.toggleNavBarMenu();
     },
     setSuite(add = true) {
-        let newIndex = 0
-        const totalTabs = TasksHandle.suites.length - 1
+        let newIndex = 0;
+        const totalTabs = TasksHandle.suites.length - 1;
+        const activeSuite = Store.state.activeSuite;
 
-        if (add && AppStatus.activeSuite !== totalTabs) {
-            newIndex = AppStatus.activeSuite + 1
+        if (add && activeSuite !== totalTabs) {
+            newIndex = activeSuite + 1;
         } else if (!add) {
-            newIndex = AppStatus.activeSuite === 0
-                ? totalTabs
-                : AppStatus.activeSuite - 1
+            newIndex = activeSuite === 0 ? totalTabs : activeSuite - 1;
         }
 
         Material.selectTab("#navbar-tabs", `tab${newIndex}`);
-        GauchoActions.toggleActiveSuite(newIndex);
+        Store.commit("toggleActiveSuite", newIndex);
     },
     changeTabForward() {
         Mousetrap.bind('ctrl+tab', () => this.setSuite());
@@ -37,7 +35,9 @@ module.exports = {
         Mousetrap.bind('ctrl+shift+tab', () => this.setSuite(false));
     },
     toggleEdit() {
-        Mousetrap.bind('ctrl+e', () => GauchoActions.toggleEdit());
+        Mousetrap.bind('ctrl+e', () => {
+            Store.commit("toggleEdit");
+        });
     },
     toggleNavBarMenu() {
         Mousetrap.bind('ctrl+m', () => Material.toggleNavBarMenu());

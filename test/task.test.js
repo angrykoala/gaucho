@@ -110,6 +110,6 @@ describe("Tasks", () => {
             done();
         });
         assert.isTrue(testTask.isRunning());
-        assert.throws(() => testTask.run(() => {}, () => {}))
+        assert.throws(() => testTask.run(() => {}, () => {}));
     });
 });

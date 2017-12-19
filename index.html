@@ -13,22 +13,22 @@
 </head>
 
 <body>
-    <section id="app">
+    <div id="app">
         <config-menu></config-menu>
         <header id="main-header" class="margin-bottom">
-            <navbar v-bind:suites="suites"></navbar>
+            <navbar></navbar>
         </header>
 
-        <main v-bind:class="{ 'full-size': !AppStatus.config.bottomBar }">
+        <main :class="{ 'full-size': !showBottomBar }">
             <template v-for="(suite,index) in suites">
-                    <task-suite v-bind:suite="suite" v-bind:index="index"></task-suite>
-                </template>
+                    <task-suite :index="index" :key="index"></task-suite>
+            </template>
         </main>
 
-        <footer v-if="AppStatus.config.bottomBar">
+        <footer v-if="showBottomBar">
             <bottom-bar></bottom-bar>
         </footer>
-    </section>
+    </div>
 
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
@@ -36,9 +36,7 @@
     </script>
     <script src="./node_modules/jquery-ui/build/release.js"></script>
     <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="./node_modules/vue/dist/vue.min.js"></script>
-    <script type="text/javascript" src="./app.js"></script>
+    <script type="text/javascript" src="./resources/bundle/bundle.js"></script>
 </body>
 
 </html>

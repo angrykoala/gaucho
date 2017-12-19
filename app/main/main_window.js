@@ -13,14 +13,17 @@ module.exports = class MainWindow {
         this.indexPath = null;
         this.userConfig = new AppConfig.User();
     }
+
     setIcon(path) {
         this.iconPath = path;
         return this;
     }
+
     setIndex(htmlFile) {
         this.indexPath = htmlFile;
         return this;
     }
+
     initWindow(devWindow) {
         let win;
         const windowSize = this.userConfig.get(AppConfig.FIELDS.WINDOW_SIZE);
@@ -37,8 +40,8 @@ module.exports = class MainWindow {
         };
         if (devWindow) {
             winConfig.width += this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
+            require('vue-devtools').install();
         }
-
         win = new BrowserWindow(winConfig);
         win.setMenu(null);
 

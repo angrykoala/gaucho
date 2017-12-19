@@ -1,21 +1,25 @@
 "use strict";
 
 class Suite {
-    constructor(title) {
+    constructor(title, tasks) {
         this.title = title || "";
-        this.tasks = [];
+        this.tasks = tasks || [];
     }
+
     get length() {
         return this.tasks.length;
     }
+
     addTask(task) {
         const title = this.getValidName(task.title);
         task.title = title;
         this.tasks.push(task);
     }
+
     removeTask(index) {
         this.tasks.splice(index, 1);
     }
+
     replaceTask(index, task) {
         if (this.tasks[index].title !== task.title) {
             const title = this.getValidName(task.title);
@@ -23,6 +27,7 @@ class Suite {
         }
         this.tasks.splice(index, 1, task);
     }
+
     stopAll() {
         const promises = this.tasks.map((task) => {
             if (!task.isRunning()) return Promise.resolve();
@@ -36,17 +41,20 @@ class Suite {
         });
         return Promise.all(promises);
     }
+
     runAll() {
         for (let task of this.tasks) {
             if (!task.isRunning()) task.run();
         }
     }
+
     getData() {
         return {
             title: this.title,
             tasks: this.tasks.map((task) => task.getData())
         };
     }
+
     getValidName(name) {
         let index = 2;
         if (!this.existTaskName(name)) return name;
@@ -55,6 +63,7 @@ class Suite {
         }
         return `${name} (${index})`;
     }
+
     existTaskName(name) {
         name = name.trim();
         return this.tasks.find(task => task.title === name) !== undefined;

@@ -21,13 +21,13 @@ module.exports = {
         });
     },
     import (filename) {
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve, reject) => {
             fs.readFile(filename, 'utf-8', (err, data) => {
                 if(err) return reject(err);
                 try{
-                    const result=JSON.parse(data);
+                    const result = JSON.parse(data);
                     return resolve(result);
-                }catch(err){
+                }catch(err) {
                     return reject(err);
                 }
             });

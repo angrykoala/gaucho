@@ -1,16 +1,18 @@
+<template>
+    <div class="tooltip">
+        <div class="tooltip-text">
+            {{ status }}
+        </div>
+    </div>
+</template>
+
+<script>
 "use strict";
 
 const TaskStatus = require('../../common/task_status');
 
 module.exports = {
     props: ['taskStatus'],
-    template: `
-    <div class="tooltip">
-        <div class="tooltip-text">
-            {{ status }}
-        </div>
-    </div>
-    `,
     computed: {
         status() {
             switch (this.taskStatus) {
@@ -29,3 +31,4 @@ module.exports = {
         }
     }
 };
+</script>

@@ -1,3 +1,13 @@
+0.4.1 / 2017-12-19
+==================
+
+  * It is possible to navigate the menu using tab
+  * Increased number of tasks per suite to 15
+  * Fixed bug where stderr was not being displayed
+  * Vue components are now described using single file components syntax
+  * Added Vuex store to handle app state
+  * Added vue dev tools extension
+
 0.4.0 / 2017-10-02
 ==================
 

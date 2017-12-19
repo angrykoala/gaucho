@@ -1,38 +1,39 @@
-/* globals Vue */
 "use strict";
 
 const ipcRenderer = require('electron').ipcRenderer;
+// Some heavy vuex magic happening here
 
-const TasksHandler = require('./app/renderer/tasks_handler');
-const AppStatus = require('./app/renderer/app_status');
+const Vue = require('vue/dist/vue.common');
+const Vuex = require('vuex'); // eslint-disable-line no-unused-vars
+Vue.use(Vuex);
+
 const Material = require('./app/renderer/api/materialize');
 const Shortcuts = require('./app/renderer/api/shortcuts');
 
+const store = require('./app/renderer/stores/main');
+
 const components = {
-    "task-suite": require('./app/renderer/components/task_suite'),
-    "navbar": require('./app/renderer/components/navbar'),
-    "bottom-bar": require('./app/renderer/components/bottom_bar'),
-    "config-menu": require('./app/renderer/components/config_menu')
+    "config-menu": require('./app/renderer/components/config_menu.vue'),
+    "task-suite": require('./app/renderer/components/task_suite.vue'),
+    "navbar": require('./app/renderer/components/navbar.vue'),
+    "bottom-bar": require('./app/renderer/components/bottom_bar.vue')
 };
 
 
 ipcRenderer.on('before-close', () => {
-    TasksHandler.saveTasks();
-    const promises = TasksHandler.suites.map((s) => s.stopAll());
-    Promise.all(promises).then(() => {
+    store.dispatch("saveTasks");
+    store.dispatch("stopAllTasks").then(() => {
         ipcRenderer.send("close-app");
     });
 });
 
+
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
-    data: {
-        suites: TasksHandler.suites,
-        AppStatus: AppStatus
-    },
     components: components,
+    store: store,
     beforeMount() {
-        TasksHandler.loadTasksFromConfig();
+        store.dispatch("loadTasks");
     },
     mounted() {
         Material.init();
@@ -42,5 +43,13 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         this.$nextTick(() => {
             Material.init();
         });
+    },
+    computed: {
+        suites() {
+            return this.$store.getters.suites;
+        },
+        showBottomBar() {
+            return this.$store.state.userConfig.bottomBar;
+        }
     }
 });

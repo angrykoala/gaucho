@@ -8,7 +8,7 @@ const Task = require('../app/common/task');
 const Suite = require('../app/common/suite');
 const TaskImporter = require('../app/common/task_importer');
 
-const config=require('./config');
+const config = require('./config');
 
 describe("Task Importer", () => {
     const tempFolder = path.join(__dirname, "temp");
@@ -80,25 +80,25 @@ describe("Task Importer", () => {
     });
 
     it("Import from file", () => {
-        return TaskImporter.import(testTasksFile).then((data)=>{
+        return TaskImporter.import(testTasksFile).then((data) => {
             assert.isOk(data);
             assertParsedSuite(data, "my_version");
         });
     });
 
     it("Import invalid file", (done) => {
-        const testFile=path.join(config.testResources, config.taskFiles.helloWorld);
+        const testFile = path.join(config.testResources, config.taskFiles.helloWorld);
         assert.isTrue(fs.existsSync(testFile));
-        TaskImporter.import(testFile).catch((error)=>{
+        TaskImporter.import(testFile).catch((error) => {
             assert.ok(error);
             done();
         });
     });
 
     it("Import invalid path", (done) => {
-        const testFile=path.join("no_file");
+        const testFile = path.join("no_file");
         assert.isFalse(fs.existsSync(testFile));
-        TaskImporter.import(testFile).catch((error)=>{
+        TaskImporter.import(testFile).catch((error) => {
             assert.ok(error);
             done();
         });

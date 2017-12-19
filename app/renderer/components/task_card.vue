@@ -1,14 +1,52 @@
+<template>
+<li class="run-card task-card">
+    <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': editMode}">
+        <div class="col s1" v-if="editMode">
+            <i class="tiny material-icons">drag_handle</i>
+        </div>
+        <div class="col" v-bind:class="{ s4: editMode, s5: !editMode }">
+            <strong class="truncate">{{task.title}}</strong>
+        </div>
+        <div class="col s3">
+            <div class="truncate task-time" v-if="$store.state.userConfig.showTimer">{{executionTime}}</div>
+        </div>
+        <div class="col s3">
+            <a v-if="editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
+            <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
+        </div>
+        <div class="col s1">
+            <progress-spinner v-if="running && $store.state.userConfig.animatedSpinner"></progress-spinner>
+            <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
+            <tooltip v-bind:taskStatus="task.status"></tooltip>
+        </div>
+    </div>
+
+    <div class="collapsible-body task-card-body">
+        <div v-if="!editMode" class="run-output">
+            <pre>{{task.output}}</pre>
+        </div>
+        <div v-else class="container">
+            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
+        </div>
+    </div>
+</li>
+</template>
+
+<script>
 "use strict";
 
 const AppStatus = require('../app_status');
-const TaskInput = require('./task_input');
 const TaskStatus = require('../../common/task_status');
-const ProgressSpinner = require('./progress_spinner');
-const ToolTip = require('./tooltip');
 
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const Utils = require('../../common/utils');
 const Materialize = require('../api/materialize');
+
+const components = {
+    "task-input": require('./task_input.vue'),
+    "progress-spinner": require('./common/progress_spinner.vue'),
+    "tooltip": require('./tooltip.vue')
+};
 
 module.exports = {
     props: ['task', 'event'],
@@ -17,44 +55,7 @@ module.exports = {
             AppStatus: AppStatus
         };
     },
-    components: {
-        "task-input": TaskInput,
-        "progress-spinner": ProgressSpinner,
-        "tooltip": ToolTip
-    },
-    template: `
-    <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': AppStatus.editMode}">
-            <div class="col s1" v-if="AppStatus.editMode">
-                <i class="tiny material-icons">drag_handle</i>
-            </div>
-            <div class="col" v-bind:class="{ s4: AppStatus.editMode, s5: !AppStatus.editMode }">
-                <strong class="truncate">{{task.title}}</strong>
-            </div>
-            <div class="col s3">
-                <div class="truncate task-time" v-if="AppStatus.config.showTimer">{{executionTime}}</div>
-            </div>
-            <div class="col s3">
-                <a v-if="AppStatus.editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
-                <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
-            </div>
-            <div class="col s1">
-                <progress-spinner v-if="running && AppStatus.config.animatedSpinner"></progress-spinner>
-                <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
-                <tooltip v-bind:taskStatus="task.status"></tooltip>
-            </div>
-        </div>
-
-        <div class="collapsible-body task-card-body">
-            <div v-if="!AppStatus.editMode" class="run-output">
-                <pre>{{task.output}}</pre>
-            </div>
-            <div v-else class="container">
-                <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-            </div>
-        </div>
-  </li>
-  `,
+    components: components,
     mounted() {
         this.event.on("run", this.run);
         this.event.on("stop", this.stop);
@@ -111,6 +112,9 @@ module.exports = {
         }
     },
     computed: {
+        editMode() {
+            return this.$store.state.editMode;
+        },
         statusColor() {
             switch (this.task.status) {
                 case TaskStatus.idle:
@@ -135,3 +139,4 @@ module.exports = {
         }
     }
 };
+</script>
