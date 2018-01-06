@@ -1,34 +1,3 @@
-.run-output {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 200px;
-    background-color: #eeeeee;
-}
-
-.run-output pre {
-    margin: 0 0 0 10px;
-    overflow: hidden;
-    white-space: pre-wrap;
-}
-
-.run-button {
-    float: right;
-    margin-top: 2px;
-    width: 90px;
-    cursor: default;
-}
-
-.delete-button {
-    cursor: default;
-    float: right;
-    margin-top: 2px;
-    width: 110px;
-    background-color: red;
-}
-
-.delete-button:hover {
-    background-color: #af0000;
-}
 
 .collapsible-body.task-card-body {
     padding: 0;
@@ -41,52 +10,14 @@
     cursor: default;
 }
 
-.tab .material-icons {
+/* .tab .material-icons {
     vertical-align: middle;
-}
-
-.add-task-header {
-    background-color: #efefef;
-}
-
-.add-task-header .material-icons {
-    vertical-align: middle;
-}
+} */
 
 .tooltip {
   position: relative;
   height: 42px;
   width: 30px;
-}
-
-.tooltip .tooltip-text {
-  position: absolute;
-  background-color: black;
-  color: white;
-  text-align: center;
-  z-index: 997;
-  bottom: 40px;
-  right: 0;
-  border-radius: 3px;
-  padding: 0 10px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  visibility: hidden;
-}
-
-.tooltip .tooltip-text::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 10px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
-
-.tooltip:hover .tooltip-text {
-  opacity: 1;
-  visibility: visible;
 }
 
 .task-input-body {

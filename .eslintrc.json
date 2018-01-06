@@ -74,6 +74,13 @@
         "arrow-spacing": "warn",
         "vue/jsx-uses-vars": "error",
         "vue/valid-v-if": "error",
-        "vue/require-v-for-key": "off"
+        "vue/require-v-for-key": "off",
+        "vue/html-indent": ["error", 4, {
+            "attribute": 1,
+            "closeBracket": 0,
+            "ignores": []
+        }],
+        "vue/mustache-interpolation-spacing": [2, "never"],
+        "vue/require-prop-types": "error"
     }
 }

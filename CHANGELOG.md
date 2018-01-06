@@ -1,6 +1,7 @@
 0.4.2 / ####-##-##
 ==================
 
+    * Using sass and scoped styles
     * Several dependencies updated
 
 0.4.1 / 2017-12-19

@@ -140,3 +140,35 @@ module.exports = {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.run-output {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 200px;
+    background-color: #eeeeee;
+    pre {
+        margin: 0 0 0 10px;
+        overflow: hidden;
+        white-space: pre-wrap;
+    }
+}
+
+.run-button {
+    float: right;
+    margin-top: 2px;
+    width: 90px;
+    cursor: default;
+}
+
+.delete-button {
+    cursor: default;
+    float: right;
+    margin-top: 2px;
+    width: 110px;
+    background-color: red;
+    &:hover {
+        background-color: #af0000;
+    }
+}
+</style>

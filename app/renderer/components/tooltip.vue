@@ -1,9 +1,9 @@
 <template>
-    <div class="tooltip">
-        <div class="tooltip-text">
-            {{ status }}
-        </div>
+<div class="tooltip">
+    <div class="tooltip-text">
+        {{ status }}
     </div>
+</div>
 </template>
 
 <script>
@@ -32,3 +32,38 @@ module.exports = {
     }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.tooltip {
+    .tooltip-text {
+        position: absolute;
+        background-color: black;
+        color: white;
+        text-align: center;
+        z-index: 997;
+        bottom: 40px;
+        right: 0;
+        border-radius: 3px;
+        padding: 0 10px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        visibility: hidden;
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 10px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent;
+        }
+    }
+    &:hover {
+        .tooltip-text {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+</style>
