@@ -32,6 +32,14 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
     components: components,
     store: store,
+    computed: {
+        suites() {
+            return this.$store.getters.suites;
+        },
+        showBottomBar() {
+            return this.$store.state.userConfig.bottomBar;
+        }
+    },
     beforeMount() {
         store.dispatch("loadTasks");
     },
@@ -43,13 +51,5 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         this.$nextTick(() => {
             Material.init();
         });
-    },
-    computed: {
-        suites() {
-            return this.$store.getters.suites;
-        },
-        showBottomBar() {
-            return this.$store.state.userConfig.bottomBar;
-        }
     }
 });
