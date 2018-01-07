@@ -29,3 +29,23 @@ module.exports = {
     }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.left-content {
+    float: left;
+    padding-left: 20px;
+    width: 50%;
+}
+
+.right-content {
+    float: right;
+    padding-right: 20px;
+}
+
+.bottom-bar>.navbar {
+    height: 56px;
+    line-height: 56px;
+}
+
+</style>

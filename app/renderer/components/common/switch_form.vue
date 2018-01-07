@@ -30,3 +30,14 @@ module.exports = {
     }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.switch-lever {
+    float: right;
+}
+
+.switch > label {
+    font-size: 15px;
+}
+</style>

@@ -74,3 +74,26 @@ module.exports = {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.task-input-body {
+    padding-bottom: 15px;
+    padding-top: 10px;
+    input {
+        margin-bottom: 0;
+    }
+}
+.save-task-button {
+    margin-top: 8px;
+    margin-right: 15px;
+    float: right;
+}
+.task-input-send-row {
+    margin-bottom: 0;
+}
+
+.input-field > label {
+    cursor: default;
+    user-select: none;
+}
+</style>

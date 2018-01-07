@@ -52,3 +52,31 @@ module.exports = {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+#navbar-menu {
+    width: 118px !important;
+}
+
+#navbar-menu-button {
+    cursor: default;
+}
+
+.menu-button > a {
+    cursor: default;
+}
+
+.menu-button {
+    &.disabled > a {
+        background-color: transparent;
+        color: #5f9ea0;
+    }
+    &.disabled {
+        background-color: #ababab;
+    }
+}
+
+.menu-button.disabled:hover {
+    background-color: #ababab;
+}
+</style>

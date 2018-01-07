@@ -1,10 +1,10 @@
 <template>
-<div v-bind:id="id" class="no-margin">
+<div :id="id" class="no-margin">
     <draggable element="ul" :options="draggableOptions" class="collapsible no-margin task-list" data-collapsible="accordion" v-model="suite.tasks" @start="onDragStart" @add="onTaskDraggedIn" :move="checkMove">
         <template v-for="(task,i) in suite.tasks">
-                <task-card v-bind:task="task" v-bind:key="i" v-on:remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
+                <task-card :task="task" :key="i" @remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
             </template>
-        <add-task v-bind:tasks="suite.tasks" v-on:add="addNewTask" v-if="showAddTab"></add-task>
+        <add-task :tasks="suite.tasks" @add="addNewTask" v-if="showAddTab"></add-task>
     </draggable>
     <div class="row" v-if="showEmptySuiteMessage">
         <div class="grey-text text-lighten-1 section center-align">
@@ -106,3 +106,15 @@ module.exports = {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.task-list {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+</style>

@@ -36,6 +36,9 @@ module.exports = {
 
 <style lang="scss" scoped>
 .tooltip {
+    position: relative;
+    height: 42px;
+    width: 30px;
     .tooltip-text {
         position: absolute;
         background-color: black;

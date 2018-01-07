@@ -171,4 +171,9 @@ module.exports = {
         background-color: #af0000;
     }
 }
+.task-time {
+    text-align: center;
+    padding-right: 10px;
+    color: #777777;
+}
 </style>

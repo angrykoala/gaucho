@@ -10,7 +10,7 @@
 
             <div class="center-align buttons-form container">
                 <a class="waves-effect waves-light btn " @click="clearTasks">Clear Tasks</a>
-                <label>Warning: This will remove all your suites and tasks</label>
+                <label><em class="warning-text">Warning: This will remove all your suites and tasks</em></label>
                 <a class="waves-effect waves-light btn" @click="resetConfig">Reset Configuration</a>
                 </br>
                 <a class="waves-effect waves-light btn" @click="exportTasks">Export Tasks</a>
@@ -132,3 +132,29 @@ module.exports = {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.buttons-form {
+    max-width: 230px;
+    margin-top: 20px;
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+.config-form {
+    max-width: 300px;
+}
+
+.warning-text {
+    color: #26a69a;
+}
+
+#config-modal {
+    max-height: 100%;
+    height: 100%;
+}
+
+
+</style>

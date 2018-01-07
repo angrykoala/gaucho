@@ -7,18 +7,18 @@
                     <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
                     <a>Gaucho</a>
                 </div>
-                <tap-target v-bind:activates="'tap-edit'" v-bind:title="'Add some tasks !'" v-bind:description="'By pressing this button you can add new tasks to your list below.'"></tap-target>
+                <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'"></tap-target>
                 <ul class="right navbar-buttons">
-                    <li><a id="tap-edit" v-on:click="toggleEdit" v-bind:class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
-                    <li><a id="navbar-menu-button" data-activates='navbar-menu' data-gutter="30" v-bind:href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
+                    <li><a id="tap-edit" @click="toggleEdit" :class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
+                    <li><a id="navbar-menu-button" data-activates='navbar-menu' data-gutter="30" :href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
                 </ul>
-                <navbar-menu v-on:selection="onMenuSelection"></navbar-menu>
+                <navbar-menu @selection="onMenuSelection"></navbar-menu>
 
                 <div class="row tabs-row">
                     <ul id="navbar-tabs" class="tabs tabs-transparent">
                         <template v-for="(suite,index) in suites">
-                        <li class="tab col s3 unselectable-text" v-on:dragover="dragOver(index)">
-                            <a draggable="false" class="tab-button" v-on:click="onTabSelected(index)" v-bind:href="'#tab'+index" v-bind:class="{ active: index===0 }">
+                        <li class="tab col s3 unselectable-text" @dragover="dragOver(index)">
+                            <a draggable="false" class="tab-button" @click="onTabSelected(index)" :href="'#tab'+index" v-bind:class="{ active: index===0 }">
                                 <template v-if="editMode && index===activeSuite">
                                     <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
                                 </template>
@@ -114,3 +114,59 @@ module.exports = {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+#navbar-tabs {
+    overflow: hidden;
+}
+
+.edit-button {
+    cursor: default;
+}
+
+.edit-button-active {
+    transition: color 0.5s ease;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #989898;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+.tabs-row {
+    margin-bottom: 0;
+}
+
+.tab-button {
+    cursor: default;
+}
+
+.tab-text {
+    font-weight: 500;
+    text-align: center;
+    text-transform: none;
+}
+.brand-logo {
+    &.main-logo {
+        user-select: none;
+        margin-top: 5px;
+        cursor: default;
+        & a {
+            vertical-align: top;
+        }
+    }
+}
+
+.logo-icon {
+    height: 40px;
+}
+
+.nav-extended {
+    line-height: 56px !important;
+}
+
+.navbar-buttons i {
+    height: 56px !important;
+    line-height: 56px !important;
+}
+</style>

@@ -15,3 +15,15 @@
     </div>
 </div>
 </template>
+
+
+<style lang="scss" scoped>
+.progress-badge {
+    width: 20px;
+    height: 20px;
+    top: 6px;
+}
+.progress-spinner {
+  float: left;
+}
+</style>
