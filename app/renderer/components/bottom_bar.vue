@@ -1,14 +1,14 @@
 <template>
-<div class="bottom-bar unselectable-text">
-    <nav class="navbar navbar-inverse">
-        <div class="left-content">
-            <b>Total Tasks:</b> {{totalTasks}}
-        </div>
-        <div class="right-content">
-            <b>Running Tasks:</b> {{AppStatus.runningTasks}}
-        </div>
-    </nav>
-</div>
+    <div class="bottom-bar unselectable-text">
+        <nav class="navbar navbar-inverse">
+            <div class="left-content">
+                <b>Total Tasks:</b> {{totalTasks}}
+            </div>
+            <div class="right-content">
+                <b>Running Tasks:</b> {{AppStatus.runningTasks}}
+            </div>
+        </nav>
+    </div>
 </template>
 
 <script>

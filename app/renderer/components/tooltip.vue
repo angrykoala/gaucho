@@ -1,9 +1,9 @@
 <template>
-<div class="tooltip">
-    <div class="tooltip-text">
-        {{ status }}
+    <div class="tooltip">
+        <div class="tooltip-text">
+            {{status}}
+        </div>
     </div>
-</div>
 </template>
 
 <script>

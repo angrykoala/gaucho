@@ -1,17 +1,17 @@
 <template>
-<div :id="id" class="no-margin">
-    <draggable element="ul" :options="draggableOptions" class="collapsible no-margin task-list" data-collapsible="accordion" v-model="suite.tasks" @start="onDragStart" @add="onTaskDraggedIn" :move="checkMove">
-        <template v-for="(task,i) in suite.tasks">
-                <task-card :task="task" :key="i" @remove="removeTask(i)" @edit="editTask(i, $event)" v-bind:event="event"></task-card>
+    <div :id="id" class="no-margin">
+        <draggable element="ul" :options="draggableOptions" class="collapsible no-margin task-list" data-collapsible="accordion" v-model="suite.tasks" @start="onDragStart" @add="onTaskDraggedIn" :move="checkMove">
+            <template v-for="(task,i) in suite.tasks">
+                <task-card :task="task" :key="i" @remove="removeTask(i)" @edit="editTask(i, $event)" :event="event"/>
             </template>
-        <add-task :tasks="suite.tasks" @add="addNewTask" v-if="showAddTab"></add-task>
-    </draggable>
-    <div class="row" v-if="showEmptySuiteMessage">
-        <div class="grey-text text-lighten-1 section center-align">
-            You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
+            <add-task :tasks="suite.tasks" @add="addNewTask" v-if="showAddTab"/>
+        </draggable>
+        <div class="row" v-if="showEmptySuiteMessage">
+            <div class="grey-text text-lighten-1 section center-align">
+                You can add tasks by pressing the <i class="material-icons unselectable-text">mode_edit</i> button at the top
+            </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>

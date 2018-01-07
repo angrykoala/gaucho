@@ -1,5 +1,5 @@
 <template>
-    <a v-on:click="openAbout" v-bind:href="'#tab3'">About</a>
+    <a @click="openAbout" :href="'#tab3'">About</a>
 </template>
 
 <script>

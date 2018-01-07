@@ -13,7 +13,7 @@ const Shortcuts = require('./app/renderer/api/shortcuts');
 const store = require('./app/renderer/stores/main');
 
 const components = {
-    "config-menu": require('./app/renderer/components/config_menu.vue'),
+    "config-menu": require('./app/renderer/pages/config_menu.vue'),
     "task-suite": require('./app/renderer/components/task_suite.vue'),
     "navbar": require('./app/renderer/components/navbar.vue'),
     "bottom-bar": require('./app/renderer/components/bottom_bar.vue')

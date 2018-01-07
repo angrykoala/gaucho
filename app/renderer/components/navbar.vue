@@ -1,37 +1,37 @@
 <template>
-<div>
-    <div class="navbar-fixed">
-        <nav class="nav-extended">
-            <div class="nav-wrapper">
-                <div class="brand-logo main-logo left">
-                    <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
-                    <a>Gaucho</a>
-                </div>
-                <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'"></tap-target>
-                <ul class="right navbar-buttons">
-                    <li><a id="tap-edit" @click="toggleEdit" :class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
-                    <li><a id="navbar-menu-button" data-activates='navbar-menu' data-gutter="30" :href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
-                </ul>
-                <navbar-menu @selection="onMenuSelection"></navbar-menu>
-
-                <div class="row tabs-row">
-                    <ul id="navbar-tabs" class="tabs tabs-transparent">
-                        <template v-for="(suite,index) in suites">
-                        <li class="tab col s3 unselectable-text" @dragover="dragOver(index)">
-                            <a draggable="false" class="tab-button" @click="onTabSelected(index)" :href="'#tab'+index" v-bind:class="{ active: index===0 }">
-                                <template v-if="editMode && index===activeSuite">
-                                    <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
-                                </template>
-                        <span class="tab-text" v-show="!editMode || index!==activeSuite">{{suite.title}}</span>
-                        </a>
-                        </li>
-                        </template>
+    <div>
+        <div class="navbar-fixed">
+            <nav class="nav-extended">
+                <div class="nav-wrapper">
+                    <div class="brand-logo main-logo left">
+                        <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
+                        <a>Gaucho</a>
+                    </div>
+                    <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'"/>
+                    <ul class="right navbar-buttons">
+                        <li><a id="tap-edit" @click="toggleEdit" :class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
+                        <li><a id="navbar-menu-button" data-activates="navbar-menu" data-gutter="30" :href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
                     </ul>
+                    <navbar-menu @selection="onMenuSelection"/>
+
+                    <div class="row tabs-row">
+                        <ul id="navbar-tabs" class="tabs tabs-transparent">
+                            <template v-for="(suite,index) in suites">
+                                <li class="tab col s3 unselectable-text" @dragover="dragOver(index)">
+                                    <a draggable="false" class="tab-button" @click="onTabSelected(index)" :href="'#tab'+index" :class="{ active: index===0 }">
+                                        <template v-if="editMode && index===activeSuite">
+                                            <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
+                                        </template>
+                                        <span class="tab-text" v-show="!editMode || index!==activeSuite">{{suite.title}}</span>
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </div>
-</div>
 </template>
 <script>
 "use strict";

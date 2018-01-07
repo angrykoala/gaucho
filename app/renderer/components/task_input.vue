@@ -1,23 +1,23 @@
 <template>
-<div class="task-input-body">
-    <div class="input-field">
-        <input id="title" type="text" v-model="title">
-        <label for="title">Task Title *</label>
+    <div class="task-input-body">
+        <div class="input-field">
+            <input id="title" type="text" v-model="title">
+            <label for="title">Task Title *</label>
+        </div>
+        <div class="input-field">
+            <textarea id="command" class="materialize-textarea" v-model="command"/>
+            <label>Command *</label>
+        </div>
+        <div class="input-field">
+            <input id="path" type="text" v-model="path">
+            <label for="path">Path</label>
+        </div>
+        <div class="row task-input-send-row">
+            <button class="btn waves-effect waves-light save-task-button" :class="{ disabled: !canSave }" @click="saveTask">Save
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     </div>
-    <div class="input-field">
-        <textarea id="command" class="materialize-textarea" v-model="command"></textarea>
-        <label>Command *</label>
-    </div>
-    <div class="input-field">
-        <input id="path" type="text" v-model="path">
-        <label for="path">Path</label>
-    </div>
-    <div class="row task-input-send-row">
-        <button class="btn waves-effect waves-light save-task-button" v-bind:class="{ disabled: !canSave }" v-on:click="saveTask">Save
-            <i class="material-icons right">send</i>
-        </button>
-    </div>
-</div>
 </template>
 
 <script>

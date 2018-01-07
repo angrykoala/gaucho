@@ -1,0 +1,51 @@
+@import "libs";
+@import "common";
+
+.collapsible-body {
+    &.task-card-body {
+        padding: 0;
+    }
+}
+
+.run-card {
+    .collapsible-header {
+        padding: 10px;
+        margin: 0;
+        cursor: default;
+    }
+}
+
+footer {
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding-top: 100px;
+
+    &.full-size {
+        bottom: 0;
+    }
+}
+
+#main-header {
+    position: absolute;
+    height: 100px;
+    flex: 0 0 auto;
+}
+
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+}

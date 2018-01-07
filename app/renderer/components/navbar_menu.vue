@@ -1,19 +1,19 @@
 <template>
-<ul id='navbar-menu' class='dropdown-content'>
-    <template v-if="!editMode">
-            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'run-suite')" v-bind:href="'#tab0'">Run Suite</a></li>
-            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'stop-suite')" v-bind:href="'#tab1'">Stop Suite</a></li>
+    <ul id="navbar-menu" class="dropdown-content">
+        <template v-if="!editMode">
+            <li class="unselectable-text menu-button"><a @click="selected($event,'run-suite')" :href="'#tab0'">Run Suite</a></li>
+            <li class="unselectable-text menu-button"><a @click="selected($event,'stop-suite')" :href="'#tab1'">Stop Suite</a></li>
         </template>
-    <template v-else>
-            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canAddSuite }"><a v-on:click="selected($event,'add-suite',!canAddSuite)" v-bind:href="'#tab0'">Add Suite</a></li>
-            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canDeleteSuite }"><a v-on:click="selected($event,'delete-suite',!canDeleteSuite)" v-bind:href="'#tab1'">Delete Suite</a></li>
+        <template v-else>
+            <li class="unselectable-text menu-button" :class="{ disabled: !canAddSuite }"><a @click="selected($event,'add-suite',!canAddSuite)" :href="'#tab0'">Add Suite</a></li>
+            <li class="unselectable-text menu-button" :class="{ disabled: !canDeleteSuite }"><a @click="selected($event,'delete-suite',!canDeleteSuite)" :href="'#tab1'">Delete Suite</a></li>
         </template>
-    <li class="divider"></li>
-    <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal">Configuration</a></li>
-    <li class="unselectable-text menu-button">
-        <about></about>
-    </li>
-</ul>
+        <li class="divider"/>
+        <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal">Configuration</a></li>
+        <li class="unselectable-text menu-button">
+            <about/>
+        </li>
+    </ul>
 </template>
 <script>
 "use strict";

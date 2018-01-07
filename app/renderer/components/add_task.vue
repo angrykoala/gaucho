@@ -1,15 +1,15 @@
 <template>
-<li class="run-card no-draggable">
-    <div class="collapsible-header row center-align add-task-header">
-        <strong class="unselectable-text">
+    <li class="run-card no-draggable">
+        <div class="collapsible-header row center-align add-task-header">
+            <strong class="unselectable-text">
                 <span class="small material-icons">add</span>
                 Add New Task
             </strong>
-    </div>
-    <div class="collapsible-body container task-card-body">
-        <task-input v-on:save="addTask"></task-input>
-    </div>
-</li>
+        </div>
+        <div class="collapsible-body container task-card-body">
+            <task-input @save="addTask"/>
+        </div>
+    </li>
 </template>
 
 

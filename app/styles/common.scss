@@ -1,0 +1,15 @@
+.unselectable-text {
+    user-select: none;
+    cursor: default;
+}
+
+
+.left-content {
+    float: left;
+    padding-left: 20px;
+}
+
+.right-content {
+    float: right;
+    padding-right: 20px;
+}

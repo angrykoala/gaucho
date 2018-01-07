@@ -1,32 +1,32 @@
 
 <template>
-<div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
-    <div class="modal-content">
-        <h3>Configuration</h3>
-        <div class="container config-form">
-            <switch-form :title="'Bottom Bar'" v-model="bottomBar"></switch-form>
-            <switch-form :title="'Animated Progress Icon'" v-model="animatedSpinner"></switch-form>
-            <switch-form :title="'Show Timer'" v-model="showTimer"></switch-form>
+    <div id="config-modal" class="modal bottom-sheet modal-fixed-footer">
+        <div class="modal-content">
+            <h3>Configuration</h3>
+            <div class="container config-form">
+                <switch-form :title="'Bottom Bar'" v-model="bottomBar"/>
+                <switch-form :title="'Animated Progress Icon'" v-model="animatedSpinner"/>
+                <switch-form :title="'Show Timer'" v-model="showTimer"/>
 
-            <div class="center-align buttons-form container">
-                <a class="waves-effect waves-light btn " @click="clearTasks">Clear Tasks</a>
-                <label><em class="warning-text">Warning: This will remove all your suites and tasks</em></label>
-                <a class="waves-effect waves-light btn" @click="resetConfig">Reset Configuration</a>
+                <div class="center-align buttons-form container">
+                    <a class="waves-effect waves-light btn " @click="clearTasks">Clear Tasks</a>
+                    <label><em class="warning-text">Warning: This will remove all your suites and tasks</em></label>
+                    <a class="waves-effect waves-light btn" @click="resetConfig">Reset Configuration</a>
                 </br>
-                <a class="waves-effect waves-light btn" @click="exportTasks">Export Tasks</a>
-                <label>Export the tasks.json to be able to load it into a different gaucho instance</label>
-                <a class="waves-effect waves-light btn" @click="importTasks">Import Tasks</a>
-                <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
-            </div>
+                    <a class="waves-effect waves-light btn" @click="exportTasks">Export Tasks</a>
+                    <label>Export the tasks.json to be able to load it into a different gaucho instance</label>
+                    <a class="waves-effect waves-light btn" @click="importTasks">Import Tasks</a>
+                    <label><em class="warning-text">ALERT! this will override your previous tasks</em></label>
+                </div>
 
-            <shortcuts-learn></shortcuts-learn>
+                <shortcuts-learn/>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" @click="onClose" class="modal-action modal-close waves-effect waves-green btn-flat left">Close</a>
+            <a href="#!" @click="onSave" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
         </div>
     </div>
-    <div class="modal-footer">
-        <a href="#!" v-on:click="onClose" class="modal-action modal-close waves-effect waves-green btn-flat left">Close</a>
-        <a href="#!" v-on:click="onSave" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-    </div>
-</div>
 </template>
 
 
@@ -42,8 +42,8 @@ const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationA
 const Materialize = require('../api/materialize');
 
 const components = {
-    "switch-form": require('./common/switch_form.vue'),
-    "shortcuts-learn": require('./shortcuts_learn.vue')
+    "switch-form": require('../components/common/switch_form.vue'),
+    "shortcuts-learn": require('../components/config_menu/shortcuts_learn.vue')
 };
 
 module.exports = {
@@ -155,6 +155,4 @@ module.exports = {
     max-height: 100%;
     height: 100%;
 }
-
-
 </style>

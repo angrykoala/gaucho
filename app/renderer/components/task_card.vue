@@ -1,35 +1,35 @@
 <template>
-<li class="run-card task-card">
-    <div class="collapsible-header row unselectable-text" v-bind:class="{ 'edit-mode': editMode}">
-        <div class="col s1" v-if="editMode">
-            <i class="tiny material-icons">drag_handle</i>
+    <li class="run-card task-card">
+        <div class="collapsible-header row unselectable-text" :class="{ 'edit-mode': editMode}">
+            <div class="col s1" v-if="editMode">
+                <i class="tiny material-icons">drag_handle</i>
+            </div>
+            <div class="col" :class="{ s4: editMode, s5: !editMode }">
+                <strong class="truncate">{{task.title}}</strong>
+            </div>
+            <div class="col s3">
+                <div class="truncate task-time" v-if="$store.state.userConfig.showTimer">{{executionTime}}</div>
+            </div>
+            <div class="col s3">
+                <a v-if="editMode" class="waves-effect waves-light btn delete-button" @click="onDeleteClick">Delete</a>
+                <a v-else class="waves-effect waves-light btn run-button" @click="toggleRun">{{running? "Stop" : "Run"}}</a>
+            </div>
+            <div class="col s1">
+                <progress-spinner v-if="running && $store.state.userConfig.animatedSpinner"/>
+                <i v-else class="small material-icons" :style="{color: statusColor}">{{task.status}}</i>
+                <tooltip :task-status="task.status"/>
+            </div>
         </div>
-        <div class="col" v-bind:class="{ s4: editMode, s5: !editMode }">
-            <strong class="truncate">{{task.title}}</strong>
-        </div>
-        <div class="col s3">
-            <div class="truncate task-time" v-if="$store.state.userConfig.showTimer">{{executionTime}}</div>
-        </div>
-        <div class="col s3">
-            <a v-if="editMode" class="waves-effect waves-light btn delete-button" v-on:click="onDeleteClick">Delete</a>
-            <a v-else class="waves-effect waves-light btn run-button" v-on:click="toggleRun">{{running? "Stop" : "Run"}}</a>
-        </div>
-        <div class="col s1">
-            <progress-spinner v-if="running && $store.state.userConfig.animatedSpinner"></progress-spinner>
-            <i v-else class="small material-icons" v-bind:style="{color: statusColor}">{{task.status}}</i>
-            <tooltip v-bind:taskStatus="task.status"></tooltip>
-        </div>
-    </div>
 
-    <div class="collapsible-body task-card-body">
-        <div v-if="!editMode" class="run-output">
-            <pre>{{task.output}}</pre>
+        <div class="collapsible-body task-card-body">
+            <div v-if="!editMode" class="run-output">
+                <pre>{{task.output}}</pre>
+            </div>
+            <div v-else class="container">
+                <task-input :task="task" @save="saveTask"/>
+            </div>
         </div>
-        <div v-else class="container">
-            <task-input v-bind:task="task" v-on:save="saveTask"></task-input>
-        </div>
-    </div>
-</li>
+    </li>
 </template>
 
 <script>

@@ -1,11 +1,11 @@
 <template>
-<div class="switch">
-    <label>
-        {{title}}
-        <input type="checkbox" v-model="inputValue" @change="updateValue()">
-        <span class="lever switch-lever"></span>
-      </label>
-</div>
+    <div class="switch">
+        <label>
+            {{title}}
+            <input type="checkbox" v-model="inputValue" @change="updateValue()">
+            <span class="lever switch-lever"/>
+        </label>
+    </div>
 </template>
 
 <script>
