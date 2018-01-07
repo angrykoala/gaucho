@@ -81,6 +81,7 @@
             "ignores": []
         }],
         "vue/mustache-interpolation-spacing": [2, "never"],
-        "vue/require-prop-types": "error"
+        "vue/require-prop-types": "error",
+        "vue/max-attributes-per-line": "off"
     }
 }

@@ -3,6 +3,7 @@
 
     * Using sass and scoped styles
     * Several dependencies updated
+    * Code style improved
 
 0.4.1 / 2017-12-19
 ==================

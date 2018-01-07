@@ -4,7 +4,7 @@
             <nav class="nav-extended">
                 <div class="nav-wrapper">
                     <div class="brand-logo main-logo left">
-                        <img class="logo-icon" src="resources/logos/gaucho_logo.png"></img>
+                        <img class="logo-icon" src="resources/logos/gaucho_logo.png">
                         <a>Gaucho</a>
                     </div>
                     <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'"/>

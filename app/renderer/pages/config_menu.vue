@@ -12,7 +12,7 @@
                     <a class="waves-effect waves-light btn " @click="clearTasks">Clear Tasks</a>
                     <label><em class="warning-text">Warning: This will remove all your suites and tasks</em></label>
                     <a class="waves-effect waves-light btn" @click="resetConfig">Reset Configuration</a>
-                </br>
+                    <br>
                     <a class="waves-effect waves-light btn" @click="exportTasks">Export Tasks</a>
                     <label>Export the tasks.json to be able to load it into a different gaucho instance</label>
                     <a class="waves-effect waves-light btn" @click="importTasks">Import Tasks</a>

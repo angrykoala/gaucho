@@ -14,7 +14,7 @@ module.exports = {
         const aboutHtml =
             `<i>Version: ${this.$store.getters.version}</i>
             <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>
-            <a v-on:click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>`;
+            <a @click="openLink" href="#">https://github.com/angrykoala/gaucho</a></p>`;
 
         return {
             canOpenLink: true,
