@@ -67,16 +67,15 @@ module.exports = {
 }
 
 .menu-button {
-    &.disabled > a {
-        background-color: transparent;
-        color: #5f9ea0;
-    }
     &.disabled {
         background-color: #ababab;
+        a {
+            background-color: transparent;
+            color: #5f9ea0;
+        }
+        &:hover {
+            background-color: #ababab;
+        }
     }
-}
-
-.menu-button.disabled:hover {
-    background-color: #ababab;
 }
 </style>

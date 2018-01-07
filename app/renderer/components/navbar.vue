@@ -7,12 +7,12 @@
                         <img class="logo-icon" src="resources/logos/gaucho_logo.png">
                         <a>Gaucho</a>
                     </div>
-                    <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'"/>
+                    <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'" />
                     <ul class="right navbar-buttons">
                         <li><a id="tap-edit" @click="toggleEdit" :class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
                         <li><a id="navbar-menu-button" data-activates="navbar-menu" data-gutter="30" :href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
                     </ul>
-                    <navbar-menu @selection="onMenuSelection"/>
+                    <navbar-menu @selection="onMenuSelection" />
 
                     <div class="row tabs-row">
                         <ul id="navbar-tabs" class="tabs tabs-transparent">
@@ -159,14 +159,5 @@ module.exports = {
 
 .logo-icon {
     height: 40px;
-}
-
-.nav-extended {
-    line-height: 56px !important;
-}
-
-.navbar-buttons i {
-    height: 56px !important;
-    line-height: 56px !important;
 }
 </style>

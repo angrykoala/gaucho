@@ -31,6 +31,7 @@
     "mocha": "^4.0.0",
     "node-sass": "^4.7.2",
     "pre-commit": "^1.2.2",
+    "sass-lint": "^1.12.1",
     "sinon": "^4.0.2",
     "spectron": "^3.7.2",
     "vinyl-buffer": "^1.0.0",
@@ -39,12 +40,13 @@
     "vueify": "^9.4.1"
   },
   "scripts": {
-    "test": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint",
+    "test": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint && npm run sass-lint",
     "start": "electron .",
     "start-dev": "npm run gulp && cross-env NODE_ENV=dev npm start",
     "clean": "rm -rf config.json tasks.json coverage dist",
     "lint": "eslint *.js app test --ext .vue --ext .js",
     "lint-fix": "npm run lint -- --fix",
+    "sass-lint": "sass-lint --verbose",
     "dist": "npm run gulp && electron-builder",
     "dist-all": "npm run gulp && npm run clean && electron-builder -wlm --x64",
     "gulp": "gulp build"
