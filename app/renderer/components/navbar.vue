@@ -34,6 +34,8 @@
 "use strict";
 
 const EventHandler = require('../utils/event_handler');
+const AppAlert = require('../api/app_alerts').AppAlert;
+
 const components = {
     "navbar-menu": require('./navbar_menu.vue'),
     "suite-tabs": require('./suite_tabs.vue')
@@ -51,11 +53,29 @@ module.exports = {
         openMenu() {
             EventHandler.emit("showNavbarMenu");
         },
-        menuSelect(/* selection*/) {
-            // console.log(selection);
+        menuSelect(selection) {
+            switch(selection) {
+                case "about":
+                    this.openAboutModal();
+                    break;
+
+
+            }
         },
         switchEdit() {
             this.$store.commit("toggleEdit");
+        },
+        openAboutModal() {
+            const aboutHtml =
+                `<i>Version: ${this.$store.getters.version}</i>
+                <p>Gaucho is Open Source software licensed under GNU GPL V3, it can be downloaded for free at:</br>
+                <a href="#">https://github.com/angrykoala/gaucho</a></p>`;
+            const modal = new AppAlert("<h4>Gaucho</h4>", {
+                showCloseButton: false,
+                confirmButtonColor: "#ee6e73",
+                confirmButtonText: "Close"
+            }).html(aboutHtml);
+            modal.toggle();
         }
     }
 };

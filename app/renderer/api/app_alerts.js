@@ -15,10 +15,7 @@ class AppAlert {
     }
 
     toggle() {
-        return swal(this.alertOptions).then((result) => {
-            if (result.value) return Promise.resolve();
-            else return Promise.reject();
-        });
+        return swal(this.alertOptions);
     }
 }
 
@@ -32,6 +29,13 @@ class DeleteConfirmationAlert extends AppAlert {
             cancelButtonText: 'No, keep it',
             type: 'warning'
         }, options));
+    }
+
+    toggle() {
+        return super.toggle().then((result) => {
+            if (result.value) return Promise.resolve();
+            else return Promise.reject();
+        });
     }
 }
 

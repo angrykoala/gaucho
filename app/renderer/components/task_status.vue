@@ -1,7 +1,7 @@
 <template>
     <spinner v-if="isRunning" />
     <span v-else class="icon is-medium">
-        <i :class="['fas', 'fa-lg', status]"/>
+        <i :class="['fas', 'fa-lg', status, statusColor]"/>
     </span>
 </template>
 
@@ -21,6 +21,21 @@ module.exports = {
     computed: {
         isRunning() {
             return this.status === TaskStatus.running;
+        },
+        statusColor() {
+            switch (this.status) {
+                case TaskStatus.idle:
+                case TaskStatus.stopped:
+                    return "has-text-grey-dark";
+                case TaskStatus.error:
+                    return "has-text-danger";
+                case TaskStatus.running:
+                    return "has-text-info";
+                case TaskStatus.ok:
+                    return "has-text-success";
+                default:
+                    return "has-text-grey-light";
+            }
         }
     }
 };

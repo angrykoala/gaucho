@@ -8,11 +8,11 @@
 
 //desktopify
 a,
-btn {
+button {
     cursor: default !important;
 }
 
-p {
+p, i, h1, h2 {
     user-select: none;
     cursor: default;
 }

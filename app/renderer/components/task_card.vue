@@ -1,14 +1,19 @@
 <template>
     <div>
         <div class="columns is-mobile" @click="taskSelected">
-            <div class="column is-two-thirds">
+            <div class="column">
                 <p>{{task.title}}</p>
             </div>
             <div class="column">
                 <div class="columns is-mobile">
                     <div class="column">
-                        <task-status :status="task.status" class="is-pulled-right"/>
-                        <button :class="{'is-danger':running}" class="button is-info is-rounded is-outlined task-button is-pulled-right" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                        <p>{{executionTime}}</p>
+                    </div>
+                    <div class="column">
+                        <button :class="{'is-danger':running}" class="button is-info is-rounded is-outlined task-button" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                    </div>
+                    <div class="column">
+                        <task-status :status="task.status"/>
                     </div>
                 </div>
             </div>
@@ -26,6 +31,8 @@
 <script>
 "use strict";
 
+const utils = require('../../common/utils');
+
 const components = {
     "task-status": require('./task_status.vue')
 };
@@ -36,6 +43,10 @@ module.exports = {
     computed: {
         running() {
             return this.task.isRunning();
+        },
+        executionTime() {
+            if (this.task.beginTime === null) return "-";
+            return utils.generateTimeString(this.task.elapsedTime);
         }
     },
     methods: {

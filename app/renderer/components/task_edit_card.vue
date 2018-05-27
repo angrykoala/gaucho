@@ -1,14 +1,19 @@
 <template>
     <div>
         <div class="columns is-mobile" @click="taskSelected">
-            <div class="column is-two-thirds">
+            <div class="column">
                 <p>{{task.title}}</p>
             </div>
             <div class="column">
                 <div class="columns is-mobile">
                     <div class="column">
-                        <task-status :status="task.status" class="is-pulled-right"/>
-                        <button class="button is-info is-rounded is-outlined task-button is-pulled-right is-danger" @click.stop="deleteTask">Delete</button>
+                        <p>{{executionTime}}</p>
+                    </div>
+                    <div class="column">
+                        <button class="button is-info is-rounded is-outlined task-button is-danger" @click.stop="deleteTask">Delete</button>
+                    </div>
+                    <div class="column">
+                        <task-status :status="task.status"/>
                     </div>
                 </div>
             </div>
@@ -25,6 +30,7 @@
 "use strict";
 
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const utils = require('../../common/utils');
 
 const components = {
     "task-status": require('./task_status.vue'),
@@ -37,6 +43,10 @@ module.exports = {
     computed: {
         running() {
             return this.task.isRunning();
+        },
+        executionTime() {
+            if (this.task.beginTime === null) return "-";
+            return utils.generateTimeString(this.task.elapsedTime);
         }
     },
     methods: {
