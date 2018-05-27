@@ -26,6 +26,9 @@ module.exports = {
             return state.suites.reduce((total, s) => {
                 return total + s.length;
             }, 0);
+        },
+        runningTasks(state) {
+            return state.runningTasks;
         }
     },
     mutations: {

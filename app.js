@@ -21,7 +21,8 @@ const store = require('./app/renderer/stores/main');
 
 const components = {
     "navbar": require('./app/renderer/components/navbar.vue'),
-    "suite": require('./app/renderer/components/suite.vue')
+    "suite": require('./app/renderer/components/suite.vue'),
+    "bottom-bar": require('./app/renderer/components/bottom_bar.vue')
 };
 
 ipcRenderer.on('before-close', () => {
