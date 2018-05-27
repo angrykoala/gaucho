@@ -1,163 +1,96 @@
 <template>
     <div>
-        <div class="navbar-fixed">
-            <nav class="nav-extended">
-                <div class="nav-wrapper">
-                    <div class="brand-logo main-logo left">
-                        <img class="logo-icon" src="resources/logos/gaucho_logo.png">
-                        <a>Gaucho</a>
-                    </div>
-                    <tap-target :activates="'tap-edit'" :title="'Add some tasks !'" :description="'By pressing this button you can add new tasks to your list below.'" />
-                    <ul class="right navbar-buttons">
-                        <li><a id="tap-edit" @click="toggleEdit" :class="{'edit-button-active': editMode}" class="edit-button"><i class="material-icons unselectable-text">mode_edit</i></a></li>
-                        <li><a id="navbar-menu-button" data-activates="navbar-menu" data-gutter="30" :href="'#tab0'"><i class="material-icons small unselectable-text">menu</i></a></li>
-                    </ul>
-                    <navbar-menu @selection="onMenuSelection" />
-
-                    <div class="row tabs-row">
-                        <ul id="navbar-tabs" class="tabs tabs-transparent">
-                            <template v-for="(suite,index) in suites">
-                                <li class="tab col s3 unselectable-text" @dragover="dragOver(index)">
-                                    <a draggable="false" class="tab-button" @click="onTabSelected(index)" :href="'#tab'+index" :class="{ active: index===0 }">
-                                        <template v-if="editMode && index===activeSuite">
-                                            <input id="suite-title-input" type="text" class="validate tab-text" v-model="suite.title">
-                                        </template>
-                                        <span class="tab-text" v-show="!editMode || index!==activeSuite">{{suite.title}}</span>
-                                    </a>
-                                </li>
-                            </template>
-                        </ul>
-                    </div>
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <div class="navbar-item unselectable">
+                    <img class="logo-icon" src="resources/logos/gaucho_logo.ico">
+                    <h1 class="title is-4">Gaucho</h1>
+                    <h2 class="beta-subtitle is-4">Beta</h2>
                 </div>
-            </nav>
-        </div>
+            </div>
+            <div class="navbar-menu is-active">
+                <div class="navbar-end">
+                    <a :class="{selected: editMode}" class="navbar-item" @click.prevent="switchEdit" >
+                        <span class="icon">
+                            <i class="fas fa-edit" title="Edit"/>
+                        </span>
+                    </a>
+                    <a class="navbar-item" @click.stop="openMenu">
+                        <span class="icon">
+                            <i class="fas fa-bars" title="Menu"/>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <navbar-menu @select="menuSelect"/>
+        </nav>
+        <suite-tabs/>
     </div>
 </template>
+
+
+
 <script>
 "use strict";
 
-const Material = require('../api/materialize');
-const AppStatus = require('../app_status');
-const NavbarMenu = require('./navbar_menu.vue');
-const TapTarget = require('./tap_target.vue');
-const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const EventHandler = require('../utils/event_handler');
+const components = {
+    "navbar-menu": require('./navbar_menu.vue'),
+    "suite-tabs": require('./suite_tabs.vue')
+};
+
 
 module.exports = {
-    components: {
-        "navbar-menu": NavbarMenu,
-        "tap-target": TapTarget
-    },
-    mounted() {
-        Material.checkFirstTimeTap(".tap-target");
-    },
-    methods: {
-        dragOver(index) {
-            this.selectTab(index);
-        },
-        addSuite() {
-            if (this.$store.getters.canAddSuite) {
-                this.$store.commit("addSuite");
-                this.selectTab(this.suites.length - 1);
-            }
-        },
-        deleteSuite() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this suite after deletion!");
-            confirmationAlert.toggle().then(() => {
-                if (this.suites.length > 1) {
-                    this.suites[this.activeSuite].stopAll();
-                    this.suites.splice(this.activeSuite, 1);
-                    this.selectTab(this.activeSuite);
-                }
-            }, () => {});
-        },
-        onTabSelected(index) {
-            this.$store.commit("toggleActiveSuite", index);
-        },
-        selectTab(index) {
-            if (index >= this.suites.length) index = this.suites.length - 1;
-            // this.$nextTick(() => {
-            setTimeout(() => {
-                Material.selectTab("#navbar-tabs", `tab${index}`);
-                this.$store.commit("toggleActiveSuite", index);
-            }, 0);
-            // });
-        },
-        toggleEdit() {
-            this.$store.commit("toggleEdit");
-        },
-        onMenuSelection(selection) {
-            switch (selection) {
-                case "add-suite":
-                    this.addSuite();
-                    break;
-                case "delete-suite":
-                    this.deleteSuite();
-                    break;
-                default:
-                    AppStatus.events.emit(selection);
-            }
-        }
-    },
+    components: components,
     computed: {
-        currentSuite() {
-            return this.suites[this.activeSuite];
-        },
-        activeSuite() {
-            return this.$store.state.activeSuite;
-        },
         editMode() {
             return this.$store.state.editMode;
+        }
+    },
+    methods: {
+        openMenu() {
+            EventHandler.emit("showNavbarMenu");
         },
-        suites() {
-            return this.$store.getters.suites;
+        menuSelect(/* selection*/) {
+            // console.log(selection);
+        },
+        switchEdit() {
+            this.$store.commit("toggleEdit");
         }
     }
 };
+
 </script>
 
+
 <style lang="scss" scoped>
-#navbar-tabs {
-    overflow: hidden;
+.logo-icon {
+    padding-right: 5px;
 }
 
-.edit-button {
-    cursor: default;
-}
-
-.edit-button-active {
-    transition: color 0.5s ease;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #989898;
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-}
-
-.tabs-row {
+.title {
     margin-bottom: 0;
 }
 
-.tab-button {
-    cursor: default;
+.beta-subtitle {
+    padding-top: 12px;
+    padding-left: 4px;
 }
 
-.tab-text {
-    font-weight: 500;
-    text-align: center;
-    text-transform: none;
+.navbar-logo {
+    cursor: pointer;
 }
-.brand-logo {
-    &.main-logo {
-        user-select: none;
-        margin-top: 5px;
-        cursor: default;
-        & a {
-            vertical-align: top;
+
+.navbar-item{ // Sorry for this
+        &:hover {
+            background-color: transparent !important;
+            color: #3273dc !important;
         }
-    }
+        &.selected {
+            background-color: #e8e8e8 !important;
+            color: #3273dc !important;
+        }
 }
 
-.logo-icon {
-    height: 40px;
-}
+
 </style>

@@ -1,8 +1,8 @@
-.unselectable-text {
+.unselectable {
     user-select: none;
     cursor: default;
+    pointer-events: none;
 }
-
 
 .left-content {
     float: left;

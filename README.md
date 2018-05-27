@@ -90,4 +90,6 @@ Gaucho is being developed and maintained as Open-Source software by @angrykoala 
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
 
+* Using FontAwesome <https://fontawesome.com>
+
 > You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)

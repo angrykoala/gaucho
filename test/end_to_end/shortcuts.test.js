@@ -1,7 +1,7 @@
 "use strict";
 
 
-describe("[E2E] Shortcuts", () => {
+describe.skip("[E2E] Shortcuts", () => {
 
     it("Toggle Edit");
     it("Open Menu");

@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" @click="onClose" class="modal-action modal-close waves-effect waves-green btn-flat left">Close</a>
-            <a href="#!" @click="onSave" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left" @click="onClose">Close</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" @click="onSave">Save</a>
         </div>
     </div>
 </template>

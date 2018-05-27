@@ -2,7 +2,7 @@
     <div class="switch">
         <label>
             {{title}}
-            <input type="checkbox" v-model="inputValue" @change="updateValue()">
+            <input v-model="inputValue" type="checkbox" @change="updateValue()">
             <span class="lever switch-lever"/>
         </label>
     </div>

@@ -1,19 +1,19 @@
 <template>
     <div class="task-input-body">
         <div class="input-field">
-            <input id="title" type="text" v-model="title">
+            <input id="title" v-model="title" type="text">
             <label for="title">Task Title *</label>
         </div>
         <div class="input-field">
-            <textarea id="command" class="materialize-textarea" v-model="command"/>
+            <textarea id="command" v-model="command" class="materialize-textarea"/>
             <label>Command *</label>
         </div>
         <div class="input-field">
-            <input id="path" type="text" v-model="path">
+            <input id="path" v-model="path" type="text">
             <label for="path">Path</label>
         </div>
         <div class="row task-input-send-row">
-            <button class="btn waves-effect waves-light save-task-button" :class="{ disabled: !canSave }" @click="saveTask">Save
+            <button :class="{ disabled: !canSave }" class="btn waves-effect waves-light save-task-button" @click="saveTask">Save
                 <i class="material-icons right">send</i>
             </button>
         </div>

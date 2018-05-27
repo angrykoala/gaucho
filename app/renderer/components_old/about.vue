@@ -1,5 +1,5 @@
 <template>
-    <a @click="openAbout" :href="'#tab3'">About</a>
+    <a :href="'#tab3'" @click="openAbout">About</a>
 </template>
 
 <script>

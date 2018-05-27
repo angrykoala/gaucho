@@ -1,5 +1,5 @@
 <template>
-    <div class="tap-target" :data-activates="activates">
+    <div :data-activates="activates" class="tap-target">
         <div class="tap-target-content">
             <h5>{{title}}</h5>
             <p style="line-height: 22.5px;">{{description}}</p>

@@ -1,148 +1,75 @@
 <template>
-    <li class="run-card task-card">
-        <div class="collapsible-header row unselectable-text" :class="{ 'edit-mode': editMode}">
-            <div class="col s1" v-if="editMode">
-                <i class="tiny material-icons">drag_handle</i>
+    <div>
+        <div class="columns is-mobile" @click="taskSelected">
+            <div class="column is-two-thirds">
+                <p>{{task.title}}</p>
             </div>
-            <div class="col" :class="{ s4: editMode, s5: !editMode }">
-                <strong class="truncate">{{task.title}}</strong>
-            </div>
-            <div class="col s3">
-                <div class="truncate task-time" v-if="$store.state.userConfig.showTimer">{{executionTime}}</div>
-            </div>
-            <div class="col s3">
-                <a v-if="editMode" class="waves-effect waves-light btn delete-button" @click="onDeleteClick">Delete</a>
-                <a v-else class="waves-effect waves-light btn run-button" @click="toggleRun">{{running? "Stop" : "Run"}}</a>
-            </div>
-            <div class="col s1">
-                <progress-spinner v-if="running && $store.state.userConfig.animatedSpinner"/>
-                <i v-else class="small material-icons" :style="{color: statusColor}">{{task.status}}</i>
-                <tooltip :task-status="task.status"/>
+            <div class="column">
+                <div class="columns is-mobile">
+                    <div class="column">
+                        <task-status :status="task.status" class="is-pulled-right"/>
+                        <button :class="{'is-danger':running}" class="button is-info is-rounded is-outlined task-button is-pulled-right" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="collapsible-body task-card-body">
-            <div v-if="!editMode" class="run-output">
-                <pre>{{task.output}}</pre>
-            </div>
-            <div v-else class="container">
-                <task-input :task="task" @save="saveTask"/>
+        <div v-show="log" class="columns is-mobile">
+            <div class="column">
+                <div class="task-output">
+                    <pre>{{task.output}}</pre>
+                </div>
             </div>
         </div>
-    </li>
+    </div>
 </template>
 
 <script>
 "use strict";
 
-const AppStatus = require('../app_status');
-const TaskStatus = require('../../common/task_status');
-
-const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
-const Utils = require('../../common/utils');
-const Materialize = require('../api/materialize');
-
 const components = {
-    "task-input": require('./task_input.vue'),
-    "progress-spinner": require('./common/progress_spinner.vue'),
-    "tooltip": require('./tooltip.vue')
+    "task-status": require('./task_status.vue')
 };
 
 module.exports = {
-    props: ['task', 'event'],
-    data() {
-        return {
-            AppStatus: AppStatus
-        };
-    },
+    props: ["task", "log"],
     components: components,
-    mounted() {
-        this.event.on("run", this.run);
-        this.event.on("stop", this.stop);
-        this.event.on("collapseTask", this.collapseTask);
-    },
-    beforeDestroy() {
-        this.removeListeners();
+    computed: {
+        running() {
+            return this.task.isRunning();
+        }
     },
     methods: {
-        toggleRun(ev) {
-            ev.stopPropagation();
+        toggleRun() {
             if (this.running) this.stop();
             else this.run();
         },
-        onDeleteClick(ev) {
-            ev.stopPropagation();
-            this.deleteTask();
-        },
-        deleteTask() {
-            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
-            confirmationAlert.toggle().then(() => {
-                this.stop();
-                this.$emit('remove');
-            }, () => {});
-        },
-        saveTask(task) {
-            this.stop();
-            this.collapseTask();
-            this.$emit('edit', task);
-        },
         run() {
-            AppStatus.runningTasks++;
-            this.task.run(this.autoScroll, () => {
-                AppStatus.runningTasks--;
+            this.$store.commit('increaseRunningTasks');
+            this.task.run(() => {}, () => {
+                this.$store.commit('decreaseRunningTasks');
             });
         },
         stop() {
             this.task.stop();
         },
-        removeListeners() {
-            this.event.removeListener("run", this.run);
-            this.event.removeListener("stop", this.stop);
-        },
-        autoScroll() {
-            let container = this.$el.querySelector(".run-output");
-            if (container && container.scrollTop === container.scrollHeight - container.clientHeight) {
-                this.$nextTick(() => {
-                    container.scrollTop = container.scrollHeight;
-                });
-            }
-        },
-        collapseTask() {
-            Materialize.collapseHeader(this.$el);
-        }
-    },
-    computed: {
-        editMode() {
-            return this.$store.state.editMode;
-        },
-        statusColor() {
-            switch (this.task.status) {
-                case TaskStatus.idle:
-                case TaskStatus.stopped:
-                    return "black";
-                case TaskStatus.error:
-                    return "red";
-                case TaskStatus.running:
-                    return "blue";
-                case TaskStatus.ok:
-                    return "green";
-                default:
-                    return "grey";
-            }
-        },
-        running() {
-            return this.task.isRunning();
-        },
-        executionTime() {
-            if (this.task.beginTime === null) return "-";
-            return Utils.generateTimeString(this.task.elapsedTime);
+        taskSelected() {
+            this.$emit("selected");
         }
     }
 };
 </script>
 
+
 <style lang="scss" scoped>
-.run-output {
+.task-button{
+    width: 80px;
+}
+
+.columns:not(:last-child){
+    margin-bottom: 0;
+}
+
+.task-output {
     overflow-y: auto;
     overflow-x: hidden;
     height: 200px;
@@ -151,29 +78,7 @@ module.exports = {
         margin: 0 0 0 10px;
         overflow: hidden;
         white-space: pre-wrap;
+        background-color: transparent;
     }
-}
-
-.run-button {
-    float: right;
-    margin-top: 2px;
-    width: 90px;
-    cursor: default;
-}
-
-.delete-button {
-    cursor: default;
-    float: right;
-    margin-top: 2px;
-    width: 110px;
-    background-color: red;
-    &:hover {
-        background-color: #af0000;
-    }
-}
-.task-time {
-    text-align: center;
-    padding-right: 10px;
-    color: #777777;
 }
 </style>

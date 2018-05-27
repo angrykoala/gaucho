@@ -1,81 +1,43 @@
 <template>
-    <ul id="navbar-menu" class="dropdown-content">
-        <template v-if="!editMode">
-            <li class="unselectable-text menu-button"><a @click="selected($event,'run-suite')" :href="'#tab0'">Run Suite</a></li>
-            <li class="unselectable-text menu-button"><a @click="selected($event,'stop-suite')" :href="'#tab1'">Stop Suite</a></li>
+    <dropdown-menu open-event="showNavbarMenu" class="navbar-dropdown-menu">
+        <template v-for="item in options">
+            <hr v-if="item.value==='divider'" class="dropdown-divider">
+            <a v-else class="dropdown-item" @click.prevent="onClick(item.value)">
+                {{item.name}}
+            </a>
         </template>
-        <template v-else>
-            <li class="unselectable-text menu-button" :class="{ disabled: !canAddSuite }"><a @click="selected($event,'add-suite',!canAddSuite)" :href="'#tab0'">Add Suite</a></li>
-            <li class="unselectable-text menu-button" :class="{ disabled: !canDeleteSuite }"><a @click="selected($event,'delete-suite',!canDeleteSuite)" :href="'#tab1'">Delete Suite</a></li>
-        </template>
-        <li class="divider"/>
-        <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal">Configuration</a></li>
-        <li class="unselectable-text menu-button">
-            <about/>
-        </li>
-    </ul>
+    </dropdown-menu>
 </template>
+
+
+
 <script>
 "use strict";
 
-const About = require('./about.vue');
+const components = {
+    "dropdown-menu": require('./common/dropdown_menu.vue')
+};
 
 module.exports = {
-    components: {
-        "about": About
-    },
-    methods: {
-        selected(ev, selection, ignoreSelection) {
-            if (!ignoreSelection) {
-                this.$emit("selection", selection);
-            } else {
-                this.invalidClick(ev);
+    components: components,
+    computed: {
+        options() {
+            const defaultOptions = [{name: "Settings", value: "settings"}, {name: "About", value: "about"}];
+
+            if(!this.$store.state.editMode) {
+                const runModeOptions = [{name: "Run Suite", value: "runSuite"}, {name: "Stop Suite", value: "stopSuite"}];
+                return runModeOptions.concat([{value: "divider"}], defaultOptions);
+            } else{
+                const editModeOptions = [{name: "Add Suite", value: "addSuite"}, {name: "Remove Suite", value: "removeSuite"}];
+                return editModeOptions.concat([{value: "divider"}], defaultOptions);
             }
-        },
-        invalidClick(ev) {
-            ev.stopPropagation();
+
         }
     },
-    computed: {
-        suites() {
-            return this.$store.getters.suites;
-        },
-        editMode() {
-            return this.$store.state.editMode;
-        },
-        canAddSuite() {
-            return this.$store.getters.canAddSuite;
-        },
-        canDeleteSuite() {
-            return this.suites.length > 1;
+    methods: {
+        onClick(value) {
+            this.$emit("select", value);
         }
     }
 };
 </script>
-
-<style lang="scss" scoped>
-#navbar-menu {
-    width: 118px !important;
-}
-
-#navbar-menu-button {
-    cursor: default;
-}
-
-.menu-button > a {
-    cursor: default;
-}
-
-.menu-button {
-    &.disabled {
-        background-color: #ababab;
-        a {
-            background-color: transparent;
-            color: #5f9ea0;
-        }
-        &:hover {
-            background-color: #ababab;
-        }
-    }
-}
-</style>

@@ -8,7 +8,9 @@ const AppConfig = require('../../app_config.json');
 
 module.exports = {
     state: {
-        suites: []
+        suites: [],
+        selectedSuite: 0,
+        runningTasks: 0
     },
     getters: {
         suites(state) {
@@ -27,6 +29,15 @@ module.exports = {
         }
     },
     mutations: {
+        toggleActiveSuite(state, suite) {
+            state.selectedSuite = suite; // TODO: make checks
+        },
+        increaseRunningTasks(state) {
+            state.runningTasks++;
+        },
+        decreaseRunningTasks(state) {
+            state.runningTasks--;
+        },
         addSuite(state, suite) {
             if (state.suites.length < AppConfig.maxSuites) {
                 if(!suite) {
@@ -39,6 +50,14 @@ module.exports = {
             if(state.suites[index].length < AppConfig.maxTasksPerSuite) {
                 state.suites[index].addTask(task);
             }
+        },
+        updateTask(state, data) {
+            const suite = state.suites[data.suite];
+            suite.replaceTask(data.task, data.data);
+        },
+        deleteTask(state, data) {
+            const suite = state.suites[data.suite];
+            suite.removeTask(data.task);
         },
         _setSuites(state, suites) {
             state.suites.splice(0, state.suites.length);

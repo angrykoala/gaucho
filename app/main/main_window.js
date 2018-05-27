@@ -1,11 +1,13 @@
 "use strict";
 
 const {
+    app,
     BrowserWindow
 } = require('electron');
 
 const AppConfig = require('../common/app_config');
 
+app.disableHardwareAcceleration();
 module.exports = class MainWindow {
     constructor() {
         this.win = null;
@@ -31,7 +33,7 @@ module.exports = class MainWindow {
         let winConfig = {
             width: windowSize[0],
             height: windowSize[1],
-            minWidth: 365,
+            minWidth: 400,
             minHeight: 300,
             fullscreenable: false,
             webgl: false,

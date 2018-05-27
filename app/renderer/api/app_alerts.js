@@ -15,15 +15,16 @@ class AppAlert {
     }
 
     toggle() {
-        return swal(this.alertOptions);
+        return swal(this.alertOptions).then((result) => {
+            if (result.value) return Promise.resolve();
+            else return Promise.reject();
+        });
     }
 }
 
-const confirmationTitle = "Are you sure?";
-
 class DeleteConfirmationAlert extends AppAlert {
     constructor(text, options = {}) {
-        super(confirmationTitle, Object.assign({
+        super("Are you sure?", Object.assign({
             text: text,
             showCancelButton: true,
             confirmButtonColor: "#ee6e73",
