@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="columns is-mobile" @click="taskSelected">
+        <div class="columns is-mobile task-card" @click="taskSelected">
             <div class="column">
                 <p>{{task.title}}</p>
             </div>
@@ -10,7 +10,8 @@
                         <p>{{executionTime}}</p>
                     </div>
                     <div class="column">
-                        <button :class="{'is-danger':running}" class="button is-info is-rounded is-outlined task-button" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-info is-rounded is-outlined task-button" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                        <button v-else class="button is-info is-rounded is-outlined task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
                     <div class="column">
                         <task-status :status="task.status"/>
@@ -18,11 +19,13 @@
                 </div>
             </div>
         </div>
-        <div v-show="log" class="columns is-mobile">
+        <div v-if="open" class="columns is-mobile">
             <div class="column">
-                <div class="task-output">
+                <div class="task-output" v-if="!editMode">
                     <pre>{{task.output}}</pre>
                 </div>
+                <task-form v-else :task="task" @save="saveTask"/>
+
             </div>
         </div>
     </div>
@@ -32,13 +35,16 @@
 "use strict";
 
 const utils = require('../../common/utils');
+const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+
 
 const components = {
-    "task-status": require('./task_status.vue')
+    "task-status": require('./task_status.vue'),
+    "task-form": require('./task_form.vue')
 };
 
 module.exports = {
-    props: ["task", "log"],
+    props: ["task", "open"],
     components: components,
     computed: {
         running() {
@@ -50,6 +56,9 @@ module.exports = {
         },
         showTimer() {
             return this.$store.state.userConfig.showTimer;
+        },
+        editMode() {
+            return this.$store.state.editMode;
         }
     },
     methods: {
@@ -68,6 +77,19 @@ module.exports = {
         },
         taskSelected() {
             this.$emit("selected");
+        },
+        deleteTask() {
+            const confirmationAlert = new DeleteConfirmationAlert("You will not be able to recover this task after deletion!");
+            confirmationAlert.toggle().then(() => {
+                this.stop();
+                this.$emit('delete');
+            }, () => {});
+
+        },
+        saveTask(task) {
+            this.stop();
+            this.$emit("save", task);
+            this.taskSelected();
         }
     }
 };
@@ -79,20 +101,46 @@ module.exports = {
     width: 80px;
 }
 
-.columns:not(:last-child){
+// .columns:not(:last-child){
+//     margin-bottom: 0;
+// }
+
+.column{
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .task-output {
+    background-color: #eeeeee;
     overflow-y: auto;
     overflow-x: hidden;
     height: 200px;
-    background-color: #eeeeee;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #e2e2e2;
     pre {
-        margin: 0 0 0 10px;
         overflow: hidden;
         white-space: pre-wrap;
         background-color: transparent;
+        padding: 0.75rem;
     }
+}
+
+p{
+    padding-top: 4px;
+}
+
+
+.task-card{
+    margin-bottom: 0;
+    margin-top: 0;
+    // padding-top: 7px;
+    // padding-bottom: 7px;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right:10px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #e2e2e2;
 }
 </style>

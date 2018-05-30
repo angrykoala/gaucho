@@ -1,5 +1,7 @@
 <template>
-    <spinner v-if="isRunning" />
+    <div class="spinner-container" v-if="isRunning" >
+        <spinner/>
+    </div>
     <span v-else class="icon is-medium has-text-centered">
         <i :class="['fas', 'fa-lg', status, statusColor]"/>
     </span>
@@ -40,3 +42,11 @@ module.exports = {
     }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.spinner-container{
+    margin-top: 4px;
+    margin-left: 2px;
+}
+</style>
