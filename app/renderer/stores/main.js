@@ -13,7 +13,8 @@ module.exports = new Vuex.Store({
         tasks: TaskStore
     },
     state: {
-        editMode: false
+        editMode: false,
+        settingsMenu: false
     },
     getters: {
         version() {
@@ -23,6 +24,9 @@ module.exports = new Vuex.Store({
     mutations: {
         toggleEdit(state) {
             state.editMode = !state.editMode;
+        },
+        toggleSettings(state) {
+            state.settingsMenu = !state.settingsMenu;
         }
     }
 });

@@ -33,6 +33,6 @@ module.exports = {
 @import "../../styles/variables";
 
 .tabs{
-    background-color: $navbar-color;
+    background-color: $navbar-background-color;
 }
 </style>

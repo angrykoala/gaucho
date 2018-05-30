@@ -12,9 +12,12 @@
 
 <body>
     <div id="app">
-        <navbar></navbar>
-        <suite></suite>
-        <bottom-bar></bottom-bar>
+        <div v-if="!settingsMenu">
+            <navbar></navbar>
+            <suite></suite>
+            <bottom-bar v-if="showBottomBar"></bottom-bar>
+        </div>
+        <settings-menu v-if="settingsMenu"></settings-menu>
         <!-- <config-menu></config-menu>
         <header id="main-header" class="margin-bottom">
             <navbar></navbar>
@@ -30,7 +33,7 @@
             <bottom-bar></bottom-bar>
         </footer> -->
     </div>
-<!--
+    <!--
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
         window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');

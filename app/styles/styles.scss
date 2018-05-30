@@ -3,19 +3,19 @@
 @import "bulma/sass/utilities/functions";
 @import "variables"; // import variables before bulma for proper override
 @import "bulma/bulma";
+@import 'bulma-switch/dist/bulma-switch';
 @import "common";
 
-
 //desktopify
-a,
-button {
+a, button, input {
     cursor: default !important;
 }
 
-p, i, h1, h2 {
-    user-select: none;
-    cursor: default;
+h1, h2, i, label, p {
+    user-select: none !important;
+    cursor: default !important;
 }
+//desktopify ends
 
 .collapsible-body {
     &.task-card-body {

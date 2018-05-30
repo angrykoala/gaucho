@@ -22,7 +22,8 @@ const store = require('./app/renderer/stores/main');
 const components = {
     "navbar": require('./app/renderer/components/navbar.vue'),
     "suite": require('./app/renderer/components/suite.vue'),
-    "bottom-bar": require('./app/renderer/components/bottom_bar.vue')
+    "bottom-bar": require('./app/renderer/components/bottom_bar.vue'),
+    "settings-menu": require('./app/renderer/components/settings_menu.vue')
 };
 
 ipcRenderer.on('before-close', () => {
@@ -40,9 +41,12 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         // suites() {
         //     return this.$store.getters.suites;
         // },
-        // showBottomBar() {
-        //     return this.$store.state.userConfig.bottomBar;
-        // }
+        showBottomBar() {
+            return this.$store.state.userConfig.bottomBar;
+        },
+        settingsMenu() {
+            return this.$store.state.settingsMenu;
+        }
     },
     beforeMount() {
         store.dispatch("loadTasks");

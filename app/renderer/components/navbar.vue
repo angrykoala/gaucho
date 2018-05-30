@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <div class="navbar-item unselectable">
                     <img class="logo-icon" src="resources/logos/gaucho_logo.ico">
@@ -57,6 +57,9 @@ module.exports = {
             switch(selection) {
                 case "about":
                     this.openAboutModal();
+                    break;
+                case "settings":
+                    this.$store.commit("toggleSettings");
                     break;
 
 

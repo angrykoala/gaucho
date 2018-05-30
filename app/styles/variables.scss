@@ -1,7 +1,9 @@
-$desktop: 200px;
-// $tablet: 769px;
-//
-// $on-hover-color: #3273dc;
-// $on-hover-red-color: #ff3860;
+$classic-navbar-color: #ee6e73;
+$classic-button-color: #2bbbad;
 
-$navbar-color: hsl(0, 0%, 96%)
+
+$desktop: 200px;
+$navbar-background-color: hsl(0, 0%, 96%);
+$primary: $classic-button-color;
+
+$switch-focus: none;

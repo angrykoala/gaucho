@@ -6,7 +6,7 @@
             </div>
             <div class="column">
                 <div class="columns is-mobile">
-                    <div class="column">
+                    <div v-if="showTimer" class="column">
                         <p>{{executionTime}}</p>
                     </div>
                     <div class="column">
@@ -47,6 +47,9 @@ module.exports = {
         executionTime() {
             if (this.task.beginTime === null) return "-";
             return utils.generateTimeString(this.task.elapsedTime);
+        },
+        showTimer() {
+            return this.$store.state.userConfig.showTimer;
         }
     },
     methods: {

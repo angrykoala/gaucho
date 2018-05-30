@@ -7,7 +7,9 @@ const {
 
 const AppConfig = require('../common/app_config');
 
-app.disableHardwareAcceleration();
+app.disableHardwareAcceleration(); // fixes drag images freezes
+app.commandLine.appendSwitch('force-color-profile', 'srgb'); // Fixes messed up color rendering
+
 module.exports = class MainWindow {
     constructor() {
         this.win = null;
