@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="suite-list">
         <template v-for="(task, index) in currentSuiteTasks">
-            <task-card v-if="!editMode" :key="index" :task="task" :log="selectedTask===index" @selected="selectTask(index)"/>
-            <task-edit-card v-else :key="index" :task="task" :edit="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
+            <task-card v-if="!editMode" :key="index" :task="task" :log="selectedTask===index" @selected="selectTask(index)" class="task-card"/>
+            <task-edit-card v-else :key="index" :task="task" :edit="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)" class="task-card"/>
         </template>
-    </div>
+    <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" class="task-card"/></div>
 </template>
 
 
@@ -13,14 +13,16 @@
 
 const components = {
     "task-card": require('./task_card.vue'),
-    "task-edit-card": require('./task_edit_card.vue')
+    "task-edit-card": require('./task_edit_card.vue'),
+    "add-task-card": require('./add_task_card.vue')
 };
 
 module.exports = {
     components: components,
     data() {
         return {
-            selectedTask: null
+            selectedTask: null,
+            selectedAddTask: false
         };
     },
     computed: {
@@ -40,13 +42,25 @@ module.exports = {
             immediate: true,
             handler() {
                 this.selectedTask = null;
+                this.selectedAddTask = false;
             }
         }
     },
     methods: {
         selectTask(index) {
+            this.selectedAddTask = false;
             if(index === this.selectedTask) this.selectedTask = null;
             else this.selectedTask = index;
+        },
+        selectAddTask() {
+            this.selectedTask = null;
+            this.selectedAddTask = !this.selectedAddTask;
+        },
+        addTask(task) {
+            this.$store.commit("addTask", {
+                index: this.selectedSuite,
+                task: task
+            });
         },
         saveTask(index, task) {
             const updateData = {
@@ -66,3 +80,17 @@ module.exports = {
 };
 
 </script>
+
+
+<style lang="scss" scoped>
+.suite-list{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.task-card{
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+</style>

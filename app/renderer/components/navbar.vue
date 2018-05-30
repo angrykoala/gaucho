@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <div class="navbar-item unselectable">
                     <img class="logo-icon" src="resources/logos/gaucho_logo.ico">
@@ -23,8 +23,8 @@
                 </div>
             </div>
             <navbar-menu @select="menuSelect"/>
+            <suite-tabs class="suite-tabs"/>
         </nav>
-        <suite-tabs/>
     </div>
 </template>
 
@@ -87,6 +87,12 @@ module.exports = {
 
 
 <style lang="scss" scoped>
+.navbar{
+    flex-wrap: wrap;
+}
+.first-row{
+    width:100%;
+}
 .logo-icon {
     padding-right: 5px;
 }
@@ -102,6 +108,10 @@ module.exports = {
 
 .navbar-logo {
     cursor: pointer;
+}
+
+.suite-tabs{
+    width:100%;
 }
 
 .navbar-item{ // Sorry for this

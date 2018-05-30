@@ -6,18 +6,23 @@
     <title>Gaucho Task Launcher</title>
     <!-- <link type="text/css" rel="stylesheet" href="./node_modules/material-design-icons-iconfont/dist/material-design-icons.css" /> -->
     <link type="text/css" rel="stylesheet" href="./resources/bundle/styles.css" />
+    <script type="text/javascript" src="./resources/bundle/bundle.js" defer></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
     <div id="app">
-        <div v-if="!settingsMenu">
-            <navbar></navbar>
-            <suite></suite>
-            <bottom-bar v-if="showBottomBar"></bottom-bar>
-        </div>
-        <settings-menu v-if="settingsMenu"></settings-menu>
+        <main :class="{'has-bottom-bar': showBottomBar, 'has-top-bar': showTopBar}">
+            <div class="page-body">
+                <div v-if="!settingsMenu">
+                    <navbar></navbar>
+                    <suite></suite>
+                    <bottom-bar v-if="showBottomBar"></bottom-bar>
+                </div>
+                <settings-menu v-if="settingsMenu"></settings-menu>
+            </div>
+        </main>
         <!-- <config-menu></config-menu>
         <header id="main-header" class="margin-bottom">
             <navbar></navbar>
@@ -33,14 +38,13 @@
             <bottom-bar></bottom-bar>
         </footer> -->
     </div>
-    <!--
+</body>
+<!--
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
         window.Hammer = require('./node_modules/materialize-css/js/hammer.min.js');
     </script>
     <script src="./node_modules/jquery-ui/build/release.js"></script>
     <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>-->
-    <script type="text/javascript" src="./resources/bundle/bundle.js"></script>
-</body>
 
 </html>

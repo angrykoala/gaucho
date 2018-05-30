@@ -42,7 +42,10 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         //     return this.$store.getters.suites;
         // },
         showBottomBar() {
-            return this.$store.state.userConfig.bottomBar;
+            return this.$store.state.userConfig.bottomBar && !this.settingsMenu;
+        },
+        showTopBar() {
+            return !this.settingsMenu;
         },
         settingsMenu() {
             return this.$store.state.settingsMenu;

@@ -1,6 +1,6 @@
 <template>
     <spinner v-if="isRunning" />
-    <span v-else class="icon is-medium">
+    <span v-else class="icon is-medium has-text-centered">
         <i :class="['fas', 'fa-lg', status, statusColor]"/>
     </span>
 </template>

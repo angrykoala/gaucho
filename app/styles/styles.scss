@@ -4,14 +4,19 @@
 @import "variables"; // import variables before bulma for proper override
 @import "bulma/bulma";
 @import 'bulma-switch/dist/bulma-switch';
-@import "common";
+@import "common"; //desktopify
 
-//desktopify
-a, button, input {
+a,
+button,
+input {
     cursor: default !important;
 }
 
-h1, h2, i, label, p {
+h1,
+h2,
+i,
+label,
+p {
     user-select: none !important;
     cursor: default !important;
 }
@@ -35,23 +40,30 @@ footer {
     width: 100%;
     flex: 0 0 auto;
 }
-
 #app {
+    display: block;
     height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+}
+main {
+    display: block;
+    height: 100%;
+
+    &.has-bottom-bar {
+        padding-bottom: 3.25rem;
+    }
+
+    &.has-top-bar {
+        padding-top: 5.8rem;
+    }
 }
 
-main {
-    flex: 1 1 auto;
+.page-body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
     overflow-y: auto;
-    padding-top: 100px;
-
-    &.full-size {
-        bottom: 0;
-    }
 }
 
 #main-header {
