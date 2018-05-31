@@ -1,7 +1,7 @@
 <template>
     <div class="tabs is-fullwidth is-light">
         <ul>
-            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index)}" @click="selectSuite(index)"><a>{{suite.title}}</a></li>
+            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)"><a>{{suite.title}}</a></li>
         </ul>
     </div>
 </template>
@@ -34,5 +34,8 @@ module.exports = {
 
 .tabs{
     background-color: $navbar-background-color;
+    .inactive{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 }
 </style>

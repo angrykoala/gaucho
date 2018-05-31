@@ -2,11 +2,19 @@
     <div>
         <div class="columns is-mobile task-card" @click="taskSelected">
             <div class="column">
-                <p>{{task.title}}</p>
+                <p>
+                    <span v-show="open" class="icon">
+                        <i class="fas fa-caret-down"/>
+                    </span>
+                    <span v-show="!open" class="icon">
+                        <i class="fas fa-caret-right"/>
+                    </span>
+                    {{task.title}}
+                </p>
             </div>
             <div class="column">
                 <div class="columns is-mobile">
-                    <div v-if="showTimer" class="column">
+                    <div v-if="showTimer" class="column has-text-centered">
                         <p>{{executionTime}}</p>
                     </div>
                     <div class="column">
@@ -25,7 +33,6 @@
                     <pre>{{task.output}}</pre>
                 </div>
                 <task-form v-else :task="task" @save="saveTask"/>
-
             </div>
         </div>
     </div>
@@ -101,10 +108,6 @@ module.exports = {
     width: 80px;
 }
 
-// .columns:not(:last-child){
-//     margin-bottom: 0;
-// }
-
 .column{
     margin-bottom: 0;
     margin-top: 0;
@@ -134,8 +137,6 @@ p{
 .task-card{
     margin-bottom: 0;
     margin-top: 0;
-    // padding-top: 7px;
-    // padding-bottom: 7px;
     padding-bottom: 0;
     padding-left: 10px;
     padding-right:10px;
