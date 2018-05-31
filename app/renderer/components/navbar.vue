@@ -10,7 +10,7 @@
             </div>
             <div class="navbar-menu is-active">
                 <div class="navbar-end">
-                    <a :class="{selected: editMode}" class="navbar-item" @click.prevent="switchEdit" >
+                    <a :class="{selected: editMode}" class="navbar-item" @click.prevent="toggleEdit" >
                         <span class="icon">
                             <i class="fas fa-edit" title="Edit"/>
                         </span>
@@ -58,14 +58,18 @@ module.exports = {
                 case "about":
                     this.openAboutModal();
                     break;
+                case "runSuite":
+                    this.$store.dispatch("runSuite");
+                    break;
+                case "stopSuite":
+                    this.$store.dispatch("stopSuite");
+                    break;
                 case "settings":
                     this.$store.commit("toggleSettings");
                     break;
-
-
             }
         },
-        switchEdit() {
+        toggleEdit() {
             this.$store.commit("toggleEdit");
         },
         openAboutModal() {

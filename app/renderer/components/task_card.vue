@@ -51,7 +51,7 @@ const components = {
 };
 
 module.exports = {
-    props: ["task", "open"],
+    props: ["task", "open", "index"],
     components: components,
     computed: {
         running() {
@@ -74,13 +74,10 @@ module.exports = {
             else this.run();
         },
         run() {
-            this.$store.commit('increaseRunningTasks');
-            this.task.run(() => {}, () => {
-                this.$store.commit('decreaseRunningTasks');
-            });
+            this.$store.dispatch("runTask", this.index);
         },
         stop() {
-            this.task.stop();
+            this.$store.dispatch("stopTask", this.index);
         },
         taskSelected() {
             this.$emit("selected");

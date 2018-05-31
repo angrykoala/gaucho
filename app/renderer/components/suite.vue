@@ -1,7 +1,7 @@
 <template>
     <div class="suite-list">
         <template v-for="(task, index) in currentSuiteTasks">
-            <task-card :key="index" :task="task" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
+            <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
         </template>
     <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask"/></div>
 </template>

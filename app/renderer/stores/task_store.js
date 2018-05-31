@@ -29,6 +29,9 @@ module.exports = {
         },
         runningTasks(state) {
             return state.runningTasks;
+        },
+        currentSuite(state) {
+            return state.suites[state.selectedSuite];
         }
     },
     mutations: {
@@ -97,6 +100,31 @@ module.exports = {
         },
         exportTasks(context, filename) {
             return TaskImporter.export(filename, context.getters.suites, context.getters.version);
+        },
+        runTask(context, index) {
+            const task = context.getters.currentSuite.getTask(index);
+            if(!task.isRunning()) {
+                context.commit('increaseRunningTasks');
+                task.run(() => {}, () => {
+                    context.commit('decreaseRunningTasks');
+                });
+            }
+        },
+        stopTask(context, index) {
+            const task = context.getters.currentSuite.getTask(index);
+            task.stop();
+        },
+        runSuite(context) {
+            const taskNumber = context.getters.currentSuite.length;
+            for(let i = 0; i < taskNumber; i++) {
+                context.dispatch("runTask", i);
+            }
+        },
+        stopSuite(context) {
+            const taskNumber = context.getters.currentSuite.length;
+            for(let i = 0; i < taskNumber; i++) {
+                context.dispatch("stopTask", i);
+            }
         }
     }
 };

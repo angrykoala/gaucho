@@ -10,6 +10,10 @@ class Suite {
         return this.tasks.length;
     }
 
+    getTask(index) {
+        return this.tasks[index];
+    }
+
     addTask(task) {
         const title = this.getValidName(task.title);
         task.title = title;
