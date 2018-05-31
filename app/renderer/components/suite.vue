@@ -3,7 +3,8 @@
         <template v-for="(task, index) in currentSuiteTasks">
             <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
         </template>
-    <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask"/></div>
+        <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask"/>
+    </div>
 </template>
 
 
@@ -84,8 +85,6 @@ module.exports = {
 .suite-list{
     padding-top: 0;
     padding-bottom: 0;
-    // padding-top: 6px;
-    // padding-bottom: 6px;
 }
 
 

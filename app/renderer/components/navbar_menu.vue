@@ -28,8 +28,7 @@ module.exports = {
                 const runModeOptions = [{name: "Run Suite", value: "runSuite"}, {name: "Stop Suite", value: "stopSuite"}];
                 return runModeOptions.concat([{value: "divider"}], defaultOptions);
             } else{
-                const editModeOptions = [{name: "Add Suite", value: "addSuite"}, {name: "Remove Suite", value: "removeSuite"}];
-                return editModeOptions.concat([{value: "divider"}], defaultOptions);
+                return defaultOptions;
             }
 
         }

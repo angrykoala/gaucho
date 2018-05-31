@@ -70,6 +70,17 @@ module.exports = {
             suites.forEach((suite) => {
                 state.suites.push(suite);
             });
+        },
+        _deleteSuite(state, index) {
+            let newSelected = Math.min(state.selectedSuite, state.suites.length - 2);
+            if(state.suites.length === 1) {
+                newSelected = 0;
+                const suite = new Suite(`Suite 1`);
+                state.suites.push(suite);
+
+            }
+            state.selectedSuite = newSelected;
+            state.suites.splice(index, 1);
         }
     },
     actions: {
@@ -125,6 +136,10 @@ module.exports = {
             for(let i = 0; i < taskNumber; i++) {
                 context.dispatch("stopTask", i);
             }
+        },
+        deleteSuite(context) {
+            context.dispatch("stopSuite");
+            context.commit("_deleteSuite", context.state.selectedSuite);
         }
     }
 };

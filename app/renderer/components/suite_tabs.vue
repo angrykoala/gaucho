@@ -1,7 +1,17 @@
 <template>
     <div class="tabs is-fullwidth is-light">
         <ul>
-            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)"><a>{{suite.title}}</a></li>
+            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)">
+                <a>{{suite.title}}<span v-if="editMode && isSelected(index)" class="delete is-small" @click.stop="removeSuite(index)"/></a>
+
+            </li>
+            <li v-if="canAddSuite" class="inactive" @click="addNewSuite">
+                <a>
+                    <span class="icon">
+                        <a class="fas fa-plus"/>
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
 </template>
@@ -14,6 +24,12 @@ module.exports = {
     computed: {
         suites() {
             return this.$store.getters.suites;
+        },
+        canAddSuite() {
+            return this.editMode && this.$store.getters.canAddSuite;
+        },
+        editMode() {
+            return this.$store.state.editMode;
         }
     },
     methods: {
@@ -22,6 +38,13 @@ module.exports = {
         },
         selectSuite(index) {
             this.$store.commit("toggleActiveSuite", index);
+        },
+        addNewSuite() {
+            this.$store.commit("addSuite");
+            this.$store.commit("toggleActiveSuite", this.suites.length - 1);
+        },
+        removeSuite() {
+            this.$store.dispatch("deleteSuite");
         }
     }
 };
@@ -37,5 +60,9 @@ module.exports = {
     .inactive{
         background-color: rgba(0, 0, 0, 0.1);
     }
+}
+
+.delete{
+    margin-left:5px;
 }
 </style>
