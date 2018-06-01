@@ -65,6 +65,10 @@ module.exports = {
             const suite = state.suites[data.suite];
             suite.removeTask(data.task);
         },
+        renameSuite(state, data) {
+            const suite = state.suites[data.suite];
+            suite.title = data.title;
+        },
         _setSuites(state, suites) {
             state.suites.splice(0, state.suites.length);
             suites.forEach((suite) => {

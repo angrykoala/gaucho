@@ -19,7 +19,16 @@ class AppAlert {
     }
 }
 
-class DeleteConfirmationAlert extends AppAlert {
+class InteractiveAlert extends AppAlert {
+    toggle() {
+        return super.toggle().then((result) => {
+            if (result.value) return Promise.resolve(result.value);
+            else return Promise.reject();
+        });
+    }
+}
+
+class DeleteConfirmationAlert extends InteractiveAlert {
     constructor(text, options = {}) {
         super("Are you sure?", Object.assign({
             text: text,
@@ -30,16 +39,22 @@ class DeleteConfirmationAlert extends AppAlert {
             type: 'warning'
         }, options));
     }
+}
 
-    toggle() {
-        return super.toggle().then((result) => {
-            if (result.value) return Promise.resolve();
-            else return Promise.reject();
-        });
+class InputAlert extends InteractiveAlert {
+    constructor(title, defaultValue = "", options = {}) {
+        super(title, Object.assign({
+            showCancelButton: true,
+            confirmButtonColor: "#ee6e73",
+            confirmButtonText: 'Rename',
+            input: 'text',
+            inputValue: defaultValue
+        }, options));
     }
 }
 
 module.exports = {
     AppAlert: AppAlert,
-    DeleteConfirmationAlert: DeleteConfirmationAlert
+    DeleteConfirmationAlert: DeleteConfirmationAlert,
+    InputAlert: InputAlert
 };
