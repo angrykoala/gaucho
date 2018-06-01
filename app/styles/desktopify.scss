@@ -1,0 +1,15 @@
+a,
+button,
+input {
+    cursor: default !important;
+}
+
+h1,
+h2,
+i,
+label,
+p,
+a {
+    user-select: none !important;
+    cursor: default !important;
+}

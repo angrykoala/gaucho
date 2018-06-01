@@ -1,24 +1,30 @@
 <template>
-    <div class="container is-fluid">
-        <div class="field">
-            <label class="label">Task Name*</label>
-            <div class="control">
-                <input v-model="title" class="input" type="text">
+    <div class="task-form-wrapper">
+        <div class="container is-fluid">
+            <div class="field">
+                <label class="label">Task Name*</label>
+                <div class="control">
+                    <input v-model="title" class="input" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Command*</label>
+                <div class="control">
+                    <textarea v-model="command" class="textarea"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Path</label>
+                <div class="control">
+                    <input v-model="path" class="input" type="text" placeholder="Defaults to home">
+                </div>
+            </div>
+            <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                    <button :disabled="!canSave" class="button is-primary save-button is-grouped-right" @click="saveTask">Save</button>
+                </div>
             </div>
         </div>
-        <div class="field">
-            <label class="label">Command*</label>
-            <div class="control">
-                <textarea v-model="command" class="textarea"/>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">Path</label>
-            <div class="control">
-                <input v-model="path" class="input" type="text" placeholder="Defaults to home">
-            </div>
-        </div>
-        <button :disabled="!canSave" class="button is-primary is-pulled-right save-button" @click="saveTask">Save</button>
     </div>
 </template>
 
@@ -73,5 +79,15 @@ module.exports = {
 <style lang="scss" scoped>
 .save-button{
     width: 80px;
+}
+.container{
+    padding-top: 10px;
+}
+.task-form-wrapper{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #e2e2e2;
+    padding-bottom: 15px;
+    background-color: #f8f8f8;
 }
 </style>
