@@ -24,7 +24,7 @@
 <script>
 "use strict";
 
-const InputAlert = require('../api/app_alerts').InputAlert;
+const AppAlerts = require('../api/app_alerts');
 
 module.exports = {
     computed: {
@@ -49,11 +49,15 @@ module.exports = {
             this.$store.commit("addSuite");
             this.$store.commit("toggleActiveSuite", this.suites.length - 1);
         },
-        removeSuite() {
-            this.$store.dispatch("deleteSuite");
+        removeSuite(index) {
+            const title = this.suites[index].title;
+            const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
+            alert.toggle().then(() => {
+                this.$store.dispatch("deleteSuite");
+            }).catch(() => {});
         },
         renameSuite(index) {
-            const alert = new InputAlert("Rename Suite?", this.suites[index].title);
+            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
             alert.toggle().then((res) => {
                 if(res.length > 0) {
                     this.$store.commit("renameSuite", {
