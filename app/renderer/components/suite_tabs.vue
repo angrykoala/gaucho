@@ -3,10 +3,13 @@
         <ul>
             <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)">
                 <a>
-                    <span class="icon tab-icon" v-if="editMode && isSelected(index)" @click="renameSuite(index)">
+                    <span class="icon tab-icon" :class="{transparent: !isSelected(index)}" v-if="editMode" @click="renameSuite(index)">
                         <i class="fas fa-pencil-alt" title="Rename"/>
                     </span>
-                    {{suite.title}}<span v-if="editMode && isSelected(index)" class="delete is-small" @click.stop="removeSuite(index)"/>
+                    {{suite.title}}
+                    <span class="icon tab-icon" :class="{transparent:!isSelected(index)}" v-if="editMode" @click.stop="removeSuite(index)">
+                        <i class="fas fa-times-circle" title="Delete"/>
+                    </span>
                 </a>
             </li>
             <li v-if="canAddSuite" class="inactive" @click="addNewSuite">
@@ -50,22 +53,26 @@ module.exports = {
             this.$store.commit("toggleActiveSuite", this.suites.length - 1);
         },
         removeSuite(index) {
-            const title = this.suites[index].title;
-            const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
-            alert.toggle().then(() => {
-                this.$store.dispatch("deleteSuite");
-            }).catch(() => {});
+            if(this.isSelected(index)) {
+                const title = this.suites[index].title;
+                const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
+                alert.toggle().then(() => {
+                    this.$store.dispatch("deleteSuite");
+                }).catch(() => {});
+            }
         },
         renameSuite(index) {
-            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
-            alert.toggle().then((res) => {
-                if(res.length > 0) {
-                    this.$store.commit("renameSuite", {
-                        suite: index,
-                        title: res
-                    });
-                }
-            }).catch(() => {});
+            if(this.isSelected(index)) {
+                const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
+                alert.toggle().then((res) => {
+                    if(res.length > 0) {
+                        this.$store.commit("renameSuite", {
+                            suite: index,
+                            title: res
+                        });
+                    }
+                }).catch(() => {});
+            }
         }
     }
 };
@@ -87,6 +94,11 @@ module.exports = {
     &:hover{
         color: #717171;
     }
+    &.transparent {
+        color: transparent;
+        background-color: transparent;
+    }
+
 }
 .delete{
     margin-left:5px;
