@@ -1,12 +1,16 @@
 <template>
     <div class="suite-list">
-        <template v-for="(task, index) in currentSuiteTasks">
-            <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
-        </template>
+        <draggable v-model="currentSuiteTasks" :options="draggableOptions">
+            <template v-for="(task, index) in currentSuiteTasks">
+                <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
+            </template>
+        </draggable>
         <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
         <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="toggleEdit">Try adding new tasks</a></p>
     </div>
 </template>
+
+
 
 
 <script>
@@ -14,8 +18,11 @@
 
 const components = {
     "task-card": require('./task_card.vue'),
-    "add-task-card": require('./add_task_card.vue')
+    "add-task-card": require('./add_task_card.vue'),
+    "draggable": require('vuedraggable')
 };
+
+
 
 module.exports = {
     components: components,
@@ -26,15 +33,33 @@ module.exports = {
         };
     },
     computed: {
-        currentSuiteTasks() {
-            const suite = this.$store.getters.suites[this.selectedSuite];
-            return suite.tasks;
+        currentSuiteTasks: {
+            get() {
+                const suite = this.$store.getters.suites[this.selectedSuite];
+                return suite.tasks;
+
+            },
+            set(value) {
+                this.$store.commit('updateTasks', value);
+            }
+        },
+        currentSuite() {
+            return this.$store.getters.suites[this.selectedSuite];
+
         },
         editMode() {
             return this.$store.state.editMode;
         },
         selectedSuite() {
             return this.$store.state.tasks.selectedSuite;
+        },
+        draggableOptions() {
+            const basicOptions = {
+                handle: '.drag-handle',
+                group: 'tasks'
+            };
+
+            return Object.assign(basicOptions, {'disabled': !this.editMode});
         }
     },
     watch: {

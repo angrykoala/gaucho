@@ -69,6 +69,10 @@ module.exports = {
             const suite = state.suites[data.suite];
             suite.title = data.title;
         },
+        updateTasks(state, data) {
+            const suite = state.suites[state.selectedSuite];
+            suite.tasks = data;
+        },
         _setSuites(state, suites) {
             state.suites.splice(0, state.suites.length);
             suites.forEach((suite) => {

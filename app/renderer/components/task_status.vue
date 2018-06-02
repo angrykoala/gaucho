@@ -1,12 +1,23 @@
 <template>
-    <div class="spinner-container" v-if="isRunning" >
+    <div v-if="status===TaskStatus.running" class="spinner-container" >
         <spinner/>
     </div>
-    <span v-else class="icon is-medium has-text-centered">
-        <i :class="['fas', 'fa-lg', status, statusColor]"/>
-    </span>
+    <div v-else-if="status===TaskStatus.idle || status===TaskStatus.stopped"> <!-- repeated due to fontawersome -->
+        <span class="icon is-medium has-text-centered">
+            <i class="fas fa-lg fa-pause-circle has-text-grey-dark"/>
+        </span>
+    </div>
+    <div v-else-if="status===TaskStatus.error"> <!-- repeated due to fontawersome -->
+        <span class="icon is-medium has-text-centered">
+            <i class="fas fa-lg fa-exclamation-circle has-text-danger"/>
+        </span>
+    </div>
+    <div v-else-if="status===TaskStatus.ok">  <!-- repeated due to fontawersome -->
+        <span class="icon is-medium has-text-centered">
+            <i class="fas fa-lg fa-check-circle has-text-success"/>
+        </span>
+    </div>
 </template>
-
 
 <script>
 "use strict";
@@ -20,24 +31,14 @@ const components = {
 module.exports = {
     props: ["status"],
     components: components,
+    data() {
+        return {
+            TaskStatus: TaskStatus
+        };
+    },
     computed: {
         isRunning() {
             return this.status === TaskStatus.running;
-        },
-        statusColor() {
-            switch (this.status) {
-                case TaskStatus.idle:
-                case TaskStatus.stopped:
-                    return "has-text-grey-dark";
-                case TaskStatus.error:
-                    return "has-text-danger";
-                case TaskStatus.running:
-                    return "has-text-info";
-                case TaskStatus.ok:
-                    return "has-text-success";
-                default:
-                    return "has-text-grey-light";
-            }
         }
     }
 };

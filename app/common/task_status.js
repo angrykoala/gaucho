@@ -1,9 +1,9 @@
 "use strict";
 
 module.exports = {
-    idle: "fa-pause-circle",
-    error: "fa-exclamation-circle",
-    running: "fa-sync",
-    ok: "fa-check-circle",
-    stopped: "fa-pause-circle"
+    idle: "idle",
+    error: "error",
+    running: "running",
+    stopped: "stopped",
+    ok: "ok"
 };

@@ -1,8 +1,13 @@
 <template>
-    <div>
+    <div class="task-card">
         <div class="columns is-mobile task-card" @click="taskSelected">
             <div class="column">
                 <p>
+                    <span v-if="editMode" class="drag-handle">
+                        <span class="icon">
+                            <i class="fas fa-equals"/>
+                        </span>
+                    </span>
                     <span v-show="open" class="icon">
                         <i class="fas fa-caret-down"/>
                     </span>
@@ -22,7 +27,7 @@
                         <button v-else class="button is-info is-rounded is-outlined task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
                     <div class="column">
-                        <task-status :status="task.status"/>
+                        <task-status :status="status"/>
                     </div>
                 </div>
             </div>
@@ -66,6 +71,9 @@ module.exports = {
         },
         editMode() {
             return this.$store.state.editMode;
+        },
+        status() {
+            return this.task.status;
         }
     },
     methods: {
