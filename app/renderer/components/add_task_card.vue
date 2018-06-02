@@ -3,10 +3,10 @@
         <div class="columns is-mobile task-card" @click="cardSelected">
             <div class="column has-text-centered">
                 <a>
-                    <span v-show="open" class="icon">
+                    <span v-show="open" class="icon has-text-grey-dark">
                         <i class="fas fa-caret-down"/>
                     </span>
-                    <span v-show="!open" class="icon">
+                    <span v-show="!open" class="icon has-text-grey-dark">
                         <i class="fas fa-caret-right"/>
                     </span>
                     Add New Task

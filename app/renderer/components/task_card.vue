@@ -33,7 +33,7 @@
             </div>
         </div>
         <div v-if="open" class="columns is-mobile">
-            <div class="column">
+            <div class="column task-output-wrapper">
                 <div class="task-output" v-if="!editMode">
                     <pre>{{task.output}}</pre>
                 </div>
@@ -116,6 +116,11 @@ module.exports = {
 .column{
     margin-bottom: 0;
     margin-top: 0;
+}
+
+.task-output-wrapper{
+    padding-left: 0;
+    padding-right:0;
 }
 
 .task-output {
