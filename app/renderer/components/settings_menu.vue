@@ -1,14 +1,14 @@
 <template>
-    <section class="section">
+    <section class="section settings-section">
+        <a class="back-button" @click="saveSettings">
+            <span class="icon is-small">
+                <i class="fas fa-arrow-left" />
+            </span>
+            Go Back
+        </a>
         <div class="columns is-mobile is-centered">
             <div class="column is-two-thirds settings-menu">
-                <a class="back-button" @click="saveSettings">
-                    <span class="icon is-small">
-                        <i class="fas fa-arrow-left" />
-                    </span>
-                    Go Back
-                </a>
-                <h1 class="title">Settings</h1>
+                <h1 class="title settings-title">Settings</h1>
                 <checkbox-item v-model="bottomBar" label="Bottom bar"/>
                 <checkbox-item v-model="showTimer" label="Show timer"/>
                 <hr>
@@ -126,5 +126,13 @@ module.exports = {
     .icon{
         vertical-align: text-top;
     }
+}
+
+.settings-section{
+    padding-top:30px;
+}
+
+.settings-title{
+    margin-top: 15px;
 }
 </style>

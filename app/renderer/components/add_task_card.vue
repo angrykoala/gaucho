@@ -2,7 +2,15 @@
     <div>
         <div class="columns is-mobile task-card" @click="cardSelected">
             <div class="column has-text-centered">
-                <a>Add New Task</a>
+                <a>
+                    <span v-show="open" class="icon">
+                        <i class="fas fa-caret-down"/>
+                    </span>
+                    <span v-show="!open" class="icon">
+                        <i class="fas fa-caret-right"/>
+                    </span>
+                    Add New Task
+                </a>
             </div>
         </div>
         <div v-if="edit" class="columns is-mobile">
@@ -19,7 +27,7 @@ const components = {
     "task-form": require('./task_form.vue')
 };
 module.exports = {
-    props: ["edit"],
+    props: ["edit", "open"],
     components: components,
     methods: {
         saveTask(task) {

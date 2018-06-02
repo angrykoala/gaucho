@@ -3,7 +3,8 @@
         <template v-for="(task, index) in currentSuiteTasks">
             <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
         </template>
-        <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask"/>
+        <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
+        <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="toggleEdit">Try adding new tasks</a></p>
     </div>
 </template>
 
@@ -74,6 +75,10 @@ module.exports = {
                 suite: this.selectedSuite,
                 task: index
             });
+        },
+        toggleEdit() {
+            this.$store.commit("toggleEdit");
+            this.selectAddTask();
         }
     }
 };
@@ -87,5 +92,8 @@ module.exports = {
     padding-bottom: 0;
 }
 
+.no-task-message{
+    margin-top: 10px;
+}
 
 </style>
