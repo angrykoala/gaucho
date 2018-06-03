@@ -6,11 +6,9 @@
             </template>
         </draggable>
         <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
-        <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="toggleEdit">Try adding new tasks</a></p>
+        <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="addNewTask">Try adding new tasks</a></p>
     </div>
 </template>
-
-
 
 
 <script>
@@ -21,7 +19,6 @@ const components = {
     "add-task-card": require('./add_task_card.vue'),
     "draggable": require('vuedraggable')
 };
-
 
 
 module.exports = {
@@ -36,28 +33,21 @@ module.exports = {
     computed: {
         currentSuiteTasks: {
             get() {
-                const suite = this.$store.getters.suites[this.selectedSuite];
+                const suite = this.$store.getters.suites[this.suite];
                 return suite.tasks;
-
             },
             set(value) {
-                // const suite = this.$store.getters.suites[this.selectedSuite];
-                // suite.tasks = value;
                 this.$store.commit('updateTasks', {
-                    suite: this.selectedSuite,
+                    suite: this.suite,
                     tasks: value
                 });
             }
         },
         currentSuite() {
-            return this.$store.getters.suites[this.selectedSuite];
+            return this.$store.getters.suites[this.suite];
         },
         editMode() {
             return this.$store.state.editMode;
-        },
-        selectedSuite() {
-            return this.suite;
-            // return this.$store.state.tasks.selectedSuite;
         },
         draggableOptions() {
             const basicOptions = {
@@ -89,13 +79,13 @@ module.exports = {
         },
         addTask(task) {
             this.$store.commit("addTask", {
-                index: this.selectedSuite,
+                index: this.suite,
                 task: task
             });
         },
         saveTask(index, task) {
             const updateData = {
-                suite: this.selectedSuite,
+                suite: this.suite,
                 task: index,
                 data: task
             };
@@ -103,19 +93,19 @@ module.exports = {
         },
         deleteTask(index) {
             this.$store.commit("deleteTask", {
-                suite: this.selectedSuite,
+                suite: this.suite,
                 task: index
             });
         },
-        toggleEdit() {
+        addNewTask() {
             this.$store.commit("toggleEdit");
             this.selectAddTask();
         },
         onTaskDraggedIn(evt) {
-            const task = this.currentSuite.tasks[evt.newIndex]; // todo: use a store
-            if(this.currentSuite.isDuplicate(task.title)) {
-                task.title = this.currentSuite.getValidName(task.title);
-            }
+            this.$store.commit("validateTaskName", {
+                suite: this.suite,
+                task: evt.newIndex
+            });
         }
     }
 };
