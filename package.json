@@ -56,7 +56,6 @@
       "target": [
         "deb",
         "rpm",
-        "pacman",
         "AppImage"
       ],
       "category": "Utility"
