@@ -90,8 +90,8 @@ module.exports = {
 }
 .tab-icon{
     &.transparent {
-        color: transparent;
-        background-color: transparent;
+        color: transparent !important;
+        background-color: transparent !important;
     }
 
 }
