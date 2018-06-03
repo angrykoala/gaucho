@@ -1,7 +1,7 @@
 "use strict";
 
 
-describe("[E2E] Suites", () => {
+describe.skip("[E2E] Suites", () => {
 
     it("Select Suite");
 

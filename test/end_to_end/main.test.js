@@ -3,7 +3,7 @@
 const assert = require('chai').assert;
 const testConfig = require('./config');
 
-describe('[E2E] Main Frontend', function () {
+describe.skip('[E2E] Main Frontend', function () {
     this.timeout(20000); // needed for Travis builds
     const app = testConfig.testBrowserSetup();
     let browser;

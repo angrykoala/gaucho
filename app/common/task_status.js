@@ -1,9 +1,9 @@
 "use strict";
 
 module.exports = {
-    idle: "do_not_disturb_off",
+    idle: "idle",
     error: "error",
-    running: "autorenew",
-    ok: "check_circle",
-    stopped: "do_not_disturb_off"
+    running: "running",
+    stopped: "stopped",
+    ok: "ok"
 };

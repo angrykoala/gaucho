@@ -17,7 +17,7 @@ let renderifyOpts = {
 };
 
 gulp.task("browserify", () => {
-    return browserify("app.js", {
+    return browserify(["app.js", "fontawesome-all-5.0.13.min.js"], {
         detectGlobals: false
     })
         .transform(vueify)

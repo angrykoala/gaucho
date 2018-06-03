@@ -1,10 +1,14 @@
 "use strict";
 
 const {
+    app,
     BrowserWindow
 } = require('electron');
 
 const AppConfig = require('../common/app_config');
+
+app.disableHardwareAcceleration(); // fixes drag images freezes
+app.commandLine.appendSwitch('force-color-profile', 'srgb'); // Fixes messed up color rendering
 
 module.exports = class MainWindow {
     constructor() {
@@ -31,7 +35,7 @@ module.exports = class MainWindow {
         let winConfig = {
             width: windowSize[0],
             height: windowSize[1],
-            minWidth: 365,
+            minWidth: 400,
             minHeight: 300,
             fullscreenable: false,
             webgl: false,

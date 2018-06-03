@@ -10,6 +10,10 @@ class Suite {
         return this.tasks.length;
     }
 
+    getTask(index) {
+        return this.tasks[index];
+    }
+
     addTask(task) {
         const title = this.getValidName(task.title);
         task.title = title;
@@ -67,6 +71,11 @@ class Suite {
     existTaskName(name) {
         name = name.trim();
         return this.tasks.find(task => task.title === name) !== undefined;
+    }
+
+    isDuplicate(name) {
+        name = name.trim();
+        return this.tasks.filter(task => task.title === name).length >= 2;
     }
 }
 

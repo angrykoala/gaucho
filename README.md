@@ -79,6 +79,11 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 5. `npm test` to run the automated tests.
     * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
 
+### Troubleshooting
+
+#### Error Building RPM version: Need executable 'rpmbuild' to convert dir to rpm
+You need the package rpm, run `apt install rpm`.
+
 ## Acknowledgments
 
 * [@aebsubis](https://github.com/aebsubis) for designing [Gaucho Logo](https://github.com/angrykoala/gaucho/blob/master/resources/logos/gaucho_logo.png).
@@ -89,5 +94,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
+
+* Using FontAwesome <https://fontawesome.com>
 
 > You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)

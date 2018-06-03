@@ -6,7 +6,7 @@ const testConfig = require('./config');
 
 
 
-describe("[E2E] Menu", function() {
+describe.skip("[E2E] Menu", function() {
     this.timeout(20000); // needed for Travis builds
     const app = testConfig.testBrowserSetup();
     let browser;

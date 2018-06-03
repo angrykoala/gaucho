@@ -1,9 +1,13 @@
-0.4.2 / ####-##-##
+0.5.0 / ####-##-##
 ==================
 
-    * Using sass and scoped styles
-    * Several dependencies updated
-    * Code style improved
+  * Frontend rewrite
+  * Fixed several bugs related to UX
+  * Removed materialize and added bulma
+  * Added settings shortcut
+  * Using sass and scoped styles
+  * Dependencies updated
+  * Code style improved
 
 0.4.1 / 2017-12-19
 ==================

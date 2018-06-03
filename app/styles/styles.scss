@@ -1,5 +1,13 @@
-@import "libs";
+// Import variables to override
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+@import "variables"; // import variables before bulma for proper override
+@import "bulma/bulma";
+@import 'bulma-switch/dist/bulma-switch';
 @import "common";
+@import "desktopify";
+@import "theme_styles";
+
 
 .collapsible-body {
     &.task-card-body {
@@ -21,21 +29,30 @@ footer {
 }
 
 #app {
+    display: block;
     height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
 main {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    padding-top: 100px;
+    display: block;
+    height: 100%;
 
-    &.full-size {
-        bottom: 0;
+    &.has-bottom-bar {
+        padding-bottom: 3.25rem;
     }
+
+    &.has-top-bar {
+        padding-top: 5.8rem;
+    }
+}
+
+.page-body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #main-header {

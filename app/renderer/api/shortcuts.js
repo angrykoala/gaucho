@@ -3,8 +3,8 @@
 const Mousetrap = require('mousetrap');
 
 const Store = require('../stores/main');
-const Material = require('./materialize');
-const TasksHandle = require('../tasks_handler');
+const EventHandler = require('../utils/event_handler');
+
 
 // Methods interface with jQuery
 module.exports = {
@@ -13,11 +13,12 @@ module.exports = {
         this.changeTabBack();
         this.toggleEdit();
         this.toggleNavBarMenu();
+        this.toggleSettings();
     },
     setSuite(add = true) {
         let newIndex = 0;
-        const totalTabs = TasksHandle.suites.length - 1;
-        const activeSuite = Store.state.activeSuite;
+        const totalTabs = Store.getters.suites.length - 1;
+        const activeSuite = Store.state.tasks.selectedSuite;
 
         if (add && activeSuite !== totalTabs) {
             newIndex = activeSuite + 1;
@@ -25,7 +26,6 @@ module.exports = {
             newIndex = activeSuite === 0 ? totalTabs : activeSuite - 1;
         }
 
-        Material.selectTab("#navbar-tabs", `tab${newIndex}`);
         Store.commit("toggleActiveSuite", newIndex);
     },
     changeTabForward() {
@@ -40,6 +40,9 @@ module.exports = {
         });
     },
     toggleNavBarMenu() {
-        Mousetrap.bind('ctrl+m', () => Material.toggleNavBarMenu());
+        Mousetrap.bind('ctrl+m', () => EventHandler.emit("showNavbarMenu"));
+    },
+    toggleSettings() {
+        Mousetrap.bind('ctrl+s', () => Store.commit("toggleSettings"));
     }
 };

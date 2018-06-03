@@ -7,24 +7,21 @@ const appConfig = new AppConfig.User();
 module.exports = {
     state: {
         bottomBar: appConfig.get("bottomBar"),
-        animatedSpinner: appConfig.get("animatedSpinner"),
-        showTimer: appConfig.get("showTimer")
+        showTimer: appConfig.get("showTimer"),
+        theme: appConfig.get("theme")
     },
     mutations: {
-        toggleBottomBar(state) {
-            const newValue = !state.bottomBar;
-            appConfig.set("bottomBar", newValue);
-            state.bottomBar = newValue;
+        setBottomBar(state, value) {
+            appConfig.set("bottomBar", value);
+            state.bottomBar = value;
         },
-        toggleAnimatedSpinner(state) {
-            const newValue = !state.animatedSpinner;
-            appConfig.set("animatedSpinner", newValue);
-            state.animatedSpinner = newValue;
+        setShowTimer(state, value) {
+            appConfig.set("showTimer", value);
+            state.showTimer = value;
         },
-        toggleShowTimer(state) {
-            const newValue = !state.showTimer;
-            appConfig.set("showTimer", newValue);
-            state.showTimer = newValue;
+        setTheme(state, value) {
+            appConfig.set("theme", value);
+            state.theme = value;
         }
     }
 };
