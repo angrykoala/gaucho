@@ -2,10 +2,22 @@
 
 const swal = require('sweetalert2');
 
+let store;
+
+function init(newStore) {
+    store = newStore;
+}
+
+function _getTheme() {
+    return `theme-${store.state.userConfig.theme}`;
+}
+
 class AppAlert {
     constructor(title, options = {}) {
         this.alertOptions = Object.assign({
-            title: title
+            title: title,
+            customClass: _getTheme(),
+            heightAuto: false
         }, options);
     }
 
@@ -56,5 +68,6 @@ class InputAlert extends InteractiveAlert {
 module.exports = {
     AppAlert: AppAlert,
     DeleteConfirmationAlert: DeleteConfirmationAlert,
-    InputAlert: InputAlert
+    InputAlert: InputAlert,
+    init: init
 };

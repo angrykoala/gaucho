@@ -11,6 +11,8 @@ Vue.use(Vuex);
 const Shortcuts = require('./app/renderer/api/shortcuts');
 
 const store = require('./app/renderer/stores/main');
+const AppAlerts = require('./app/renderer/api/app_alerts');
+AppAlerts.init(store);
 
 // const components = {
 //     "config-menu": require('./app/renderer/pages/config_menu.vue'),
@@ -26,6 +28,8 @@ const components = {
     "settings-menu": require('./app/renderer/components/settings_menu.vue')
 };
 
+const themeMixin = require('./app/renderer/mixins/theme');
+
 ipcRenderer.on('before-close', () => {
     store.dispatch("saveTasks");
     store.dispatch("stopAllTasks").then(() => {
@@ -36,6 +40,7 @@ ipcRenderer.on('before-close', () => {
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
     components: components,
+    mixins: [themeMixin],
     store: store,
     computed: {
         suites() {

@@ -16,7 +16,8 @@ const defaultUserConfig = {
     maximized: false,
     bottomBar: true,
     firstVisit: false,
-    showTimer: true
+    showTimer: true,
+    theme: "light"
 };
 
 const defaultTasks = {

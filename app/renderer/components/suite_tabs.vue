@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs is-fullwidth is-light">
+    <div class="tabs is-fullwidth">
         <ul>
             <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
                 <a>
@@ -84,16 +84,11 @@ module.exports = {
 @import "../../styles/variables";
 
 .tabs{
-    background-color: $navbar-background-color;
     .inactive{
         background-color: rgba(0, 0, 0, 0.1);
     }
 }
 .tab-icon{
-    color: #a0a0a0;
-    &:hover{
-        color: #717171;
-    }
     &.transparent {
         color: transparent;
         background-color: transparent;

@@ -118,14 +118,14 @@ module.exports = {
     width:100%;
 }
 
-.navbar-item{ // Sorry for this
+.navbar-item{
         &:hover {
-            background-color: transparent !important;
-            color: #3273dc !important;
+            background-color: transparent;
+            // color: #3273dc;
         }
         &.selected {
-            background-color: #e8e8e8 !important;
-            color: #3273dc !important;
+            background-color: rgba(41, 40, 40, 0.25);
+            // color: #3273dc;
         }
 }
 

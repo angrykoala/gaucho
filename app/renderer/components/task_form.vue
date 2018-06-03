@@ -86,8 +86,6 @@ module.exports = {
 .task-form-wrapper{
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-color: #e2e2e2;
     padding-bottom: 15px;
-    background-color: #f8f8f8;
 }
 </style>

@@ -9,8 +9,25 @@
         <div class="columns is-mobile is-centered">
             <div class="column is-two-thirds settings-menu">
                 <h1 class="title settings-title">Settings</h1>
+                <h3 class="settings-subtitle">Display Settings</h3>
                 <checkbox-item v-model="bottomBar" label="Bottom bar"/>
                 <checkbox-item v-model="showTimer" label="Show timer"/>
+                <div class="level is-mobile">
+                    <div class="level-left">
+                        <p class="level-item">Theme</p>
+                    </div>
+                    <div class="level-right">
+                        <div class="control">
+                            <div class="select">
+                                <select v-model="theme">
+                                    <option value="light">Light</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="classic">Classic</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <div class="columns is-mobile is-centered">
                     <div class="column is-two-thirds">
@@ -20,6 +37,7 @@
                         <button-item @select="clearTasks" label="Warning: This will remove all your suites and tasks">Clear Tasks</button-item>
                     </div>
                 </div>
+                <h3 class="settings-subtitle">Shortcuts</h3>
                 <shortcuts-cheatsheet />
             </div>
         </div>
@@ -46,14 +64,21 @@ module.exports = {
     data() {
         return {
             bottomBar: this.$store.state.userConfig.bottomBar,
-            showTimer: this.$store.state.userConfig.showTimer
+            showTimer: this.$store.state.userConfig.showTimer,
+            theme: this.$store.state.userConfig.theme
         };
     },
     components: components,
+    watch: {
+        theme() {
+            this.$store.commit("setTheme", this.theme);
+        }
+    },
     methods: {
         saveSettings() {
             this.$store.commit("setBottomBar", this.bottomBar);
             this.$store.commit("setShowTimer", this.showTimer);
+            this.$store.commit("setTheme", this.theme);
 
             this._close();
         },
@@ -136,5 +161,11 @@ module.exports = {
 
 .settings-title{
     margin-top: 15px;
+}
+
+.settings-subtitle {
+    font-size: 15px;
+    color: #9e9e9e;
+    margin-top: 25px;
 }
 </style>

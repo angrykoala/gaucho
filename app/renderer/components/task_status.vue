@@ -4,7 +4,7 @@
     </div>
     <div v-else-if="status===TaskStatus.idle || status===TaskStatus.stopped"> <!-- repeated due to fontawersome -->
         <span class="icon is-medium has-text-centered">
-            <i class="fas fa-lg fa-pause-circle has-text-grey-dark"/>
+            <i class="fas fa-lg fa-pause-circle"/>
         </span>
     </div>
     <div v-else-if="status===TaskStatus.error"> <!-- repeated due to fontawersome -->

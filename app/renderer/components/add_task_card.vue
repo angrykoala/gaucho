@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="columns is-mobile task-card" @click="cardSelected">
+        <div class="columns is-mobile task-card add-task-card" @click="cardSelected">
             <div class="column has-text-centered">
                 <a>
                     <span v-show="open" class="icon has-text-grey-dark">

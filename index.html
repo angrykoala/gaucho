@@ -13,7 +13,7 @@
 
 <body>
     <div id="app">
-        <main :class="{'has-bottom-bar': showBottomBar, 'has-top-bar': showTopBar}">
+        <main :class="[{'has-bottom-bar': showBottomBar, 'has-top-bar': showTopBar}, theme]">
             <div class="page-body">
                 <div v-if="!settingsMenu">
                     <navbar></navbar>

@@ -1,6 +1,5 @@
 <template>
     <div v-once>
-        <h3 class="shortcuts-title">Shortcuts</h3>
         <div class="columns description is-mobile" v-for="field of fields">
             <div class="column">
                 <code>{{field.shortcut}}</code>
@@ -57,9 +56,5 @@ module.exports = {
     }
 }
 
-.shortcuts-title {
-    font-size: 15px;
-    color: #9e9e9e;
-    margin-top: 25px;
-}
+
 </style>
