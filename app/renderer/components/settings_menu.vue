@@ -20,6 +20,7 @@
                         <button-item @select="clearTasks" label="Warning: This will remove all your suites and tasks">Clear Tasks</button-item>
                     </div>
                 </div>
+                <shortcuts-cheatsheet />
             </div>
         </div>
     </section>
@@ -37,7 +38,8 @@ const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationA
 
 const components = {
     "checkbox-item": require('./settings/checkbox_item.vue'),
-    "button-item": require('./settings/button_item.vue')
+    "button-item": require('./settings/button_item.vue'),
+    "shortcuts-cheatsheet": require('./settings/shortcuts_cheatsheet.vue')
 };
 
 module.exports = {

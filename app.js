@@ -8,7 +8,7 @@ const Vuex = require('vuex');
 Vue.use(Vuex);
 
 // const Material = require('./app/renderer/api/materialize');
-// const Shortcuts = require('./app/renderer/api/shortcuts');
+const Shortcuts = require('./app/renderer/api/shortcuts');
 
 const store = require('./app/renderer/stores/main');
 
@@ -62,12 +62,6 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         store.dispatch("loadTasks");
     },
     mounted() {
-        // Material.init();
-        // Shortcuts.init();
-    },
-    updated() {
-        this.$nextTick(() => {
-            // Material.init();
-        });
+        Shortcuts.init();
     }
 });

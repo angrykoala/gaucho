@@ -2,7 +2,9 @@
 ==================
 
   * Frontend rewrite
+  * Fixed several bugs related to UX
   * Removed materialize and added bulma
+  * Added settings shortcut
   * Using sass and scoped styles
   * Dependencies updated
   * Code style improved
