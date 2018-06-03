@@ -38,9 +38,9 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
     components: components,
     store: store,
     computed: {
-        // suites() {
-        //     return this.$store.getters.suites;
-        // },
+        suites() {
+            return this.$store.getters.suites;
+        },
         showBottomBar() {
             return this.$store.state.userConfig.bottomBar && !this.settingsMenu;
         },
@@ -49,6 +49,13 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
         },
         settingsMenu() {
             return this.$store.state.settingsMenu;
+        },
+        selectedSuite() {
+            // return this.suite;
+            return this.$store.state.tasks.selectedSuite;
+        },
+        editMode() {
+            return this.$store.state.editMode;
         }
     },
     beforeMount() {

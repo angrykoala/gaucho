@@ -1,6 +1,6 @@
 <template>
     <div class="suite-list">
-        <draggable v-model="currentSuiteTasks" :options="draggableOptions">
+        <draggable v-model="currentSuiteTasks" :options="draggableOptions" @add="onTaskDraggedIn" class="draggable-tasks-list">
             <template v-for="(task, index) in currentSuiteTasks">
                 <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
             </template>
@@ -25,6 +25,7 @@ const components = {
 
 
 module.exports = {
+    props: ["suite"],
     components: components,
     data() {
         return {
@@ -40,18 +41,23 @@ module.exports = {
 
             },
             set(value) {
-                this.$store.commit('updateTasks', value);
+                // const suite = this.$store.getters.suites[this.selectedSuite];
+                // suite.tasks = value;
+                this.$store.commit('updateTasks', {
+                    suite: this.selectedSuite,
+                    tasks: value
+                });
             }
         },
         currentSuite() {
             return this.$store.getters.suites[this.selectedSuite];
-
         },
         editMode() {
             return this.$store.state.editMode;
         },
         selectedSuite() {
-            return this.$store.state.tasks.selectedSuite;
+            return this.suite;
+            // return this.$store.state.tasks.selectedSuite;
         },
         draggableOptions() {
             const basicOptions = {
@@ -104,6 +110,12 @@ module.exports = {
         toggleEdit() {
             this.$store.commit("toggleEdit");
             this.selectAddTask();
+        },
+        onTaskDraggedIn(evt) {
+            const task = this.currentSuite.tasks[evt.newIndex]; // todo: use a store
+            if(this.currentSuite.isDuplicate(task.title)) {
+                task.title = this.currentSuite.getValidName(task.title);
+            }
         }
     }
 };
@@ -119,6 +131,10 @@ module.exports = {
 
 .no-task-message{
     margin-top: 10px;
+}
+
+.draggable-tasks-list{
+    min-height: 10px;
 }
 
 </style>

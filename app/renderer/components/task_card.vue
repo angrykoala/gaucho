@@ -1,6 +1,6 @@
 <template>
     <div class="task-card">
-        <div class="columns is-mobile task-card" @click="taskSelected">
+        <div class="columns is-mobile task-card-header" @click="taskSelected">
             <div class="column">
                 <p>
                     <span v-if="editMode" class="drag-handle">
@@ -118,11 +118,6 @@ module.exports = {
     margin-top: 0;
 }
 
-.task-output-wrapper{
-    padding-left: 0;
-    padding-right:0;
-}
-
 .task-output {
     background-color: #eeeeee;
     overflow-y: auto;
@@ -144,7 +139,7 @@ p{
 }
 
 
-.task-card{
+.task-card-header{
     margin-bottom: 0;
     margin-top: 0;
     padding-bottom: 0;

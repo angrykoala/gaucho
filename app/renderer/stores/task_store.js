@@ -70,8 +70,8 @@ module.exports = {
             suite.title = data.title;
         },
         updateTasks(state, data) {
-            const suite = state.suites[state.selectedSuite];
-            suite.tasks = data;
+            const suite = state.suites[data.suite];
+            suite.tasks = data.tasks;
         },
         _setSuites(state, suites) {
             state.suites.splice(0, state.suites.length);

@@ -72,6 +72,11 @@ class Suite {
         name = name.trim();
         return this.tasks.find(task => task.title === name) !== undefined;
     }
+
+    isDuplicate(name) {
+        name = name.trim();
+        return this.tasks.filter(task => task.title === name).length >= 2;
+    }
 }
 
 module.exports = Suite;

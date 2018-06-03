@@ -1,7 +1,7 @@
 <template>
     <div class="tabs is-fullwidth is-light">
         <ul>
-            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)">
+            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
                 <a>
                     <span class="icon tab-icon" :class="{transparent: !isSelected(index)}" v-if="editMode" @click="renameSuite(index)">
                         <i class="fas fa-pencil-alt" title="Rename"/>
