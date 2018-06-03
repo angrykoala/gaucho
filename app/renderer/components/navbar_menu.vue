@@ -1,53 +1,41 @@
 <template>
-<ul id='navbar-menu' class='dropdown-content'>
-    <template v-if="!editMode">
-            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'run-suite')" v-bind:href="'#tab0'">Run Suite</a></li>
-            <li class="unselectable-text menu-button"><a v-on:click="selected($event,'stop-suite')" v-bind:href="'#tab1'">Stop Suite</a></li>
+    <dropdown-menu open-event="showNavbarMenu" class="navbar-dropdown-menu">
+        <template v-for="item in options">
+            <hr v-if="item.value==='divider'" class="dropdown-divider">
+            <a v-else class="dropdown-item" @click.prevent="onClick(item.value)">
+                {{item.name}}
+            </a>
         </template>
-    <template v-else>
-            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canAddSuite }"><a v-on:click="selected($event,'add-suite',!canAddSuite)" v-bind:href="'#tab0'">Add Suite</a></li>
-            <li class="unselectable-text menu-button" v-bind:class="{ disabled: !canDeleteSuite }"><a v-on:click="selected($event,'delete-suite',!canDeleteSuite)" v-bind:href="'#tab1'">Delete Suite</a></li>
-        </template>
-    <li class="divider"></li>
-    <li class="unselectable-text menu-button"><a class="modal-trigger" href="#config-modal">Configuration</a></li>
-    <li class="unselectable-text menu-button">
-        <about></about>
-    </li>
-</ul>
+    </dropdown-menu>
 </template>
+
+
+
 <script>
 "use strict";
 
-const About = require('./about.vue');
+const components = {
+    "dropdown-menu": require('./common/dropdown_menu.vue')
+};
 
 module.exports = {
-    components: {
-        "about": About
-    },
-    methods: {
-        selected(ev, selection, ignoreSelection) {
-            if (!ignoreSelection) {
-                this.$emit("selection", selection);
-            } else {
-                this.invalidClick(ev);
+    components: components,
+    computed: {
+        options() {
+            const defaultOptions = [{name: "Settings", value: "settings"}, {name: "About", value: "about"}];
+
+            if(!this.$store.state.editMode) {
+                const runModeOptions = [{name: "Run Suite", value: "runSuite"}, {name: "Stop Suite", value: "stopSuite"}];
+                return runModeOptions.concat([{value: "divider"}], defaultOptions);
+            } else{
+                return defaultOptions;
             }
-        },
-        invalidClick(ev) {
-            ev.stopPropagation();
+
         }
     },
-    computed: {
-        suites() {
-            return this.$store.getters.suites;
-        },
-        editMode() {
-            return this.$store.state.editMode;
-        },
-        canAddSuite() {
-            return this.$store.getters.canAddSuite;
-        },
-        canDeleteSuite() {
-            return this.suites.length > 1;
+    methods: {
+        onClick(value) {
+            this.$emit("select", value);
         }
     }
 };

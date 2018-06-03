@@ -2,10 +2,22 @@
 
 const swal = require('sweetalert2');
 
+let store;
+
+function init(newStore) {
+    store = newStore;
+}
+
+function _getTheme() {
+    return `theme-${store.state.userConfig.theme}`;
+}
+
 class AppAlert {
     constructor(title, options = {}) {
         this.alertOptions = Object.assign({
-            title: title
+            title: title,
+            customClass: _getTheme(),
+            heightAuto: false
         }, options);
     }
 
@@ -19,11 +31,18 @@ class AppAlert {
     }
 }
 
-const confirmationTitle = "Are you sure?";
+class InteractiveAlert extends AppAlert {
+    toggle() {
+        return super.toggle().then((result) => {
+            if (result.value) return Promise.resolve(result.value);
+            else return Promise.reject();
+        });
+    }
+}
 
-class DeleteConfirmationAlert extends AppAlert {
+class DeleteConfirmationAlert extends InteractiveAlert {
     constructor(text, options = {}) {
-        super(confirmationTitle, Object.assign({
+        super("Are you sure?", Object.assign({
             text: text,
             showCancelButton: true,
             confirmButtonColor: "#ee6e73",
@@ -34,7 +53,21 @@ class DeleteConfirmationAlert extends AppAlert {
     }
 }
 
+class InputAlert extends InteractiveAlert {
+    constructor(title, defaultValue = "", options = {}) {
+        super(title, Object.assign({
+            showCancelButton: true,
+            confirmButtonColor: "#ee6e73",
+            confirmButtonText: 'Rename',
+            input: 'text',
+            inputValue: defaultValue
+        }, options));
+    }
+}
+
 module.exports = {
     AppAlert: AppAlert,
-    DeleteConfirmationAlert: DeleteConfirmationAlert
+    DeleteConfirmationAlert: DeleteConfirmationAlert,
+    InputAlert: InputAlert,
+    init: init
 };

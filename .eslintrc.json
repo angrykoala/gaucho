@@ -9,7 +9,8 @@
         "sourceType": "script"
     },
     "plugins": ["vue"],
-    "globals": {},
+    "globals": {
+    },
     "extends": [
         "eslint:recommended",
         "plugin:vue/recommended"
@@ -33,7 +34,7 @@
         "no-var": "error",
         "no-eval": "error",
         "no-extra-bind": "error",
-        "no-console": ["warn", {
+        "no-console": ["error", {
             "allow": ["warn", "error"]
         }],
         "no-floating-decimal": "error",
@@ -74,6 +75,38 @@
         "arrow-spacing": "warn",
         "vue/jsx-uses-vars": "error",
         "vue/valid-v-if": "error",
-        "vue/require-v-for-key": "off"
+        "vue/require-v-for-key": "off",
+        "vue/max-attributes-per-line": "off",
+        "vue/attributes-order": "off",
+        "vue/attribute-hyphenation": "off",
+        "vue/html-indent": ["error", 4, {
+            "attribute": 1,
+            "closeBracket": 0,
+            "ignores": []
+        }],
+        "vue/order-in-components": ["error", {
+            "order": [
+                "el",
+                "name",
+                "parent",
+                "functional",
+                ["delimiters", "comments"],
+                ["components", "directives", "filters"],
+                "extends",
+                "mixins",
+                "inheritAttrs",
+                "model",
+                ["props", "propsData"],
+                "data",
+                "computed",
+                "watch",
+                "LIFECYCLE_HOOKS",
+                "methods",
+                ["template", "render"],
+                "renderError"
+            ]
+        }],
+        "vue/mustache-interpolation-spacing": [2, "never"],
+        "vue/require-prop-types": "error"
     }
 }

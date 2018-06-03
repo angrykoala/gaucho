@@ -1,30 +1,30 @@
 <template>
-<div class="bottom-bar unselectable-text">
-    <nav class="navbar navbar-inverse">
-        <div class="left-content">
-            <b>Total Tasks:</b> {{totalTasks}}
-        </div>
-        <div class="right-content">
-            <b>Running Tasks:</b> {{AppStatus.runningTasks}}
+    <nav class="navbar is-fixed-bottom">
+        <div class="navbar-menu is-active">
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <b>Total Tasks: {{totalTasks}}</b>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <b>Running Tasks: {{runningTasks}}</b>
+                </div>
+            </div>
         </div>
     </nav>
-</div>
 </template>
 
 <script>
 "use strict";
 
-const AppStatus = require('../app_status');
-
 module.exports = {
-    data() {
-        return {
-            AppStatus: AppStatus
-        };
-    },
     computed: {
         totalTasks() {
             return this.$store.getters.totalTasks;
+        },
+        runningTasks() {
+            return this.$store.getters.runningTasks;
         }
     }
 };

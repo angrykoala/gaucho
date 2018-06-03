@@ -75,9 +75,17 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
     * If you want to pass arguments to build to other architectures, platforms and/or targets, add `--` at the end and then write the arguments, like this: `npm run dist -- -l --ia32`. The arguments are documented in [electron-builder docs](https://www.electron.build/cli)
     * **Experimental**: To get armv7l builds, execute `npm run dist -- --armv7l`
     * If you encounter a problem while building, please, check [Common Issues](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
-4. `npm run dist-all` to build and package _gaucho_ for all supported architectures and platforms.
+4. `npm run dist-all` to build and package _gaucho_ for all supported architectures and platforms, it will take a while.
 5. `npm test` to run the automated tests.
     * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
+
+### Troubleshooting
+
+#### Error Building RPM version: Need executable 'rpmbuild' to convert dir to rpm
+You need the package rpm, run `apt install rpm`.
+
+### Cannot check wine version: Error: Exit code: ENOENT. spawn wine ENOENT
+If you are in Linux or Mac, install [wine](https://www.winehq.org/)
 
 ## Acknowledgments
 
@@ -89,5 +97,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
+
+* Using FontAwesome <https://fontawesome.com>
 
 > You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)

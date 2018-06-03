@@ -15,9 +15,9 @@ const defaultUserConfig = {
     outputMaxSize: 10000,
     maximized: false,
     bottomBar: true,
-    animatedSpinner: true,
     firstVisit: false,
-    showTimer: true
+    showTimer: true,
+    theme: "light"
 };
 
 const defaultTasks = {
