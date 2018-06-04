@@ -1,0 +1,29 @@
+<% function imageContainer() {%>
+    <div class="column">
+        <div class="info-container">
+            <img src="<%= image %>" class="preview">
+        </div>
+    </div>
+<%}%>
+
+<% function textContainer() { %>
+    <div class="column">
+        <div class="info-container">
+            <h2 class="is-size-4 info-text title"><%=title%></h2>
+            <p><%-text%></p>
+        </div>
+    </div>
+    <%}%>
+
+
+
+
+<section class="columns hipster-feature">
+    <% if(!inverted){ %>
+    <%- imageContainer() %>
+    <%- textContainer() %>
+    <% } else { %>
+        <%- textContainer() %>
+        <%- imageContainer() %>
+    <%}%>
+</section>

@@ -1,0 +1,17 @@
+[ {
+     "image": "images/gaucho_preview.png",
+     "title": "Execute tasks with one click",
+     "text": "Bost your productivity by running commands, as well as launching applications with just one click, the simple status icon, timer and log provides monitoring of all your tasks at a simple glance."
+ }, {
+     "image": "images/gaucho_edit_preview.png",
+     "title": "Configure your own tasks",
+     "text": "With Gaucho simple interface, you can configure your own tasks and suites in no time."
+ }, {
+     "image": "images/themes_preview.png",
+     "title": "Multiple themes",
+     "text": "Choose between 3 themes (light, dark and classic) and configure the display options"
+ }, {
+     "image": "images/gaucho_logo.svg",
+     "title": "Open Source",
+     "text": "Gaucho is being developed and maintained as Open-Source software by <a href=\"https://github.com/angrykoala\">@angrykoala</a> licensed under GNU GENERAL PUBLIC LICENSE version 3"
+ }]

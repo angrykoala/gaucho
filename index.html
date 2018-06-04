@@ -1,116 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- Yeah, I know, it's crap to have an id in da code, it is for testing so deal with it-->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41830630-4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-41830630-4');
-    </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gaucho</title>
-
-    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
-
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel=icon href=favicon.ico>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <div class="brand-logo">
-                <img class="logo-icon" src="logos/gaucho_logo.png" height="40px" />
-                <a href="#">Gaucho</a>
-            </div>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="https://github.com/angrykoala/gaucho/releases">Download</a></li>
-                <li><a href="https://github.com/angrykoala/gaucho">GitHub</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="section no-pad-bot" id="index-banner">
+    <section>
+        <section class="hero is-medium is-dark is-bold">
+    <div class="hero-body">
         <div class="container">
-            <br><br>
-            <h1>Gaucho</h1>
-            <blockquote>
-                <p><em>by @angrykoala</em> </p>
-            </blockquote>
-            <p>A graphical launcher powered by Yerbamate.</p>
-            <p><img src="https://cloud.githubusercontent.com/assets/5960567/24318182/0b199e68-10f9-11e7-8a35-fd3f1eb51337.png" alt="Gaucho Screenshot"><br><em>Gaucho 0.1.2</em></p>
-            <h2 id="download">Download</h2>
-            <p>Gaucho can be downloaded <a href="https://github.com/angrykoala/gaucho/releases">here</a>. Available versions for Linux, Mac and Windows (64 bits).</p>
-            <p>To use, unzip in the desired location and execute gaucho (execute file depends on you OS).</p>
-            <p>If you need a different version, please, follow the <em>development</em> instructions to make your own build from the source code</p>
-            <h2 id="usage">Usage</h2>
-            <p>Gaucho allows you to configure <em>tasks</em> as part of different <em>suites</em> or groups you can access the different suites by clicking on its name in the navbar menu.</p>
-            <h3 id="executing-tasks">Executing tasks</h3>
-            <p>On each suite, you will find the list of possible tasks to launch. By clicking on <em>Run</em> you will start that task. Clicking the same button again (now the <em>Stop</em> button) you can stop the tasks.</p>
-            <p>You can easily see the <em>name</em>, <em>execution time</em> and <em>status</em> of each task. The <em>status</em> (shown with the status icon) can be <em>idle</em> (black), <em>running</em> (blue), <em>successful</em> (green) or <em>failed</em>                (red). </p>
-            <p>Clicking in the task name the <em>log</em> will be displayed, allowing you to check the task output in real time.</p>
-            <h3 id="creating-and-editing-tasks">Creating and Editing tasks</h3>
-            <p>By clicking the <em>Edit</em> button (on the top right corner) you&#39;ll be able to edit the suites and tasks.</p>
-            <p>You can add new tasks to the current suite by clicking <em>&quot;Add New Task&quot;</em> at the bottom of the list. By clicking on a task name you&#39;ll be able to edit that task.</p>
-            <p>While editing/creating a new tasks, you should add a <em>name</em> to the task and a <em>command</em>. The command can be any shell/terminal accepted command or an executable file. Optionally a path can be added as well, if no path is added,
-                the gaucho execution path will be used.</p>
-            <p>The tasks can be deleted by clicking the <em>Delete</em> button.</p>
-            <blockquote>
-                <p>Keep in mind that you won&#39;t be able to run new tasks in edit mode</p>
-            </blockquote>
-            <p>While in edit mode, suites names can also be changed by clicking on it. To close edit mode simply click again on the edit button.</p>
-            <h2 id="menu">Menu</h2>
-            <p>Next to the edit button, is the menu button. When clicking the menu, several options will be shown, those options may change if the edit mode is active:</p>
-            <p><strong>Normal mode</strong> </p>
-            <ul>
-                <li><em>Run Suite</em>: Runs all tasks in the current suite (except those already running)</li>
-                <li><em>Stop Suite</em>: Stops all running tasks in suite</li>
-            </ul>
-            <p><strong>Edit mode</strong> </p>
-            <ul>
-                <li><em>Add new Suite</em>: Created a new suite</li>
-                <li><em>Delete Suite</em>: Deletes current suite</li>
-            </ul>
-            <h2 id="user-and-tasks-configuration">User and Tasks Configuration</h2>
-            <p>All tasks and user changes are saved automatically when closing gaucho. This includes all the tasks/suites information as well as the window size.</p>
-            <blockquote>
-                <p>This information is stored in <code>config.json</code> and <code>tasks.json</code> if any of those files is not present, the default configuration will be loaded and the file will be created</p>
-            </blockquote>
-            <h2 id="development">Development</h2>
-            <p>If you want to contribute to Gaucho, create a new different version of Gaucho, or compile it from source code, follow these instructions.</p>
-            <p>Clone/download source code from the github repo. Make sure you have <em>node</em> and <em>npm</em> already installed in your system:</p>
-            <ol>
-                <li><code>npm install</code> to install electron and all the dependencies.</li>
-                <li><code>npm start</code> to start <em>gaucho</em>.
-                    <ul>
-                        <li><code>npm run start-dev</code> to run <em>gaucho</em> with chrome dev tools enabled.</li>
-                    </ul>
-                </li>
-                <li><code>npm build-electron</code> to build <em>gaucho</em> for your system (build will be placed in <code>builds</code> folder).
-                    <ul>
-                        <li><code>npm run build-electron-all</code> to make builds for windows, linux and mac.</li>
-                    </ul>
-                </li>
-            </ol>
-            <h3 id="license">License</h3>
-            <p>Gaucho is being developed and maintained as Open-Source software by @angrykoala (<a href="https://github.com/angrykoala">https://github.com/angrykoala</a>) licensed under <a href="https://github.com/angrykoala/gaucho/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE version 3</a></p>
-            <br><br>
+            <h1 class="title has-text-centered">Gaucho</h1>
+            <h2 class="subtitle has-text-centered">The minimalist task launcher</h2>
+            <div class="has-text-centered">
+                <a class="signup-button button is-primary is-rounded" href="https://github.com/angrykoala/gaucho/releases">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Download</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <a href="https://github.com/angrykoala/gaucho"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+</section>
 
+        <section>
+            
+            
+                
+
+
+
+
+
+
+<section class="columns hipster-feature">
+    
+    
+    <div class="column">
+        <div class="info-container">
+            <img src="images/gaucho_preview.png" class="preview">
         </div>
     </div>
 
+    
+    <div class="column">
+        <div class="info-container">
+            <h2 class="is-size-4 info-text title">Execute tasks with one click</h2>
+            <p>Bost your productivity by running commands, as well as launching applications with just one click, the simple status icon, timer and log provides monitoring of all your tasks at a simple glance.</p>
+        </div>
+    </div>
+    
+    
+</section>
 
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
+                
+            
+                
 
+
+
+
+
+
+<section class="columns hipster-feature">
+    
+        
+    <div class="column">
+        <div class="info-container">
+            <h2 class="is-size-4 info-text title">Configure your own tasks</h2>
+            <p>With Gaucho simple interface, you can configure your own tasks and suites in no time.</p>
+        </div>
+    </div>
+    
+        
+    <div class="column">
+        <div class="info-container">
+            <img src="images/gaucho_edit_preview.png" class="preview">
+        </div>
+    </div>
+
+    
+</section>
+
+                
+            
+                
+
+
+
+
+
+
+<section class="columns hipster-feature">
+    
+    
+    <div class="column">
+        <div class="info-container">
+            <img src="images/themes_preview.png" class="preview">
+        </div>
+    </div>
+
+    
+    <div class="column">
+        <div class="info-container">
+            <h2 class="is-size-4 info-text title">Multiple themes</h2>
+            <p>Choose between 3 themes (light, dark and classic) and configure the display options</p>
+        </div>
+    </div>
+    
+    
+</section>
+
+                
+            
+                
+
+
+
+
+
+
+<section class="columns hipster-feature">
+    
+        
+    <div class="column">
+        <div class="info-container">
+            <h2 class="is-size-4 info-text title">Open Source</h2>
+            <p>Gaucho is being developed and maintained as Open-Source software by <a href="https://github.com/angrykoala">@angrykoala</a> licensed under GNU GENERAL PUBLIC LICENSE version 3</p>
+        </div>
+    </div>
+    
+        
+    <div class="column">
+        <div class="info-container">
+            <img src="images/gaucho_logo.svg" class="preview">
+        </div>
+    </div>
+
+    
+</section>
+
+                
+            
+        </section>
+    </section>
 </body>
 
 </html>
