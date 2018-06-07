@@ -15,6 +15,7 @@
     <section>
         <%- include('banner') %>
         <section>
+            <%- include('mail_subscribe') %>
             <% let inverted=false %>
             <% for(const feature of features){ %>
                 <%- include('hipster_feature', {image: feature.image, title:feature.title, text: feature.text, inverted:inverted}) %>
