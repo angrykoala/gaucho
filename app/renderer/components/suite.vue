@@ -57,7 +57,10 @@ module.exports = {
         draggableOptions() {
             const basicOptions = {
                 handle: '.drag-handle',
-                group: 'tasks'
+                group: {
+                    name: 'tasks',
+                    put: this.canAddTask
+                }
             };
 
             return Object.assign(basicOptions, {'disabled': !this.editMode});
