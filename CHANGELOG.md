@@ -3,7 +3,7 @@
 
   * Bottom bar on hover style fixed
   * Fixed bug where more than the max tasks per suite could be added or dragged
-  * Dependencies updated: electron-store, vue-devtools
+  * Increased timer event emitter max listeners
 
 0.5.0 / 2018-06-03
 ==================
