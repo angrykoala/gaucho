@@ -29,3 +29,13 @@ module.exports = {
     }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.navbar-item{
+    &:hover{
+        color: inherit;
+    }
+}
+
+</style>

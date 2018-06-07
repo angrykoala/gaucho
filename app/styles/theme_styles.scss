@@ -17,6 +17,10 @@
                 color: $default-selected-color;
             }
         }
+        a, p, b, h1, h2 {
+            color: $default-color;
+
+        }
         .tab-icon {
             color: #a0a0a0;
             &:hover {
@@ -145,7 +149,7 @@
 .theme-classic {
     nav {
         background-color: $classic-navbar-color;
-        a, p, b, h1,h2 {
+        a, p, b, h1, h2 {
             color: $classic-color;
 
         }
