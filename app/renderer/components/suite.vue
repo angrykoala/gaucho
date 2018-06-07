@@ -5,7 +5,7 @@
                 <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
             </template>
         </draggable>
-        <add-task-card v-if="editMode" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
+        <add-task-card v-if="canAddTask" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
         <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="addNewTask">Try adding new tasks</a></p>
     </div>
 </template>
@@ -13,6 +13,8 @@
 
 <script>
 "use strict";
+
+const AppConfig = require("../../app_config");
 
 const components = {
     "task-card": require('./task_card.vue'),
@@ -48,6 +50,9 @@ module.exports = {
         },
         editMode() {
             return this.$store.state.editMode;
+        },
+        canAddTask() {
+            return this.editMode && this.currentSuite.length < AppConfig.maxTasksPerSuite;
         },
         draggableOptions() {
             const basicOptions = {
@@ -102,6 +107,7 @@ module.exports = {
             this.selectAddTask();
         },
         onTaskDraggedIn(evt) {
+            // TODO: validate suite length
             this.$store.commit("validateTaskName", {
                 suite: this.suite,
                 task: evt.newIndex
