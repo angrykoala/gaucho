@@ -3,7 +3,7 @@
 
   * Bottom bar on hover style fixed
   * Fixed bug where more than the max tasks per suite could be added or dragged
-  * Increased timer event emitter max listeners
+  * Increased timer event emitter max listeners to remove warning
 
 0.5.0 / 2018-06-03
 ==================
