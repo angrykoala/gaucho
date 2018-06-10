@@ -4,6 +4,7 @@
   * Bottom bar on hover style fixed
   * Fixed bug where more than the max tasks per suite could be added or dragged
   * Increased timer event emitter max listeners
+  * Fixed bug with infinite tasks printing to stdout
 
 0.5.0 / 2018-06-03
 ==================
