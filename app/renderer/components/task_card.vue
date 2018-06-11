@@ -85,7 +85,7 @@ module.exports = {
             this.$store.dispatch("runTask", this.index);
         },
         stop() {
-            this.$store.dispatch("stopTask", this.index);
+            this.$store.dispatch("stopTask", {index: this.index});
         },
         taskSelected() {
             this.$emit("selected");

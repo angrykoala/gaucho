@@ -69,5 +69,6 @@ module.exports = {
     AppAlert: AppAlert,
     DeleteConfirmationAlert: DeleteConfirmationAlert,
     InputAlert: InputAlert,
-    init: init
+    init: init,
+    isVisible: swal.isVisible
 };

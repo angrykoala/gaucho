@@ -1,6 +1,7 @@
 0.5.1 / ####-##-##
 ==================
 
+  * Added contextual menu
   * Bottom bar on hover style fixed
   * Fixed bug where more than the max tasks per suite could be added or dragged
   * Increased timer event emitter max listeners to remove warning

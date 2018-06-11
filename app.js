@@ -8,11 +8,14 @@ const Vuex = require('vuex');
 Vue.use(Vuex);
 
 const Shortcuts = require('./app/renderer/api/shortcuts');
+const ContextMenu = require('./app/renderer/api/context_menu');
+
+
 
 const store = require('./app/renderer/stores/main');
 const AppAlerts = require('./app/renderer/api/app_alerts');
 AppAlerts.init(store);
-
+ContextMenu.init(store);
 
 const components = {
     "navbar": require('./app/renderer/components/navbar.vue'),
