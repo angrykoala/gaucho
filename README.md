@@ -81,11 +81,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 
 ### Troubleshooting
 
-#### Error Building RPM version: Need executable 'rpmbuild' to convert dir to rpm
-You need the package rpm, run `apt install rpm`.
-
-#### Cannot check wine version: Error: Exit code: ENOENT. spawn wine ENOENT
-If you are in Linux or Mac, install [wine](https://www.winehq.org/)
+Check [Troubleshooting Page](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
 
 ## Acknowledgments
 

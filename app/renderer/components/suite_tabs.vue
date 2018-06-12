@@ -2,11 +2,15 @@
     <div class="tabs is-fullwidth">
         <ul>
             <li v-for="(suite, index) in suites" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
-                <a class="tab-content">
-                    <span class="icon tab-icon" v-if="editMode && isSelected(index)" @click="renameSuite(index)">
-                        <i class="fas fa-pencil-alt" title="Rename"/>
-                    </span>
-                    {{suite.title}}
+                <a class="columns is-mobile is-centered tab-content">
+                    <div class="column tab-text-container">
+                        <span class="level-item tab-text">{{suite.title}}</span>
+                    </div>
+                    <div class="column is-narrow" v-if="editMode && isSelected(index)">
+                        <span class="icon tab-icon level-item" @click="removeSuite(index)">
+                            <i class="fas fa-times" title="Delete"/>
+                        </span>
+                    </div>
                 </a>
             </li>
             <li v-if="canAddSuite" class="inactive" :style="{ width: tabsWidth }" @click="addNewSuite">
@@ -104,17 +108,30 @@ module.exports = {
     .inactive{
         background-color: rgba(0, 0, 0, 0.1);
     }
-    .tab-content{
+    .tab-icon{
+        margin-left: 0;
+        margin-right:0;
+    }
+    .columns{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.tab-content{
+    .column{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.tab-text-container{
+    overflow: hidden;
+    .tab-text{
         display: block;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         text-align: center;
-    }
-    .tab-icon{
-        margin-left: 0;
-        margin-right:0;
-
     }
 }
 </style>

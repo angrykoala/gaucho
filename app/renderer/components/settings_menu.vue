@@ -1,5 +1,5 @@
 <template>
-    <section class="section settings-section">
+    <section class="section settings-section" @contextmenu.stop="">
         <a class="back-button" @click="saveSettings">
             <span class="icon is-small">
                 <i class="fas fa-arrow-left" />
