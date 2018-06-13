@@ -1,4 +1,4 @@
-0.5.1 / ####-##-##
+0.5.1 / 2018-06-14
 ==================
 
   * Added contextual menu
@@ -8,6 +8,7 @@
   * Increased timer event emitter max listeners to remove warning
   * Fixed bug with infinite tasks printing to stdout
   * Minor styles improvements in tabs
+  * Task card buttons changed
 
 0.5.0 / 2018-06-03
 ==================

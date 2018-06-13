@@ -23,8 +23,8 @@
                         <p>{{executionTime}}</p>
                     </div>
                     <div class="column">
-                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-info is-rounded is-outlined task-button" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
-                        <button v-else class="button is-info is-rounded is-outlined task-button is-danger" @click.stop="deleteTask">Delete</button>
+                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                        <button v-else class="button is-primary task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
                     <div class="column">
                         <task-status :status="status"/>
