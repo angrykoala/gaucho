@@ -45,7 +45,6 @@ tasks.json
 config.json
 builds
 dist
-package-lock.json
 .vscode
 test/temp
 

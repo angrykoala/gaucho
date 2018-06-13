@@ -5,8 +5,8 @@ _by @angrykoala_
 
 > Minimalistic task launcher
 
-![Gaucho Screenshot](https://user-images.githubusercontent.com/5960567/32335225-a59d59d2-bfec-11e7-9f5f-73b432d5e82d.png)   
-_Gaucho 0.4.0_
+![Gaucho Screenshot](https://angrykoala.github.io/gaucho/images/gaucho_preview.png)   
+_Gaucho 0.5.0_
 
 ## Download
 
@@ -81,11 +81,7 @@ Clone/download source code from the github repo. Make sure you have _node_ and _
 
 ### Troubleshooting
 
-#### Error Building RPM version: Need executable 'rpmbuild' to convert dir to rpm
-You need the package rpm, run `apt install rpm`.
-
-### Cannot check wine version: Error: Exit code: ENOENT. spawn wine ENOENT
-If you are in Linux or Mac, install [wine](https://www.winehq.org/)
+Check [Troubleshooting Page](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
 
 ## Acknowledgments
 

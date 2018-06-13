@@ -92,7 +92,6 @@ module.exports = {
                 newSelected = 0;
                 const suite = new Suite(`Suite 1`);
                 state.suites.push(suite);
-
             }
             state.selectedSuite = newSelected;
             state.suites.splice(index, 1);
@@ -136,8 +135,10 @@ module.exports = {
                 });
             }
         },
-        stopTask(context, index) {
-            const task = context.getters.currentSuite.getTask(index);
+        stopTask(context, data) {
+            let suite = context.getters.currentSuite;
+            if(data.suite) suite = context.getters.suites[data.suite];
+            const task = suite.getTask(data.task);
             task.stop();
         },
         runSuite(context) {
@@ -146,15 +147,18 @@ module.exports = {
                 context.dispatch("runTask", i);
             }
         },
-        stopSuite(context) {
-            const taskNumber = context.getters.currentSuite.length;
+        stopSuite(context, s) {
+            const taskNumber = context.getters.suites[s].length;
             for(let i = 0; i < taskNumber; i++) {
-                context.dispatch("stopTask", i);
+                context.dispatch("stopTask", {
+                    suite: s,
+                    task: i
+                });
             }
         },
-        deleteSuite(context) {
-            context.dispatch("stopSuite");
-            context.commit("_deleteSuite", context.state.selectedSuite);
+        deleteSuite(context, i) {
+            context.dispatch("stopSuite", i);
+            context.commit("_deleteSuite", i);
         }
     }
 };

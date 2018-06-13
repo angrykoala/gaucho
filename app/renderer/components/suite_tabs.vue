@@ -1,18 +1,19 @@
 <template>
     <div class="tabs is-fullwidth">
         <ul>
-            <li v-for="(suite, index) in suites" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
-                <a>
-                    <span class="icon tab-icon" :class="{transparent: !isSelected(index)}" v-if="editMode" @click="renameSuite(index)">
-                        <i class="fas fa-pencil-alt" title="Rename"/>
-                    </span>
-                    {{suite.title}}
-                    <span class="icon tab-icon" :class="{transparent:!isSelected(index)}" v-if="editMode" @click.stop="removeSuite(index)">
-                        <i class="fas fa-times-circle" title="Delete"/>
-                    </span>
+            <li v-for="(suite, index) in suites" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
+                <a class="columns is-mobile is-centered tab-content">
+                    <div class="column tab-text-container">
+                        <span class="level-item tab-text">{{suite.title}}</span>
+                    </div>
+                    <div class="column is-narrow" v-if="editMode && isSelected(index)">
+                        <span class="icon tab-icon level-item" @click="removeSuite(index)">
+                            <i class="fas fa-times" title="Delete"/>
+                        </span>
+                    </div>
                 </a>
             </li>
-            <li v-if="canAddSuite" class="inactive" @click="addNewSuite">
+            <li v-if="canAddSuite" class="inactive" :style="{ width: tabsWidth }" @click="addNewSuite">
                 <a>
                     <span class="icon">
                         <a class="fas fa-plus"/>
@@ -28,6 +29,9 @@
 "use strict";
 
 const AppAlerts = require('../api/app_alerts');
+const ContextMenu = require('../api/context_menu');
+
+const tabMenu = new ContextMenu.TabMenu();
 
 module.exports = {
     computed: {
@@ -39,9 +43,27 @@ module.exports = {
         },
         editMode() {
             return this.$store.state.editMode;
+        },
+        tabsWidth() {
+            let tabs = this.suites.length;
+            if(this.editMode && tabs < 6) tabs++;
+            return `${100 / tabs}px`;
         }
     },
     methods: {
+        context(index) {
+            tabMenu.on("delete", (i) => {
+                const title = this.suites[i].title;
+                const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
+                alert.toggle().then(() => {
+                    this.$store.dispatch("deleteSuite", i);
+                }).catch(() => {});
+            });
+            tabMenu.on("rename", (i) => {
+                this.renameSuite(i);
+            });
+            tabMenu.toggle(index);
+        },
         isSelected(i) {
             return this.$store.state.tasks.selectedSuite === i;
         },
@@ -62,17 +84,15 @@ module.exports = {
             }
         },
         renameSuite(index) {
-            if(this.isSelected(index)) {
-                const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
-                alert.toggle().then((res) => {
-                    if(res.length > 0) {
-                        this.$store.commit("renameSuite", {
-                            suite: index,
-                            title: res
-                        });
-                    }
-                }).catch(() => {});
-            }
+            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
+            alert.toggle().then((res) => {
+                if(res.length > 0) {
+                    this.$store.commit("renameSuite", {
+                        suite: index,
+                        title: res
+                    });
+                }
+            }).catch(() => {});
         }
     }
 };
@@ -86,16 +106,38 @@ module.exports = {
 .tabs{
     .inactive{
         background-color: rgba(0, 0, 0, 0.1);
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.05);
+        }
     }
-}
-.tab-icon{
-    &.transparent {
-        color: transparent !important;
-        background-color: transparent !important;
+    .tab-icon{
+        margin-left: 0;
+        margin-right:0;
+    }
+    .columns{
+        margin-left: 0;
+        margin-right: 0;
     }
 
+    ul{
+        border-bottom-style: hidden;
+    }
 }
-.delete{
-    margin-left:5px;
+
+.tab-content{
+    .column{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.tab-text-container{
+    overflow: hidden;
+    .tab-text{
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+    }
 }
 </style>

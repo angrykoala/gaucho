@@ -17,6 +17,10 @@
                 color: $default-selected-color;
             }
         }
+        a, p, b, h1, h2 {
+            color: $default-color;
+
+        }
         .tab-icon {
             color: #a0a0a0;
             &:hover {
@@ -24,7 +28,7 @@
             }
         }
     }
-    .task-form-wrapper{
+    .task-form-wrapper {
         background-color: $light-form-color;
         border-bottom-color: #e2e2e2;
     }
@@ -88,9 +92,9 @@
                 color: $dark-selected-color;
             }
         }
-        .dropdown-content{
+        .dropdown-content {
             background-color: $dark-grey-background-color;
-            .dropdown-divider{
+            .dropdown-divider {
                 background-color: $dark-selected-color;
             }
         }
@@ -129,13 +133,13 @@
         p, h1, h2, h4, i, .swal2-content {
             color: $dark-color;
         }
-        input{
+        input {
             color: $default-color;
             background-color: $dark-grey-background-color;
         }
         button {
             &:focus {
-                box-shadow: none
+                box-shadow: none;
             }
         }
     }
@@ -145,7 +149,7 @@
 .theme-classic {
     nav {
         background-color: $classic-navbar-color;
-        a, p, b, h1,h2 {
+        a, p, b, h1, h2 {
             color: $classic-color;
 
         }
@@ -162,21 +166,28 @@
                 color: $classic-selected-color;
             }
         }
-        li.is-active {
-            a {
-                color: $classic-color;
-                border-bottom-color: $classic-selected-color;
+        li {
+            &.is-active {
+                a {
+                    color: $classic-color;
+                }
             }
         }
-
-        .tab-icon{
-            color: $classic-color;
-            &:hover{
-                color: $classic-selected-color;
+        .tabs {
+            .tab-content {
+                &:hover {
+                    color: $classic-color;
+                }
+            }
+            .tab-icon {
+                color: $classic-color;
+                &:hover {
+                    color: $classic-selected-color;
+                }
             }
         }
     }
-    .task-form-wrapper{
+    .task-form-wrapper {
         background-color: $light-form-color;
         border-bottom-color: #e2e2e2;
     }

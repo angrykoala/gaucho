@@ -42,7 +42,8 @@ class Task {
         };
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
             stderr: onOutput,
-            stdout: onOutput
+            stdout: onOutput,
+            maxOutputSize: 1
         },
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;

@@ -12,6 +12,6 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - npm run gulp
 script:
-    - npm test
+    - travis_retry npm test
 after_success:
     - bash <(curl -s https://codecov.io/bash)
