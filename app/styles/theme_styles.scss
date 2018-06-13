@@ -170,15 +170,20 @@
             &.is-active {
                 a {
                     color: $classic-color;
-                    border-bottom-color: $classic-selected-color;
                 }
             }
         }
-
-        .tab-icon {
-            color: $classic-color;
-            &:hover {
-                color: $classic-selected-color;
+        .tabs {
+            .tab-content {
+                &:hover {
+                    color: $classic-color;
+                }
+            }
+            .tab-icon {
+                color: $classic-color;
+                &:hover {
+                    color: $classic-selected-color;
+                }
             }
         }
     }

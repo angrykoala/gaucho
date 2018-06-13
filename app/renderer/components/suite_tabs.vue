@@ -106,6 +106,9 @@ module.exports = {
 .tabs{
     .inactive{
         background-color: rgba(0, 0, 0, 0.1);
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.05);
+        }
     }
     .tab-icon{
         margin-left: 0;
@@ -114,6 +117,10 @@ module.exports = {
     .columns{
         margin-left: 0;
         margin-right: 0;
+    }
+
+    ul{
+        border-bottom-style: hidden;
     }
 }
 
