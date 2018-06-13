@@ -1,5 +1,5 @@
 <template>
-    <div class="task-card">
+    <div class="task-card" @contextmenu.stop="context()">
         <div class="columns is-mobile task-card-header" @click="taskSelected">
             <div class="column">
                 <p>
@@ -48,6 +48,9 @@
 
 const utils = require('../../common/utils');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const ContextMenu = require('../api/context_menu');
+
+const cardMenu = new ContextMenu.CardMenu();
 
 
 const components = {
@@ -85,7 +88,7 @@ module.exports = {
             this.$store.dispatch("runTask", this.index);
         },
         stop() {
-            this.$store.dispatch("stopTask", {index: this.index});
+            this.$store.dispatch("stopTask", {task: this.index});
         },
         taskSelected() {
             this.$emit("selected");
@@ -102,6 +105,12 @@ module.exports = {
             this.stop();
             this.$emit("save", task);
             this.taskSelected();
+        },
+        context() {
+            cardMenu.on("delete", () => {
+                this.deleteTask();
+            });
+            cardMenu.toggle();
         }
     }
 };

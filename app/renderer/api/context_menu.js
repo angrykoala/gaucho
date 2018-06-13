@@ -66,6 +66,15 @@ class TabMenu extends DefaultContextMenu {
     }
 }
 
+class CardMenu extends DefaultContextMenu {
+    constructor() {
+        super([
+            {label: "Delete", event: "delete"},
+            {type: "separator"}
+        ]);
+    }
+}
+
 module.exports = {
     init(vueStore) {
         store = vueStore;
@@ -77,6 +86,6 @@ module.exports = {
                 defaultMenu.toggle();
         }, false);
     },
-    TabMenu
-
+    TabMenu,
+    CardMenu
 };

@@ -63,7 +63,6 @@ module.exports = {
                 this.renameSuite(i);
             });
             tabMenu.toggle(index);
-
         },
         isSelected(i) {
             return this.$store.state.tasks.selectedSuite === i;
