@@ -53,11 +53,7 @@ module.exports = {
     methods: {
         context(index) {
             tabMenu.on("delete", (i) => {
-                const title = this.suites[i].title;
-                const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
-                alert.toggle().then(() => {
-                    this.$store.dispatch("deleteSuite", i);
-                }).catch(() => {});
+                this.removeSuite(i);
             });
             tabMenu.on("rename", (i) => {
                 this.renameSuite(i);
@@ -75,13 +71,11 @@ module.exports = {
             this.$store.commit("toggleActiveSuite", this.suites.length - 1);
         },
         removeSuite(index) {
-            if(this.isSelected(index)) {
-                const title = this.suites[index].title;
-                const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
-                alert.toggle().then(() => {
-                    this.$store.dispatch("deleteSuite");
-                }).catch(() => {});
-            }
+            const title = this.suites[index].title;
+            const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
+            alert.toggle().then(() => {
+                this.$store.dispatch("deleteSuite", index);
+            }).catch(() => {});
         },
         renameSuite(index) {
             const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
