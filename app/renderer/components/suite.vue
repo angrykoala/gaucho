@@ -2,7 +2,7 @@
     <div class="suite-list">
         <draggable v-model="currentSuiteTasks" :options="draggableOptions" @add="onTaskDraggedIn" class="draggable-tasks-list">
             <template v-for="(task, index) in currentSuiteTasks">
-                <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"/>
+                <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)" @duplicate="duplicateTask(index)"/>
             </template>
         </draggable>
         <add-task-card v-if="canAddTask" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
@@ -110,10 +110,15 @@ module.exports = {
             this.selectAddTask();
         },
         onTaskDraggedIn(evt) {
-            // TODO: validate suite length
             this.$store.commit("validateTaskName", {
                 suite: this.suite,
                 task: evt.newIndex
+            });
+        },
+        duplicateTask(index) {
+            this.$store.dispatch("duplicateTask", {
+                suite: this.suite,
+                task: index
             });
         }
     }

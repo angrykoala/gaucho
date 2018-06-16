@@ -81,6 +81,7 @@ class CardMenu extends DefaultContextMenu {
         super([
             runStopItem,
             {label: "Delete", event: "delete"},
+            {label: "Duplicate", event: "duplicate"},
             {type: "separator"}
         ]);
     }

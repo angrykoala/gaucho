@@ -1,6 +1,7 @@
 "use strict";
 
 const Suite = require('../../common/suite');
+const Task = require('../../common/task');
 const TasksHandler = require('../tasks_handler');
 const TaskImporter = require('../../common/task_importer');
 
@@ -159,6 +160,14 @@ module.exports = {
         deleteSuite(context, i) {
             context.dispatch("stopSuite", i);
             context.commit("_deleteSuite", i);
+        },
+        duplicateTask(context, data) {
+            const oldTask = context.getters.suites[data.suite].getTask(data.task);
+            const newTask = new Task(oldTask.title, oldTask.path, oldTask.command);
+            context.commit("addTask", {
+                index: data.suite,
+                task: newTask
+            });
         }
     }
 };

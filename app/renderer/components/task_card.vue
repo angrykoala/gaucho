@@ -104,6 +104,9 @@ module.exports = {
             this.$emit("save", task);
             this.taskSelected();
         },
+        duplicateTask() {
+            this.$emit("duplicate");
+        },
         context() {
             const cardMenu = new ContextMenu.CardMenu(this.task);
             cardMenu.on("delete", () => {
@@ -114,6 +117,9 @@ module.exports = {
             });
             cardMenu.on("stop", () => {
                 this.toggleRun();
+            });
+            cardMenu.on("duplicate", () => {
+                this.duplicateTask();
             });
             cardMenu.toggle();
         }
