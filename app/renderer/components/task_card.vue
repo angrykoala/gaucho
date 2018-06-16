@@ -50,8 +50,6 @@ const utils = require('../../common/utils');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const ContextMenu = require('../api/context_menu');
 
-const cardMenu = new ContextMenu.CardMenu();
-
 
 const components = {
     "task-status": require('./task_status.vue'),
@@ -107,8 +105,15 @@ module.exports = {
             this.taskSelected();
         },
         context() {
+            const cardMenu = new ContextMenu.CardMenu(this.task);
             cardMenu.on("delete", () => {
                 this.deleteTask();
+            });
+            cardMenu.on("run", () => {
+                this.toggleRun();
+            });
+            cardMenu.on("stop", () => {
+                this.toggleRun();
             });
             cardMenu.toggle();
         }

@@ -1,6 +1,7 @@
 0.5.2 / ####-##-##
 ==================
 
+  * Run/Stop option in context menu
   * Fixed delete suite bug
 
 0.5.1 / 2018-06-14
