@@ -70,9 +70,12 @@ module.exports = {
             const suite = state.suites[data.suite];
             suite.title = data.title;
         },
-        updateTasks(state, data) {
+        updateSuiteTasks(state, data) {
             const suite = state.suites[data.suite];
             suite.tasks = data.tasks;
+        },
+        updateSuites(state, data) {
+            state.suites = data;
         },
         validateTaskName(state, data) {
             const suite = state.suites[data.suite];

@@ -39,7 +39,7 @@ module.exports = {
                 return suite.tasks;
             },
             set(value) {
-                this.$store.commit('updateTasks', {
+                this.$store.commit('updateSuiteTasks', {
                     suite: this.suite,
                     tasks: value
                 });
