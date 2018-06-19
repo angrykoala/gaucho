@@ -1,10 +1,11 @@
-0.5.2 / ####-##-##
+0.5.2 / 2018-06-19
 ==================
 
   * Suites can now be reordered
   * Run/Stop option in context menu
   * Duplicate task option in context menu
   * Fixed delete suite bug
+  * Dependencies update
 
 0.5.1 / 2018-06-14
 ==================
