@@ -50,8 +50,6 @@ const utils = require('../../common/utils');
 const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
 const ContextMenu = require('../api/context_menu');
 
-const cardMenu = new ContextMenu.CardMenu();
-
 
 const components = {
     "task-status": require('./task_status.vue'),
@@ -106,9 +104,22 @@ module.exports = {
             this.$emit("save", task);
             this.taskSelected();
         },
+        duplicateTask() {
+            this.$emit("duplicate");
+        },
         context() {
+            const cardMenu = new ContextMenu.CardMenu(this.task);
             cardMenu.on("delete", () => {
                 this.deleteTask();
+            });
+            cardMenu.on("run", () => {
+                this.toggleRun();
+            });
+            cardMenu.on("stop", () => {
+                this.toggleRun();
+            });
+            cardMenu.on("duplicate", () => {
+                this.duplicateTask();
             });
             cardMenu.toggle();
         }

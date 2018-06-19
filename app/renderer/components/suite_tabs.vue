@@ -1,7 +1,7 @@
 <template>
     <div class="tabs is-fullwidth">
-        <ul>
-            <li v-for="(suite, index) in suites" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
+        <draggable v-model="suites" element="ul" :options="draggableOptions" @end="suiteDragEnd">
+            <li v-for="(suite, index) in suites" class="tab-suite-item" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
                 <a class="columns is-mobile is-centered tab-content">
                     <div class="column tab-text-container">
                         <span class="level-item tab-text">{{suite.title}}</span>
@@ -14,13 +14,13 @@
                 </a>
             </li>
             <li v-if="canAddSuite" class="inactive" :style="{ width: tabsWidth }" @click="addNewSuite">
-                <a>
+                <a class="add-suite-tab">
                     <span class="icon">
                         <a class="fas fa-plus"/>
                     </span>
                 </a>
             </li>
-        </ul>
+        </draggable>
     </div>
 </template>
 
@@ -33,10 +33,20 @@ const ContextMenu = require('../api/context_menu');
 
 const tabMenu = new ContextMenu.TabMenu();
 
+const components = {
+    "draggable": require('vuedraggable')
+};
+
 module.exports = {
+    components: components,
     computed: {
-        suites() {
-            return this.$store.getters.suites;
+        suites: {
+            get() {
+                return this.$store.getters.suites;
+            },
+            set(value) {
+                this.$store.commit('updateSuites', value);
+            }
         },
         canAddSuite() {
             return this.editMode && this.$store.getters.canAddSuite;
@@ -48,16 +58,19 @@ module.exports = {
             let tabs = this.suites.length;
             if(this.editMode && tabs < 6) tabs++;
             return `${100 / tabs}px`;
+        },
+        draggableOptions() {
+            const basicOptions = {
+                filter: ".tab-icon",
+                draggable: ".tab-suite-item"
+            };
+            return Object.assign(basicOptions, {'disabled': !this.editMode});
         }
     },
     methods: {
         context(index) {
             tabMenu.on("delete", (i) => {
-                const title = this.suites[i].title;
-                const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
-                alert.toggle().then(() => {
-                    this.$store.dispatch("deleteSuite", i);
-                }).catch(() => {});
+                this.removeSuite(i);
             });
             tabMenu.on("rename", (i) => {
                 this.renameSuite(i);
@@ -75,13 +88,11 @@ module.exports = {
             this.$store.commit("toggleActiveSuite", this.suites.length - 1);
         },
         removeSuite(index) {
-            if(this.isSelected(index)) {
-                const title = this.suites[index].title;
-                const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
-                alert.toggle().then(() => {
-                    this.$store.dispatch("deleteSuite");
-                }).catch(() => {});
-            }
+            const title = this.suites[index].title;
+            const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
+            alert.toggle().then(() => {
+                this.$store.dispatch("deleteSuite", index);
+            }).catch(() => {});
         },
         renameSuite(index) {
             const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
@@ -93,6 +104,9 @@ module.exports = {
                     });
                 }
             }).catch(() => {});
+        },
+        suiteDragEnd(evt) {
+            this.selectSuite(evt.newIndex);
         }
     }
 };
