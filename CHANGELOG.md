@@ -1,3 +1,10 @@
+0.5.3 / 2018-10-28
+==================
+
+  * Added snap version
+  * Several dependencies updated and potential vulnerabilities fixed
+
+
 0.5.2 / 2018-06-19
 ==================
 
