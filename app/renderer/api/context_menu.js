@@ -68,22 +68,27 @@ class TabMenu extends DefaultContextMenu {
 
 class CardMenu extends DefaultContextMenu {
     constructor(task) {
-        let runStopItem = {
-            label: "Run",
-            event: "run"
-        };
+        const items = [];
         if(task.isRunning()) {
-            runStopItem = {
+            items.push({
                 label: "Stop",
                 event: "stop"
-            };
+            });
+        } else {
+            items.push({
+                label: "Run",
+                event: "run"
+            });
+            items.push({
+                label: "Schedule",
+                event: "schedule"
+            });
         }
-        super([
-            runStopItem,
+        super(items.concat([
             {label: "Delete", event: "delete"},
             {label: "Duplicate", event: "duplicate"},
             {type: "separator"}
-        ]);
+        ]));
     }
 }
 

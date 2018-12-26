@@ -139,6 +139,14 @@ module.exports = {
                 });
             }
         },
+        scheduleTask(context, data) {
+            const task = context.getters.currentSuite.getTask(data.index);
+            task.schedule(data.seconds, () => {}, () => {
+                context.commit('increaseRunningTasks'); // On Run
+            }, () => {
+                context.commit('decreaseRunningTasks'); // On Completed
+            });
+        },
         stopTask(context, data) {
             let suite = context.getters.currentSuite;
             if(data.suite) suite = context.getters.suites[data.suite];

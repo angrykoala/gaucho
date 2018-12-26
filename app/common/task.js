@@ -23,9 +23,14 @@ class Task {
         this.finishTime = null;
         this.elapsedTime = null;
         this.onTimeUpdate = null;
+
+        this._scheduleTimeout = null;
     }
 
+
+
     run(stdout, done) {
+        this._clearTimeout();
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
@@ -61,14 +66,22 @@ class Task {
     }
 
     stop(cb) {
+        this._clearTimeout();
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
             this.status = TaskStatus.stopped;
-        } else if (cb) cb();
+        } else{
+            this.status = TaskStatus.stopped;
+            if(cb) cb();
+        }
     }
 
     isRunning() {
         return this.status === TaskStatus.running;
+    }
+
+    isScheduled() {
+        return this.status === TaskStatus.scheduled;
     }
 
     getData() {
@@ -78,6 +91,16 @@ class Task {
         };
         if (this.path !== "") res.path = this.path;
         return res;
+    }
+
+    schedule(seconds, stdout, onRun, done) {
+        this.stop(() => {
+            this.status = TaskStatus.scheduled;
+            this._scheduleTimeout = setTimeout(() => {
+                onRun();
+                this.run(stdout, done);
+            }, seconds * 1000);
+        });
     }
 
     _updateElapsedTime() {
@@ -94,6 +117,13 @@ class Task {
 
     _generateDefaultPath() {
         return os.homedir();
+    }
+
+    _clearTimeout() {
+        if(this._scheduleTimeout) {
+            clearTimeout(this._scheduleTimeout);
+        }
+        this._scheduleTimeout = null;
     }
 }
 
