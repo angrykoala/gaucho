@@ -10,7 +10,6 @@ const renderify = require('electron-renderify');
 const vueify = require('vueify');
 const sass = require('gulp-sass');
 
-gulp.task("build", ["browserify", "styles"]);
 
 let renderifyOpts = {
     windowRequire: ["electron-store", "yerbamate"] // Required while electron store & yerbamate are used in the rederer process
@@ -36,3 +35,5 @@ gulp.task("styles", () => {
         }))
         .pipe(gulp.dest("resources/bundle"));
 });
+
+gulp.task("build", gulp.parallel(["browserify", "styles"]));
