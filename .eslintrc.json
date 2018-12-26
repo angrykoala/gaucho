@@ -73,6 +73,7 @@
         "no-mixed-requires": "warn",
         "semi": ["error", "always"],
         "arrow-spacing": "warn",
+        "no-case-declarations": "off",
         "vue/jsx-uses-vars": "error",
         "vue/valid-v-if": "error",
         "vue/require-v-for-key": "off",

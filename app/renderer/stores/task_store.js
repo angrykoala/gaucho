@@ -159,6 +159,15 @@ module.exports = {
                 context.dispatch("runTask", i);
             }
         },
+        scheduleSuite(context, seconds) {
+            const taskNumber = context.getters.currentSuite.length;
+            for(let i = 0; i < taskNumber; i++) {
+                context.dispatch("scheduleTask", {
+                    index: i,
+                    seconds: seconds
+                });
+            }
+        },
         stopSuite(context, s) {
             const taskNumber = context.getters.suites[s].length;
             for(let i = 0; i < taskNumber; i++) {

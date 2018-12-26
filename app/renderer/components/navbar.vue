@@ -34,6 +34,7 @@
 "use strict";
 
 const EventHandler = require('../utils/event_handler');
+const {SchedulerAlert} = require('../api/app_alerts');
 const aboutModal = require('../api/about_modal');
 
 const components = {
@@ -63,6 +64,12 @@ module.exports = {
                     break;
                 case "stopSuite":
                     this.$store.dispatch("stopSuite", this.$store.state.tasks.selectedSuite);
+                    break;
+                case "scheduleSuite":
+                    const schedulerAlert = new SchedulerAlert("Schedule Task Execution");
+                    schedulerAlert.toggle().then((res) => {
+                        this.$store.dispatch("scheduleSuite", res);
+                    }, () => {});
                     break;
                 case "settings":
                     this.$store.commit("toggleSettings");
