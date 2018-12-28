@@ -23,7 +23,7 @@
                         <p>{{executionTime}}</p>
                     </div>
                     <div class="column">
-                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun">{{running? "Stop" : "Run"}}</button>
+                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun">{{runButtonText}}</button>
                         <button v-else class="button is-primary task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
                     <div class="column">
@@ -47,7 +47,7 @@
 "use strict";
 
 const utils = require('../../common/utils');
-const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const {DeleteConfirmationAlert, SchedulerAlert} = require('../api/app_alerts');
 const ContextMenu = require('../api/context_menu');
 
 
@@ -63,9 +63,14 @@ module.exports = {
         running() {
             return this.task.isRunning();
         },
+        scheduled() {
+            return this.task.isScheduled();
+        },
         executionTime() {
-            if (this.task.beginTime === null) return "-";
-            return utils.generateTimeString(this.task.elapsedTime);
+            if (this.task.elapsedTime === null) return "-";
+            let timeString = utils.generateTimeString(this.task.elapsedTime);
+            if(this.scheduled) timeString = `- ${timeString}`;
+            return timeString;
         },
         showTimer() {
             return this.$store.state.userConfig.showTimer;
@@ -75,15 +80,25 @@ module.exports = {
         },
         status() {
             return this.task.status;
+        },
+        runButtonText() {
+            if(this.scheduled || this.running) return "Stop";
+            else return "Run";
         }
     },
     methods: {
         toggleRun() {
-            if (this.running) this.stop();
+            if (this.running || this.scheduled) this.stop();
             else this.run();
         },
         run() {
             this.$store.dispatch("runTask", this.index);
+        },
+        schedule(seconds) {
+            this.$store.dispatch("scheduleTask", {
+                index: this.index,
+                seconds: seconds
+            });
         },
         stop() {
             this.$store.dispatch("stopTask", {task: this.index});
@@ -117,6 +132,12 @@ module.exports = {
             });
             cardMenu.on("stop", () => {
                 this.toggleRun();
+            });
+            cardMenu.on("schedule", () => {
+                const schedulerAlert = new SchedulerAlert("Schedule Task Execution");
+                schedulerAlert.toggle().then((res) => {
+                    this.schedule(res);
+                }, () => {});
             });
             cardMenu.on("duplicate", () => {
                 this.duplicateTask();

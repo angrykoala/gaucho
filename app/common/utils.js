@@ -29,11 +29,5 @@ module.exports = {
     },
     isTestEnv() {
         return process.env.NODE_ENV === "test";
-    },
-    timer(eventEmitter, intervalTime) {
-        eventEmitter.setMaxListeners(91);
-        setInterval(() => {
-            eventEmitter.emit("time-update");
-        }, intervalTime);
     }
 };

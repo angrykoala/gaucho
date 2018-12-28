@@ -40,7 +40,10 @@ module.exports = class MainWindow {
             fullscreenable: false,
             webgl: false,
             icon: this.iconPath,
-            frame: true
+            frame: true,
+            webPreferences: {
+                nodeIntegration: true
+            }
         };
         if (devWindow) {
             winConfig.width += this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);

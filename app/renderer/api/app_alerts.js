@@ -65,10 +65,21 @@ class InputAlert extends InteractiveAlert {
     }
 }
 
+class SchedulerAlert extends InputAlert {
+    constructor(title, options = {}) {
+        super(title, "", Object.assign({
+            confirmButtonText: 'Schedule',
+            input: 'number',
+            inputPlaceholder: 'Seconds'
+        }, options));
+    }
+}
+
 module.exports = {
     AppAlert: AppAlert,
     DeleteConfirmationAlert: DeleteConfirmationAlert,
     InputAlert: InputAlert,
+    SchedulerAlert: SchedulerAlert,
     init: init,
     isVisible: swal.isVisible
 };

@@ -25,12 +25,11 @@ module.exports = {
             const defaultOptions = [{name: "Settings", value: "settings"}, {name: "About", value: "about"}];
 
             if(!this.$store.state.editMode) {
-                const runModeOptions = [{name: "Run Suite", value: "runSuite"}, {name: "Stop Suite", value: "stopSuite"}];
+                const runModeOptions = [{name: "Run Suite", value: "runSuite"}, {name: "Stop Suite", value: "stopSuite"}, {name: "Schedule Suite", value: "scheduleSuite"}];
                 return runModeOptions.concat([{value: "divider"}], defaultOptions);
             } else{
                 return defaultOptions;
             }
-
         }
     },
     methods: {
