@@ -4,7 +4,7 @@ const os = require('os');
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
-const TaskTimer = require('./task_timer');
+const {TaskTimer, InverseTaskTimer} = require('./task_timer');
 
 const outputMaxSize = 6000;
 
@@ -16,12 +16,13 @@ class Task {
         this.status = TaskStatus.idle;
 
         this.output = null;
-        this.timer = new TaskTimer();
+        this.timer = null;
 
         this._scheduleTimeout = null;
     }
 
     get elapsedTime() {
+        if(!this.timer) return null;
         return this.timer.elapsedSeconds;
     }
 
@@ -31,6 +32,7 @@ class Task {
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
+        this.timer = new TaskTimer();
         this.output = "";
         this.status = TaskStatus.running;
         this.timer.start();
@@ -85,6 +87,8 @@ class Task {
     schedule(seconds, stdout, onRun, done) {
         this.stop(() => {
             this.status = TaskStatus.scheduled;
+            this.timer = new InverseTaskTimer(seconds);
+            this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
                 onRun();
                 this.run(stdout, done);
@@ -103,6 +107,7 @@ class Task {
     _clearSchedulerTimeout() {
         if(this._scheduleTimeout) {
             clearTimeout(this._scheduleTimeout);
+            this.timer = null;
         }
         this._scheduleTimeout = null;
     }

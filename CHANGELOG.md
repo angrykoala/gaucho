@@ -3,6 +3,7 @@
 
   * Basic Task Scheduler
   * Dependencies updated
+  * Minor refactor and improvement on task timers
 
 0.5.3 / 2018-10-28
 ==================

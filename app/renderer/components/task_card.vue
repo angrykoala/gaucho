@@ -68,7 +68,9 @@ module.exports = {
         },
         executionTime() {
             if (this.task.elapsedTime === null) return "-";
-            return utils.generateTimeString(this.task.elapsedTime);
+            let timeString = utils.generateTimeString(this.task.elapsedTime);
+            if(this.scheduled) timeString = `- ${timeString}`;
+            return timeString;
         },
         showTimer() {
             return this.$store.state.userConfig.showTimer;
