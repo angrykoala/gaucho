@@ -67,7 +67,7 @@ module.exports = {
             return this.task.isScheduled();
         },
         executionTime() {
-            if (this.task.beginTime === null) return "-";
+            if (this.task.elapsedTime === null) return "-";
             return utils.generateTimeString(this.task.elapsedTime);
         },
         showTimer() {

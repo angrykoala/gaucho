@@ -1,14 +1,11 @@
 "use strict";
 
-const EventEmitter = require('events');
 const os = require('os');
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('../common/task_status');
-const taskTimer = require('../common/utils').timer;
+const TaskTimer = require('./task_timer');
 
-const TaskEvents = new EventEmitter();
-taskTimer(TaskEvents, 1000);
 const outputMaxSize = 6000;
 
 class Task {
@@ -19,25 +16,24 @@ class Task {
         this.status = TaskStatus.idle;
 
         this.output = null;
-        this.beginTime = null;
-        this.finishTime = null;
-        this.elapsedTime = null;
-        this.onTimeUpdate = null;
+        this.timer = new TaskTimer();
 
         this._scheduleTimeout = null;
     }
 
+    get elapsedTime() {
+        return this.timer.elapsedSeconds;
+    }
 
 
     run(stdout, done) {
-        this._clearTimeout();
+        this._clearSchedulerTimeout();
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
         }
         this.output = "";
         this.status = TaskStatus.running;
-        this.beginTime = Date.now();
-        this.finishTime = null;
+        this.timer.start();
         let executionPath = this.path;
         if (!executionPath) executionPath = this._generateDefaultPath();
         const onOutput = (out) => {
@@ -53,20 +49,13 @@ class Task {
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
 
-            this.finishTime = Date.now();
-            this._updateElapsedTime();
-            TaskEvents.removeListener("time-update", this.onTimeUpdate);
+            this.timer.stop();
             done();
         });
-        this.onTimeUpdate = () => {
-            this._updateElapsedTime();
-        };
-        TaskEvents.on("time-update", this.onTimeUpdate);
-        this._updateElapsedTime();
     }
 
     stop(cb) {
-        this._clearTimeout();
+        this._clearSchedulerTimeout();
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
             this.status = TaskStatus.stopped;
@@ -103,14 +92,6 @@ class Task {
         });
     }
 
-    _updateElapsedTime() {
-        if (this.beginTime === null) throw new Error("Error, cant update time");
-        let finishTime = this.finishTime;
-        if (finishTime === null) finishTime = Date.now();
-
-        this.elapsedTime = Math.trunc((finishTime - this.beginTime) / 1000);
-    }
-
     _processCommand() {
         return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
     }
@@ -119,7 +100,7 @@ class Task {
         return os.homedir();
     }
 
-    _clearTimeout() {
+    _clearSchedulerTimeout() {
         if(this._scheduleTimeout) {
             clearTimeout(this._scheduleTimeout);
         }
