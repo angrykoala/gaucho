@@ -2,9 +2,8 @@
 
 const Mousetrap = require('mousetrap');
 
-const Store = require('../stores/main');
-const EventHandler = require('../utils/event_handler');
-
+const Store = require('../store/main');
+const EventHandler = require('../event_handler');
 
 // Methods interface with jQuery
 module.exports = {

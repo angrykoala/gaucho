@@ -14,7 +14,7 @@
 <script>
 "use strict";
 
-const AppConfig = require("../../app_config");
+const AppConfig = require("../../../common/app_config");
 
 const components = {
     "task-card": require('./task_card.vue'),

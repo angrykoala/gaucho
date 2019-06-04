@@ -46,10 +46,9 @@
 <script>
 "use strict";
 
-const utils = require('../../common/utils');
-const {DeleteConfirmationAlert, SchedulerAlert} = require('../api/app_alerts');
-const ContextMenu = require('../api/context_menu');
-
+const utils = require('../../../common/utils');
+const {DeleteConfirmationAlert, SchedulerAlert} = require('../../api/app_alerts');
+const ContextMenu = require('../../api/context_menu');
 
 const components = {
     "task-status": require('./task_status.vue'),

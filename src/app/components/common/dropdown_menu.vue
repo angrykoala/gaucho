@@ -12,7 +12,7 @@
 <script>
 "use strict";
 const clickaway = require('vue-clickaway');
-const EventHandler = require('../../utils/event_handler');
+const EventHandler = require('../../event_handler');
 
 
 module.exports = {

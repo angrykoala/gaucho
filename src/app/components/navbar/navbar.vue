@@ -3,7 +3,7 @@
         <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <div class="navbar-item unselectable">
-                    <img class="logo-icon" src="resources/logos/gaucho_logo.ico">
+                    <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
                     <h1 class="title is-4">Gaucho</h1>
                     <h2 class="beta-subtitle is-4">Beta</h2>
                 </div>
@@ -33,9 +33,9 @@
 <script>
 "use strict";
 
-const EventHandler = require('../utils/event_handler');
-const {SchedulerAlert} = require('../api/app_alerts');
-const aboutModal = require('../api/about_modal');
+const EventHandler = require('../../event_handler');
+const {SchedulerAlert} = require('../../api/app_alerts');
+const aboutModal = require('../../api/about_modal');
 
 const components = {
     "navbar-menu": require('./navbar_menu.vue'),

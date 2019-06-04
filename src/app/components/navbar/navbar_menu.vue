@@ -15,7 +15,7 @@
 "use strict";
 
 const components = {
-    "dropdown-menu": require('./common/dropdown_menu.vue')
+    "dropdown-menu": require('../common/dropdown_menu.vue')
 };
 
 module.exports = {

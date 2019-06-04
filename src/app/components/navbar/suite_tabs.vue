@@ -28,8 +28,8 @@
 <script>
 "use strict";
 
-const AppAlerts = require('../api/app_alerts');
-const ContextMenu = require('../api/context_menu');
+const AppAlerts = require('../../api/app_alerts');
+const ContextMenu = require('../../api/context_menu');
 
 const tabMenu = new ContextMenu.TabMenu();
 

@@ -6,22 +6,22 @@ const Vue = require('vue/dist/vue.common');
 const Vuex = require('vuex');
 Vue.use(Vuex);
 
-// const Shortcuts = require('./app/renderer/api/shortcuts');
-// const ContextMenu = require('./app/renderer/api/context_menu');
+const Shortcuts = require('./api/shortcuts');
+const ContextMenu = require('./api/context_menu');
 
 const store = require('./store/main');
-// const AppAlerts = require('./app/renderer/api/app_alerts');
-// AppAlerts.init(store);
-// ContextMenu.init(store);
+const AppAlerts = require('./api/app_alerts');
+AppAlerts.init(store);
+ContextMenu.init(store);
 
-// const components = {
-//     "navbar": require('./app/renderer/components/navbar.vue'),
-//     "suite": require('./app/renderer/components/suite.vue'),
-//     "bottom-bar": require('./app/renderer/components/bottom_bar.vue'),
-//     "settings-menu": require('./app/renderer/components/settings_menu.vue')
-// };
+const components = {
+    "navbar": require('./components/navbar/navbar.vue'),
+    "suite": require('./components/suite/suite.vue'),
+    "bottom-bar": require('./components/bottom_bar.vue'),
+    "settings-menu": require('./components/settings/settings_menu.vue')
+};
 
-// const themeMixin = require('./app/renderer/mixins/theme');
+const themeMixin = require('./mixins/theme');
 
 ipcRenderer.on('before-close', () => {
     store.dispatch("saveTasks");
@@ -32,8 +32,8 @@ ipcRenderer.on('before-close', () => {
 
 const app = new Vue({ // eslint-disable-line no-unused-vars
     el: '#app',
-    // components: components,
-    // mixins: [themeMixin],
+    components: components,
+    mixins: [themeMixin],
     store: store,
     computed: {
         suites() {
@@ -57,8 +57,8 @@ const app = new Vue({ // eslint-disable-line no-unused-vars
     },
     beforeMount() {
         store.dispatch("loadTasks");
+    },
+    mounted() {
+        Shortcuts.init();
     }
-    // mounted() {
-    //     Shortcuts.init();
-    // }
 });

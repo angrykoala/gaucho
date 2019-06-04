@@ -52,12 +52,12 @@ const path = require('path');
 const app = require('electron').remote;
 const dialog = app.dialog;
 
-const DeleteConfirmationAlert = require('../api/app_alerts').DeleteConfirmationAlert;
+const DeleteConfirmationAlert = require('../../api/app_alerts').DeleteConfirmationAlert;
 
 const components = {
-    "checkbox-item": require('./settings/checkbox_item.vue'),
-    "button-item": require('./settings/button_item.vue'),
-    "shortcuts-cheatsheet": require('./settings/shortcuts_cheatsheet.vue')
+    "checkbox-item": require('./checkbox_item.vue'),
+    "button-item": require('./button_item.vue'),
+    "shortcuts-cheatsheet": require('./shortcuts_cheatsheet.vue')
 };
 
 module.exports = {
