@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Gaucho Task Launcher</title>
-    <link type="text/css" rel="stylesheet" href="./resources/bundle/styles.css" />
-    <script type="text/javascript" src="./resources/bundle/bundle.js" defer></script>
+    <link rel="stylesheet" href="./styles/main.scss">
+    <script type="text/javascript" src="./app.js" defer></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' 'unsafe-inline'"> -->
@@ -17,7 +17,6 @@
             <div class="page-body">
                 <div v-if="!settingsMenu">
                     <navbar></navbar>
-                    <!-- if and show magic for performance -->
                     <suite v-for="(suite, index) of suites" v-show="selectedSuite===index" v-if="editMode || selectedSuite===index" :key="index" :suite="index"></suite>
                     <bottom-bar v-if="showBottomBar"></bottom-bar>
                 </div>

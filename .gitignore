@@ -49,3 +49,5 @@ dist
 test/temp
 
 /resources/bundle
+ncp/
+.cache/
