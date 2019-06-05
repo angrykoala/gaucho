@@ -1,68 +1,76 @@
 // Import variables to override
-// @import "bulma/sass/utilities/initial-variables";
-// @import "bulma/sass/utilities/functions";
 @import "variables"; // import variables before bulma for proper override
 @import '~bulma/bulma';
 @import '~bulma-switch/dist/css/bulma-switch';
-@import "common";
-@import "desktopify";
-@import "theme_styles";
-
-
-.collapsible-body {
-    &.task-card-body {
-        padding: 0;
-    }
-}
-
-.run-card {
-    .collapsible-header {
-        padding: 10px;
-        margin: 0;
-        cursor: default;
-    }
-}
-
-footer {
-    width: 100%;
-    flex: 0 0 auto;
-}
-
-#app {
-    display: block;
-    height: 100%;
-}
-
-main {
-    display: block;
-    height: 100%;
-
-    &.has-bottom-bar {
-        padding-bottom: 3.25rem;
-    }
-
-    &.has-top-bar {
-        padding-top: 5.8rem;
-    }
-}
-
-.page-body {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-#main-header {
-    position: absolute;
-    height: 100px;
-    flex: 0 0 auto;
-}
+//
+//
 
 body,
-html {
-    height: 100%;
-    overflow: hidden;
+html{
+    // overflow-y: hidden;
 }
+
+
+
+// @import "common";
+// @import "desktopify";
+// @import "theme_styles";
+//
+//
+// .collapsible-body {
+//     &.task-card-body {
+//         padding: 0;
+//     }
+// }
+//
+// .run-card {
+//     .collapsible-header {
+//         padding: 10px;
+//         margin: 0;
+//         cursor: default;
+//     }
+// }
+//
+// footer {
+//     width: 100%;
+//     flex: 0 0 auto;
+// }
+//
+// #app {
+//     display: block;
+//     height: 100%;
+// }
+//
+// main {
+//     display: block;
+//     height: 100%;
+//
+//     &.has-bottom-bar {
+//         padding-bottom: 3.25rem;
+//     }
+//
+//     &.has-top-bar {
+//         padding-top: 5.8rem;
+//     }
+// }
+//
+// .page-body {
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     overflow-x: hidden;
+//     overflow-y: auto;
+// }
+//
+// #main-header {
+//     position: absolute;
+//     height: 100px;
+//     flex: 0 0 auto;
+// }
+//
+// body,
+// html {
+//     height: 100%;
+//     overflow: hidden;
+// }

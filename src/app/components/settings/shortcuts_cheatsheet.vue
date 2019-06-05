@@ -1,14 +1,14 @@
 <template>
-    <div v-once>
-        <div class="columns description is-mobile" v-for="field of fields">
-            <div class="column">
-                <code>{{field.shortcut}}</code>
-            </div>
-            <div class="column">
-                <p>{{field.description}}</p>
-            </div>
+<div v-once>
+    <div class="columns description is-mobile" v-for="field of fields">
+        <div class="column">
+            <code>{{field.shortcut}}</code>
+        </div>
+        <div class="column">
+            <p>{{field.description}}</p>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -39,7 +39,6 @@ module.exports = {
         };
     }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -55,6 +54,4 @@ module.exports = {
         margin-right: 5px;
     }
 }
-
-
 </style>

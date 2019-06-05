@@ -35,7 +35,7 @@
     "vuedraggable": "^2.21.0"
   },
   "scripts": {
-    "build": "parcel build src/app/index.html --target electron --public-url ./",
+    "build": "rm -rf dist/ && parcel build src/app/index.html --target electron --public-url ./",
     "test": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint && npm run sass-lint",
     "start": "electron .",
     "start-dev": "npm run build && cross-env NODE_ENV=dev npm start",
