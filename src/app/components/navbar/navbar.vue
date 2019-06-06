@@ -1,31 +1,31 @@
 <template>
-    <div>
-        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <div class="navbar-item unselectable">
-                    <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
-                    <h1 class="title is-4">Gaucho</h1>
-                    <h2 class="beta-subtitle is-4">Beta</h2>
-                </div>
+<div>
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="navbar-item unselectable">
+                <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
+                <h1 class="title is-4">Gaucho</h1>
+                <h2 class="beta-subtitle is-4">Beta</h2>
             </div>
-            <div class="navbar-menu is-active">
-                <div class="navbar-end">
-                    <a :class="{selected: editMode}" class="navbar-item" @click.prevent="toggleEdit" >
-                        <span class="icon">
-                            <i class="fas fa-edit" title="Edit"/>
-                        </span>
-                    </a>
-                    <a class="navbar-item" @click.stop="openMenu">
-                        <span class="icon">
-                            <i class="fas fa-bars" title="Menu"/>
-                        </span>
-                    </a>
-                </div>
+        </div>
+        <div class="navbar-menu is-active">
+            <div class="navbar-end">
+                <a :class="{selected: editMode}" class="navbar-item" @click.prevent="toggleEdit">
+                    <span class="icon">
+                        <i class="fas fa-edit" title="Edit"></i>
+                    </span>
+                </a>
+                <a class="navbar-item" @click.stop="openMenu">
+                    <span class="icon">
+                        <i class="fas fa-bars" title="Menu"></i>
+                    </span>
+                </a>
             </div>
-            <navbar-menu @select="menuSelect"/>
-            <suite-tabs class="suite-tabs"/>
-        </nav>
-    </div>
+        </div>
+        <navbar-menu @select="menuSelect"></navbar-menu>
+        <suite-tabs class="suite-tabs"></suite-tabs>
+    </nav>
+</div>
 </template>
 
 
@@ -34,7 +34,9 @@
 "use strict";
 
 const EventHandler = require('../../event_handler');
-const {SchedulerAlert} = require('../../api/app_alerts');
+const {
+    SchedulerAlert
+} = require('../../api/app_alerts');
 const aboutModal = require('../../api/about_modal');
 
 const components = {
@@ -55,7 +57,7 @@ module.exports = {
             EventHandler.emit("showNavbarMenu");
         },
         menuSelect(selection) {
-            switch(selection) {
+            switch (selection) {
                 case "about":
                     this.openAboutModal();
                     break;
@@ -84,16 +86,15 @@ module.exports = {
         }
     }
 };
-
 </script>
 
 
 <style lang="scss" scoped>
-.navbar{
+.navbar {
     flex-wrap: wrap;
 }
-.first-row{
-    width:100%;
+.first-row {
+    width: 100%;
 }
 .logo-icon {
     padding-right: 5px;
@@ -112,20 +113,18 @@ module.exports = {
     cursor: pointer;
 }
 
-.suite-tabs{
-    width:100%;
+.suite-tabs {
+    width: 100%;
 }
 
-.navbar-item{
-        &:hover {
-            background-color: transparent;
-            // color: #3273dc;
-        }
-        &.selected {
-            background-color: rgba(41, 40, 40, 0.25);
-            // color: #3273dc;
-        }
+.navbar-item {
+    &:hover {
+        background-color: transparent;
+        // color: #3273dc;
+    }
+    &.selected {
+        background-color: rgba(41, 40, 40, 0.25);
+        // color: #3273dc;
+    }
 }
-
-
 </style>

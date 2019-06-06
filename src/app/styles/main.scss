@@ -5,10 +5,10 @@
 //
 //
 
-body,
-html{
-    // overflow-y: hidden;
-}
+// body,
+// html{
+//     // overflow-y: hidden;
+// }
 
 
 
@@ -41,18 +41,18 @@ html{
 //     height: 100%;
 // }
 //
-// main {
-//     display: block;
-//     height: 100%;
-//
-//     &.has-bottom-bar {
-//         padding-bottom: 3.25rem;
-//     }
-//
-//     &.has-top-bar {
-//         padding-top: 5.8rem;
-//     }
-// }
+main {
+    display: block;
+    height: 100%;
+
+    &.has-bottom-bar {
+        padding-bottom: 3.25rem;
+    }
+
+    &.has-top-bar {
+        padding-top: 5.8rem;
+    }
+}
 //
 // .page-body {
 //     height: 100%;
