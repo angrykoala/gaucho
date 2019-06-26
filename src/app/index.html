@@ -14,16 +14,6 @@
 
 <body>
     <div id="app">
-        <!-- <main :class="[{'has-bottom-bar': showBottomBar, 'has-top-bar': showTopBar}, theme]">
-            <div class="page-body">
-                <div v-if="!settingsMenu">
-                    <navbar></navbar>
-                    <suite v-for="(suite, index) of suites" v-show="selectedSuite===index" v-if="editMode || selectedSuite===index" :key="index" :suite="index"></suite>
-                    <bottom-bar v-if="showBottomBar"></bottom-bar>
-                </div>
-                <settings-menu v-if="settingsMenu"></settings-menu>
-            </div>
-        </main> -->
         <main :class="[{'has-bottom-bar': showBottomBar, 'has-top-bar': showTopBar}, theme]">
             <div class="main-view" v-if="!settingsMenu">
                 <navbar></navbar>
