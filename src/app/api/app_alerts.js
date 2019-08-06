@@ -27,7 +27,8 @@ class AppAlert {
     }
 
     toggle() {
-        return swal(this.alertOptions);
+        const p = swal.fire(this.alertOptions);
+        return p;
     }
 }
 

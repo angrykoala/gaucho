@@ -41,11 +41,9 @@ module.exports = {
                         cancelButtonText: "No, cancel import"
                     });
                     confirmationAlert.toggle().then(() => {
-                        return this.$store.dispatch("importTasks", filename).then(() => {
-                            this._close();
+                        return this.$store.dispatch("importTasks", filename).catch((err) => {
+                            console.warn(err);
                         });
-                    }).catch((err) => {
-                        console.warn(err);
                     });
                 }
             });
@@ -58,7 +56,6 @@ module.exports = {
                 }]
             }, (filename) => {
                 if (filename) {
-                    this._close();
                     this.$store.dispatch("exportTasks", filename).catch((err) => {
                         console.warn(err);
                     });
@@ -73,13 +70,12 @@ module.exports = {
             confirmationAlert.toggle().then(() => {
                 return this.$store.dispatch("clearTasks").then(() => {
                     this.$store.commit("toggleActiveSuite", 0);
-                    this._close();
                 });
             }, () => {});
         },
         resetSettings() {
             this.$emit("resetSettings");
-        },
+        }
     }
 }
 </script>
