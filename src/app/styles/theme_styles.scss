@@ -2,7 +2,7 @@
 
 // Default Theme (Light)
 .theme-light {
-    nav {
+    nav, footer {
         background-color: $light-navbar-color;
         .navbar-item {
             &:hover {
@@ -51,7 +51,7 @@
             border-color: grey;
         }
     }
-    nav {
+    nav, footer {
         background-color: $dark-navbar-color;
         a, p, b, h1, h2 {
             color: $dark-color;
@@ -147,7 +147,7 @@
 
 
 .theme-classic {
-    nav {
+    nav, footer {
         background-color: $classic-navbar-color;
         a, p, b, h1, h2 {
             color: $classic-color;
