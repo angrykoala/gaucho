@@ -1,20 +1,20 @@
 <template>
-    <div class="suite-list">
-        <draggable v-model="currentSuiteTasks" :options="draggableOptions" @add="onTaskDraggedIn" class="draggable-tasks-list">
-            <template v-for="(task, index) in currentSuiteTasks">
-                <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)" @duplicate="duplicateTask(index)"/>
-            </template>
-        </draggable>
-        <add-task-card v-if="canAddTask" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"/>
-        <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="addNewTask">Try adding new tasks</a></p>
-    </div>
+<div class="suite-list">
+    <draggable v-model="currentSuiteTasks" :options="draggableOptions" @add="onTaskDraggedIn" class="draggable-tasks-list">
+        <template v-for="(task, index) in currentSuiteTasks">
+            <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)" @duplicate="duplicateTask(index)" />
+        </template>
+    </draggable>
+    <add-task-card v-if="canAddTask" :edit="selectedAddTask" @selected="selectAddTask()" @save="addTask" :open="selectedAddTask"></add-task-card>
+    <p class="has-text-centered no-task-message" v-if="!editMode && currentSuiteTasks.length===0">No task in suite. <a @click="addNewTask">Try adding new tasks</a></p>
+</div>
 </template>
 
 
 <script>
 "use strict";
 
-const AppConfig = require("../../../common/app_config");
+const AppConfig = require("../../../app_config.json");
 
 const components = {
     "task-card": require('./task_card.vue'),
@@ -63,7 +63,9 @@ module.exports = {
                 }
             };
 
-            return Object.assign(basicOptions, {'disabled': !this.editMode});
+            return Object.assign(basicOptions, {
+                'disabled': !this.editMode
+            });
         }
     },
     watch: {
@@ -78,7 +80,7 @@ module.exports = {
     methods: {
         selectTask(index) {
             this.selectedAddTask = false;
-            if(index === this.selectedTask) this.selectedTask = null;
+            if (index === this.selectedTask) this.selectedTask = null;
             else this.selectedTask = index;
         },
         selectAddTask() {
@@ -123,22 +125,20 @@ module.exports = {
         }
     }
 };
-
 </script>
 
 
 <style lang="scss" scoped>
-.suite-list{
+.suite-list {
     padding-top: 0;
     padding-bottom: 0;
 }
 
-.no-task-message{
+.no-task-message {
     margin-top: 10px;
 }
 
-.draggable-tasks-list{
+.draggable-tasks-list {
     min-height: 10px;
 }
-
 </style>

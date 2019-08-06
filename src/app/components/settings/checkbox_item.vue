@@ -4,7 +4,7 @@
         <p class="level-item">{{label}}</p>
     </div>
     <div class="level-right">
-        <switch-input class="level-item" :value="value" @input="valueChange" />
+        <switch-input class="level-item" :value="value" @input="valueChange"></switch-input>
     </div>
 </div>
 </template>

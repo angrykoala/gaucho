@@ -1,5 +1,5 @@
 <template>
-    <div v-once class="loader"/>
+    <div v-once class="loader"></div>
 </template>
 
 
