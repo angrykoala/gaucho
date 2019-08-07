@@ -37,7 +37,7 @@
 
 
 .theme-dark {
-    .page-body {
+    .main-view, .settings-page {
         background-color: $dark-background-color;
         p, h1, h2, h4 {
             color: $dark-color;

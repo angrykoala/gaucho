@@ -15,7 +15,7 @@ function initApp() {
         if (win === null) {
             const iconPath = path.join(__dirname, 'resources', 'icon.png');
             const htmlUrl = url.format({
-                pathname: path.join(__dirname, 'app', 'index.html'),
+                pathname: path.join(__dirname, 'public', 'index.html'),
                 protocol: 'file:'
             });
 

@@ -51,4 +51,4 @@ test/temp
 /resources/bundle
 ncp/
 .cache/
-app/
+public/
