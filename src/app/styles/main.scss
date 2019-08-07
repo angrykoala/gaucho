@@ -1,0 +1,40 @@
+// Import variables to override
+@import "variables"; // import variables before bulma for proper override
+@import '~bulma/bulma';
+@import '~bulma-switch/dist/css/bulma-switch';
+@import "desktopify";
+@import "theme_styles";
+
+
+#app {
+    display: block;
+    height: 100%;
+}
+
+main {
+    display: block;
+    height: 100%;
+
+    &.has-bottom-bar {
+        padding-bottom: 3.25rem;
+    }
+
+    &.has-top-bar {
+        padding-top: 5.8rem;
+    }
+}
+
+.main-view {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+}

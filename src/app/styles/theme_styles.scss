@@ -1,0 +1,194 @@
+@import "variables";
+
+// Default Theme (Light)
+.theme-light {
+    nav, footer {
+        background-color: $light-navbar-color;
+        .navbar-item {
+            &:hover {
+                color: $default-selected-color;
+            }
+            &.selected {
+                color: $default-selected-color;
+            }
+        }
+        li {
+            &.is-active {
+                color: $default-selected-color;
+            }
+        }
+        a, p, b, h1, h2 {
+            color: $default-color;
+
+        }
+        .tab-icon {
+            color: #a0a0a0;
+            &:hover {
+                color: #717171;
+            }
+        }
+    }
+    .task-form-wrapper {
+        background-color: $light-form-color;
+        border-bottom-color: #e2e2e2;
+    }
+}
+
+
+
+.theme-dark {
+    .page-body {
+        background-color: $dark-background-color;
+        p, h1, h2, h4 {
+            color: $dark-color;
+        }
+        code {
+            background-color: transparent;
+        }
+
+        select {
+            background-color: $dark-grey-background-color;
+            border-color: grey;
+        }
+    }
+    nav, footer {
+        background-color: $dark-navbar-color;
+        a, p, b, h1, h2 {
+            color: $dark-color;
+        }
+        .dropdown-menu {
+            a {
+                color: $default-color;
+            }
+        }
+        .navbar-item {
+            &:hover {
+                color: $dark-selected-color;
+            }
+            &.selected {
+                color: $dark-selected-color;
+            }
+        }
+        li {
+            &.is-active {
+                a {
+                    color: $dark-color;
+                    border-bottom-color: $dark-color;
+                }
+            }
+            &.inactive {
+                a {
+                    color: $dark-selected-color;
+                    border-bottom-color: $dark-selected-color;
+                    &:hover {
+                        border-bottom-color: $dark-color;
+                    }
+                }
+            }
+        }
+        .tab-icon {
+            color: $dark-color;
+            &:hover {
+                color: $dark-selected-color;
+            }
+        }
+        .dropdown-content {
+            background-color: $dark-grey-background-color;
+            .dropdown-divider {
+                background-color: $dark-selected-color;
+            }
+        }
+    }
+    .task-card {
+        .icon {
+            color: $dark-color;
+        }
+        .task-card-header {
+            border-bottom-color: $dark-selected-color;
+        }
+        .task-output {
+            background-color: $dark-navbar-color;
+            border-color: inherit;
+            pre {
+                color: $dark-color;
+            }
+        }
+        &.add-task-card {
+            border-bottom-color: $dark-selected-color;
+        }
+    }
+
+    .task-form-wrapper {
+        background-color: $dark-navbar-color;
+        border-bottom-color: inherit;
+        input, textarea {
+            color: $default-color;
+            background-color: $dark-grey-background-color;
+            border-color: grey;
+        }
+    }
+
+    &.swal2-popup {
+        background-color: $dark-background-color;
+        p, h1, h2, h4, i, .swal2-content {
+            color: $dark-color;
+        }
+        input {
+            color: $default-color;
+            background-color: $dark-grey-background-color;
+        }
+        button {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+
+.theme-classic {
+    nav, footer {
+        background-color: $classic-navbar-color;
+        a, p, b, h1, h2 {
+            color: $classic-color;
+
+        }
+        .dropdown-menu {
+            a {
+                color: $default-color;
+            }
+        }
+        .navbar-item {
+            &:hover {
+                color: $classic-selected-color;
+            }
+            &.selected {
+                color: $classic-selected-color;
+            }
+        }
+        li {
+            &.is-active {
+                a {
+                    color: $classic-color;
+                }
+            }
+        }
+        .tabs {
+            .tab-content {
+                &:hover {
+                    color: $classic-color;
+                }
+            }
+            .tab-icon {
+                color: $classic-color;
+                &:hover {
+                    color: $classic-selected-color;
+                }
+            }
+        }
+    }
+    .task-form-wrapper {
+        background-color: $light-form-color;
+        border-bottom-color: #e2e2e2;
+    }
+}
