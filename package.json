@@ -35,25 +35,23 @@
     "vuedraggable": "^2.23.0"
   },
   "scripts": {
-    "build": "rm -rf dist/ && parcel build src/app/index.html --target electron --public-url ./",
+    "build": "rm -rf app/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir app",
     "test-old": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint && npm run sass-lint",
     "test": "NODE_ENV=test echo 'no tests yet'",
     "start": "electron .",
     "start-dev": "npm run build && cross-env NODE_ENV=dev npm start",
-    "clean": "rm -rf config.json tasks.json coverage dist",
+    "clean": "rm -rf config.json tasks.json coverage dist app",
     "lint": "eslint main.js app.js gulpfile.js app test --ext .vue --ext .js",
     "lint-fix": "npm run lint -- --fix",
     "sass-lint": "sass-lint --verbose",
-    "dist": "npm run gulp && electron-builder",
-    "dist-all": "npm run gulp && npm run clean && electron-builder -wlm --x64",
-    "gulp": "gulp build"
+    "dist": "npm run build && electron-builder",
+    "dist-all": "npm run build && npm run clean && electron-builder -wlm --x64"
   },
   "build": {
     "appId": "angrykoala.gaucho",
     "linux": {
       "target": [
         "deb",
-        "rpm",
         "AppImage",
         "snap"
       ],
