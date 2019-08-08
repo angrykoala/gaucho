@@ -50,7 +50,8 @@ module.exports = class MainWindow {
             // require('vue-devtools').install();
         }
         win = new BrowserWindow(winConfig);
-        win.setMenu(null);
+        win.removeMenu();
+        win.setMenuBarVisibility(false);
 
         win.loadURL(this.indexPath);
 

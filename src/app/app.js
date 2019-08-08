@@ -31,7 +31,7 @@ ipcRenderer.on('before-close', () => {
     });
 });
 
-const app = new Vue({ // eslint-disable-line no-unused-vars
+const app = new Vue({// eslint-disable-line no-unused-vars
     el: '#app',
     components: components,
     mixins: [themeMixin],
