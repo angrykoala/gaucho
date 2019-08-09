@@ -33,6 +33,7 @@
 <script>
 "use strict";
 
+const ipcRenderer = require('electron').ipcRenderer;
 const EventHandler = require('../../event_handler');
 const {
     SchedulerAlert
@@ -75,6 +76,13 @@ module.exports = {
                     break;
                 case "settings":
                     this.$store.commit("toggleSettings");
+                    break;
+                case "quit":
+                    // TODO: extract to method and reuse in app
+                    this.$store.dispatch("saveTasks");
+                    this.$store.dispatch("stopAllTasks").then(() => {
+                        ipcRenderer.send("close-app");
+                    });
                     break;
             }
         },
