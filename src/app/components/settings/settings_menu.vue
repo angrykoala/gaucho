@@ -51,14 +51,16 @@ module.exports = {
     watch: {
         theme() {
             this.$store.commit("setTheme", this.theme);
+        },
+        bottomBar() {
+            this.$store.commit("setBottomBar", this.bottomBar);
+        },
+        showTimer() {
+            this.$store.commit("setShowTimer", this.showTimer);
         }
     },
     methods: {
         saveSettings() {
-            this.$store.commit("setBottomBar", this.bottomBar);
-            this.$store.commit("setShowTimer", this.showTimer);
-            this.$store.commit("setTheme", this.theme);
-
             this._close();
         },
         resetSettings() {

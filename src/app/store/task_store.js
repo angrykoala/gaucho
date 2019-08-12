@@ -52,30 +52,37 @@ module.exports = {
                 }
                 state.suites.push(suite);
             }
+            TasksHandler.saveTasks(state.suites);
         },
         addTask(state, {index, task}) {
             if(state.suites[index].length < AppConfig.maxTasksPerSuite) {
                 state.suites[index].addTask(task);
             }
+            TasksHandler.saveTasks(state.suites);
         },
         updateTask(state, data) {
             const suite = state.suites[data.suite];
             suite.replaceTask(data.task, data.data);
+            TasksHandler.saveTasks(state.suites);
         },
         deleteTask(state, data) {
             const suite = state.suites[data.suite];
             suite.removeTask(data.task);
+            TasksHandler.saveTasks(state.suites);
         },
         renameSuite(state, data) {
             const suite = state.suites[data.suite];
             suite.title = data.title;
+            TasksHandler.saveTasks(state.suites);
         },
         updateSuiteTasks(state, data) {
             const suite = state.suites[data.suite];
             suite.tasks = data.tasks;
+            TasksHandler.saveTasks(state.suites);
         },
         updateSuites(state, data) {
             state.suites = data;
+            TasksHandler.saveTasks(state.suites);
         },
         validateTaskName(state, data) {
             const suite = state.suites[data.suite];

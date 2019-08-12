@@ -1,5 +1,5 @@
 {
-  "name": "gaucho",
+  "name": "Gaucho",
   "version": "0.6.0",
   "description": "Minimalistic task launcher",
   "main": "main.js",
@@ -34,7 +34,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "scripts": {
-    "build": "rm -rf public/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir public",
+    "build": "rm -rf public/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir public --no-source-maps",
     "test-old": "NODE_ENV=test istanbul cover _mocha test test/*/*.test.js -- --exit && npm run lint && npm run sass-lint",
     "test": "NODE_ENV=test echo 'no tests yet'",
     "start": "electron .",
@@ -44,10 +44,12 @@
     "lint-fix": "npm run lint -- --fix",
     "sass-lint": "sass-lint --verbose",
     "dist": "npm run build && rm -rf dist/ && electron-builder",
-    "dist-all": "npm run build && npm run clean && electron-builder -wlm --x64"
+    "dist-all": "npm run build && npm run clean && electron-builder -wlm --x64",
+    "pack": "npm run build && rm -rf dist/ && electron-builder --dir"
   },
   "build": {
     "appId": "angrykoala.gaucho",
+    "productName": "Gaucho",
     "linux": {
       "target": [
         "deb",
