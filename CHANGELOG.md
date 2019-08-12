@@ -4,6 +4,8 @@
 * Settings page styles updated
 * Set parcel as bundle system
 * Dependencies updated
+* Fontawesome npm packaged used
+* Some code and styles improvements
 
 0.5.4 / 2018-12-28
 ==================

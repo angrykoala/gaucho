@@ -14,6 +14,7 @@
     "yerbamate": "^2.1.2"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.1",
     "@vue/component-compiler-utils": "^3.0.0",
     "bulma": "^0.7.5",
     "bulma-switch": "^2.0.0",

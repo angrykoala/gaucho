@@ -3,6 +3,7 @@
 const ipcRenderer = require('electron').ipcRenderer;
 
 const Vue = require('vue/dist/vue.common');
+require('@fortawesome/fontawesome-free/js/all');
 const Vuex = require('vuex');
 Vue.use(Vuex);
 
