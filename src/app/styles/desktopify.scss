@@ -11,3 +11,9 @@ h1, h2, i, label, p, a, b {
 .delete {
     cursor: default !important;
 }
+
+.unselectable {
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+}
