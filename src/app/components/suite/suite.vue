@@ -1,6 +1,6 @@
 <template>
 <div class="suite-list">
-    <draggable v-model="currentSuiteTasks" :options="draggableOptions" @add="onTaskDraggedIn" class="draggable-tasks-list">
+    <draggable v-model="currentSuiteTasks" v-bind="draggableOptions" @add="onTaskDraggedIn" class="draggable-tasks-list">
         <template v-for="(task, index) in currentSuiteTasks">
             <task-card :key="index" :task="task" :index="index" :open="selectedTask===index" @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)" @duplicate="duplicateTask(index)" />
         </template>

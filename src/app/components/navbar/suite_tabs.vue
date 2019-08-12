@@ -1,6 +1,6 @@
 <template>
     <div class="tabs is-fullwidth">
-        <draggable v-model="suites" element="ul" :options="draggableOptions" @end="suiteDragEnd">
+        <draggable v-model="suites" tag="ul" v-bind="draggableOptions" @end="suiteDragEnd">
             <li v-for="(suite, index) in suites" class="tab-suite-item" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
                 <a class="columns is-mobile is-centered tab-content">
                     <div class="column tab-text-container">
