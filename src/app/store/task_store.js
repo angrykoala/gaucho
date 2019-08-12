@@ -1,9 +1,9 @@
 "use strict";
 
-const Suite = require('../../common/suite');
-const Task = require('../../common/task');
+const Suite = require('../common/suite');
+const Task = require('../common/task');
 const TasksHandler = require('../api/tasks_handler');
-const TaskImporter = require('../../common/task_importer');
+const TaskImporter = require('../common/task_importer');
 
 const AppConfig = require('../../app_config.json');
 

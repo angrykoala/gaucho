@@ -1,7 +1,7 @@
 "use strict";
 
-const Suite = require('../../common/suite');
-const Task = require('../../common/task');
+const Suite = require('../common/suite');
+const Task = require('../common/task');
 const AppConfig = require('../../common/app_config');
 
 

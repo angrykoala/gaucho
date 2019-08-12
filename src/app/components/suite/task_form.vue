@@ -31,7 +31,7 @@
 <script>
 "use strict";
 
-const Task = require('../../../common/task');
+const Task = require('../../common/task');
 
 module.exports = {
     props: ['task'],

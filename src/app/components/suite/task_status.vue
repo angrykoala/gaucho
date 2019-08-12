@@ -27,7 +27,7 @@
 <script>
 "use strict";
 
-const TaskStatus = require('../../../common/task_status');
+const TaskStatus = require('../../common/task_status');
 
 const components = {
     "spinner": require('../common/spinner.vue')

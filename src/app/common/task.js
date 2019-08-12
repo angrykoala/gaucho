@@ -3,7 +3,7 @@
 const os = require('os');
 const yerbamate = require('yerbamate');
 
-const TaskStatus = require('../common/task_status');
+const TaskStatus = require('./task_status');
 const {TaskTimer, InverseTaskTimer} = require('./task_timer');
 
 const outputMaxSize = 6000;
