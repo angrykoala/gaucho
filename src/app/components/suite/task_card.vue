@@ -46,7 +46,7 @@
 <script>
 "use strict";
 
-const utils = require('../../../common/utils');
+const utils = require('../../common/utils');
 const {DeleteConfirmationAlert, SchedulerAlert} = require('../../api/app_alerts');
 const ContextMenu = require('../../api/context_menu');
 

@@ -5,7 +5,7 @@ const Task = require('../common/task');
 const TasksHandler = require('../api/tasks_handler');
 const TaskImporter = require('../common/task_importer');
 
-const AppConfig = require('../../app_config.json');
+const AppSettings = require('../../app_settings.json');
 
 module.exports = {
     state: {
@@ -18,10 +18,10 @@ module.exports = {
             return state.suites;
         },
         canAddSuite(state) {
-            return state.suites.length < AppConfig.maxSuites;
+            return state.suites.length < AppSettings.maxSuites;
         },
         maxTasksPerSuite() {
-            return AppConfig.maxTasksPerSuite;
+            return AppSettings.maxTasksPerSuite;
         },
         totalTasks(state) {
             return state.suites.reduce((total, s) => {
@@ -46,7 +46,7 @@ module.exports = {
             state.runningTasks--;
         },
         addSuite(state, suite) {
-            if (state.suites.length < AppConfig.maxSuites) {
+            if (state.suites.length < AppSettings.maxSuites) {
                 if(!suite) {
                     suite = new Suite(`Suite ${(state.suites.length + 1)}`);
                 }
@@ -55,7 +55,7 @@ module.exports = {
             TasksHandler.saveTasks(state.suites);
         },
         addTask(state, {index, task}) {
-            if(state.suites[index].length < AppConfig.maxTasksPerSuite) {
+            if(state.suites[index].length < AppSettings.maxTasksPerSuite) {
                 state.suites[index].addTask(task);
             }
             TasksHandler.saveTasks(state.suites);

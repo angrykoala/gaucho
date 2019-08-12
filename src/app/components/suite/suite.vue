@@ -14,7 +14,7 @@
 <script>
 "use strict";
 
-const AppConfig = require("../../../app_config.json");
+const AppSettings = require("../../../app_settings.json");
 
 const components = {
     "task-card": require('./task_card.vue'),
@@ -52,7 +52,7 @@ module.exports = {
             return this.$store.state.editMode;
         },
         canAddTask() {
-            return this.editMode && this.currentSuite.length < AppConfig.maxTasksPerSuite;
+            return this.editMode && this.currentSuite.length < AppSettings.maxTasksPerSuite;
         },
         draggableOptions() {
             const basicOptions = {

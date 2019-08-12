@@ -55,7 +55,8 @@ module.exports = class MainWindow {
 
         win.loadURL(this.indexPath);
 
-        if (devWindow) win.webContents.openDevTools();
+        // if (devWindow) win.webContents.openDevTools();
+        win.webContents.openDevTools();
 
         if (this.userConfig.get(AppConfig.FIELDS.MAXIMIZED) === true) {
             win.maximize();
