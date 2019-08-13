@@ -37,6 +37,9 @@
 
 
 .theme-dark {
+    hr {
+        background-color: #333030;
+    }
     .main-view, .settings-page {
         background-color: $dark-background-color;
         p, h1, h2, h4 {

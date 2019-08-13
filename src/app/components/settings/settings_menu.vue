@@ -93,6 +93,7 @@ module.exports = {
 
 .settings-page {
     padding-top: 30px;
+    height: 100%;
 }
 
 .settings-title {

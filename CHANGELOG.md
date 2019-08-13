@@ -3,6 +3,7 @@
 
 * Settings page styles updated
 * Set parcel as bundle system
+* Changes in settings or suites will be saved immediately
 * Dependencies updated
 * Fontawesome npm packaged used
 * Some code and styles improvements
