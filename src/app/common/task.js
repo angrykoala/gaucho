@@ -27,7 +27,7 @@ class Task {
     }
 
 
-    run(stdout, done) {
+    run(done) {
         this._clearSchedulerTimeout();
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
@@ -41,7 +41,6 @@ class Task {
         const onOutput = (out) => {
             this.output += `\n${out}`;
             this.output = this.output.slice(-outputMaxSize).trim();
-            stdout(this.output);
         };
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
             stderr: onOutput,
@@ -84,14 +83,14 @@ class Task {
         return res;
     }
 
-    schedule(seconds, stdout, onRun, done) {
+    schedule(seconds, onRun, done) {
         this.stop(() => {
             this.status = TaskStatus.scheduled;
             this.timer = new InverseTaskTimer(seconds);
             this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
                 onRun();
-                this.run(stdout, done);
+                this.run(done);
             }, seconds * 1000);
         });
     }

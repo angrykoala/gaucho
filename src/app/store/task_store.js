@@ -141,14 +141,14 @@ module.exports = {
             const task = context.getters.currentSuite.getTask(index);
             if (!task.isRunning()) {
                 context.commit('increaseRunningTasks');
-                task.run(() => {}, () => {
+                task.run(() => {
                     context.commit('decreaseRunningTasks');
                 });
             }
         },
         scheduleTask(context, data) {
             const task = context.getters.currentSuite.getTask(data.index);
-            task.schedule(data.seconds, () => {}, () => {
+            task.schedule(data.seconds, () => {
                 context.commit('increaseRunningTasks'); // On Run
             }, () => {
                 context.commit('decreaseRunningTasks'); // On Completed

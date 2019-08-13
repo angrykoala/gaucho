@@ -56,6 +56,7 @@ module.exports = {
         openMenu() {
             EventHandler.emit("showNavbarMenu");
         },
+        /* eslint-disable complexity */
         menuSelect(selection) {
             switch (selection) {
                 case "about":
@@ -86,6 +87,7 @@ module.exports = {
                     break;
             }
         },
+        /* eslint-enable complexity */
         toggleEdit() {
             this.$store.commit("toggleEdit");
         },

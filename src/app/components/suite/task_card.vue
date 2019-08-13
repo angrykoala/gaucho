@@ -110,7 +110,9 @@ module.exports = {
             confirmationAlert.toggle().then(() => {
                 this.stop();
                 this.$emit('delete');
-            }, () => {});
+            }, () => {
+                // Confirmation cancelled
+            });
         },
         saveTask(task) {
             this.stop();
@@ -135,7 +137,9 @@ module.exports = {
                 const schedulerAlert = new SchedulerAlert("Schedule Task Execution");
                 schedulerAlert.toggle().then((res) => {
                     this.schedule(res);
-                }, () => {});
+                }, () => {
+                    // Schedule cancelled
+                });
             });
             cardMenu.on("duplicate", () => {
                 this.duplicateTask();

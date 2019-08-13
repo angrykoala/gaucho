@@ -100,7 +100,9 @@ module.exports = {
             const alert = new AppAlerts.DeleteConfirmationAlert(`This will remove suite ${title} and all its tasks.`);
             alert.toggle().then(() => {
                 this.$store.dispatch("deleteSuite", index);
-            }).catch(() => {});
+            }).catch(() => {
+                // In case delete is cancelled
+            });
         },
         renameSuite(index) {
             const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
@@ -111,7 +113,9 @@ module.exports = {
                         title: res
                     });
                 }
-            }).catch(() => {});
+            }).catch(() => {
+                // Rename is cancelled
+            });
         },
         suiteDragEnd(evt) {
             this.selectSuite(evt.newIndex);
