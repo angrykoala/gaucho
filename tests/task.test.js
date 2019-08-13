@@ -5,8 +5,8 @@ const assert = require('chai').assert;
 
 const config = require('./config');
 
-const Task = require('../app/common/task');
-const TaskStatus = require('../app/common/task_status');
+const Task = require('../src/app/common/task');
+const TaskStatus = require('../src/app/common/task_status');
 
 describe("Tasks", () => {
     let testTask;
@@ -28,19 +28,12 @@ describe("Tasks", () => {
     });
 
     it("Correct Task Execution", (done) => {
-        let stdoutCalled = false;
         assert.isFalse(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.idle);
 
-        function stdout(text) {
-            assert.strictEqual(text, "hello");
-            stdoutCalled = true;
-        }
-
-        testTask.run(stdout, () => {
+        testTask.run(() => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.ok);
-            assert.isTrue(stdoutCalled);
             done();
         });
         assert.isTrue(testTask.isRunning());
@@ -70,7 +63,7 @@ describe("Tasks", () => {
     it("Invalid Task Execution", (done) => {
         const invalidTask = new Task("Invalid test", "", "invalidTask");
 
-        invalidTask.run(() => {}, () => {
+        invalidTask.run(() => {
             assert.strictEqual(invalidTask.status, TaskStatus.error);
             done();
         });
@@ -78,19 +71,21 @@ describe("Tasks", () => {
 
     it("Update Execution Time", () => {
         assert.throws(() => {
-            testTask.timer._updateElapsedTime();
+            testTask.timer._updateElapsedTime(); // eslint-disable-line no-underscore-dangle
         });
         assert.isNull(testTask.elapsedTime);
 
-        testTask.run(() => {}, () => {});
+        testTask.run(() => {
+            // Do nothing
+        });
         assert.doesNotThrow(() => {
-            testTask.timer._updateElapsedTime();
+            testTask.timer._updateElapsedTime(); // eslint-disable-line no-underscore-dangle
         });
         assert.isNumber(testTask.elapsedTime);
     });
 
     it("Stop task", (done) => {
-        testTask.run(() => {}, () => {
+        testTask.run(() => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.stopped);
             testTask.stop();
@@ -104,12 +99,14 @@ describe("Tasks", () => {
         assert.isFalse(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.idle);
 
-        testTask.run(() => {}, () => {
+        testTask.run(() => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.ok);
             done();
         });
         assert.isTrue(testTask.isRunning());
-        assert.throws(() => testTask.run(() => {}, () => {}));
+        assert.throws(() => testTask.run(() => {
+            // Do nothing
+        }));
     });
 });

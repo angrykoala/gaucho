@@ -3,28 +3,28 @@
 const assert = require('chai').assert;
 const sinon = require('sinon');
 
-const Suite = require('../app/common/suite');
-const Task = require('../app/common/task');
-const TaskStatus = require('../app/common/task_status');
+const Suite = require('../src/app/common/suite');
+const Task = require('../src/app/common/task');
+const TaskStatus = require('../src/app/common/task_status');
 
 describe("Suite", () => {
     let taskStub;
     let testSuite;
 
-    function createStub(taskStub) {
-        sinon.stub(taskStub, "getData").returns("taskStub");
-        sinon.stub(taskStub, "run").callsFake(() => {
-            taskStub.status = TaskStatus.running;
+    function createStub(taskStub2) {
+        sinon.stub(taskStub2, "getData").returns("taskStub");
+        sinon.stub(taskStub2, "run").callsFake(() => {
+            taskStub2.status = TaskStatus.running;
         });
-        sinon.stub(taskStub, "stop").callsFake(() => {
-            taskStub.status = TaskStatus.idle;
+        sinon.stub(taskStub2, "stop").callsFake(() => {
+            taskStub2.status = TaskStatus.idle;
         });
     }
 
-    function restoreStub(taskStub) {
-        taskStub.getData.restore();
-        taskStub.run.restore();
-        taskStub.stop.restore();
+    function restoreStub(taskStub2) {
+        taskStub2.getData.restore();
+        taskStub2.run.restore();
+        taskStub2.stop.restore();
     }
 
     beforeEach(() => {

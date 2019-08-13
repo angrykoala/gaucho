@@ -89,7 +89,7 @@
         "max-depth": ["error", 6],
         "max-len": ["warn", 200],
         "max-lines": ["warn", 300],
-        "max-nested-callbacks": ["error", 3],
+        "max-nested-callbacks": ["error", 4],
         "max-params": ["error", 4],
         "new-cap": "error",
         "new-parens": "error",

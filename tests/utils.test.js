@@ -1,7 +1,7 @@
 "use strict";
 
 const assert = require('chai').assert;
-const Utils = require('../app/common/utils');
+const Utils = require('../src/app/common/utils');
 
 describe("Utils", () => {
     it("Generate Time Strings", () => {

@@ -4,9 +4,9 @@ const assert = require('chai').assert;
 const fs = require('fs');
 const path = require('path');
 
-const Task = require('../app/common/task');
-const Suite = require('../app/common/suite');
-const TaskImporter = require('../app/common/task_importer');
+const Task = require('../src/app/common/task');
+const Suite = require('../src/app/common/suite');
+const TaskImporter = require('../src/app/common/task_importer');
 
 const config = require('./config');
 
