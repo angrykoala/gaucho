@@ -23,7 +23,6 @@ describe("Task Importer", () => {
     testSuite1.addTask(testTask2);
 
     function assertParsedSuite(taskConfig, version) {
-
         assert.strictEqual(taskConfig.version, version);
         const suites = taskConfig.suites;
         assert.isArray(suites);

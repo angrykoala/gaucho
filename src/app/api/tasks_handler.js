@@ -6,7 +6,6 @@ const AppConfig = require('../../common/app_config');
 
 
 module.exports = class TasksHandler {
-
     static loadTasksFromConfig() {
         const tasksConfig = new AppConfig.Tasks();
         let rawSuites = tasksConfig.get("suites");
@@ -44,7 +43,7 @@ module.exports = class TasksHandler {
 
     static _parseData(data) {
         return data.map((suite) => {
-            let result = new Suite(suite.title);
+            const result = new Suite(suite.title);
             result.tasks = suite.tasks.map((task) => new Task(task.title, task.path, task.command));
             return result;
         });

@@ -27,7 +27,7 @@ class TaskTimer {
     }
 
     start() {
-        if(this.state === TIMER_STATE.STARTED) throw new Error("Cannot Start task timer twice");
+        if (this.state === TIMER_STATE.STARTED) throw new Error("Cannot Start task timer twice");
         this._startingTime = new Date();
         this._timerCallback = () => { // Required to register and remove listeners
             this._updateElapsedTime();
@@ -38,7 +38,7 @@ class TaskTimer {
     }
 
     stop() {
-        if(this.state === TIMER_STATE.STOPPED) throw new Error("Cannot Stop task timer twice");
+        if (this.state === TIMER_STATE.STOPPED) throw new Error("Cannot Stop task timer twice");
         TaskEvents.removeListener("time-update", this._timerCallback);
         this._updateElapsedTime();
         this.state = TIMER_STATE.STOPPED;

@@ -1,11 +1,12 @@
 <template>
-<div class="field">
-    <div class="control has-text-centered">
-        <button class="button is-primary is-fullwidth" @click="onClick">
-            <slot /></button>
-        <small class="settings-label" v-if="label">{{label}}</small>
+    <div class="field">
+        <div class="control has-text-centered">
+            <button class="button is-primary is-fullwidth" @click="onClick">
+                <slot></slot>
+            </button>
+            <small class="settings-label" v-if="label">{{label}}</small>
+        </div>
     </div>
-</div>
 </template>
 
 

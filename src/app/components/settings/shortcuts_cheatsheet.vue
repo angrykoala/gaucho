@@ -1,14 +1,14 @@
 <template>
-<div v-once>
-    <div class="columns description is-mobile" v-for="field of fields">
-        <div class="column">
-            <code>{{field.shortcut}}</code>
-        </div>
-        <div class="column">
-            <p>{{field.description}}</p>
+    <div v-once>
+        <div class="columns description is-mobile" v-for="(field, index) of fields" :key="index">
+            <div class="column">
+                <code>{{field.shortcut}}</code>
+            </div>
+            <div class="column">
+                <p>{{field.description}}</p>
+            </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>

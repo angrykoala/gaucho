@@ -47,7 +47,7 @@ module.exports = {
         },
         addSuite(state, suite) {
             if (state.suites.length < AppSettings.maxSuites) {
-                if(!suite) {
+                if (!suite) {
                     suite = new Suite(`Suite ${(state.suites.length + 1)}`);
                 }
                 state.suites.push(suite);
@@ -55,7 +55,7 @@ module.exports = {
             TasksHandler.saveTasks(state.suites);
         },
         addTask(state, {index, task}) {
-            if(state.suites[index].length < AppSettings.maxTasksPerSuite) {
+            if (state.suites[index].length < AppSettings.maxTasksPerSuite) {
                 state.suites[index].addTask(task);
             }
             TasksHandler.saveTasks(state.suites);
@@ -87,7 +87,7 @@ module.exports = {
         validateTaskName(state, data) {
             const suite = state.suites[data.suite];
             const task = suite.tasks[data.task]; // todo: use a store
-            if(suite.isDuplicate(task.title)) {
+            if (suite.isDuplicate(task.title)) {
                 task.title = suite.getValidName(task.title);
             }
         },
@@ -99,7 +99,7 @@ module.exports = {
         },
         _deleteSuite(state, index) {
             let newSelected = Math.min(state.selectedSuite, state.suites.length - 2);
-            if(state.suites.length === 1) {
+            if (state.suites.length === 1) {
                 newSelected = 0;
                 const suite = new Suite(`Suite 1`);
                 state.suites.push(suite);
@@ -139,7 +139,7 @@ module.exports = {
         },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
-            if(!task.isRunning()) {
+            if (!task.isRunning()) {
                 context.commit('increaseRunningTasks');
                 task.run(() => {}, () => {
                     context.commit('decreaseRunningTasks');
@@ -156,19 +156,19 @@ module.exports = {
         },
         stopTask(context, data) {
             let suite = context.getters.currentSuite;
-            if(data.suite) suite = context.getters.suites[data.suite];
+            if (data.suite) suite = context.getters.suites[data.suite];
             const task = suite.getTask(data.task);
             task.stop();
         },
         runSuite(context) {
             const taskNumber = context.getters.currentSuite.length;
-            for(let i = 0; i < taskNumber; i++) {
+            for (let i = 0; i < taskNumber; i++) {
                 context.dispatch("runTask", i);
             }
         },
         scheduleSuite(context, seconds) {
             const taskNumber = context.getters.currentSuite.length;
-            for(let i = 0; i < taskNumber; i++) {
+            for (let i = 0; i < taskNumber; i++) {
                 context.dispatch("scheduleTask", {
                     index: i,
                     seconds: seconds
@@ -177,7 +177,7 @@ module.exports = {
         },
         stopSuite(context, s) {
             const taskNumber = context.getters.suites[s].length;
-            for(let i = 0; i < taskNumber; i++) {
+            for (let i = 0; i < taskNumber; i++) {
                 context.dispatch("stopTask", {
                     suite: s,
                     task: i

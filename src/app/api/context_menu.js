@@ -14,7 +14,7 @@ class ContextMenu extends EventEmitter {
         super();
         this.extraData = null;
         this.menu = new Menu();
-        for(const item of items) {
+        for (const item of items) {
             const event = item.event || item.label;
             const menuItem = new MenuItem({
                 label: item.label,
@@ -28,20 +28,20 @@ class ContextMenu extends EventEmitter {
     }
 
     toggle(extraData) {
-        if(extraData !== undefined) this.extraData = extraData;
-        this.menu.popup({window: remote.getCurrentWindow(), callback: () => {
-            this.emit("close", this.extraData);
-            this.removeAllListeners();
-        }});
+        if (extraData !== undefined) this.extraData = extraData;
+        this.menu.popup({window: remote.getCurrentWindow(),
+            callback: () => {
+                this.emit("close", this.extraData);
+                this.removeAllListeners();
+            }});
     }
 }
 
 class DefaultContextMenu extends ContextMenu {
     constructor(extraOptions = []) {
-        super(extraOptions.concat([
-            {label: "Settings", event: "settings"},
-            {label: "About", event: "about"}
-        ]));
+        super(extraOptions.concat([{label: "Settings",
+            event: "settings"}, {label: "About",
+            event: "about"}]));
     }
 
     toggle(extraData) {
@@ -58,18 +58,16 @@ class DefaultContextMenu extends ContextMenu {
 
 class TabMenu extends DefaultContextMenu {
     constructor() {
-        super([
-            {label: "Delete", event: "delete"},
-            {label: "Rename", event: "rename"},
-            {type: "separator"}
-        ]);
+        super([{label: "Delete",
+            event: "delete"}, {label: "Rename",
+            event: "rename"}, {type: "separator"}]);
     }
 }
 
 class CardMenu extends DefaultContextMenu {
     constructor(task) {
         const items = [];
-        if(task.isRunning()) {
+        if (task.isRunning()) {
             items.push({
                 label: "Stop",
                 event: "stop"
@@ -84,11 +82,9 @@ class CardMenu extends DefaultContextMenu {
                 event: "schedule"
             });
         }
-        super(items.concat([
-            {label: "Delete", event: "delete"},
-            {label: "Duplicate", event: "duplicate"},
-            {type: "separator"}
-        ]));
+        super(items.concat([{label: "Delete",
+            event: "delete"}, {label: "Duplicate",
+            event: "duplicate"}, {type: "separator"}]));
     }
 }
 
@@ -99,7 +95,7 @@ module.exports = {
 
         window.addEventListener('contextmenu', (e) => {
             e.preventDefault();
-            if(!AppAlerts.isVisible())
+            if (!AppAlerts.isVisible())
                 defaultMenu.toggle();
         }, false);
     },

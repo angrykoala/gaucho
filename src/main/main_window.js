@@ -32,7 +32,7 @@ module.exports = class MainWindow {
         let win;
         const windowSize = this.userConfig.get(AppConfig.FIELDS.WINDOW_SIZE);
 
-        let winConfig = {
+        const winConfig = {
             width: windowSize[0],
             height: windowSize[1],
             minWidth: 400,
@@ -64,7 +64,7 @@ module.exports = class MainWindow {
 
         win.on('resize', () => {
             if (this.userConfig.get(AppConfig.FIELDS.MAXIMIZED) !== true) {
-                let size = win.getSize();
+                const size = win.getSize();
                 if (devWindow) size[0] -= this.userConfig.get(AppConfig.FIELDS.DEVTOOLS_SIZE);
                 this.userConfig.set(AppConfig.FIELDS.WINDOW_SIZE, size);
             }

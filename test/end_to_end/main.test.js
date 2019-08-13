@@ -3,7 +3,7 @@
 const assert = require('chai').assert;
 const testConfig = require('./config');
 
-describe.skip('[E2E] Main Frontend', function () {
+describe.skip('[E2E] Main Frontend', function() {
     this.timeout(20000); // needed for Travis builds
     const app = testConfig.testBrowserSetup();
     let browser;
@@ -19,12 +19,12 @@ describe.skip('[E2E] Main Frontend', function () {
         }
     });
 
-    it('Shows Initial Window', async () => {
+    it('Shows Initial Window', async() => {
         const count = await app.client.getWindowCount();
         assert.strictEqual(count, 1);
     });
 
-    it('Shows Task Status Tooltip On Hover', async () => {
+    it('Shows Task Status Tooltip On Hover', async() => {
         const selector = '.task-card:nth-child(1) .tooltip';
         await browser.waitUntilWindowLoaded();
         await browser.moveToObject(selector);
@@ -32,5 +32,4 @@ describe.skip('[E2E] Main Frontend', function () {
         const visibility = await browser.elementIdCssProperty(element.value.ELEMENT, 'visibility');
         assert.equal(visibility.value, "visible");
     });
-
 });

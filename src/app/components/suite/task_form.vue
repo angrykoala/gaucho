@@ -10,7 +10,7 @@
             <div class="field">
                 <label class="label">Command*</label>
                 <div class="control">
-                    <textarea v-model="command" class="textarea"/>
+                    <textarea v-model="command" class="textarea"></textarea>
                 </div>
             </div>
             <div class="field">
@@ -63,7 +63,9 @@ module.exports = {
             }
         },
         clear() {
-            this.title = this.command = this.path = "";
+            this.title = "";
+            this.command = "";
+            this.path = "";
         },
         onTaskUpdate() {
             if (this.task) {

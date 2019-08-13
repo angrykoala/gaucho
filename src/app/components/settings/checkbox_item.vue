@@ -1,12 +1,12 @@
 <template>
-<div class="level is-mobile">
-    <div class="level-left">
-        <p class="level-item">{{label}}</p>
+    <div class="level is-mobile">
+        <div class="level-left">
+            <p class="level-item">{{label}}</p>
+        </div>
+        <div class="level-right">
+            <switch-input class="level-item" :value="value" @input="valueChange"></switch-input>
+        </div>
     </div>
-    <div class="level-right">
-        <switch-input class="level-item" :value="value" @input="valueChange"></switch-input>
-    </div>
-</div>
 </template>
 
 
@@ -16,7 +16,7 @@
 const components = {
     "switch-input": require('../common/switch_input.vue')
 };
-const InputMixin = require('../../mixins/input_mixin')
+const InputMixin = require('../../mixins/input_mixin');
 
 module.exports = {
     props: ["label"],

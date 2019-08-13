@@ -1,12 +1,12 @@
 <template>
-<div class="columns is-centered">
-    <div class="column is-two-thirds">
-        <button-item @select="resetSettings">Reset Settings</button-item>
-        <button-item @select="exportTasks">Export Tasks</button-item>
-        <button-item @select="importTasks" label="Warning: This will override your previous tasks">Import Tasks</button-item>
-        <button-item @select="clearTasks" label="Warning: This will remove all your suites and tasks">Clear Tasks</button-item>
+    <div class="columns is-centered">
+        <div class="column is-two-thirds">
+            <button-item @select="resetSettings">Reset Settings</button-item>
+            <button-item @select="exportTasks">Export Tasks</button-item>
+            <button-item @select="importTasks" label="Warning: This will override your previous tasks">Import Tasks</button-item>
+            <button-item @select="clearTasks" label="Warning: This will remove all your suites and tasks">Clear Tasks</button-item>
+        </div>
     </div>
-</div>
 </template>
 
 
@@ -21,8 +21,8 @@ const dialog = app.dialog;
 const DeleteConfirmationAlert = require('../../api/app_alerts').DeleteConfirmationAlert;
 
 const components = {
-    "button-item": require('./button_item.vue'),
-}
+    "button-item": require('./button_item.vue')
+};
 
 module.exports = {
     components: components,
@@ -71,11 +71,13 @@ module.exports = {
                 return this.$store.dispatch("clearTasks").then(() => {
                     this.$store.commit("toggleActiveSuite", 0);
                 });
-            }, () => {});
+            }, () => {
+                // In case of not confirmed
+            });
         },
         resetSettings() {
             this.$emit("resetSettings");
         }
     }
-}
+};
 </script>

@@ -5,7 +5,6 @@ const assert = require('chai').assert;
 const testConfig = require('./config');
 
 
-
 describe.skip("[E2E] Menu", function() {
     this.timeout(20000); // needed for Travis builds
     const app = testConfig.testBrowserSetup();
@@ -21,7 +20,7 @@ describe.skip("[E2E] Menu", function() {
             return app.stop();
         }
     });
-    it('Menu using Tab', async () => {
+    it('Menu using Tab', async() => {
         await app.client.waitUntilWindowLoaded();
         await app.client.keys(['Tab', 'Enter']);
         await browser.waitForVisible("#navbar-menu");
@@ -30,7 +29,7 @@ describe.skip("[E2E] Menu", function() {
         assert.isTrue(hasFocus);
     });
 
-    it("Open Config Menu", async () => {
+    it("Open Config Menu", async() => {
         await browser.waitUntilWindowLoaded();
         await browser.click("#navbar-menu-button");
         await browser.waitForVisible("#navbar-menu");
@@ -40,7 +39,7 @@ describe.skip("[E2E] Menu", function() {
         assert.isTrue(isVisible);
     });
 
-    it("Open About Menu", async () => {
+    it("Open About Menu", async() => {
         await browser.waitUntilWindowLoaded();
         await browser.click("#navbar-menu-button");
         await browser.waitForVisible("#navbar-menu");

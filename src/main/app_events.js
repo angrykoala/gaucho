@@ -6,7 +6,6 @@ const {
 } = require('electron');
 
 module.exports = function(onReadyCallback) {
-
     ipcMain.on('close-app', () => {
         app.quit();
     });
@@ -27,5 +26,4 @@ module.exports = function(onReadyCallback) {
         // FOR macOS
         onReadyCallback();
     });
-
 };

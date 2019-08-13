@@ -1,14 +1,21 @@
 <template>
     <div class="tabs is-fullwidth">
         <draggable v-model="suites" tag="ul" v-bind="draggableOptions" @end="suiteDragEnd">
-            <li v-for="(suite, index) in suites" class="tab-suite-item" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)">
+            <li v-for="(suite, index) in suites" class="tab-suite-item"
+                @contextmenu.stop="context(index)"
+                :style="{ width: tabsWidth }"
+                :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}"
+                @click="selectSuite(index)"
+                @dragover="selectSuite(index)"
+                :key="index"
+            >
                 <a class="columns is-mobile is-centered tab-content">
                     <div class="column tab-text-container">
                         <span class="level-item tab-text">{{suite.title}}</span>
                     </div>
                     <div class="column is-narrow" v-if="editMode && isSelected(index)">
                         <span class="icon tab-icon level-item" @click="removeSuite(index)">
-                            <i class="fas fa-times" title="Delete"/>
+                            <i class="fas fa-times" title="Delete"></i>
                         </span>
                     </div>
                 </a>
@@ -16,7 +23,7 @@
             <li v-if="canAddSuite" class="inactive" :style="{ width: tabsWidth }" @click="addNewSuite">
                 <a class="add-suite-tab">
                     <span class="icon">
-                        <a class="fas fa-plus"/>
+                        <a class="fas fa-plus"></a>
                     </span>
                 </a>
             </li>
@@ -56,7 +63,7 @@ module.exports = {
         },
         tabsWidth() {
             let tabs = this.suites.length;
-            if(this.editMode && tabs < 6) tabs++;
+            if (this.editMode && tabs < 6) tabs++;
             return `${100 / tabs}px`;
         },
         draggableOptions() {
@@ -98,7 +105,7 @@ module.exports = {
         renameSuite(index) {
             const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
             alert.toggle().then((res) => {
-                if(res.length > 0) {
+                if (res.length > 0) {
                     this.$store.commit("renameSuite", {
                         suite: index,
                         title: res

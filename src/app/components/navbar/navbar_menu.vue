@@ -1,14 +1,13 @@
 <template>
-<dropdown-menu open-event="showNavbarMenu" class="navbar-dropdown-menu">
-    <template v-for="item in options">
-        <hr v-if="item.value==='divider'" class="dropdown-divider">
-        <a v-else class="dropdown-item" @click.prevent="onClick(item.value)">
-            {{item.name}}
-        </a>
-    </template>
-</dropdown-menu>
+    <dropdown-menu open-event="showNavbarMenu" class="navbar-dropdown-menu">
+        <template v-for="(item, i) in options">
+            <hr v-if="item.value==='divider'" class="dropdown-divider" :key="i">
+            <a v-else class="dropdown-item" @click.prevent="onClick(item.value)" :key="i">
+                {{item.name}}
+            </a>
+        </template>
+    </dropdown-menu>
 </template>
-
 
 
 <script>

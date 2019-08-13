@@ -1,30 +1,30 @@
 <template>
-<section class="section settings-page" @contextmenu.stop="">
-    <a class="back-button" @click="saveSettings">
-        <span class="icon is-small">
-            <i class="fas fa-arrow-left" />
-        </span>
-        Go Back
-    </a>
-    <div class="columns is-mobile is-centered">
-        <div class="column is-two-thirds settings-menu">
-            <h1 class="title settings-title">Settings</h1>
-            <h3 class="settings-subtitle">Display</h3>
-            <div class="settings-menu-section">
-                <checkbox-item v-model="bottomBar" label="Bottom bar"></checkbox-item>
-                <checkbox-item v-model="showTimer" label="Show timer"></checkbox-item>
-                <theme-selector v-model="theme"></theme-selector>
-            </div>
-            <hr>
-            <h3 class="settings-subtitle">Actions</h3>
-            <settings-actions @resetSettings="resetSettings"></settings-actions>
-            <h3 class="settings-subtitle">Shortcuts</h3>
-            <div class="settings-menu-section">
-                <shortcuts-cheatsheet />
+    <section class="section settings-page" @contextmenu.stop="">
+        <a class="back-button" @click="saveSettings">
+            <span class="icon is-small">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            Go Back
+        </a>
+        <div class="columns is-mobile is-centered">
+            <div class="column is-two-thirds settings-menu">
+                <h1 class="title settings-title">Settings</h1>
+                <h3 class="settings-subtitle">Display</h3>
+                <div class="settings-menu-section">
+                    <checkbox-item v-model="bottomBar" label="Bottom bar"></checkbox-item>
+                    <checkbox-item v-model="showTimer" label="Show timer"></checkbox-item>
+                    <theme-selector v-model="theme"></theme-selector>
+                </div>
+                <hr>
+                <h3 class="settings-subtitle">Actions</h3>
+                <settings-actions @resetSettings="resetSettings"></settings-actions>
+                <h3 class="settings-subtitle">Shortcuts</h3>
+                <div class="settings-menu-section">
+                    <shortcuts-cheatsheet></shortcuts-cheatsheet>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </template>
 
 
@@ -66,7 +66,7 @@ module.exports = {
         resetSettings() {
             this.bottomBar = true;
             this.showTimer = true;
-            this.theme = "classic"
+            this.theme = "classic";
         },
         _close() {
             this.$store.commit("toggleSettings");

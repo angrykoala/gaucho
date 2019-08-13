@@ -5,14 +5,14 @@
                 <p>
                     <span v-if="editMode" class="drag-handle">
                         <span class="icon">
-                            <i class="fas fa-equals"/>
+                            <i class="fas fa-equals"></i>
                         </span>
                     </span>
                     <span v-show="open" class="icon">
-                        <i class="fas fa-caret-down"/>
+                        <i class="fas fa-caret-down"></i>
                     </span>
                     <span v-show="!open" class="icon">
-                        <i class="fas fa-caret-right"/>
+                        <i class="fas fa-caret-right"></i>
                     </span>
                     {{task.title}}
                 </p>
@@ -27,7 +27,7 @@
                         <button v-else class="button is-primary task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
                     <div class="column">
-                        <task-status :status="status"/>
+                        <task-status :status="status"></task-status>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="task-output" v-if="!editMode">
                     <pre>{{task.output}}</pre>
                 </div>
-                <task-form v-else :task="task" @save="saveTask"/>
+                <task-form v-else :task="task" @save="saveTask"></task-form>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@ module.exports = {
         executionTime() {
             if (this.task.elapsedTime === null) return "-";
             let timeString = utils.generateTimeString(this.task.elapsedTime);
-            if(this.scheduled) timeString = `- ${timeString}`;
+            if (this.scheduled) timeString = `- ${timeString}`;
             return timeString;
         },
         showTimer() {
@@ -81,7 +81,7 @@ module.exports = {
             return this.task.status;
         },
         runButtonText() {
-            if(this.scheduled || this.running) return "Stop";
+            if (this.scheduled || this.running) return "Stop";
             else return "Run";
         }
     },
@@ -111,7 +111,6 @@ module.exports = {
                 this.stop();
                 this.$emit('delete');
             }, () => {});
-
         },
         saveTask(task) {
             this.stop();

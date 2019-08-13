@@ -4,10 +4,10 @@
             <div class="column has-text-centered">
                 <a>
                     <span v-show="open" class="icon has-text-grey-dark">
-                        <i class="fas fa-caret-down"/>
+                        <i class="fas fa-caret-down"></i>
                     </span>
                     <span v-show="!open" class="icon has-text-grey-dark">
-                        <i class="fas fa-caret-right"/>
+                        <i class="fas fa-caret-right"></i>
                     </span>
                     Add New Task
                 </a>
@@ -15,7 +15,7 @@
         </div>
         <div v-if="edit" class="columns is-mobile">
             <div class="column">
-                <task-form @save="saveTask"/>
+                <task-form @save="saveTask"></task-form>
             </div>
         </div>
     </div>

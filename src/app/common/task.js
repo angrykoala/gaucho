@@ -22,7 +22,7 @@ class Task {
     }
 
     get elapsedTime() {
-        if(!this.timer) return null;
+        if (!this.timer) return null;
         return this.timer.elapsedSeconds;
     }
 
@@ -61,9 +61,9 @@ class Task {
         if (this.isRunning()) {
             yerbamate.stop(this.proc, cb);
             this.status = TaskStatus.stopped;
-        } else{
+        } else {
             this.status = TaskStatus.stopped;
-            if(cb) cb();
+            if (cb) cb();
         }
     }
 
@@ -76,7 +76,7 @@ class Task {
     }
 
     getData() {
-        let res = {
+        const res = {
             title: this.title,
             command: this.command
         };
@@ -105,7 +105,7 @@ class Task {
     }
 
     _clearSchedulerTimeout() {
-        if(this._scheduleTimeout) {
+        if (this._scheduleTimeout) {
             clearTimeout(this._scheduleTimeout);
             this.timer = null;
         }

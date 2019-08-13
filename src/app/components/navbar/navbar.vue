@@ -1,33 +1,32 @@
 <template>
-<div>
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <div class="navbar-item unselectable">
-                <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
-                <h1 class="title is-4">Gaucho</h1>
-                <h2 class="beta-subtitle is-4">Beta</h2>
+    <div>
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <div class="navbar-item unselectable">
+                    <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
+                    <h1 class="title is-4">Gaucho</h1>
+                    <h2 class="beta-subtitle is-4">Beta</h2>
+                </div>
             </div>
-        </div>
-        <div class="navbar-menu is-active">
-            <div class="navbar-end">
-                <a :class="{selected: editMode}" class="navbar-item" @click.prevent="toggleEdit">
-                    <span class="icon">
-                        <i class="fas fa-edit" title="Edit"></i>
-                    </span>
-                </a>
-                <a class="navbar-item" @click.stop="openMenu">
-                    <span class="icon">
-                        <i class="fas fa-bars" title="Menu"></i>
-                    </span>
-                </a>
+            <div class="navbar-menu is-active">
+                <div class="navbar-end">
+                    <a :class="{selected: editMode}" class="navbar-item" @click.prevent="toggleEdit">
+                        <span class="icon">
+                            <i class="fas fa-edit" title="Edit"></i>
+                        </span>
+                    </a>
+                    <a class="navbar-item" @click.stop="openMenu">
+                        <span class="icon">
+                            <i class="fas fa-bars" title="Menu"></i>
+                        </span>
+                    </a>
+                </div>
             </div>
-        </div>
-        <navbar-menu @select="menuSelect"></navbar-menu>
-        <suite-tabs class="suite-tabs"></suite-tabs>
-    </nav>
-</div>
+            <navbar-menu @select="menuSelect"></navbar-menu>
+            <suite-tabs class="suite-tabs"></suite-tabs>
+        </nav>
+    </div>
 </template>
-
 
 
 <script>
@@ -69,10 +68,11 @@ module.exports = {
                     this.$store.dispatch("stopSuite", this.$store.state.tasks.selectedSuite);
                     break;
                 case "scheduleSuite":
-                    const schedulerAlert = new SchedulerAlert("Schedule Task Execution");
-                    schedulerAlert.toggle().then((res) => {
+                    new SchedulerAlert("Schedule Task Execution").toggle().then((res) => {
                         this.$store.dispatch("scheduleSuite", res);
-                    }, () => {});
+                    }, () => {
+                        // Cancelled scheduling
+                    });
                     break;
                 case "settings":
                     this.$store.commit("toggleSettings");

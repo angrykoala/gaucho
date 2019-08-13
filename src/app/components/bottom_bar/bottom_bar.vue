@@ -1,18 +1,18 @@
 <template>
-<footer class="footer">
-    <div class="level">
-        <div class="level-left">
-            <div class="level-item">
-                <b>Total Tasks: {{totalTasks}}</b>
+    <footer class="footer">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <b>Total Tasks: {{totalTasks}}</b>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <b>Running Tasks: {{runningTasks}}</b>
+                </div>
             </div>
         </div>
-        <div class="level-right">
-            <div class="level-item">
-                <b>Running Tasks: {{runningTasks}}</b>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 </template>
 
 <script>

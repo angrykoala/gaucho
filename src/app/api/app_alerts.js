@@ -8,7 +8,7 @@ function init(newStore) {
     store = newStore;
 }
 
-function _getTheme() {
+function getTheme() {
     return `theme-${store.state.userConfig.theme}`;
 }
 
@@ -16,7 +16,7 @@ class AppAlert {
     constructor(title, options = {}) {
         this.alertOptions = Object.assign({
             title: title,
-            customClass: _getTheme(),
+            customClass: getTheme(),
             heightAuto: false
         }, options);
     }

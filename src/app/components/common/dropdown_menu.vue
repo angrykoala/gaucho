@@ -2,7 +2,7 @@
     <div v-on-clickaway="away" :class="{'is-active': show}" class="dropdown is-right is-pulled-right">
         <div class="dropdown-menu" role="menu">
             <div class="dropdown-content" @click="away">
-                <slot/>
+                <slot></slot>
             </div>
         </div>
     </div>

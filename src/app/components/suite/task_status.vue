@@ -1,25 +1,25 @@
 <template>
-    <div v-if="status===TaskStatus.running" class="spinner-container" >
-        <spinner/>
+    <div v-if="status===TaskStatus.running" class="spinner-container">
+        <spinner></spinner>
     </div>
     <div v-else-if="status===TaskStatus.idle || status===TaskStatus.stopped">
         <span class="icon is-medium has-text-centered">
-            <i class="fas fa-lg fa-pause-circle"/>
+            <i class="fas fa-lg fa-pause-circle"></i>
         </span>
     </div>
     <div v-else-if="status===TaskStatus.error">
         <span class="icon is-medium has-text-centered">
-            <i class="fas fa-lg fa-exclamation-circle has-text-danger"/>
+            <i class="fas fa-lg fa-exclamation-circle has-text-danger"></i>
         </span>
     </div>
     <div v-else-if="status===TaskStatus.ok">
         <span class="icon is-medium has-text-centered">
-            <i class="fas fa-lg fa-check-circle has-text-success"/>
+            <i class="fas fa-lg fa-check-circle has-text-success"></i>
         </span>
     </div>
     <div v-else-if="status===TaskStatus.scheduled">
         <span class="icon is-medium has-text-centered">
-            <i class="fas fa-lg fa-clock"/>
+            <i class="fas fa-lg fa-clock"></i>
         </span>
     </div>
 </template>

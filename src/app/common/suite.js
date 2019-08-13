@@ -47,7 +47,7 @@ class Suite {
     }
 
     runAll() {
-        for (let task of this.tasks) {
+        for (const task of this.tasks) {
             if (!task.isRunning()) task.run();
         }
     }

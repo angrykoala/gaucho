@@ -20,15 +20,15 @@ module.exports = {
             });
         });
     },
-    import (filename) {
+    import(filename) {
         return new Promise((resolve, reject) => {
             fs.readFile(filename, 'utf-8', (err, data) => {
-                if(err) return reject(err);
-                try{
+                if (err) return reject(err);
+                try {
                     const result = JSON.parse(data);
                     return resolve(result);
-                }catch(err) {
-                    return reject(err);
+                } catch (err2) {
+                    return reject(err2);
                 }
             });
         });

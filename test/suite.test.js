@@ -38,7 +38,7 @@ describe("Suite", () => {
     });
 
     it("Create New Suite", () => {
-        let suite = new Suite("Suite Title");
+        const suite = new Suite("Suite Title");
         assert.strictEqual(suite.title, "Suite Title");
         assert.strictEqual(suite.length, 0);
     });

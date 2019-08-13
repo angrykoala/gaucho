@@ -68,7 +68,7 @@ describe("Tasks", () => {
     });
 
     it("Invalid Task Execution", (done) => {
-        let invalidTask = new Task("Invalid test", "", "invalidTask");
+        const invalidTask = new Task("Invalid test", "", "invalidTask");
 
         invalidTask.run(() => {}, () => {
             assert.strictEqual(invalidTask.status, TaskStatus.error);
