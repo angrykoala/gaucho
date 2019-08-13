@@ -20,7 +20,7 @@
 <script>
 "use strict";
 
-const InputMixin = require('../../mixins/input_mixin')
+const InputMixin = require('../../mixins/input_mixin');
 
 module.exports = {
     mixins: [InputMixin]
