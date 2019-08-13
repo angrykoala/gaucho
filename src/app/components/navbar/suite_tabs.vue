@@ -60,11 +60,12 @@ module.exports = {
             return `${100 / tabs}px`;
         },
         draggableOptions() {
-            const basicOptions = {
+            return {
                 filter: ".tab-icon",
-                draggable: ".tab-suite-item"
+                draggable: ".tab-suite-item",
+                disabled: !this.editMode,
+                group: "suites"
             };
-            return Object.assign(basicOptions, {'disabled': !this.editMode});
         }
     },
     methods: {

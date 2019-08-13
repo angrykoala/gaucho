@@ -55,17 +55,14 @@ module.exports = {
             return this.editMode && this.currentSuite.length < AppSettings.maxTasksPerSuite;
         },
         draggableOptions() {
-            const basicOptions = {
+            return {
                 handle: '.drag-handle',
                 group: {
                     name: 'tasks',
                     put: this.canAddTask
-                }
+                },
+                disabled: !this.editMode
             };
-
-            return Object.assign(basicOptions, {
-                'disabled': !this.editMode
-            });
         }
     },
     watch: {
