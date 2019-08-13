@@ -59,7 +59,7 @@ module.exports = {
                 handle: '.drag-handle',
                 group: {
                     name: 'tasks',
-                    put: this.canAddTask
+                    put: this.canAddTask ? ["tasks"] : false // Only allow elements from "tasks" groups if caAddTask
                 },
                 disabled: !this.editMode
             };
