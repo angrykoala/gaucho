@@ -8,6 +8,15 @@ _by @angrykoala_
 ![Gaucho Screenshot](https://angrykoala.github.io/gaucho/images/gaucho_preview.png)   
 _Gaucho 0.5.0_
 
+## Features
+
+* Easily run commands using a simple GUI
+* Schedule your tasks
+* Multiplatform
+* Import/Export tasks
+* Handy log output
+* Themes
+
 ## Download
 
 Gaucho can be downloaded [here](https://github.com/angrykoala/gaucho/releases).
@@ -46,14 +55,14 @@ Next to the edit button, is the menu button. When clicking the menu, several opt
 **Normal mode**   
 * _Run Suite_: Runs all tasks in the current suite (except those already running)
 * _Stop Suite_: Stops all running tasks in suite
-
-**Edit mode**  
-* _Add new Suite_: Created a new suite
-* _Delete Suite_: Deletes current suite
+* _Schedule Suite_: Schedules all tasks in suite
 
 **Other menus**
 * _Configuration_: Will show the configuration menu
 * _About_: Some information about Gaucho such as the version you are running
+* _Quit_: Closes Gaucho
+
+Remember that more contextual options are available with secondary clicl.
 
 ### User and Tasks Configuration
 All tasks and user changes are saved automatically when closing gaucho. This includes all the tasks/suites information as well as the window size.
@@ -67,17 +76,17 @@ If you want to contribute to Gaucho, create a new different version of Gaucho, o
 Clone/download source code from the github repo. Make sure you have _node_ and _npm_ already installed in your system:
 
 1. `npm install` to install electron and all the dependencies.
-    * `npm run gulp` to compile and bundle the project
-2. `npm start` to start _gaucho_.
-    * `npm run start-dev` to run _gaucho_ with chrome dev tools enabled.
-    * `NODE_ENV=test npm start` will run Gaucho in test mode, which will not store or change any configuration or tasks.
+2. `npm run start-dev` to run _gaucho_ in dev mode with chrome dev tools enabled.
 3. `npm run dist` to build and package _gaucho_ for your system. The artifacts are located in `dist/`.
-    * If you want to pass arguments to build to other architectures, platforms and/or targets, add `--` at the end and then write the arguments, like this: `npm run dist -- -l --ia32`. The arguments are documented in [electron-builder docs](https://www.electron.build/cli)
-    * **Experimental**: To get armv7l builds, execute `npm run dist -- --armv7l`
     * If you encounter a problem while building, please, check [Common Issues](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
 4. `npm run dist-all` to build and package _gaucho_ for all supported architectures and platforms, it will take a while.
 5. `npm test` to run the automated tests.
     * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
+
+
+**Release to snap with**
+1. snapcraft login
+2. snapcraft push Gaucho_0.6.0_amd64.snap --release=stable
 
 ### Troubleshooting
 
