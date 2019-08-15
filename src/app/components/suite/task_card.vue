@@ -23,7 +23,7 @@
                         <p>{{executionTime}}</p>
                     </div>
                     <div class="column">
-                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun">{{runButtonText}}</button>
+                        <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun" :disabled="!runButtonEnabled">{{runButtonText}}</button>
                         <button v-else class="button is-primary task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
                     <div class="column">
@@ -45,7 +45,10 @@
 "use strict";
 
 const utils = require('../../common/utils');
-const {DeleteConfirmationAlert, SchedulerAlert} = require('../../api/app_alerts');
+const {
+    DeleteConfirmationAlert,
+    SchedulerAlert
+} = require('../../api/app_alerts');
 const ContextMenu = require('../../api/context_menu');
 
 const components = {
@@ -57,6 +60,11 @@ const components = {
 module.exports = {
     props: ["task", "open", "index"],
     components: components,
+    data() {
+        return {
+            runButtonEnabled: true
+        };
+    },
     computed: {
         running() {
             return this.task.isRunning();
@@ -90,6 +98,7 @@ module.exports = {
             else this.run();
         },
         run() {
+            this.disableButton();
             this.$store.dispatch("runTask", this.index);
         },
         schedule(seconds) {
@@ -99,7 +108,16 @@ module.exports = {
             });
         },
         stop() {
-            this.$store.dispatch("stopTask", {task: this.index});
+            this.disableButton();
+            this.$store.dispatch("stopTask", {
+                task: this.index
+            });
+        },
+        disableButton(ms = 100) {
+            this.runButtonEnabled = false;
+            setTimeout(() => { // Avoid run/stop/run race condition
+                this.runButtonEnabled = true;
+            }, ms);
         },
         taskSelected() {
             this.$emit("selected");
@@ -151,26 +169,25 @@ module.exports = {
 
 
 <style lang="scss" scoped>
-.task-button{
+.task-button {
     width: 80px;
 }
 
-.column{
+.column {
     margin-bottom: 0;
     margin-top: 0;
 }
 
-p{
+p {
     padding-top: 4px;
 }
 
-
-.task-card-header{
+.task-card-header {
     margin-bottom: 0;
     margin-top: 0;
     padding-bottom: 0;
     padding-left: 10px;
-    padding-right:10px;
+    padding-right: 10px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-color: #e2e2e2;

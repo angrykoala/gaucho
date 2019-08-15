@@ -8,6 +8,8 @@
 * Fontawesome npm packaged used
 * Some code and styles improvements
 * Fix tasks automatic scroll
+* Fixed issue where scheduled task could be executed
+* Fixed minor race conditions on run and stop tasks
 
 0.5.4 / 2018-12-28
 ==================
