@@ -139,7 +139,7 @@ module.exports = {
         },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
-            if (!task.isRunning()) {
+            if (!task.isRunning() && !task.isScheduled()) {
                 context.commit('increaseRunningTasks');
                 task.run(() => {
                     context.commit('decreaseRunningTasks');

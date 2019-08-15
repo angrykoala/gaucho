@@ -67,7 +67,7 @@ class TabMenu extends DefaultContextMenu {
 class CardMenu extends DefaultContextMenu {
     constructor(task) {
         const items = [];
-        if (task.isRunning()) {
+        if (task.isRunning() || task.isScheduled()) {
             items.push({
                 label: "Stop",
                 event: "stop"
