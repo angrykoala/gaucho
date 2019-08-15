@@ -1,0 +1,14 @@
+a, button {
+    cursor: default !important;
+}
+
+h1, h2, i, label, p, a, b {
+    user-select: none !important;
+    cursor: default !important;
+}
+
+.unselectable {
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+}
