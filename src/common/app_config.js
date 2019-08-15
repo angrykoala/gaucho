@@ -17,7 +17,7 @@ const defaultUserConfig = {
     bottomBar: true,
     firstVisit: false,
     showTimer: true,
-    theme: "light"
+    theme: "classic"
 };
 
 const defaultTasks = {
