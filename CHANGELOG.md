@@ -7,6 +7,7 @@
 * Dependencies updated
 * Fontawesome npm packaged used
 * Some code and styles improvements
+* Fix tasks automatic scroll
 
 0.5.4 / 2018-12-28
 ==================

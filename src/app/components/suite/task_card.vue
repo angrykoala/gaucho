@@ -34,9 +34,7 @@
         </div>
         <div v-if="open" class="columns is-mobile">
             <div class="column task-output-wrapper">
-                <div class="task-output" v-if="!editMode">
-                    <pre>{{task.output}}</pre>
-                </div>
+                <text-output v-if="!editMode" :text="task.output"></text-output>
                 <task-form v-else :task="task" @save="saveTask"></task-form>
             </div>
         </div>
@@ -52,7 +50,8 @@ const ContextMenu = require('../../api/context_menu');
 
 const components = {
     "task-status": require('./task_status.vue'),
-    "task-form": require('./task_form.vue')
+    "task-form": require('./task_form.vue'),
+    "text-output": require('../common/text_output')
 };
 
 module.exports = {
@@ -159,22 +158,6 @@ module.exports = {
 .column{
     margin-bottom: 0;
     margin-top: 0;
-}
-
-.task-output {
-    background-color: #eeeeee;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 200px;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-color: #e2e2e2;
-    pre {
-        overflow: hidden;
-        white-space: pre-wrap;
-        background-color: transparent;
-        padding: 0.75rem;
-    }
 }
 
 p{
