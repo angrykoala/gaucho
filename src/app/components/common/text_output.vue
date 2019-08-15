@@ -33,6 +33,9 @@ module.exports = {
                         container.scrollTop = container.scrollHeight;
                     });
                 }
+                if (!this.text) {
+                    this.follow = true;
+                }
             }
         }
     }
