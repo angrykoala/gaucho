@@ -41,3 +41,8 @@ jspm_packages
 tasks.json
 config.json
 builds
+
+dist/
+public/
+resources/
+.cache

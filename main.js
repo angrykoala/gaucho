@@ -4,7 +4,7 @@ const ejs=require('ejs');
 const fs=require('fs');
 
 const data={
-    version: "0.5.0",
+    version: "0.6.1",
     features: require('./features.json')
 }
 
