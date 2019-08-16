@@ -1,3 +1,10 @@
+0.6.1 / 2019-08-17
+==================
+
+* Fixed configuration data bug
+* Name  reverted to gaucho (lowercase)
+* Some dependencies cleanup
+
 0.6.0 / 2019-08-16
 ==================
 

@@ -1,6 +1,6 @@
 {
-  "name": "Gaucho",
-  "version": "0.6.0",
+  "name": "gaucho",
+  "version": "0.6.1",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
@@ -8,7 +8,7 @@
     "vuex": "^3.1.1",
     "mousetrap": "^1.6.3",
     "vue": "^2.6.10",
-    "sweetalert2": "^8.15.3",
+    "sweetalert2": "^8.16.0",
     "vue-clickaway": "^2.2.2",
     "@fortawesome/fontawesome-free": "^5.10.1",
     "vuedraggable": "^2.23.0",
@@ -27,9 +27,8 @@
     "husky": "^3.0.3",
     "mocha": "^6.2.0",
     "parcel-bundler": "^1.12.3",
-    "sass": "^1.22.9",
+    "sass": "^1.22.10",
     "sinon": "^7.4.1",
-    "spectron": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "scripts": {
@@ -45,7 +44,7 @@
   },
   "build": {
     "appId": "angrykoala.gaucho",
-    "productName": "Gaucho",
+    "productName": "gaucho",
     "linux": {
       "target": [
         "deb",
