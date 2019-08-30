@@ -1,3 +1,9 @@
+0.6.2 / 2019-08-30
+==================
+
+* Reverted version of electron-store to avoid snap bugs
+* Dependencies updated
+
 0.6.1 / 2019-08-17
 ==================
 
