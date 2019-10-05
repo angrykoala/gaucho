@@ -192,4 +192,8 @@ p {
     border-bottom-width: 1px;
     border-color: #e2e2e2;
 }
+
+.task-output-wrapper {
+    width: 100%;
+}
 </style>

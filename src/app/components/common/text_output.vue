@@ -46,14 +46,14 @@ module.exports = {
 <style lang="scss" scoped>
 .text-container {
     background-color: #eeeeee;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: auto;
     height: 200px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-color: #e2e2e2;
     pre {
-        overflow: hidden;
+        width: fit-content;
+        overflow: visible;
         white-space: pre-wrap;
         background-color: transparent;
         padding: 0.75rem;
