@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="open" class="columns is-mobile is-horizontally-scrollable">
+        <div v-if="open" class="columns is-mobile">
             <div class="column task-output-wrapper">
                 <text-output v-if="!editMode" :text="task.output"></text-output>
                 <task-form v-else :task="task" @save="saveTask"></task-form>
@@ -178,10 +178,6 @@ module.exports = {
     margin-top: 0;
 }
 
-.is-horizontally-scrollable {
-    overflow-x: auto;
-}
-
 p {
     padding-top: 4px;
 }
@@ -195,5 +191,9 @@ p {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-color: #e2e2e2;
+}
+
+.task-output-wrapper {
+    width: 100%;
 }
 </style>
