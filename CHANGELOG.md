@@ -1,3 +1,12 @@
+0.6.3 / 2019-12-04
+==================
+
+* Fixed inaccessible overflow text in task output
+* Minor style improvements on main menu
+* Fix in card header and output styles
+* Dependencies updated
+* Removed some unnecessary updates
+
 0.6.2 / 2019-08-30
 ==================
 

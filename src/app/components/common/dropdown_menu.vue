@@ -45,5 +45,6 @@ module.exports = {
 .dropdown-menu {
     min-width: 6rem;
     margin-right: 3px;
+    top: 80%;
 }
 </style>
