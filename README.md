@@ -77,6 +77,7 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
     * `npm run eslint` to run [eslint](https://eslint.org) to check code style.
     * Please, ensure the tests and linter are passing before creating a pull requests. Add tests for your changes.
 
+* To install snap version locally: `snap install --dangerous gaucho_0.6.3_amd64.deb`
 
 **Release to snap:**
 1. snapcraft login

@@ -1,7 +1,10 @@
 0.6.3 / ####-##-##
 ==================
 
-* Fixed innaccessible overflow text in task output
+* Fixed inaccessible overflow text in task output
+* Minor style improvements on main menu
+* Dependencies updated
+* Removed some unnecessary updates
 
 0.6.2 / 2019-08-30
 ==================
