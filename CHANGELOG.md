@@ -1,3 +1,8 @@
+0.6.3 / ####-##-##
+==================
+
+* Fixed innaccessible overflow text in task output
+
 0.6.2 / 2019-08-30
 ==================
 
