@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="open" class="columns is-mobile">
+        <div v-if="open" class="columns is-mobile task-output-container">
             <div class="column task-output-wrapper">
                 <text-output v-if="!editMode" :text="task.output"></text-output>
                 <task-form v-else :task="task" @save="saveTask"></task-form>
@@ -193,7 +193,12 @@ p {
     border-color: #e2e2e2;
 }
 
-.task-output-wrapper {
-    width: 100%;
+.task-output-container{
+    margin-top: 0;
+
+    .task-output-wrapper {
+        width: 100%;
+        padding-top: 0;
+    }
 }
 </style>

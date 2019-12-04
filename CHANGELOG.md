@@ -3,6 +3,7 @@
 
 * Fixed inaccessible overflow text in task output
 * Minor style improvements on main menu
+* Fix in card header and output styles
 * Dependencies updated
 * Removed some unnecessary updates
 
