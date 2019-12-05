@@ -1,12 +1,14 @@
 <template>
     <div class="text-container" ref="text-container" @scroll="onScroll">
-        <pre>{{text}}</pre>
+        <pre v-html="formattedText"></pre>
     </div>
 </template>
 
 
 <script>
 "use strict";
+
+const TextFormatter = require('../../common/text_formatter');
 
 module.exports = {
     props: ['text'],
@@ -23,8 +25,13 @@ module.exports = {
             } else this.follow = true;
         }
     },
+    computed: {
+        formattedText() {
+            return TextFormatter.formatTaskOutput(this.text);
+        }
+    },
     watch: {
-        text: {
+        formattedText: {
             immediate: true,
             handler() {
                 if (this.follow) {

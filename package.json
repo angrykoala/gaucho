@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "ansi-to-html": "^0.6.13",
     "electron-store": "^5.1.0",
     "mousetrap": "^1.6.3",
     "run": "^1.4.0",

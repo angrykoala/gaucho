@@ -1,6 +1,7 @@
 0.6.4 / ####-##-##
 ==================
 
+* Formats color in task output
 * Electron fixed to v6, removes window menu
 
 0.6.3 / 2019-12-04
