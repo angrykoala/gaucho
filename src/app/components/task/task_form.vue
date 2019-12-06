@@ -19,6 +19,7 @@
                     <input v-model="path" class="input" type="text" placeholder="Defaults to home">
                 </div>
             </div>
+            <env-variables-form></env-variables-form>
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
                     <button :disabled="!canSave" class="button is-primary save-button is-grouped-right" @click="saveTask">Save</button>
@@ -33,8 +34,13 @@
 
 const Task = require('../../common/task');
 
+const components = {
+    "env-variables-form": require('./env_variables_form.vue')
+};
+
 module.exports = {
     props: ['task'],
+    components: components,
     data() {
         return {
             title: "",
