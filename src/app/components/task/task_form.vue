@@ -19,7 +19,7 @@
                     <input v-model="path" class="input" type="text" placeholder="Defaults to home">
                 </div>
             </div>
-            <env-variables-form></env-variables-form>
+            <env-variables-form v-model="env"></env-variables-form>
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
                     <button :disabled="!canSave" class="button is-primary save-button is-grouped-right" @click="saveTask">Save</button>
@@ -45,7 +45,8 @@ module.exports = {
         return {
             title: "",
             command: "",
-            path: ""
+            path: "",
+            env: []
         };
     },
     computed: {
@@ -64,7 +65,7 @@ module.exports = {
     methods: {
         saveTask() {
             if (this.canSave) {
-                this.$emit('save', new Task(this.title, this.path, this.command));
+                this.$emit('save', new Task(this.title, this.path, this.command, this.env));
                 this.clear();
             }
         },
@@ -72,12 +73,14 @@ module.exports = {
             this.title = "";
             this.command = "";
             this.path = "";
+            this.env = [];
         },
         onTaskUpdate() {
             if (this.task) {
                 this.title = this.task.title;
                 this.command = this.task.command;
                 this.path = this.task.path;
+                this.env = this.task.env;
             }
         }
     }

@@ -10,16 +10,16 @@
             Env Variables
         </label>
         <div class="control" v-show="open">
-            <div class="field is-horizontal env-variables-container">
+            <div class="field is-horizontal env-variables-container" v-for="(env, i) of value" :key="i">
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Key">
+                            <input class="input" type="text" placeholder="Key" v-model="env[0]">
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Value">
+                            <input class="input" type="text" placeholder="Value" v-model="env[1]">
                         </p>
                     </div>
                 </div>
@@ -33,10 +33,21 @@
 "use strict";
 
 module.exports = {
+    props: ["value"],
     data() {
         return {
             open: false
         };
+    },
+    watch: {
+        value: {
+            immediate: true,
+            handler() {
+                const lastVariable = this.value[this.value.length - 1];
+                if (!lastVariable || lastVariable[0] || lastVariable[1]) this.value.push([]);
+                this.$emit("input", this.value);
+            }
+        }
     },
     methods: {
         switchOpen() {

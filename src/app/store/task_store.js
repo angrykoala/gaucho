@@ -190,7 +190,7 @@ module.exports = {
         },
         duplicateTask(context, data) {
             const oldTask = context.getters.suites[data.suite].getTask(data.task);
-            const newTask = new Task(oldTask.title, oldTask.path, oldTask.command);
+            const newTask = new Task(oldTask.title, oldTask.path, oldTask.command, oldTask.env);
             context.commit("addTask", {
                 index: data.suite,
                 task: newTask
