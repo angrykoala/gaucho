@@ -60,6 +60,18 @@ describe("Tasks", () => {
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
     });
 
+    it("Get Task Config with env", () => {
+        const taskConfigTest = new Task("Test", "a/path", taskCommand, [["a", "b"]]);
+        const taskData = taskConfigTest.getData();
+        const expectedResult = {
+            title: "Test",
+            command: taskCommand,
+            env: [["a", "b"]],
+            path: "a/path"
+        };
+        assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
+    });
+
     it("Invalid Task Execution", (done) => {
         const invalidTask = new Task("Invalid test", "", "invalidTask");
 
