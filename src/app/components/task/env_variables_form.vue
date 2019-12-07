@@ -24,6 +24,20 @@
                     </div>
                 </div>
             </div>
+            <div class="field is-horizontal env-variables-container">
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="Key" v-model="newKey">
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="Value" v-model="newValue">
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,16 +50,36 @@ module.exports = {
     props: ["value"],
     data() {
         return {
-            open: false
+            open: false,
+            newKey: "",
+            newValue: ""
         };
+    },
+    computed: {
+        newVariable() {
+            return [this.newKey, this.newValue];
+        }
     },
     watch: {
         value: {
             immediate: true,
             handler() {
-                const lastVariable = this.value[this.value.length - 1];
-                if (!lastVariable || lastVariable[0] || lastVariable[1]) this.value.push([]);
-                this.$emit("input", this.value);
+                console.log("Update value");
+
+                const value = this.value.filter(a => a[0] || a[1]);
+                if (value.length !== this.value.length) this.$emit("input", value);
+                // const lastVariable = value[this.value.length - 1];
+                // if (!lastVariable || (lastVariable[0] && lastVariable[1])) {
+                //     value.push([]);
+                // }
+            }
+        },
+        newVariable() {
+            console.log("new variable change", this.newKey, this.newValue);
+            if (this.newKey && this.newValue) {
+                this.value.push(this.newVariable);
+                this.newKey = "";
+                this.newValue = "";
             }
         }
     },
@@ -55,12 +89,11 @@ module.exports = {
         }
     }
 };
-
 </script>
 
 
 <style lang="scss" scoped>
-.env-variables-container{
+.env-variables-container {
     padding-left: 16px;
     padding-right: 16px;
 }
