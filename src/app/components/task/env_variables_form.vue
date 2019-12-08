@@ -9,8 +9,8 @@
             </span>
             Env Variables
         </label>
-        <div class="control" v-show="open">
-            <div class="field is-horizontal env-variables-container" v-for="(env, i) of value" :key="i">
+        <div class="control env-list" v-show="open">
+            <div class="field is-horizontal env-variable-container" v-for="(env, i) of value" :key="i">
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded">
@@ -60,7 +60,12 @@ module.exports = {
 
 
 <style lang="scss" scoped>
-.env-variables-container {
+.env-list {
+    max-height: 152px;
+    overflow: auto;
+}
+
+.env-variable-container {
     padding-left: 16px;
     padding-right: 16px;
 }
