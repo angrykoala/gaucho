@@ -1,6 +1,7 @@
-0.6.4 / ####-##-##
+0.7.0 / ####-##-##
 ==================
 
+* Env variables configuration in tasks
 * Formats color in task output
 * Electron fixed to v6, removes window menu
 
