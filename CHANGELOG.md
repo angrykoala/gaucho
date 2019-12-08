@@ -1,3 +1,10 @@
+0.7.0 / 2019-08-12
+==================
+
+* Env variables configuration in tasks
+* Formats color in task output
+* Electron fixed to v6, removes window menu
+
 0.6.3 / 2019-12-04
 ==================
 

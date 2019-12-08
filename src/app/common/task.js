@@ -9,10 +9,11 @@ const {TaskTimer, InverseTaskTimer} = require('./task_timer');
 const outputMaxSize = 6000;
 
 class Task {
-    constructor(title, path, command) {
+    constructor(title, path, command, env) {
         this.title = title.trim() || "";
         this.command = command || "";
         this.path = path || "";
+        this.env = env || [];
         this.status = TaskStatus.idle;
 
         this.output = null;
@@ -45,7 +46,8 @@ class Task {
         this.proc = yerbamate.run(this._processCommand(), executionPath, {
             stderr: onOutput,
             stdout: onOutput,
-            maxOutputSize: 1
+            maxOutputSize: 1,
+            env: this._getEnvVariables()
         },
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
@@ -79,6 +81,7 @@ class Task {
             title: this.title,
             command: this.command
         };
+        if (this.env && this.env.length > 0) res.env = this.env;
         if (this.path !== "") res.path = this.path;
         return res;
     }
@@ -109,6 +112,15 @@ class Task {
             this.timer = null;
         }
         this._scheduleTimeout = null;
+    }
+
+    _getEnvVariables() {
+        const res = this.env.reduce((acc, envVar) => {
+            if (!envVar[0] || !envVar[1]) return acc;
+            acc[envVar[0]] = envVar[1];
+            return acc;
+        }, {});
+        return res;
     }
 }
 

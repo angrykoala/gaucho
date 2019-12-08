@@ -24,7 +24,7 @@
 <script>
 "use strict";
 const components = {
-    "task-form": require('./task_form.vue')
+    "task-form": require('../task/task_form.vue')
 };
 module.exports = {
     props: ["edit", "open"],

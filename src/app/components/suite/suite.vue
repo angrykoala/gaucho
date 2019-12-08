@@ -22,7 +22,7 @@
 const AppSettings = require("../../../app_settings.json");
 
 const components = {
-    "task-card": require('./task_card.vue'),
+    "task-card": require('../task/task_card.vue'),
     "add-task-card": require('./add_task_card.vue'),
     "draggable": require('vuedraggable')
 };
