@@ -51,7 +51,8 @@
       "target": [
         "deb",
         "AppImage",
-        "snap"
+        "snap",
+        "zip"
       ],
       "category": "Utility"
     },
