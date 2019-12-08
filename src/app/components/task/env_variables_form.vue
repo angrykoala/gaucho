@@ -24,20 +24,6 @@
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal env-variables-container">
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Key" v-model="newKey">
-                        </p>
-                    </div>
-                    <div class="field">
-                        <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Value" v-model="newValue">
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -50,36 +36,17 @@ module.exports = {
     props: ["value"],
     data() {
         return {
-            open: false,
-            newKey: "",
-            newValue: ""
+            open: false
         };
-    },
-    computed: {
-        newVariable() {
-            return [this.newKey, this.newValue];
-        }
     },
     watch: {
         value: {
             immediate: true,
             handler() {
-                console.log("Update value");
-
                 const value = this.value.filter(a => a[0] || a[1]);
+                const lastElement = value[value.length - 1];
+                if (!lastElement || (lastElement[0] && lastElement[1])) value.push([]);
                 if (value.length !== this.value.length) this.$emit("input", value);
-                // const lastVariable = value[this.value.length - 1];
-                // if (!lastVariable || (lastVariable[0] && lastVariable[1])) {
-                //     value.push([]);
-                // }
-            }
-        },
-        newVariable() {
-            console.log("new variable change", this.newKey, this.newValue);
-            if (this.newKey && this.newValue) {
-                this.value.push(this.newVariable);
-                this.newKey = "";
-                this.newValue = "";
             }
         }
     },
