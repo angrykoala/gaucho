@@ -1,16 +1,16 @@
 {
   "name": "gaucho",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "ansi-to-html": "^0.6.13",
     "electron-store": "^5.1.0",
     "mousetrap": "^1.6.3",
     "run": "^1.4.0",
-    "sweetalert2": "^9.4.3",
-    "vue": "^2.6.10",
+    "sweetalert2": "^9.5.3",
+    "vue": "^2.6.11",
     "vue-clickaway": "^2.2.2",
     "vuedraggable": "^2.23.2",
     "vuex": "^3.1.2",
@@ -22,8 +22,8 @@
     "bulma-switch": "^2.0.0",
     "chai": "^4.2.0",
     "cross-env": "^6.0.3",
-    "electron": "~6.0.0",
     "electron-builder": "^21.2.0",
+    "electron": "~6.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.0.1",
     "husky": "^3.1.0",
@@ -31,7 +31,7 @@
     "parcel-bundler": "^1.12.4",
     "sass": "^1.23.7",
     "sinon": "^7.5.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "scripts": {
     "build": "rm -rf public/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir public --no-source-maps",
