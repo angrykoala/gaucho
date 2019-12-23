@@ -1,3 +1,8 @@
+0.7.1 / ####-##-##
+==================
+
+* Modal alerts styles changed to increase consistency
+
 0.7.0 / 2019-08-12
 ==================
 

@@ -4,6 +4,9 @@ const swal = require('sweetalert2');
 
 let store;
 
+const confirmButtonColor = "#2bbbad";
+const dangerButtonColor = "#f14668";
+
 function init(newStore) {
     store = newStore;
 }
@@ -17,7 +20,8 @@ class AppAlert {
         this.alertOptions = Object.assign({
             title: title,
             customClass: getTheme(),
-            heightAuto: false
+            heightAuto: false,
+            confirmButtonColor: confirmButtonColor
         }, options);
     }
 
@@ -46,10 +50,9 @@ class DeleteConfirmationAlert extends InteractiveAlert {
         super("Are you sure?", Object.assign({
             text: text,
             showCancelButton: true,
-            confirmButtonColor: "#ee6e73",
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'No, keep it',
-            type: 'warning'
+            confirmButtonColor: dangerButtonColor,
         }, options));
     }
 }
@@ -58,7 +61,6 @@ class InputAlert extends InteractiveAlert {
     constructor(title, defaultValue = "", options = {}) {
         super(title, Object.assign({
             showCancelButton: true,
-            confirmButtonColor: "#ee6e73",
             confirmButtonText: 'Rename',
             input: 'text',
             inputValue: defaultValue

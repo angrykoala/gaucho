@@ -140,11 +140,6 @@
             color: $default-color;
             background-color: $dark-grey-background-color;
         }
-        button {
-            &:focus {
-                box-shadow: none;
-            }
-        }
     }
 }
 

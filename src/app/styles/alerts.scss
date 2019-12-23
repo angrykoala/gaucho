@@ -1,0 +1,7 @@
+.swal2-popup {
+    button {
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
