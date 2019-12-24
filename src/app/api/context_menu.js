@@ -1,5 +1,7 @@
 "use strict";
 const remote = require('electron').remote;
+const ipcRenderer = require('electron').ipcRenderer;
+
 const {Menu, MenuItem} = remote;
 
 const EventEmitter = require('events');
@@ -41,7 +43,8 @@ class DefaultContextMenu extends ContextMenu {
     constructor(extraOptions = []) {
         super(extraOptions.concat([{label: "Settings",
             event: "settings"}, {label: "About",
-            event: "about"}]));
+            event: "about"}, {label: "Quit",
+            event: "quit"}]));
     }
 
     toggle(extraData) {
@@ -50,6 +53,9 @@ class DefaultContextMenu extends ContextMenu {
         });
         this.on("about", () => {
             aboutModal(store);
+        });
+        this.on("quit", () => {
+            ipcRenderer.send("close-app");
         });
 
         super.toggle(extraData);

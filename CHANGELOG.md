@@ -1,6 +1,7 @@
-0.7.1 / ####-##-##
+1.0.0 / ####-##-##
 ==================
 
+* Quit option in context menu
 * Modal alerts styles changed to increase consistency
 
 0.7.0 / 2019-08-12

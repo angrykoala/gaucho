@@ -52,7 +52,7 @@ class DeleteConfirmationAlert extends InteractiveAlert {
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'No, keep it',
-            confirmButtonColor: dangerButtonColor,
+            confirmButtonColor: dangerButtonColor
         }, options));
     }
 }
