@@ -2,7 +2,7 @@
 ==================
 
 * Quit option in context menu
-* Modal alerts styles changed to increase consistency
+* Modal alerts styles changed for better consistency
 
 0.7.0 / 2019-08-12
 ==================

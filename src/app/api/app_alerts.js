@@ -21,7 +21,8 @@ class AppAlert {
             title: title,
             customClass: getTheme(),
             heightAuto: false,
-            confirmButtonColor: confirmButtonColor
+            confirmButtonColor: confirmButtonColor,
+            animation: false
         }, options);
     }
 
