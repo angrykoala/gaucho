@@ -4,4 +4,12 @@
             box-shadow: none;
         }
     }
+
+    input {
+        &:focus{
+            box-shadow: none;
+            outline: none;
+            border: 1px solid #d9d9d9;
+        }
+    }
 }

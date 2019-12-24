@@ -22,7 +22,12 @@ class AppAlert {
             customClass: getTheme(),
             heightAuto: false,
             confirmButtonColor: confirmButtonColor,
-            animation: false
+            showClass: {
+                popup: ''
+            },
+            hideClass: {
+                popup: ''
+            }
         }, options);
     }
 
@@ -74,7 +79,10 @@ class SchedulerAlert extends InputAlert {
         super(title, "", Object.assign({
             confirmButtonText: 'Schedule',
             input: 'number',
-            inputPlaceholder: 'Seconds'
+            inputPlaceholder: 'Seconds',
+            inputAttributes: {
+                min: 0
+            }
         }, options));
     }
 }
