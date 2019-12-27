@@ -5,7 +5,6 @@
                 <div class="navbar-item unselectable">
                     <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
                     <h1 class="title is-4">Gaucho</h1>
-                    <h2 class="beta-subtitle is-4">Beta</h2>
                 </div>
             </div>
             <div class="navbar-menu is-active">
@@ -112,11 +111,6 @@ module.exports = {
 
 .title {
     margin-bottom: 0;
-}
-
-.beta-subtitle {
-    padding-top: 12px;
-    padding-left: 4px;
 }
 
 .navbar-logo {
