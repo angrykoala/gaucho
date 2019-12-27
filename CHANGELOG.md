@@ -3,6 +3,7 @@
 
 * Quit option in context menu
 * Modal alerts styles changed for better consistency
+* Dependencies updated, electron v7
 
 0.7.0 / 2019-08-12
 ==================
