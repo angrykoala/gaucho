@@ -137,6 +137,11 @@ module.exports = {
         exportTasks(context, filename) {
             return TaskImporter.export(filename, context.getters.suites, context.getters.version);
         },
+        exportSuite(context, {filename, suiteIndex}) {
+            console.log("exportsuite", filename, suiteIndex);
+            const suite = context.getters.suites[suiteIndex];
+            return TaskImporter.export(filename, [suite], context.getters.version);
+        },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
             if (!task.isRunning() && !task.isScheduled()) {

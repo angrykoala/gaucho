@@ -63,6 +63,18 @@ class DeleteConfirmationAlert extends InteractiveAlert {
     }
 }
 
+class ImportTaskAlert extends DeleteConfirmationAlert {
+    constructor(text, options = {}) {
+        super("Importing tasks will remove all current tasks.", Object.assign({
+            text: text,
+            showCancelButton: true,
+            confirmButtonText: "Yes, import tasks",
+            cancelButtonText: "No, cancel import",
+            confirmButtonColor: confirmButtonColor
+        }, options));
+    }
+}
+
 class InputAlert extends InteractiveAlert {
     constructor(title, defaultValue = "", options = {}) {
         super(title, Object.assign({
@@ -88,10 +100,11 @@ class SchedulerAlert extends InputAlert {
 }
 
 module.exports = {
-    AppAlert: AppAlert,
-    DeleteConfirmationAlert: DeleteConfirmationAlert,
-    InputAlert: InputAlert,
-    SchedulerAlert: SchedulerAlert,
+    AppAlert,
+    DeleteConfirmationAlert,
+    InputAlert,
+    SchedulerAlert,
+    ImportTaskAlert,
     init: init,
     isVisible: swal.isVisible
 };
