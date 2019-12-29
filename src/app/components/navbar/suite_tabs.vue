@@ -129,7 +129,6 @@ module.exports = {
                     extensions: ['json']
                 }]
             }).then((dialogResult) => {
-                console.log("dialog result", dialogResult);
                 if (dialogResult.filePath) {
                     this.$store.dispatch("exportSuite", {
                         filename: dialogResult.filePath,

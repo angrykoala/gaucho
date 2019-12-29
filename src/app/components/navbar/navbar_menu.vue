@@ -2,6 +2,9 @@
     <dropdown-menu open-event="showNavbarMenu" class="navbar-dropdown-menu">
         <template v-for="(item, i) in options">
             <hr v-if="item.value==='divider'" class="dropdown-divider" :key="i">
+            <a v-else-if="item.disabled" class="dropdown-item disabled" :key="i">
+                {{item.name}}
+            </a>
             <a v-else class="dropdown-item" @click.prevent="onClick(item.value)" :key="i">
                 {{item.name}}
             </a>
@@ -34,8 +37,17 @@ module.exports = {
                 value: "quit"
             }];
 
-            if (!this.$store.state.editMode) {
-                const runModeOptions = [{
+            let extraOptions = [];
+
+            if (this.$store.state.editMode) {
+                const canImportSuite = this.$store.getters.canAddSuite;
+                extraOptions = [{
+                    name: "Import Suite",
+                    value: "importSuite",
+                    disabled: !canImportSuite
+                }];
+            } else {
+                extraOptions = [{
                     name: "Run Suite",
                     value: "runSuite"
                 }, {
@@ -45,12 +57,10 @@ module.exports = {
                     name: "Schedule Suite",
                     value: "scheduleSuite"
                 }];
-                return runModeOptions.concat([{
-                    value: "divider"
-                }], defaultOptions);
-            } else {
-                return defaultOptions;
             }
+            return extraOptions.concat([{
+                value: "divider"
+            }], defaultOptions);
         }
     },
     methods: {
@@ -60,3 +70,8 @@ module.exports = {
     }
 };
 </script>
+
+
+<style lang="scss">
+
+</style>

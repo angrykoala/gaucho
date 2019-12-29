@@ -134,11 +134,18 @@ module.exports = {
                 });
             });
         },
+        importSuite(context, filename) {
+            if (context.getters.canAddSuite) {
+                return TaskImporter.import(filename).then((data) => {
+                    const loadedSuites = TasksHandler.loadTasksFromData(data);
+                    context.commit("addSuite", loadedSuites[0]);
+                });
+            }
+        },
         exportTasks(context, filename) {
             return TaskImporter.export(filename, context.getters.suites, context.getters.version);
         },
         exportSuite(context, {filename, suiteIndex}) {
-            console.log("exportsuite", filename, suiteIndex);
             const suite = context.getters.suites[suiteIndex];
             return TaskImporter.export(filename, [suite], context.getters.version);
         },

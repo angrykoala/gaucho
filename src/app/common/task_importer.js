@@ -12,7 +12,6 @@ module.exports = {
         return JSON.stringify(content);
     },
     export(filename, suites, version) {
-        console.log("export", filename);
         return new Promise((resolve, reject) => {
             const content = this.parseToJson(suites, version);
             fs.writeFile(filename, content, (err) => {
