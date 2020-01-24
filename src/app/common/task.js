@@ -98,6 +98,10 @@ class Task {
         });
     }
 
+    clone() {
+        return new Task(this.title, this.path, this.command, this.env);
+    }
+
     _processCommand() {
         return this.command.replace(/(^|\s)sudo($|\s)/g, "$1pkexec$2");
     }

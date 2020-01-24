@@ -77,6 +77,11 @@ class Suite {
         name = name.trim();
         return this.tasks.filter(task => task.title === name).length >= 2;
     }
+
+    clone() {
+        const taskClones = this.tasks.map(t => t.clone());
+        return new Suite(this.title, taskClones);
+    }
 }
 
 module.exports = Suite;

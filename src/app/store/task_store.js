@@ -1,7 +1,6 @@
 "use strict";
 
 const Suite = require('../common/suite');
-const Task = require('../common/task');
 const TasksHandler = require('../api/tasks_handler');
 const TaskImporter = require('../common/task_importer');
 
@@ -149,6 +148,12 @@ module.exports = {
             const suite = context.getters.suites[suiteIndex];
             return TaskImporter.export(filename, [suite], context.getters.version);
         },
+        duplicateSuite(context, index) {
+            if (context.getters.canAddSuite) {
+                const suite = context.getters.suites[index];
+                context.commit("addSuite", suite.clone());
+            }
+        },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
             if (!task.isRunning() && !task.isScheduled()) {
@@ -201,11 +206,10 @@ module.exports = {
             context.commit("_deleteSuite", i);
         },
         duplicateTask(context, data) {
-            const oldTask = context.getters.suites[data.suite].getTask(data.task);
-            const newTask = new Task(oldTask.title, oldTask.path, oldTask.command, oldTask.env);
+            const task = context.getters.suites[data.suite].getTask(data.task);
             context.commit("addTask", {
                 index: data.suite,
-                task: newTask
+                task: task.clone()
             });
         }
     }

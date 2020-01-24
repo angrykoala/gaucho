@@ -67,7 +67,8 @@ class TabMenu extends DefaultContextMenu {
         super([{label: "Delete",
             event: "delete"}, {label: "Rename",
             event: "rename"}, {label: "Export Suite",
-            event: "export-suite"}, {type: "separator"}]);
+            event: "export-suite"}, {label: "Duplicate Suite",
+            event: "duplicate-suite"}, {type: "separator"}]);
     }
 }
 

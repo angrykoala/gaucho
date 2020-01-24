@@ -86,6 +86,9 @@ module.exports = {
             tabMenu.on("export-suite", (i) => {
                 this.exportSuite(i);
             });
+            tabMenu.on("duplicate-suite", (i) => {
+                this.duplicateSuite(i);
+            });
             tabMenu.toggle(index);
         },
         isSelected(i) {
@@ -121,7 +124,6 @@ module.exports = {
             });
         },
         exportSuite(index) {
-            // TODO: export suite window
             const suite = this.suites[index];
             dialog.showSaveDialog({
                 defaultPath: path.join(os.homedir(), `${suite.title}.json`),
@@ -138,6 +140,9 @@ module.exports = {
                     });
                 }
             });
+        },
+        duplicateSuite(index) {
+            this.$store.dispatch("duplicateSuite", index);
         },
         suiteDragEnd(evt) {
             this.selectSuite(evt.newIndex);

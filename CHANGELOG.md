@@ -1,8 +1,9 @@
-1.0.0 / ####-##-##
+0.8.0 / ####-##-##
 ==================
 
 * Quit option in context menu
 * Import/Export suites
+* Duplicate suite option
 * Modal alerts styles changed for better consistency
 * Dependencies updated, electron v7
 
