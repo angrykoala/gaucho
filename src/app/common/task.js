@@ -9,11 +9,12 @@ const {TaskTimer, InverseTaskTimer} = require('./task_timer');
 const outputMaxSize = 6000;
 
 class Task {
-    constructor(title, path, command, env) {
-        this.title = title.trim() || "";
-        this.command = command || "";
-        this.path = path || "";
-        this.env = env || [];
+    constructor(options) {
+        this.title = options.title.trim() || "";
+        this.command = options.command || "";
+        this.description = options.description || ""; // TODO: trim
+        this.path = options.path || "";
+        this.env = options.env || [];
         this.status = TaskStatus.idle;
 
         this.output = null;
@@ -83,6 +84,7 @@ class Task {
         };
         if (this.env && this.env.length > 0) res.env = this.env;
         if (this.path !== "") res.path = this.path;
+        if (this.description !== "") res.description = this.description;
         return res;
     }
 
@@ -99,7 +101,12 @@ class Task {
     }
 
     clone() {
-        return new Task(this.title, this.path, this.command, this.env);
+        return new Task({
+            title: this.title,
+            description: this.description,
+            path: this.path,
+            command: this.command,
+            env: this.env});
     }
 
     _processCommand() {

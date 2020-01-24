@@ -4,6 +4,7 @@
 * Quit option in context menu
 * Import/Export suites
 * Duplicate suite option
+* Tasks descriptions
 * Modal alerts styles changed for better consistency
 * Dependencies updated, electron v7
 

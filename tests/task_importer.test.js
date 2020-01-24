@@ -15,8 +15,14 @@ describe("Task Importer", () => {
     const testJsonFile = path.join(tempFolder, "exported_test.json");
     const testTasksFile = path.join(config.testResources, "test_tasks.json");
 
-    const testTask1 = new Task("task1", ".", "test command");
-    const testTask2 = new Task("task2", "./path", "test command2");
+    const testTask1 = new Task({
+        title: "task1",
+        path: ".",
+        command: "test command"});
+    const testTask2 = new Task({
+        title: "task2",
+        path: "./path",
+        command: "test command2"});
     const testSuite1 = new Suite("suite1");
     const testSuite2 = new Suite("suite2");
     testSuite1.addTask(testTask1);

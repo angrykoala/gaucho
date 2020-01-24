@@ -44,7 +44,13 @@ module.exports = class TasksHandler {
     static _parseData(data) {
         return data.map((suite) => {
             const result = new Suite(suite.title);
-            result.tasks = suite.tasks.map((task) => new Task(task.title, task.path, task.command, task.env));
+            result.tasks = suite.tasks.map((task) => new Task({
+                title: task.title,
+                description: task.description,
+                path: task.path,
+                command: task.command,
+                env: task.env
+            }));
             return result;
         });
     }

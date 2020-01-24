@@ -16,11 +16,14 @@
                     </span>
                     {{task.title}}
                 </p>
+                <p class="description" v-show="task.description">
+                    {{task.description}}
+                </p>
             </div>
             <div class="column">
                 <div class="columns is-mobile">
                     <div v-if="showTimer" class="column has-text-centered">
-                        <p>{{executionTime}}</p>
+                        <p class="execution-time">{{executionTime}}</p>
                     </div>
                     <div class="column">
                         <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun" :disabled="!runButtonEnabled">{{runButtonText}}</button>
@@ -178,8 +181,15 @@ module.exports = {
     margin-top: 0;
 }
 
-p {
-    padding-top: 4px;
+.description {
+    font-size: 15px;
+    color: #9e9e9e;
+    margin-left: 29px;
+    padding-top: 0;
+}
+
+.execution-time{
+    padding-top: 4px
 }
 
 .task-card-header {

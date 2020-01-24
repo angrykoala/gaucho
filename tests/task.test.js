@@ -12,7 +12,9 @@ describe("Tasks", () => {
     let testTask;
     const taskCommand = `node ${path.join(config.testResources, config.taskFiles.helloWorld)}`;
     beforeEach(() => {
-        testTask = new Task("Test", "", taskCommand);
+        testTask = new Task({
+            title: "Test",
+            command: taskCommand});
     });
 
     afterEach(() => {
@@ -49,19 +51,30 @@ describe("Tasks", () => {
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
     });
 
-    it("Get Task Config with path", () => {
-        const taskConfigTest = new Task("Test", "a/path", taskCommand);
+    it("Get Task Config with path and description", () => {
+        const taskConfigTest = new Task({
+            title: "Test",
+            path: "a/path",
+            command: taskCommand,
+            description: "a nice description"
+        });
         const taskData = taskConfigTest.getData();
         const expectedResult = {
             title: "Test",
             command: taskCommand,
-            path: "a/path"
+            path: "a/path",
+            description: "a nice description"
         };
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
     });
 
     it("Get Task Config with env", () => {
-        const taskConfigTest = new Task("Test", "a/path", taskCommand, [["a", "b"]]);
+        const taskConfigTest = new Task({
+            title: "Test",
+            path: "a/path",
+            command: taskCommand,
+            env: [["a", "b"]]
+        });
         const taskData = taskConfigTest.getData();
         const expectedResult = {
             title: "Test",
@@ -73,7 +86,10 @@ describe("Tasks", () => {
     });
 
     it("Invalid Task Execution", (done) => {
-        const invalidTask = new Task("Invalid test", "", "invalidTask");
+        const invalidTask = new Task({
+            title: "Invalid test",
+            command: "invalidTask"
+        });
 
         invalidTask.run(() => {
             assert.strictEqual(invalidTask.status, TaskStatus.error);

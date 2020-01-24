@@ -2,9 +2,15 @@
     <div class="task-form-wrapper">
         <div class="container is-fluid">
             <div class="field">
-                <label class="label">Task Name*</label>
+                <label class="label">Name*</label>
                 <div class="control">
                     <input v-model="title" class="input" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                    <input v-model="description" class="input" type="text">
                 </div>
             </div>
             <div class="field">
@@ -44,6 +50,7 @@ module.exports = {
     data() {
         return {
             title: "",
+            description: "",
             command: "",
             path: "",
             env: []
@@ -65,13 +72,20 @@ module.exports = {
     methods: {
         saveTask() {
             if (this.canSave) {
-                this.$emit('save', new Task(this.title, this.path, this.command, this.env));
+                this.$emit('save', new Task({
+                    title: this.title,
+                    description: this.description,
+                    path: this.path,
+                    command: this.command,
+                    env: this.env
+                }));
                 this.clear();
             }
         },
         clear() {
             this.title = "";
             this.command = "";
+            this.description = "";
             this.path = "";
             this.env = [];
         },
@@ -79,6 +93,7 @@ module.exports = {
             if (this.task) {
                 this.title = this.task.title;
                 this.command = this.task.command;
+                this.description = this.task.description;
                 this.path = this.task.path;
                 this.env = this.task.env;
             }
