@@ -87,7 +87,7 @@ module.exports = {
             const suite = state.suites[data.suite];
             const task = suite.tasks[data.task]; // todo: use a store
             if (suite.isDuplicate(task.title)) {
-                task.title = suite.getValidName(task.title);
+                task.title = suite.getValidTaskName(task.title);
             }
         },
         _setSuites(state, suites) {

@@ -5,6 +5,8 @@ const yerbamate = require('yerbamate');
 
 const TaskStatus = require('./task_status');
 const {TaskTimer, InverseTaskTimer} = require('./task_timer');
+const utils = require('./utils');
+const constants = require('../../common/constants');
 
 const outputMaxSize = 6000;
 
@@ -12,7 +14,7 @@ class Task {
     constructor(options) {
         this.title = options.title.trim() || "";
         this.command = options.command || "";
-        this.description = options.description || ""; // TODO: trim
+        this.description = this._formatDescription(options.description);
         this.path = options.path || "";
         this.env = options.env || [];
         this.status = TaskStatus.idle;
@@ -132,6 +134,11 @@ class Task {
             return acc;
         }, {});
         return res;
+    }
+
+    _formatDescription(originalDescription) {
+        const description = originalDescription || "";
+        return utils.truncate(description.trim(), constants.maxDescriptionLength).trim();
     }
 }
 

@@ -1,35 +1,43 @@
 <template>
     <div class="task-card" @contextmenu.stop="context()">
         <div class="columns is-mobile task-card-header" @click="taskSelected">
-            <div class="column">
-                <p>
-                    <span v-if="editMode" class="drag-handle">
-                        <span class="icon">
-                            <i class="fas fa-equals"></i>
-                        </span>
-                    </span>
-                    <span v-show="open" class="icon">
-                        <i class="fas fa-caret-down"></i>
-                    </span>
-                    <span v-show="!open" class="icon">
-                        <i class="fas fa-caret-right"></i>
-                    </span>
-                    {{task.title}}
-                </p>
-                <p class="description" v-show="task.description">
-                    {{task.description}}
-                </p>
-            </div>
-            <div class="column">
+            <div class="column is-half">
                 <div class="columns is-mobile">
-                    <div v-if="showTimer" class="column has-text-centered">
+                    <div v-if="editMode" class="column is-narrow drag-handle-container">
+                        <p>
+                            <span class="drag-handle">
+                                <span class="icon">
+                                    <i class="fas fa-equals"></i>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <b>
+                            <span v-show="open" class="icon">
+                                <i class="fas fa-caret-down"></i>
+                            </span>
+                            <span v-show="!open" class="icon">
+                                <i class="fas fa-caret-right"></i>
+                            </span>
+                            {{task.title}}
+                        </b>
+                        <p class="description" v-show="task.description">
+                            {{task.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-half">
+                <div class="columns is-mobile task-actions">
+                    <div v-if="showTimer" class="column has-text-centered task-action-text">
                         <p class="execution-time">{{executionTime}}</p>
                     </div>
                     <div class="column">
                         <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun" :disabled="!runButtonEnabled">{{runButtonText}}</button>
                         <button v-else class="button is-primary task-button is-danger" @click.stop="deleteTask">Delete</button>
                     </div>
-                    <div class="column">
+                    <div class="column task-action-text">
                         <task-status :status="status"></task-status>
                     </div>
                 </div>
@@ -184,7 +192,7 @@ module.exports = {
 .description {
     font-size: 15px;
     color: #9e9e9e;
-    margin-left: 29px;
+    margin-left: 42px;
     padding-top: 0;
 }
 
@@ -201,6 +209,20 @@ module.exports = {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-color: #e2e2e2;
+    height: 72px;
+
+    .task-actions {
+        margin-top: -0.5rem;
+
+        .task-action-text {
+            padding-top: 1rem;
+        }
+    }
+}
+
+.drag-handle-container{
+    padding-right: 0;
+    padding-top: 1.5rem;
 }
 
 .task-output-container{
