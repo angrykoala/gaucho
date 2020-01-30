@@ -6,6 +6,8 @@
 * Duplicate suite option
 * Tasks descriptions
 * Modal alerts styles changed for better consistency
+* Styles improved
+* Task name and description limited to a number of characters
 * Dependencies updated, electron v7
 
 0.7.0 / 2019-08-12

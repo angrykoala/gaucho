@@ -4,13 +4,13 @@
             <div class="field">
                 <label class="label">Name*</label>
                 <div class="control">
-                    <input v-model="title" class="input" type="text">
+                    <input v-model="title" class="input" type="text" :maxlength="constants.maxTaskNameLength">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Description</label>
                 <div class="control">
-                    <input v-model="description" class="input" type="text">
+                    <input v-model="description" class="input" type="text" :maxlength="constants.maxDescriptionLength">
                 </div>
             </div>
             <div class="field">
@@ -39,6 +39,7 @@
 "use strict";
 
 const Task = require('../../common/task');
+const constants = require('../../../common/constants');
 
 const components = {
     "env-variables-form": require('./env_variables_form.vue')
@@ -53,7 +54,8 @@ module.exports = {
             description: "",
             command: "",
             path: "",
-            env: []
+            env: [],
+            constants: constants
         };
     },
     computed: {
