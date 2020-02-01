@@ -32,6 +32,21 @@
         background-color: $light-form-color;
         border-bottom-color: #e2e2e2;
     }
+
+    .dropdown-menu {
+        a {
+            color: $default-color;
+
+            &.disabled {
+                color: #989898;
+                background-color: #d6d6d6;
+                &:hover {
+                    color: #989898;
+                    background-color: #d6d6d6;
+                }
+            }
+        }
+    }
 }
 
 
@@ -42,7 +57,7 @@
     }
     .main-view, .settings-page {
         background-color: $dark-background-color;
-        p, h1, h2, h4 {
+        p, h1, h2, h4, b {
             color: $dark-color;
         }
         code {
@@ -59,11 +74,22 @@
         a, p, b, h1, h2 {
             color: $dark-color;
         }
+
         .dropdown-menu {
             a {
                 color: $default-color;
+
+                &.disabled {
+                    color: #525050;
+                    background-color: #636363;
+                    &:hover {
+                        color: #525050;
+                        background-color: #636363;
+                    }
+                }
             }
         }
+
         .navbar-item {
             &:hover {
                 color: $dark-selected-color;
@@ -140,11 +166,6 @@
             color: $default-color;
             background-color: $dark-grey-background-color;
         }
-        button {
-            &:focus {
-                box-shadow: none;
-            }
-        }
     }
 }
 
@@ -156,9 +177,19 @@
             color: $classic-color;
 
         }
+
         .dropdown-menu {
             a {
                 color: $default-color;
+
+                &.disabled {
+                    color: #989898;
+                    background-color: #d6d6d6;
+                    &:hover {
+                        color: #989898;
+                        background-color: #d6d6d6;
+                    }
+                }
             }
         }
         .navbar-item {

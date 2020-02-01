@@ -23,5 +23,8 @@ module.exports = {
         res += seconds;
 
         return res;
+    },
+    truncate(str, characters) {
+        return str.substring(0, characters);
     }
 };

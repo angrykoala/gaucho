@@ -1,3 +1,15 @@
+0.8.0 / 2020-02-01
+==================
+
+* Import/Export suites
+* Duplicate suite option
+* Tasks descriptions
+* Quit option in context menu
+* Modal alerts styles changed for better consistency
+* Styles improved
+* Suite name, Task name and description characters limit
+* Dependencies updated, electron v7
+
 0.7.0 / 2019-08-12
 ==================
 

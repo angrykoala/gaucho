@@ -1,9 +1,12 @@
 "use strict";
 
+const utils = require('./utils');
+const constants = require('../../common/constants');
+
 class Suite {
     constructor(title, tasks) {
-        this.title = title || "";
         this.tasks = tasks || [];
+        this.setTitle(title);
     }
 
     get length() {
@@ -15,7 +18,7 @@ class Suite {
     }
 
     addTask(task) {
-        const title = this.getValidName(task.title);
+        const title = this.getValidTaskName(task.title);
         task.title = title;
         this.tasks.push(task);
     }
@@ -26,7 +29,7 @@ class Suite {
 
     replaceTask(index, task) {
         if (this.tasks[index].title !== task.title) {
-            const title = this.getValidName(task.title);
+            const title = this.getValidTaskName(task.title);
             task.title = title;
         }
         this.tasks.splice(index, 1, task);
@@ -52,6 +55,10 @@ class Suite {
         }
     }
 
+    setTitle(title) {
+        this.title = utils.truncate(title || "", constants.maxSuiteNameLength);
+    }
+
     getData() {
         return {
             title: this.title,
@@ -59,7 +66,8 @@ class Suite {
         };
     }
 
-    getValidName(name) {
+    getValidTaskName(name) {
+        name = utils.truncate(name, constants.maxTaskNameLength);
         let index = 2;
         if (!this.existTaskName(name)) return name;
         while (this.existTaskName(`${name} (${index})`)) {
@@ -76,6 +84,11 @@ class Suite {
     isDuplicate(name) {
         name = name.trim();
         return this.tasks.filter(task => task.title === name).length >= 2;
+    }
+
+    clone() {
+        const taskClones = this.tasks.map(t => t.clone());
+        return new Suite(this.title, taskClones);
     }
 }
 

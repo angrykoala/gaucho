@@ -1,7 +1,6 @@
 "use strict";
 
 const Suite = require('../common/suite');
-const Task = require('../common/task');
 const TasksHandler = require('../api/tasks_handler');
 const TaskImporter = require('../common/task_importer');
 
@@ -72,8 +71,7 @@ module.exports = {
         },
         renameSuite(state, data) {
             const suite = state.suites[data.suite];
-            suite.title = data.title;
-            TasksHandler.saveTasks(state.suites);
+            suite.setTitle(data.title);
         },
         updateSuiteTasks(state, data) {
             const suite = state.suites[data.suite];
@@ -88,7 +86,7 @@ module.exports = {
             const suite = state.suites[data.suite];
             const task = suite.tasks[data.task]; // todo: use a store
             if (suite.isDuplicate(task.title)) {
-                task.title = suite.getValidName(task.title);
+                task.title = suite.getValidTaskName(task.title);
             }
         },
         _setSuites(state, suites) {
@@ -134,8 +132,26 @@ module.exports = {
                 });
             });
         },
+        importSuite(context, filename) {
+            if (context.getters.canAddSuite) {
+                return TaskImporter.import(filename).then((data) => {
+                    const loadedSuites = TasksHandler.loadTasksFromData(data);
+                    context.commit("addSuite", loadedSuites[0]);
+                });
+            }
+        },
         exportTasks(context, filename) {
             return TaskImporter.export(filename, context.getters.suites, context.getters.version);
+        },
+        exportSuite(context, {filename, suiteIndex}) {
+            const suite = context.getters.suites[suiteIndex];
+            return TaskImporter.export(filename, [suite], context.getters.version);
+        },
+        duplicateSuite(context, index) {
+            if (context.getters.canAddSuite) {
+                const suite = context.getters.suites[index];
+                context.commit("addSuite", suite.clone());
+            }
         },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
@@ -189,11 +205,10 @@ module.exports = {
             context.commit("_deleteSuite", i);
         },
         duplicateTask(context, data) {
-            const oldTask = context.getters.suites[data.suite].getTask(data.task);
-            const newTask = new Task(oldTask.title, oldTask.path, oldTask.command, oldTask.env);
+            const task = context.getters.suites[data.suite].getTask(data.task);
             context.commit("addTask", {
                 index: data.suite,
-                task: newTask
+                task: task.clone()
             });
         }
     }

@@ -1,13 +1,8 @@
 <template>
     <div class="tabs is-fullwidth">
         <draggable v-model="suites" tag="ul" v-bind="draggableOptions" @end="suiteDragEnd">
-            <li v-for="(suite, index) in suites" class="tab-suite-item"
-                @contextmenu.stop="context(index)"
-                :style="{ width: tabsWidth }"
-                :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}"
-                @click="selectSuite(index)"
-                @dragover="selectSuite(index)"
-                :key="index"
+            <li v-for="(suite, index) in suites" class="tab-suite-item" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }"
+                :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)" :key="index"
             >
                 <a class="columns is-mobile is-centered tab-content">
                     <div class="column tab-text-container">
@@ -35,8 +30,15 @@
 <script>
 "use strict";
 
+const os = require('os');
+const path = require('path');
+const app = require('electron').remote;
+const dialog = app.dialog;
+
 const AppAlerts = require('../../api/app_alerts');
 const ContextMenu = require('../../api/context_menu');
+
+const constants = require('../../../common/constants.js');
 
 const tabMenu = new ContextMenu.TabMenu();
 
@@ -83,6 +85,12 @@ module.exports = {
             tabMenu.on("rename", (i) => {
                 this.renameSuite(i);
             });
+            tabMenu.on("export-suite", (i) => {
+                this.exportSuite(i);
+            });
+            tabMenu.on("duplicate-suite", (i) => {
+                this.duplicateSuite(i);
+            });
             tabMenu.toggle(index);
         },
         isSelected(i) {
@@ -105,7 +113,12 @@ module.exports = {
             });
         },
         renameSuite(index) {
-            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
+            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title, {
+                inputAttributes: {
+                    maxLength: constants.maxSuiteNameLength
+                }
+            });
+
             alert.toggle().then((res) => {
                 if (res.length > 0) {
                     this.$store.commit("renameSuite", {
@@ -117,48 +130,68 @@ module.exports = {
                 // Rename is cancelled
             });
         },
+        exportSuite(index) {
+            const suite = this.suites[index];
+            dialog.showSaveDialog({
+                defaultPath: path.join(os.homedir(), `${suite.title}.json`),
+                filters: [{
+                    extensions: ['json']
+                }]
+            }).then((dialogResult) => {
+                if (dialogResult.filePath) {
+                    this.$store.dispatch("exportSuite", {
+                        filename: dialogResult.filePath,
+                        suiteIndex: index
+                    }).catch((err) => {
+                        console.warn(err);
+                    });
+                }
+            });
+        },
+        duplicateSuite(index) {
+            this.$store.dispatch("duplicateSuite", index);
+        },
         suiteDragEnd(evt) {
             this.selectSuite(evt.newIndex);
         }
     }
 };
-
 </script>
 
 
 <style lang="scss" scoped>
 @import "../../styles/variables";
 
-.tabs{
-    .inactive{
+.tabs {
+    .inactive {
         background-color: rgba(0, 0, 0, 0.1);
-        &:hover{
+        &:hover {
             background-color: rgba(0, 0, 0, 0.05);
         }
     }
-    .tab-icon{
+    .tab-icon {
         margin-left: 0;
-        margin-right:0;
+        margin-right: 0;
     }
-    .columns{
+    .columns {
         margin-left: 0;
         margin-right: 0;
     }
 
-    ul{
+    ul {
         border-bottom-style: hidden;
     }
 }
 
-.tab-content{
-    .column{
+.tab-content {
+    .column {
         padding-left: 0;
         padding-right: 0;
     }
 }
-.tab-text-container{
+.tab-text-container {
     overflow: hidden;
-    .tab-text{
+    .tab-text {
         display: block;
         overflow: hidden;
         text-overflow: ellipsis;

@@ -9,7 +9,6 @@ module.exports = function open(store) {
         <a href="#">https://github.com/angrykoala/gaucho</a></p>`;
     const modal = new AppAlert("<h4>Gaucho</h4>", {
         showCloseButton: false,
-        confirmButtonColor: "#ee6e73",
         confirmButtonText: "Close"
     }).html(aboutHtml);
     modal.toggle();

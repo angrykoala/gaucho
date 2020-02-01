@@ -5,7 +5,6 @@
                 <div class="navbar-item unselectable">
                     <img class="logo-icon" src="../../../../resources/logos/gaucho_logo.ico">
                     <h1 class="title is-4">Gaucho</h1>
-                    <h2 class="beta-subtitle is-4">Beta</h2>
                 </div>
             </div>
             <div class="navbar-menu is-active">
@@ -32,7 +31,10 @@
 <script>
 "use strict";
 
+const app = require('electron').remote;
+const dialog = app.dialog;
 const ipcRenderer = require('electron').ipcRenderer;
+
 const EventHandler = require('../../event_handler');
 const {
     SchedulerAlert
@@ -67,6 +69,23 @@ module.exports = {
                     break;
                 case "stopSuite":
                     this.$store.dispatch("stopSuite", this.$store.state.tasks.selectedSuite);
+                    break;
+                case "importSuite":
+                    if (this.$store.getters.canAddSuite) {
+                        dialog.showOpenDialog({
+                            filters: [{
+                                name: 'json',
+                                extensions: ['json']
+                            }]
+                        }).then((dialogResult) => {
+                            if (dialogResult.filePaths && dialogResult.filePaths[0]) {
+                                const filename = dialogResult.filePaths[0];
+                                this.$store.dispatch("importSuite", filename).catch((err) => {
+                                    console.warn(err);
+                                });
+                            }
+                        });
+                    }
                     break;
                 case "scheduleSuite":
                     new SchedulerAlert("Schedule Task Execution").toggle().then((res) => {
@@ -112,11 +131,6 @@ module.exports = {
 
 .title {
     margin-bottom: 0;
-}
-
-.beta-subtitle {
-    padding-top: 12px;
-    padding-left: 4px;
 }
 
 .navbar-logo {

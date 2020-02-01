@@ -4,6 +4,9 @@ const swal = require('sweetalert2');
 
 let store;
 
+const confirmButtonColor = "#2bbbad";
+const dangerButtonColor = "#f14668";
+
 function init(newStore) {
     store = newStore;
 }
@@ -17,7 +20,14 @@ class AppAlert {
         this.alertOptions = Object.assign({
             title: title,
             customClass: getTheme(),
-            heightAuto: false
+            heightAuto: false,
+            confirmButtonColor: confirmButtonColor,
+            showClass: {
+                popup: ''
+            },
+            hideClass: {
+                popup: ''
+            }
         }, options);
     }
 
@@ -46,10 +56,21 @@ class DeleteConfirmationAlert extends InteractiveAlert {
         super("Are you sure?", Object.assign({
             text: text,
             showCancelButton: true,
-            confirmButtonColor: "#ee6e73",
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'No, keep it',
-            type: 'warning'
+            confirmButtonColor: dangerButtonColor
+        }, options));
+    }
+}
+
+class ImportTaskAlert extends DeleteConfirmationAlert {
+    constructor(text, options = {}) {
+        super("Importing tasks will remove all current tasks.", Object.assign({
+            text: text,
+            showCancelButton: true,
+            confirmButtonText: "Yes, import tasks",
+            cancelButtonText: "No, cancel import",
+            confirmButtonColor: confirmButtonColor
         }, options));
     }
 }
@@ -58,7 +79,6 @@ class InputAlert extends InteractiveAlert {
     constructor(title, defaultValue = "", options = {}) {
         super(title, Object.assign({
             showCancelButton: true,
-            confirmButtonColor: "#ee6e73",
             confirmButtonText: 'Rename',
             input: 'text',
             inputValue: defaultValue
@@ -71,16 +91,20 @@ class SchedulerAlert extends InputAlert {
         super(title, "", Object.assign({
             confirmButtonText: 'Schedule',
             input: 'number',
-            inputPlaceholder: 'Seconds'
+            inputPlaceholder: 'Seconds',
+            inputAttributes: {
+                min: 0
+            }
         }, options));
     }
 }
 
 module.exports = {
-    AppAlert: AppAlert,
-    DeleteConfirmationAlert: DeleteConfirmationAlert,
-    InputAlert: InputAlert,
-    SchedulerAlert: SchedulerAlert,
+    AppAlert,
+    DeleteConfirmationAlert,
+    InputAlert,
+    SchedulerAlert,
+    ImportTaskAlert,
     init: init,
     isVisible: swal.isVisible
 };

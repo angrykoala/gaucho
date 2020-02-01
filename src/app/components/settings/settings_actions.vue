@@ -18,7 +18,10 @@ const path = require('path');
 const app = require('electron').remote;
 const dialog = app.dialog;
 
-const DeleteConfirmationAlert = require('../../api/app_alerts').DeleteConfirmationAlert;
+const {
+    ImportTaskAlert,
+    DeleteConfirmationAlert
+} = require('../../api/app_alerts');
 
 const components = {
     "button-item": require('./button_item.vue')
@@ -33,13 +36,10 @@ module.exports = {
                     name: 'json',
                     extensions: ['json']
                 }]
-            }, (filenames) => {
-                if (filenames && filenames[0]) {
-                    const filename = filenames[0];
-                    const confirmationAlert = new DeleteConfirmationAlert("Importing tasks will remove all current tasks.", {
-                        confirmButtonText: "Yes, import tasks",
-                        cancelButtonText: "No, cancel import"
-                    });
+            }).then((dialogResult) => {
+                if (dialogResult.filePaths && dialogResult.filePaths[0]) {
+                    const filename = dialogResult.filePaths[0];
+                    const confirmationAlert = new ImportTaskAlert();
                     confirmationAlert.toggle().then(() => {
                         return this.$store.dispatch("importTasks", filename).catch((err) => {
                             console.warn(err);
@@ -54,9 +54,9 @@ module.exports = {
                 filters: [{
                     extensions: ['json']
                 }]
-            }, (filename) => {
-                if (filename) {
-                    this.$store.dispatch("exportTasks", filename).catch((err) => {
+            }).then((dialogResult) => {
+                if (dialogResult.filePath) {
+                    this.$store.dispatch("exportTasks", dialogResult.filePath).catch((err) => {
                         console.warn(err);
                     });
                 }
