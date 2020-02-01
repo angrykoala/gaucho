@@ -71,8 +71,7 @@ module.exports = {
         },
         renameSuite(state, data) {
             const suite = state.suites[data.suite];
-            suite.title = data.title;
-            TasksHandler.saveTasks(state.suites);
+            suite.setTitle(data.title);
         },
         updateSuiteTasks(state, data) {
             const suite = state.suites[data.suite];

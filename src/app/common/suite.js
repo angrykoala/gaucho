@@ -5,8 +5,8 @@ const constants = require('../../common/constants');
 
 class Suite {
     constructor(title, tasks) {
-        this.title = title || "";
         this.tasks = tasks || [];
+        this.setTitle(title);
     }
 
     get length() {
@@ -53,6 +53,10 @@ class Suite {
         for (const task of this.tasks) {
             if (!task.isRunning()) task.run();
         }
+    }
+
+    setTitle(title) {
+        this.title = utils.truncate(title || "", constants.maxSuiteNameLength);
     }
 
     getData() {

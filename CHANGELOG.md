@@ -1,13 +1,13 @@
 0.8.0 / ####-##-##
 ==================
 
-* Quit option in context menu
 * Import/Export suites
 * Duplicate suite option
 * Tasks descriptions
+* Quit option in context menu
 * Modal alerts styles changed for better consistency
 * Styles improved
-* Task name and description limited to a number of characters
+* Suite name, Task name and description characters limit
 * Dependencies updated, electron v7
 
 0.7.0 / 2019-08-12

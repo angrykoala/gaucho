@@ -38,6 +38,8 @@ const dialog = app.dialog;
 const AppAlerts = require('../../api/app_alerts');
 const ContextMenu = require('../../api/context_menu');
 
+const constants = require('../../../common/constants.js');
+
 const tabMenu = new ContextMenu.TabMenu();
 
 const components = {
@@ -111,7 +113,12 @@ module.exports = {
             });
         },
         renameSuite(index) {
-            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title);
+            const alert = new AppAlerts.InputAlert("Rename Suite?", this.suites[index].title, {
+                inputAttributes: {
+                    maxLength: constants.maxSuiteNameLength
+                }
+            });
+
             alert.toggle().then((res) => {
                 if (res.length > 0) {
                     this.$store.commit("renameSuite", {
