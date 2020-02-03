@@ -10,7 +10,7 @@
 * Suite name, Task name and description characters limit
 * Dependencies updated, electron v7
 
-0.7.0 / 2019-08-12
+0.7.0 / 2019-12-08
 ==================
 
 * Env variables configuration in tasks
