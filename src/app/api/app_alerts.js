@@ -90,6 +90,7 @@ module.exports = {
     AppAlert,
     DeleteConfirmationAlert,
     InputAlert,
+    InteractiveAlert,
     ImportTaskAlert,
     init: init,
     isVisible: swal.isVisible

@@ -2,6 +2,7 @@
 ==================
 
 * Removed tasks description
+* Greatly improved task scheduling form
 * Minor style improvement in task title and form
 * Dependencies updated
 
