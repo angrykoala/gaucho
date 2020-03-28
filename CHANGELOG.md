@@ -2,6 +2,7 @@
 ==================
 
 * Removed tasks description
+* Minor style improvement in task title and form
 * Dependencies updated
 
 0.8.0 / 2020-02-01
