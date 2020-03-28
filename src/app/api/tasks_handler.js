@@ -46,7 +46,6 @@ module.exports = class TasksHandler {
             const result = new Suite(suite.title);
             result.tasks = suite.tasks.map((task) => new Task({
                 title: task.title,
-                description: task.description,
                 path: task.path,
                 command: task.command,
                 env: task.env

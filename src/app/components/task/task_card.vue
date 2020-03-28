@@ -2,7 +2,7 @@
     <div class="task-card" @contextmenu.stop="context()">
         <div class="columns is-mobile task-card-header" @click="taskSelected">
             <div class="column is-half">
-                <div class="columns is-mobile">
+                <div class="columns is-mobile title-column">
                     <div v-if="editMode" class="column is-narrow drag-handle-container">
                         <p>
                             <span class="drag-handle">
@@ -12,7 +12,7 @@
                             </span>
                         </p>
                     </div>
-                    <div class="column">
+                    <div class="column task-title" :class="{'with-drag-handler': editMode}">
                         <b>
                             <span v-show="open" class="icon">
                                 <i class="fas fa-caret-down"></i>
@@ -22,9 +22,6 @@
                             </span>
                             {{task.title}}
                         </b>
-                        <p class="description" v-show="task.description">
-                            {{task.description}}
-                        </p>
                     </div>
                 </div>
             </div>
@@ -184,19 +181,7 @@ module.exports = {
     width: 80px;
 }
 
-.column {
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-.description {
-    font-size: 15px;
-    color: #9e9e9e;
-    margin-left: 42px;
-    padding-top: 0;
-}
-
-.execution-time{
+.execution-time {
     padding-top: 4px
 }
 
@@ -220,9 +205,19 @@ module.exports = {
     }
 }
 
+.title-column {
+    margin-top: 0;
+}
+
+.task-title {
+    font-size: 18px;
+    &.with-drag-handler {
+        padding-left: 0;
+    }
+}
+
 .drag-handle-container{
     padding-right: 0;
-    padding-top: 1.5rem;
 }
 
 .task-output-container{

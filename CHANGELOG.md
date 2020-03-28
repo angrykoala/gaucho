@@ -1,3 +1,9 @@
+0.9.0 / ####-##-##
+==================
+
+* Removed tasks description
+* Dependencies updated
+
 0.8.0 / 2020-02-01
 ==================
 
