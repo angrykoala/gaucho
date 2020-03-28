@@ -54,9 +54,10 @@
 
 const utils = require('../../common/utils');
 const {
-    DeleteConfirmationAlert,
-    SchedulerAlert
+    DeleteConfirmationAlert
 } = require('../../api/app_alerts');
+
+const schedulerModal = require('../../api/scheduler_modal');
 const ContextMenu = require('../../api/context_menu');
 
 const components = {
@@ -159,8 +160,7 @@ module.exports = {
                 this.toggleRun();
             });
             cardMenu.on("schedule", () => {
-                const schedulerAlert = new SchedulerAlert("Schedule Task Execution");
-                schedulerAlert.toggle().then((res) => {
+                schedulerModal("Schedule Task Execution").then((res) => {
                     this.schedule(res);
                 }, () => {
                     // Schedule cancelled
