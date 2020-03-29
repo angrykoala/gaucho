@@ -1,6 +1,7 @@
 0.9.0 / ####-##-##
 ==================
 
+* Repeat scheduling of task or suite
 * Removed tasks description
 * Greatly improved task scheduling form
 * Minor style improvement in task title and form

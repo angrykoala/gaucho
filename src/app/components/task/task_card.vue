@@ -110,10 +110,11 @@ module.exports = {
             this.disableButton();
             this.$store.dispatch("runTask", this.index);
         },
-        schedule(seconds) {
+        schedule(options) {
             this.$store.dispatch("scheduleTask", {
                 index: this.index,
-                seconds: seconds
+                seconds: options.seconds,
+                repeat: options.repeat
             });
         },
         stop() {

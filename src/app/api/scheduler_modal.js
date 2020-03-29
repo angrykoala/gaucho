@@ -38,9 +38,9 @@ module.exports = function open(title) {
             const res = {
                 hours: Number(document.querySelector('.swal2-input.hours').value || 0),
                 minutes: Number(document.querySelector('.swal2-input.minutes').value || 0),
-                seconds: Number(document.querySelector('.swal2-input.seconds').value || 0)
+                seconds: Number(document.querySelector('.swal2-input.seconds').value || 0),
+                repeat: Boolean(document.querySelector('.swal2-checkbox').checked)
             };
-
             const errorMessage = isThereAnError(res);
             if (errorMessage) {
                 swal.showValidationMessage(errorMessage);
@@ -52,7 +52,10 @@ module.exports = function open(title) {
                 swal.showValidationMessage('Please, fill at least one field');
                 return false;
             }
-            return totalSeconds;
+            return {
+                seconds: totalSeconds,
+                repeat: res.repeat
+            };
         }
     }).html(`
         <div class="time-input">
@@ -60,5 +63,7 @@ module.exports = function open(title) {
             <input min="0" max="59" class="swal2-input minutes" placeholder="Minutes" type="number" style="display: flex;">
             <input min="0" max="59" class="swal2-input seconds" placeholder="Seconds" type="number" style="display: flex;">
         </div>
+        <input type="checkbox" class="swal2-checkbox">
+        <span class="swal2-label">Repeat</span>
         `).toggle();
 };

@@ -86,15 +86,20 @@ class Task {
         return res;
     }
 
-    schedule(seconds, onRun, done) {
+    schedule(options, onRun, done) {
         this.stop(() => {
             this.status = TaskStatus.scheduled;
-            this.timer = new InverseTaskTimer(seconds);
+            this.timer = new InverseTaskTimer(options.seconds);
             this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
                 onRun();
-                this.run(done);
-            }, seconds * 1000);
+                this.run(() => {
+                    done();
+                    if (options.repeat && this.status !== TaskStatus.stopped) {
+                        this.schedule(options, onRun, done);
+                    }
+                });
+            }, options.seconds * 1000);
         });
     }
 
