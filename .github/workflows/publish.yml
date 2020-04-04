@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@master
       - run: sudo apt update
-      - run: sudo apt install icnsutils graphicsmagick rpm wine
+      - run: sudo apt install icnsutils graphicsmagick rpm wine-stable
       - name: Build project
         run: npm run dist-all
       - name: Upload files
