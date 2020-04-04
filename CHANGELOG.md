@@ -1,3 +1,12 @@
+0.9.0 / 2020-04-04
+==================
+
+* Repeat scheduling of task or suite
+* Removed tasks description
+* Greatly improved task scheduling form
+* Minor style improvement in task title and form
+* Dependencies updated
+
 0.8.0 / 2020-02-01
 ==================
 

@@ -9,6 +9,7 @@ const AppConfig = require('../common/app_config');
 
 app.disableHardwareAcceleration(); // fixes drag images freezes
 app.commandLine.appendSwitch('force-color-profile', 'srgb'); // Fixes messed up color rendering
+app.allowRendererProcessReuse = true; // Default from electron 9, explicitly set to remove warning
 
 module.exports = class MainWindow {
     constructor() {

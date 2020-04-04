@@ -6,7 +6,6 @@
 @import "desktopify";
 @import "theme_styles";
 
-
 #app {
     display: block;
     height: 100%;
@@ -38,4 +37,8 @@ body,
 html {
     height: 100%;
     overflow: hidden;
+}
+
+::placeholder {
+    opacity: 0.65;
 }

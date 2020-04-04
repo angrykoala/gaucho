@@ -8,12 +8,6 @@
                 </div>
             </div>
             <div class="field">
-                <label class="label">Description</label>
-                <div class="control">
-                    <input v-model="description" class="input" type="text" :maxlength="constants.maxDescriptionLength">
-                </div>
-            </div>
-            <div class="field">
                 <label class="label">Command*</label>
                 <div class="control">
                     <textarea v-model="command" class="textarea"></textarea>
@@ -51,7 +45,6 @@ module.exports = {
     data() {
         return {
             title: "",
-            description: "",
             command: "",
             path: "",
             env: [],
@@ -76,7 +69,6 @@ module.exports = {
             if (this.canSave) {
                 this.$emit('save', new Task({
                     title: this.title,
-                    description: this.description,
                     path: this.path,
                     command: this.command,
                     env: this.env
@@ -87,7 +79,6 @@ module.exports = {
         clear() {
             this.title = "";
             this.command = "";
-            this.description = "";
             this.path = "";
             this.env = [];
         },
@@ -95,7 +86,6 @@ module.exports = {
             if (this.task) {
                 this.title = this.task.title;
                 this.command = this.task.command;
-                this.description = this.task.description;
                 this.path = this.task.path;
                 this.env = this.task.env;
             }

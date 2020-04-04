@@ -51,23 +51,6 @@ describe("Tasks", () => {
         assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
     });
 
-    it("Get Task Config with path and description", () => {
-        const taskConfigTest = new Task({
-            title: "Test",
-            path: "a/path",
-            command: taskCommand,
-            description: "a nice description"
-        });
-        const taskData = taskConfigTest.getData();
-        const expectedResult = {
-            title: "Test",
-            command: taskCommand,
-            path: "a/path",
-            description: "a nice description"
-        };
-        assert.strictEqual(JSON.stringify(taskData), JSON.stringify(expectedResult));
-    });
-
     it("Get Task Config with env", () => {
         const taskConfigTest = new Task({
             title: "Test",

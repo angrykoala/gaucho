@@ -36,9 +36,8 @@ const dialog = app.dialog;
 const ipcRenderer = require('electron').ipcRenderer;
 
 const EventHandler = require('../../event_handler');
-const {
-    SchedulerAlert
-} = require('../../api/app_alerts');
+
+const schedulerModal = require('../../api/scheduler_modal');
 const aboutModal = require('../../api/about_modal');
 
 const components = {
@@ -88,7 +87,7 @@ module.exports = {
                     }
                     break;
                 case "scheduleSuite":
-                    new SchedulerAlert("Schedule Task Execution").toggle().then((res) => {
+                    schedulerModal("Schedule Suite Execution").then((res) => {
                         this.$store.dispatch("scheduleSuite", res);
                     }, () => {
                         // Cancelled scheduling

@@ -164,7 +164,12 @@ module.exports = {
         },
         scheduleTask(context, data) {
             const task = context.getters.currentSuite.getTask(data.index);
-            task.schedule(data.seconds, () => {
+            const scheduleOptions = {
+                seconds: data.seconds,
+                repeat: data.repeat
+            };
+
+            task.schedule(scheduleOptions, () => {
                 context.commit('increaseRunningTasks'); // On Run
             }, () => {
                 context.commit('decreaseRunningTasks'); // On Completed
@@ -182,12 +187,13 @@ module.exports = {
                 context.dispatch("runTask", i);
             }
         },
-        scheduleSuite(context, seconds) {
+        scheduleSuite(context, options) {
             const taskNumber = context.getters.currentSuite.length;
             for (let i = 0; i < taskNumber; i++) {
                 context.dispatch("scheduleTask", {
                     index: i,
-                    seconds: seconds
+                    seconds: options.seconds,
+                    repeat: options.repeat
                 });
             }
         },

@@ -5,8 +5,6 @@ const yerbamate = require('yerbamate');
 
 const TaskStatus = require('./task_status');
 const {TaskTimer, InverseTaskTimer} = require('./task_timer');
-const utils = require('./utils');
-const constants = require('../../common/constants');
 
 const outputMaxSize = 6000;
 
@@ -14,7 +12,6 @@ class Task {
     constructor(options) {
         this.title = options.title.trim() || "";
         this.command = options.command || "";
-        this.description = this._formatDescription(options.description);
         this.path = options.path || "";
         this.env = options.env || [];
         this.status = TaskStatus.idle;
@@ -86,26 +83,29 @@ class Task {
         };
         if (this.env && this.env.length > 0) res.env = this.env;
         if (this.path !== "") res.path = this.path;
-        if (this.description !== "") res.description = this.description;
         return res;
     }
 
-    schedule(seconds, onRun, done) {
+    schedule(options, onRun, done) {
         this.stop(() => {
             this.status = TaskStatus.scheduled;
-            this.timer = new InverseTaskTimer(seconds);
+            this.timer = new InverseTaskTimer(options.seconds);
             this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
                 onRun();
-                this.run(done);
-            }, seconds * 1000);
+                this.run(() => {
+                    done();
+                    if (options.repeat && this.status !== TaskStatus.stopped) {
+                        this.schedule(options, onRun, done);
+                    }
+                });
+            }, options.seconds * 1000);
         });
     }
 
     clone() {
         return new Task({
             title: this.title,
-            description: this.description,
             path: this.path,
             command: this.command,
             env: this.env});
@@ -134,11 +134,6 @@ class Task {
             return acc;
         }, {});
         return res;
-    }
-
-    _formatDescription(originalDescription) {
-        const description = originalDescription || "";
-        return utils.truncate(description.trim(), constants.maxDescriptionLength).trim();
     }
 }
 

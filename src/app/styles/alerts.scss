@@ -12,4 +12,15 @@
             border: 1px solid #d9d9d9;
         }
     }
+
+    .time-input {
+        display: flex;
+
+        .hours {
+            margin-right: 8px;
+        }
+        .minutes {
+            margin-right: 8px;
+        }
+    }
 }
