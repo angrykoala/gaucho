@@ -1,4 +1,4 @@
-0.9.0 / ####-##-##
+0.9.0 / 2020-04-04
 ==================
 
 * Repeat scheduling of task or suite

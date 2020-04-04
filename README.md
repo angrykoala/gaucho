@@ -102,5 +102,4 @@ The original source code can be found at: <https://github.com/angrykoala/gaucho>
 > You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)
 
 
-
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/gaucho)
