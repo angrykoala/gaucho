@@ -60,8 +60,10 @@ class Task {
     stop(cb) {
         this._clearSchedulerTimeout();
         if (this.isRunning()) {
-            yerbamate.stop(this.proc, cb);
-            this.status = TaskStatus.stopped;
+            yerbamate.stop(this.proc, () => {
+                this.status = TaskStatus.stopped;
+                if (cb) cb();
+            });
         } else {
             this.status = TaskStatus.stopped;
             if (cb) cb();

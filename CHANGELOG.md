@@ -1,6 +1,7 @@
 0.9.1 / ####-##-##
 ==================
 
+* Wait until task is killed before setting the task to stopped
 * Dependencies updated
 
 0.9.0 / 2020-04-04
