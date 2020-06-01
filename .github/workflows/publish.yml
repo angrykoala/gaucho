@@ -10,8 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@master
+      - run: sudo dpkg --add-architecture i386
       - run: sudo apt update
-      - run: sudo apt install icnsutils graphicsmagick rpm wine-stable
+      - run: sudo apt install icnsutils graphicsmagick rpm wine-stable wine32
       - name: Build project
         run: npm run dist-all
       - name: Upload files
