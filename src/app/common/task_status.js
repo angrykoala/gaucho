@@ -5,6 +5,5 @@ module.exports = {
     error: "error",
     running: "running",
     stopped: "stopped",
-    ok: "ok",
-    scheduled: "scheduled"
+    ok: "ok"
 };

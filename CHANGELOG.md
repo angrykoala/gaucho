@@ -2,6 +2,8 @@
 ==================
 
 * Wait until task is killed before setting the task to stopped
+* Scheduled tasks now keep previous status until executed
+* Improve timers display accuracy
 * Dependencies updated
 
 0.9.0 / 2020-04-04

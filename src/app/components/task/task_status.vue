@@ -17,11 +17,6 @@
             <i class="fas fa-lg fa-check-circle has-text-success"></i>
         </span>
     </div>
-    <div v-else-if="status===TaskStatus.scheduled">
-        <span class="icon is-medium has-text-centered">
-            <i class="fas fa-lg fa-clock"></i>
-        </span>
-    </div>
 </template>
 
 <script>
