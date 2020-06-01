@@ -1,4 +1,4 @@
-0.9.1 / ####-##-##
+0.9.1 / 2020-06-01
 ==================
 
 * Wait until task is killed before setting the task to stopped
