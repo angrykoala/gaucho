@@ -15,6 +15,7 @@ class Task {
         this.path = options.path || "";
         this.env = options.env || [];
         this.status = TaskStatus.idle;
+        this.scheduled = false;
 
         this.output = null;
         this.timer = null;
@@ -26,7 +27,6 @@ class Task {
         if (!this.timer) return null;
         return this.timer.elapsedSeconds;
     }
-
 
     run(done) {
         this._clearSchedulerTimeout();
@@ -60,12 +60,11 @@ class Task {
     stop(cb) {
         this._clearSchedulerTimeout();
         if (this.isRunning()) {
-            yerbamate.stop(this.proc, cb);
-            this.status = TaskStatus.stopped;
-        } else {
-            this.status = TaskStatus.stopped;
-            if (cb) cb();
-        }
+            yerbamate.stop(this.proc, () => {
+                this.status = TaskStatus.stopped;
+                if (cb) cb();
+            });
+        } else if (cb) cb();
     }
 
     isRunning() {
@@ -73,7 +72,7 @@ class Task {
     }
 
     isScheduled() {
-        return this.status === TaskStatus.scheduled;
+        return this.scheduled;
     }
 
     getData() {
@@ -88,7 +87,7 @@ class Task {
 
     schedule(options, onRun, done) {
         this.stop(() => {
-            this.status = TaskStatus.scheduled;
+            this.scheduled = true;
             this.timer = new InverseTaskTimer(options.seconds);
             this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
@@ -125,6 +124,7 @@ class Task {
             this.timer = null;
         }
         this._scheduleTimeout = null;
+        this.scheduled = false;
     }
 
     _getEnvVariables() {

@@ -11,7 +11,7 @@ function setTimer(eventEmitter, intervalTime) {
 }
 
 const TaskEvents = new EventEmitter();
-setTimer(TaskEvents, 1000);
+setTimer(TaskEvents, 100);
 
 const TIMER_STATE = {
     RUNNING: "running",

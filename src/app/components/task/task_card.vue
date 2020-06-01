@@ -28,7 +28,12 @@
             <div class="column is-half">
                 <div class="columns is-mobile task-actions">
                     <div v-if="showTimer" class="column has-text-centered task-action-text">
-                        <p class="execution-time">{{executionTime}}</p>
+                        <p class="execution-time">
+                            <span v-if="scheduled" class="icon is-small" title="scheduled">
+                                <i class="fas fa-lg fa-clock"></i>
+                            </span>
+                            {{executionTime}}
+                        </p>
                     </div>
                     <div class="column">
                         <button v-if="!editMode" :class="{'is-danger':running}" class="button is-primary task-button" @click.stop="toggleRun" :disabled="!runButtonEnabled">{{runButtonText}}</button>
@@ -83,9 +88,7 @@ module.exports = {
         },
         executionTime() {
             if (this.task.elapsedTime === null) return "-";
-            let timeString = utils.generateTimeString(this.task.elapsedTime);
-            if (this.scheduled) timeString = `- ${timeString}`;
-            return timeString;
+            return utils.generateTimeString(this.task.elapsedTime);
         },
         showTimer() {
             return this.$store.state.userConfig.showTimer;
@@ -183,7 +186,11 @@ module.exports = {
 }
 
 .execution-time {
-    padding-top: 4px
+    padding-top: 4px;
+
+    .icon {
+      display: inline;
+    }
 }
 
 .task-card-header {
