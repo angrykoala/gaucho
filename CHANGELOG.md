@@ -1,3 +1,9 @@
+0.9.2 / ####-##-##
+==================
+
+* Updates dependencies
+* Adds enableRemoteModule option to browser window
+
 0.9.1 / 2020-06-01
 ==================
 
