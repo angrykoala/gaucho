@@ -149,6 +149,7 @@
                 "svg": "never",
                 "math": "never"
             }
-        ]
+        ],
+        "vue/custom-event-name-casing": "off"
     }
 }
