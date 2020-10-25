@@ -43,7 +43,8 @@ module.exports = class MainWindow {
             icon: this.iconPath,
             frame: true,
             webPreferences: {
-                nodeIntegration: true
+                nodeIntegration: true,
+                enableRemoteModule: true
             }
         };
         if (devWindow) {
