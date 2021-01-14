@@ -2,6 +2,7 @@
 ===================
 
 * Gaucho now runs as a single-instance app
+* Adds cut-copy-paste items to context menu
 * Dependencies updated
 
 0.9.2 / 2020-10-25

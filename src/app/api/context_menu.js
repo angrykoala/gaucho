@@ -1,6 +1,5 @@
 "use strict";
 const {remote} = require('electron');
-const ipcRenderer = require('electron').ipcRenderer;
 
 const {Menu, MenuItem} = remote;
 
@@ -17,13 +16,14 @@ class ContextMenu extends EventEmitter {
         this.extraData = null;
         this.menu = new Menu();
         for (const item of items) {
-            const event = item.event || item.label;
+            const event = item.event;
             const menuItem = new MenuItem({
                 label: item.label,
-                click: () => {
+                click: event ? () => {
                     this.emit(event, this.extraData);
-                },
-                type: item.type || "normal"
+                } : undefined,
+                type: item.type || "normal",
+                role: item.role
             });
             this.menu.append(menuItem);
         }
@@ -41,10 +41,27 @@ class ContextMenu extends EventEmitter {
 
 class DefaultContextMenu extends ContextMenu {
     constructor(extraOptions = []) {
-        super(extraOptions.concat([{label: "Settings",
-            event: "settings"}, {label: "About",
-            event: "about"}, {label: "Quit",
-            event: "quit"}]));
+        super(extraOptions.concat([{
+            label: "Cut",
+            role: "cut"
+        }, {
+            label: "Copy",
+            role: "copy"
+        }, {
+            label: "Paste",
+            role: "paste"
+        }, {
+            type: "separator"
+        }, {
+            label: "Settings",
+            event: "settings"
+        }, {
+            label: "About",
+            event: "about"
+        }, {
+            label: "Quit",
+            role: "quit"
+        }]));
     }
 
     toggle(extraData) {
@@ -54,10 +71,6 @@ class DefaultContextMenu extends ContextMenu {
         this.on("about", () => {
             aboutModal(store);
         });
-        this.on("quit", () => {
-            ipcRenderer.send("close-app");
-        });
-
         super.toggle(extraData);
     }
 }
@@ -90,9 +103,14 @@ class CardMenu extends DefaultContextMenu {
                 event: "schedule"
             });
         }
-        super(items.concat([{label: "Delete",
-            event: "delete"}, {label: "Duplicate",
-            event: "duplicate"}, {type: "separator"}]));
+        super(items.concat([{
+            label: "Delete",
+            event: "delete"}, {
+            label: "Duplicate",
+            event: "duplicate"
+        }, {
+            type: "separator"
+        }]));
     }
 }
 
