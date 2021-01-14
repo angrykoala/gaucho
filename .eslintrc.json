@@ -50,6 +50,7 @@
         "no-sequences": "error",
         "no-throw-literal": "warn",
         "no-unused-expressions": "warn",
+        "no-unused-vars": ["error", { "args": "none" }],
         "no-useless-call": "error",
         "no-useless-concat": "warn",
         "no-useless-return": "warn",

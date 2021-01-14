@@ -1,3 +1,9 @@
+0.10.0 / ####-##-##
+===================
+
+* Gaucho now runs as a single-instance app
+* Dependencies updated
+
 0.9.2 / 2020-10-25
 ==================
 
