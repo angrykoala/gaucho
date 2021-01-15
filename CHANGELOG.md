@@ -4,8 +4,10 @@
 * Gaucho now runs as a single-instance app
 * Overhaul of menu and context menu options
     * Suite-related actions moved to context menu
-    * "Import suite" is not part of settings 
+    * "Import suite" is not part of settings
 * Adds cut-copy-paste items to context menu
+* Settings shortcuts menu is now collapsed by default
+* Minor fix in "Desktopify"
 * Dependencies updated
 
 0.9.2 / 2020-10-25

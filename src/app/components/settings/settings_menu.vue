@@ -18,8 +18,18 @@
                 <hr>
                 <h3 class="settings-subtitle">Actions</h3>
                 <settings-actions @resetSettings="resetSettings"></settings-actions>
-                <h3 class="settings-subtitle">Shortcuts</h3>
-                <div class="settings-menu-section">
+
+
+                <h3 class="settings-subtitle" @click="toggleShortcuts">
+                    <span v-show="showShortcuts" class="icon">
+                        <i class="fas fa-caret-down"></i>
+                    </span>
+                    <span v-show="!showShortcuts" class="icon">
+                        <i class="fas fa-caret-right"></i>
+                    </span>
+                    Shortcuts
+                </h3>
+                <div class="settings-menu-section" v-show="showShortcuts">
                     <shortcuts-cheatsheet></shortcuts-cheatsheet>
                 </div>
             </div>
@@ -44,7 +54,8 @@ module.exports = {
         return {
             bottomBar: this.$store.state.userConfig.bottomBar,
             showTimer: this.$store.state.userConfig.showTimer,
-            theme: this.$store.state.userConfig.theme
+            theme: this.$store.state.userConfig.theme,
+            showShortcuts: false
         };
     },
     components: components,
@@ -67,6 +78,9 @@ module.exports = {
             this.bottomBar = true;
             this.showTimer = true;
             this.theme = "classic";
+        },
+        toggleShortcuts() {
+            this.showShortcuts = !this.showShortcuts;
         },
         _close() {
             this.$store.commit("toggleSettings");
