@@ -4,6 +4,7 @@
             <button-item @select="resetSettings">Reset Settings</button-item>
             <button-item @select="exportTasks">Export Tasks</button-item>
             <button-item @select="importTasks" label="Warning: This will override your previous tasks">Import Tasks</button-item>
+            <button-item @select="importSuite" :disabled="!canImportSuite">Import Suite</button-item>
             <button-item @select="clearTasks" label="Warning: This will remove all your suites and tasks">Clear Tasks</button-item>
         </div>
     </div>
@@ -29,6 +30,11 @@ const components = {
 
 module.exports = {
     components: components,
+    computed: {
+        canImportSuite() {
+            return this.$store.getters.canAddSuite;
+        }
+    },
     methods: {
         importTasks() {
             dialog.showOpenDialog({
@@ -77,6 +83,23 @@ module.exports = {
         },
         resetSettings() {
             this.$emit("resetSettings");
+        },
+        importSuite() {
+            if (this.canImportSuite) {
+                dialog.showOpenDialog({
+                    filters: [{
+                        name: 'json',
+                        extensions: ['json']
+                    }]
+                }).then((dialogResult) => {
+                    if (dialogResult.filePaths && dialogResult.filePaths[0]) {
+                        const filename = dialogResult.filePaths[0];
+                        this.$store.dispatch("importSuite", filename).catch((err) => {
+                            console.warn(err);
+                        });
+                    }
+                });
+            }
         }
     }
 };

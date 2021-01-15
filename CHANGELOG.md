@@ -2,6 +2,9 @@
 ===================
 
 * Gaucho now runs as a single-instance app
+* Overhaul of menu and context menu options
+    * Suite-related actions moved to context menu
+    * "Import suite" is not part of settings 
 * Adds cut-copy-paste items to context menu
 * Dependencies updated
 

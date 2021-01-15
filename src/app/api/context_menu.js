@@ -24,7 +24,8 @@ class ContextMenu extends EventEmitter {
                     this.emit(event, this.extraData);
                 } : undefined,
                 type: item.type || "normal",
-                role: item.role
+                role: item.role,
+                sublabel: item.sublabel
             });
             this.menu.append(menuItem);
         }
@@ -41,8 +42,8 @@ class ContextMenu extends EventEmitter {
 }
 
 class DefaultContextMenu extends ContextMenu {
-    constructor(extraOptions = []) {
-        super(extraOptions.concat([{
+    constructor(extraOptions = [], includeEditFields = true) {
+        const editableFields = [{
             label: "Cut",
             role: "cut"
         }, {
@@ -53,7 +54,9 @@ class DefaultContextMenu extends ContextMenu {
             role: "paste"
         }, {
             type: "separator"
-        }, {
+        }];
+
+        const baseFields = [{
             label: "Settings",
             event: "settings"
         }, {
@@ -62,7 +65,11 @@ class DefaultContextMenu extends ContextMenu {
         }, {
             label: "Quit",
             event: "quit"
-        }]));
+        }];
+
+        const fields = includeEditFields ? editableFields.concat(baseFields) : baseFields;
+
+        super(extraOptions.concat(fields));
     }
 
     toggle(extraData) {
@@ -81,12 +88,29 @@ class DefaultContextMenu extends ContextMenu {
 }
 
 class TabMenu extends DefaultContextMenu {
-    constructor() {
-        super([{label: "Delete",
-            event: "delete"}, {label: "Rename",
-            event: "rename"}, {label: "Export Suite",
-            event: "export-suite"}, {label: "Duplicate Suite",
-            event: "duplicate-suite"}, {type: "separator"}]);
+    constructor(suiteTitle) {
+        super([{
+            label: `Run "${suiteTitle}"`,
+            event: "run-suite"
+        }, {
+            label: "Stop Suite",
+            event: "stop-suite"
+        }, {
+            label: "Schedule",
+            event: "schedule-suite"
+        }, {type: "separator"}, {
+            label: "Delete",
+            event: "delete"
+        }, {
+            label: "Rename",
+            event: "rename"
+        }, {
+            label: "Export",
+            event: "export-suite"
+        }, {
+            label: "Duplicate",
+            event: "duplicate-suite"
+        }, {type: "separator"}], false);
     }
 }
 

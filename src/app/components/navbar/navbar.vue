@@ -31,13 +31,8 @@
 <script>
 "use strict";
 
-const app = require('electron').remote;
-const dialog = app.dialog;
 const ipcRenderer = require('electron').ipcRenderer;
-
 const EventHandler = require('../../event_handler');
-
-const schedulerModal = require('../../api/scheduler_modal');
 const aboutModal = require('../../api/about_modal');
 
 const components = {
@@ -62,36 +57,6 @@ module.exports = {
             switch (selection) {
                 case "about":
                     this.openAboutModal();
-                    break;
-                case "runSuite":
-                    this.$store.dispatch("runSuite");
-                    break;
-                case "stopSuite":
-                    this.$store.dispatch("stopSuite", this.$store.state.tasks.selectedSuite);
-                    break;
-                case "importSuite":
-                    if (this.$store.getters.canAddSuite) {
-                        dialog.showOpenDialog({
-                            filters: [{
-                                name: 'json',
-                                extensions: ['json']
-                            }]
-                        }).then((dialogResult) => {
-                            if (dialogResult.filePaths && dialogResult.filePaths[0]) {
-                                const filename = dialogResult.filePaths[0];
-                                this.$store.dispatch("importSuite", filename).catch((err) => {
-                                    console.warn(err);
-                                });
-                            }
-                        });
-                    }
-                    break;
-                case "scheduleSuite":
-                    schedulerModal("Schedule Suite Execution").then((res) => {
-                        this.$store.dispatch("scheduleSuite", res);
-                    }, () => {
-                        // Cancelled scheduling
-                    });
                     break;
                 case "settings":
                     this.$store.commit("toggleSettings");
