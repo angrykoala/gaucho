@@ -135,9 +135,13 @@ module.exports = {
             });
         },
         importTasks(context, filename) {
-            // TODO: import global env
             return TaskImporter.import(filename).then((data) => {
                 const loadedSuites = TasksHandler.loadTasksFromData(data);
+
+                if (data.globalEnv && data.globalEnv.length > 0) {
+                    context.commit("setGlobalEnv",  data.globalEnv);
+                    context.dispatch("saveGlobalEnvVariables", data.globalEnv);
+                }
                 return context.dispatch("stopAllTasks").then(() => {
                     context.commit("_setSuites", loadedSuites);
                     context.dispatch("saveTasks");
