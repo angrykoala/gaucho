@@ -19,7 +19,9 @@
                     <input v-model="path" class="input" type="text" placeholder="Defaults to home">
                 </div>
             </div>
-            <env-variables-form v-model="env"></env-variables-form>
+            <task-form-section :title="envVariablesTitle" :collapsable="true">
+                <env-variables-form v-model="env"></env-variables-form>
+            </task-form-section>
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
                     <button :disabled="!canSave" class="button is-primary save-button is-grouped-right" @click="saveTask">Save</button>
@@ -36,7 +38,8 @@ const Task = require('../../common/task');
 const constants = require('../../../common/constants');
 
 const components = {
-    "env-variables-form": require('./env_variables_form.vue')
+    "task-form-section": require('./task_form_section.vue'),
+    "env-variables-form": require('../common/env_variables_form.vue')
 };
 
 module.exports = {
@@ -54,6 +57,9 @@ module.exports = {
     computed: {
         canSave() {
             return Boolean(this.title && this.command);
+        },
+        envVariablesTitle() {
+            return `Env Variables (${this.env.length - 1})`;
         }
     },
     watch: {
@@ -95,13 +101,13 @@ module.exports = {
 </script>
 
 <style lang="scss" scoped>
-.save-button{
+.save-button {
     width: 80px;
 }
-.container{
+.container {
     padding-top: 10px;
 }
-.task-form-wrapper{
+.task-form-wrapper {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     padding-bottom: 15px;

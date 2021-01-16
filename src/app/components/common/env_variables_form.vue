@@ -4,7 +4,7 @@
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded">
-                        <input class="input" type="text" placeholder="Key" v-model="env[0]">
+                        <input class="input" :class="{'is-danger': isDuplicate(env[0])}" type="text" placeholder="Key" v-model="env[0]">
                     </p>
                 </div>
                 <div class="field">
@@ -31,6 +31,11 @@ module.exports = {
                 if (!lastElement || (lastElement[0] && lastElement[1])) value.push([]);
                 if (value.length !== this.value.length) this.$emit("input", value);
             }
+        }
+    },
+    methods: {
+        isDuplicate(key) {
+            return this.value.filter(v => v[0] === key).length >= 2;
         }
     }
 };

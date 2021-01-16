@@ -7,7 +7,7 @@
     * "Import suite" is now part of settings
 * Global Env variables can be set in settings
     * These will be exported/imported along with the suites in "Export Tasks"
-* Variable env form validation
+* Env variable form validation
 * Adds cut-copy-paste items to context menu
 * Settings shortcuts menu is now collapsed by default
 * Minor fix in "Desktopify"

@@ -42,6 +42,13 @@ module.exports = {
         Mousetrap.bind('ctrl+m', () => EventHandler.emit("showNavbarMenu"));
     },
     toggleSettings() {
-        Mousetrap.bind('ctrl+s', () => Store.commit("toggleSettings"));
+        Mousetrap.bind('ctrl+s', () => {
+            if (Store.state.settingsMenu) {
+                // TODO: make save settings in an unique place if possible
+                Store.dispatch("saveGlobalEnvVariables");
+            }
+
+            Store.commit("toggleSettings");
+        });
     }
 };

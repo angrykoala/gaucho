@@ -1,6 +1,6 @@
 <template>
     <section class="section settings-page" @contextmenu.stop="">
-        <a class="back-button" @click="saveSettings">
+        <a class="back-button" @click="close">
             <span class="icon is-small">
                 <i class="fas fa-arrow-left"></i>
             </span>
@@ -90,16 +90,13 @@ module.exports = {
         }
     },
     methods: {
-        saveSettings() {
-            this.$store.dispatch("saveGlobalEnvVariables");
-            this._close();
-        },
         resetSettings() {
             this.bottomBar = true;
             this.showTimer = true;
             this.theme = "classic";
         },
-        _close() {
+        close() {
+            this.$store.dispatch("saveGlobalEnvVariables");
             this.$store.commit("toggleSettings");
         }
     }
