@@ -76,7 +76,6 @@ module.exports = {
                 return this.$store.state.tasks.globalEnv;
             },
             set(newValue) {
-                console.log("Set", newValue);
                 this.$store.commit("setGlobalEnv", newValue);
             }
         }
