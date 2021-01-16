@@ -1,4 +1,4 @@
-0.10.0 / ####-##-##
+0.10.0 / 2021-01-16
 ===================
 
 * Gaucho now runs as a single-instance app
