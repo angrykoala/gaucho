@@ -5,7 +5,8 @@
 * Overhaul of menu and context menu options
     * Suite-related actions moved to context menu
     * "Import suite" is not part of settings
-* Global Env variables in settings
+* Global Env variables can be set in settings
+* Variable env form validation
 * Adds cut-copy-paste items to context menu
 * Settings shortcuts menu is now collapsed by default
 * Minor fix in "Desktopify"

@@ -2,7 +2,7 @@
     <div class="columns is-centered">
         <div class="column is-two-thirds">
             <button-item @select="resetSettings">Reset Settings</button-item>
-            <button-item @select="exportTasks">Export Tasks</button-item>
+            <button-item @select="exportTasks" label="Export all suites and global env variables to a file">Export Tasks</button-item>
             <button-item @select="importTasks" label="Warning: This will override your previous tasks">Import Tasks</button-item>
             <button-item @select="importSuite" :disabled="!canImportSuite">Import Suite</button-item>
             <button-item @select="clearTasks" label="Warning: This will remove all your suites and tasks">Clear Tasks</button-item>

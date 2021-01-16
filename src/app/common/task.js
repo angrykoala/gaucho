@@ -5,6 +5,7 @@ const yerbamate = require('yerbamate');
 
 const TaskStatus = require('./task_status');
 const {TaskTimer, InverseTaskTimer} = require('./task_timer');
+const EnvVariableHandler = require('../api/env_variables_handler');
 
 const outputMaxSize = 6000;
 
@@ -13,7 +14,7 @@ class Task {
         this.title = options.title.trim() || "";
         this.command = options.command || "";
         this.path = options.path || "";
-        this.env = options.env || [];
+        this.env = EnvVariableHandler.filterInvalidEnvVariables(options.env || []);
         this.status = TaskStatus.idle;
         this.scheduled = false;
 
@@ -28,7 +29,7 @@ class Task {
         return this.timer.elapsedSeconds;
     }
 
-    run(done) {
+    run(globalVariables, done) {
         this._clearSchedulerTimeout();
         if (this.isRunning()) {
             throw new Error("Trying to run task without stopping it first");
@@ -47,7 +48,7 @@ class Task {
             stderr: onOutput,
             stdout: onOutput,
             maxOutputSize: 1,
-            env: this._getEnvVariables()
+            env: this._getEnvVariablesForExecution(globalVariables)
         },
         (code) => {
             if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
@@ -80,7 +81,7 @@ class Task {
             title: this.title,
             command: this.command
         };
-        if (this.env && this.env.length > 0) res.env = this.env;
+        if (this.env && this.env.length > 0) res.env = this.env;// EnvVariableHandler.filterInvalidEnvVariables(this.env);
         if (this.path !== "") res.path = this.path;
         return res;
     }
@@ -127,8 +128,9 @@ class Task {
         this.scheduled = false;
     }
 
-    _getEnvVariables() {
-        const res = this.env.reduce((acc, envVar) => {
+    _getEnvVariablesForExecution(globalVariables) {
+        const envVariables = globalVariables.concat(this.env); // Local env variables will override global env
+        const res = envVariables.reduce((acc, envVar) => {
             if (!envVar[0] || !envVar[1]) return acc;
             acc[envVar[0]] = envVar[1];
             return acc;

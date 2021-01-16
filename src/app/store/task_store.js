@@ -135,6 +135,7 @@ module.exports = {
             });
         },
         importTasks(context, filename) {
+            // TODO: import global env
             return TaskImporter.import(filename).then((data) => {
                 const loadedSuites = TasksHandler.loadTasksFromData(data);
                 return context.dispatch("stopAllTasks").then(() => {
@@ -152,7 +153,7 @@ module.exports = {
             }
         },
         exportTasks(context, filename) {
-            return TaskImporter.export(filename, context.getters.suites, context.getters.version);
+            return TaskImporter.export(filename, context.getters.suites, context.getters.version, context.state.globalEnv);
         },
         exportSuite(context, {filename, suiteIndex}) {
             const suite = context.getters.suites[suiteIndex];
@@ -166,9 +167,10 @@ module.exports = {
         },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
+            const globalEnv = context.state.globalEnv;
             if (!task.isRunning() && !task.isScheduled()) {
                 context.commit('increaseRunningTasks');
-                task.run(() => {
+                task.run(globalEnv, () => {
                     context.commit('decreaseRunningTasks');
                 });
             }
