@@ -3,12 +3,12 @@
 
 * Gaucho now runs as a single-instance app
 * Overhaul of menu and context menu options
+    * Adds cut-copy-paste items to context menu
     * Suite-related actions moved to context menu
     * "Import suite" is now part of settings
 * Global Env variables can be set in settings
     * These will be exported/imported along with the suites in "Export Tasks"
 * Env variable form validation
-* Adds cut-copy-paste items to context menu
 * Settings shortcuts menu is now collapsed by default
 * Minor fix in "Desktopify"
 * Dependencies updated

@@ -1,24 +1,22 @@
 <template>
     <div class="task-form-wrapper">
         <div class="container is-fluid">
-            <div class="field">
-                <label class="label">Name*</label>
+            <task-form-section title="Name*" :collapsable="false">
                 <div class="control">
                     <input v-model="title" class="input" type="text" :maxlength="constants.maxTaskNameLength">
                 </div>
-            </div>
-            <div class="field">
-                <label class="label">Command*</label>
+            </task-form-section>
+
+            <task-form-section title="Command*" :collapsable="false">
                 <div class="control">
                     <textarea v-model="command" class="textarea"></textarea>
                 </div>
-            </div>
-            <div class="field">
-                <label class="label">Path</label>
-                <div class="control">
-                    <input v-model="path" class="input" type="text" placeholder="Defaults to home">
-                </div>
-            </div>
+            </task-form-section>
+
+            <task-form-section title="Path" :collapsable="false">
+                <input v-model="path" class="input" type="text" placeholder="Defaults to home">
+            </task-form-section>
+
             <task-form-section :title="envVariablesTitle" :collapsable="true">
                 <env-variables-form v-model="env"></env-variables-form>
             </task-form-section>
