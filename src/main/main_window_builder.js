@@ -36,6 +36,7 @@ module.exports = class MainWindowBuilder {
             webgl: false,
             icon: this.iconPath,
             frame: true,
+            show: false,
             webPreferences: {
                 nodeIntegration: true,
                 enableRemoteModule: true,
@@ -84,6 +85,10 @@ module.exports = class MainWindowBuilder {
         });
         win.on('closed', () => {
             win = null;
+        });
+
+        win.once('ready-to-show', () => {
+            win.show();
         });
 
         return win;
