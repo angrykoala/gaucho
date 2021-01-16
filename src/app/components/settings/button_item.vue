@@ -1,7 +1,7 @@
 <template>
     <div class="field">
         <div class="control has-text-centered">
-            <button class="button is-primary is-fullwidth" @click="onClick">
+            <button class="button is-primary is-fullwidth" @click="onClick" :disabled="disabled">
                 <slot></slot>
             </button>
             <small class="settings-label" v-if="label">{{label}}</small>
@@ -14,7 +14,16 @@
 "use strict";
 
 module.exports = {
-    props: ["label"],
+    props: {
+        label: {
+            type: String,
+            required: false
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        }
+    },
     methods: {
         onClick() {
             this.$emit("select");

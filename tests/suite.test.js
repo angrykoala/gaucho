@@ -55,27 +55,6 @@ describe("Suite", () => {
         assert.strictEqual(testSuite.length, 0);
     });
 
-    it("Run Tasks", () => {
-        const taskStub2 = new Task({
-            title: "test2",
-            command: "command"
-        });
-        createStub(taskStub2);
-        taskStub2.status = TaskStatus.running;
-
-        testSuite.addTask(taskStub);
-        testSuite.addTask(taskStub2);
-        assert.isFalse(taskStub.isRunning());
-        assert.isTrue(taskStub2.isRunning());
-        testSuite.runAll();
-        assert.isTrue(taskStub.isRunning());
-        assert.isTrue(taskStub2.isRunning());
-        assert.isTrue(taskStub.run.called);
-        assert.isFalse(taskStub2.run.called);
-
-        restoreStub(taskStub2);
-    });
-
     it("Stop All Tasks", () => {
         const taskStub2 = new Task({
             title: "test2",

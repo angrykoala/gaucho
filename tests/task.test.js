@@ -33,7 +33,7 @@ describe("Tasks", () => {
         assert.isFalse(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.idle);
 
-        testTask.run(() => {
+        testTask.run([], () => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.ok);
             done();
@@ -74,7 +74,7 @@ describe("Tasks", () => {
             command: "invalidTask"
         });
 
-        invalidTask.run(() => {
+        invalidTask.run([], () => {
             assert.strictEqual(invalidTask.status, TaskStatus.error);
             done();
         });
@@ -86,7 +86,7 @@ describe("Tasks", () => {
         });
         assert.isNull(testTask.elapsedTime);
 
-        testTask.run(() => {
+        testTask.run([], () => {
             // Do nothing
         });
         assert.doesNotThrow(() => {
@@ -96,7 +96,7 @@ describe("Tasks", () => {
     });
 
     it("Stop task", (done) => {
-        testTask.run(() => {
+        testTask.run([], () => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.stopped);
             testTask.stop();
@@ -110,13 +110,13 @@ describe("Tasks", () => {
         assert.isFalse(testTask.isRunning());
         assert.strictEqual(testTask.status, TaskStatus.idle);
 
-        testTask.run(() => {
+        testTask.run([], () => {
             assert.isFalse(testTask.isRunning());
             assert.strictEqual(testTask.status, TaskStatus.ok);
             done();
         });
         assert.isTrue(testTask.isRunning());
-        assert.throws(() => testTask.run(() => {
+        assert.throws(() => testTask.run([], () => {
             // Do nothing
         }));
     });

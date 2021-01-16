@@ -1,8 +1,8 @@
 <template>
     <div class="tabs is-fullwidth">
         <draggable v-model="suites" tag="ul" v-bind="draggableOptions" @end="suiteDragEnd">
-            <li v-for="(suite, index) in suites" class="tab-suite-item" @contextmenu.stop="context(index)" :style="{ width: tabsWidth }"
-                :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @dragover="selectSuite(index)" :key="index"
+            <li v-for="(suite, index) in suites" class="tab-suite-item" :style="{ width: tabsWidth }" :class="{'is-active': isSelected(index), 'inactive': !isSelected(index)}" @click="selectSuite(index)" @contextmenu.stop="context(index)"
+                @dragover="selectSuite(index)" :key="index"
             >
                 <a class="columns is-mobile is-centered tab-content">
                     <div class="column tab-text-container">
@@ -37,10 +37,9 @@ const dialog = app.dialog;
 
 const AppAlerts = require('../../api/app_alerts');
 const ContextMenu = require('../../api/context_menu');
+const schedulerModal = require('../../api/scheduler_modal');
 
 const constants = require('../../../common/constants.js');
-
-const tabMenu = new ContextMenu.TabMenu();
 
 const components = {
     "draggable": require('vuedraggable')
@@ -79,6 +78,26 @@ module.exports = {
     },
     methods: {
         context(index) {
+            const tabMenu = new ContextMenu.TabMenu(this.suites[index].title);
+
+            tabMenu.on("run-suite", (i) => {
+                this.selectSuite(i);
+                this.$store.dispatch("runSuite");
+            });
+            tabMenu.on("stop-suite", (i) => {
+                this.selectSuite(i);
+                this.$store.dispatch("stopSuite", i);
+            });
+            tabMenu.on("schedule-suite", (i) => {
+                this.selectSuite(i);
+                const title = this.suites[i].title;
+                schedulerModal(`Schedule "${title}" Execution`).then((res) => {
+                    this.$store.dispatch("scheduleSuite", res);
+                }, () => {
+                    // Cancelled scheduling
+                });
+            });
+
             tabMenu.on("delete", (i) => {
                 this.removeSuite(i);
             });

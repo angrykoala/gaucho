@@ -52,3 +52,6 @@ test/temp
 ncp/
 .cache/
 public/
+
+# Gaucho suite file
+gtask.json

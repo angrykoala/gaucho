@@ -36,31 +36,7 @@ module.exports = {
                 name: "Quit",
                 value: "quit"
             }];
-
-            let extraOptions = [];
-
-            if (this.$store.state.editMode) {
-                const canImportSuite = this.$store.getters.canAddSuite;
-                extraOptions = [{
-                    name: "Import Suite",
-                    value: "importSuite",
-                    disabled: !canImportSuite
-                }];
-            } else {
-                extraOptions = [{
-                    name: "Run Suite",
-                    value: "runSuite"
-                }, {
-                    name: "Stop Suite",
-                    value: "stopSuite"
-                }, {
-                    name: "Schedule Suite",
-                    value: "scheduleSuite"
-                }];
-            }
-            return extraOptions.concat([{
-                value: "divider"
-            }], defaultOptions);
+            return defaultOptions;
         }
     },
     methods: {

@@ -17,13 +17,15 @@ class ContextMenu extends EventEmitter {
         this.extraData = null;
         this.menu = new Menu();
         for (const item of items) {
-            const event = item.event || item.label;
+            const event = item.event;
             const menuItem = new MenuItem({
                 label: item.label,
-                click: () => {
+                click: event ? () => {
                     this.emit(event, this.extraData);
-                },
-                type: item.type || "normal"
+                } : undefined,
+                type: item.type || "normal",
+                role: item.role,
+                sublabel: item.sublabel
             });
             this.menu.append(menuItem);
         }
@@ -40,11 +42,34 @@ class ContextMenu extends EventEmitter {
 }
 
 class DefaultContextMenu extends ContextMenu {
-    constructor(extraOptions = []) {
-        super(extraOptions.concat([{label: "Settings",
-            event: "settings"}, {label: "About",
-            event: "about"}, {label: "Quit",
-            event: "quit"}]));
+    constructor(extraOptions = [], includeEditFields = true) {
+        const editableFields = [{
+            label: "Cut",
+            role: "cut"
+        }, {
+            label: "Copy",
+            role: "copy"
+        }, {
+            label: "Paste",
+            role: "paste"
+        }, {
+            type: "separator"
+        }];
+
+        const baseFields = [{
+            label: "Settings",
+            event: "settings"
+        }, {
+            label: "About",
+            event: "about"
+        }, {
+            label: "Quit",
+            event: "quit"
+        }];
+
+        const fields = includeEditFields ? editableFields.concat(baseFields) : baseFields;
+
+        super(extraOptions.concat(fields));
     }
 
     toggle(extraData) {
@@ -54,21 +79,38 @@ class DefaultContextMenu extends ContextMenu {
         this.on("about", () => {
             aboutModal(store);
         });
+
         this.on("quit", () => {
             ipcRenderer.send("close-app");
         });
-
         super.toggle(extraData);
     }
 }
 
 class TabMenu extends DefaultContextMenu {
-    constructor() {
-        super([{label: "Delete",
-            event: "delete"}, {label: "Rename",
-            event: "rename"}, {label: "Export Suite",
-            event: "export-suite"}, {label: "Duplicate Suite",
-            event: "duplicate-suite"}, {type: "separator"}]);
+    constructor(suiteTitle) {
+        super([{
+            label: `Run "${suiteTitle}"`,
+            event: "run-suite"
+        }, {
+            label: "Stop Suite",
+            event: "stop-suite"
+        }, {
+            label: "Schedule",
+            event: "schedule-suite"
+        }, {type: "separator"}, {
+            label: "Delete",
+            event: "delete"
+        }, {
+            label: "Rename",
+            event: "rename"
+        }, {
+            label: "Export",
+            event: "export-suite"
+        }, {
+            label: "Duplicate",
+            event: "duplicate-suite"
+        }, {type: "separator"}], false);
     }
 }
 
@@ -90,9 +132,14 @@ class CardMenu extends DefaultContextMenu {
                 event: "schedule"
             });
         }
-        super(items.concat([{label: "Delete",
-            event: "delete"}, {label: "Duplicate",
-            event: "duplicate"}, {type: "separator"}]));
+        super(items.concat([{
+            label: "Delete",
+            event: "delete"}, {
+            label: "Duplicate",
+            event: "duplicate"
+        }, {
+            type: "separator"
+        }]));
     }
 }
 

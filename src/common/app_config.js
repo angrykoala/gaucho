@@ -15,7 +15,6 @@ const defaultUserConfig = {
     outputMaxSize: 10000,
     maximized: false,
     bottomBar: true,
-    firstVisit: false,
     showTimer: true,
     theme: "classic"
 };
@@ -44,7 +43,8 @@ const defaultTasks = {
             title: "Hello World 2",
             command: "echo 'hello world'"
         }]
-    }]
+    }],
+    globalEnv: []
 };
 
 // Just for basic offuscation of the config file
@@ -55,7 +55,6 @@ class AppConfig {
         if (utils.isDevEnv()) configName += "_dev";
         if (utils.isTestEnv()) {
             this.store = new Map(Object.entries(defaultData));
-            this.store.set("firstVisit", true);
         } else {
             this.store = new Store({
                 name: configName,

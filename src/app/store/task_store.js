@@ -2,6 +2,7 @@
 
 const Suite = require('../common/suite');
 const TasksHandler = require('../api/tasks_handler');
+const EnvVariableHandler = require('../api/env_variables_handler');
 const TaskImporter = require('../common/task_importer');
 
 const AppSettings = require('../../app_settings.json');
@@ -10,7 +11,8 @@ module.exports = {
     state: {
         suites: [],
         selectedSuite: 0,
-        runningTasks: 0
+        runningTasks: 0,
+        globalEnv: []
     },
     getters: {
         suites(state) {
@@ -89,6 +91,9 @@ module.exports = {
                 task.title = suite.getValidTaskName(task.title);
             }
         },
+        setGlobalEnv(state, data) {
+            state.globalEnv = data;
+        },
         _setSuites(state, suites) {
             state.suites.splice(0, state.suites.length);
             suites.forEach((suite) => {
@@ -110,9 +115,15 @@ module.exports = {
         saveTasks(context) {
             TasksHandler.saveTasks(context.getters.suites);
         },
+        saveGlobalEnvVariables(context) {
+            const variables = EnvVariableHandler.saveGlobalEnv(context.state.globalEnv);
+            context.commit("setGlobalEnv", variables);
+        },
         loadTasks(context) {
             const loadedSuites = TasksHandler.loadTasksFromConfig();
             context.commit("_setSuites", loadedSuites);
+            const loadedGlobalEnv = EnvVariableHandler.loadGlobalEnvFromConfig();
+            context.commit("setGlobalEnv", loadedGlobalEnv);
         },
         stopAllTasks(context) {
             const promises = context.getters.suites.map((s) => s.stopAll());
@@ -126,6 +137,11 @@ module.exports = {
         importTasks(context, filename) {
             return TaskImporter.import(filename).then((data) => {
                 const loadedSuites = TasksHandler.loadTasksFromData(data);
+
+                if (data.globalEnv && data.globalEnv.length > 0) {
+                    context.commit("setGlobalEnv", data.globalEnv);
+                    context.dispatch("saveGlobalEnvVariables", data.globalEnv);
+                }
                 return context.dispatch("stopAllTasks").then(() => {
                     context.commit("_setSuites", loadedSuites);
                     context.dispatch("saveTasks");
@@ -141,7 +157,7 @@ module.exports = {
             }
         },
         exportTasks(context, filename) {
-            return TaskImporter.export(filename, context.getters.suites, context.getters.version);
+            return TaskImporter.export(filename, context.getters.suites, context.getters.version, context.state.globalEnv);
         },
         exportSuite(context, {filename, suiteIndex}) {
             const suite = context.getters.suites[suiteIndex];
@@ -155,9 +171,10 @@ module.exports = {
         },
         runTask(context, index) {
             const task = context.getters.currentSuite.getTask(index);
+            const globalEnv = context.state.globalEnv;
             if (!task.isRunning() && !task.isScheduled()) {
                 context.commit('increaseRunningTasks');
-                task.run(() => {
+                task.run(globalEnv, () => {
                     context.commit('decreaseRunningTasks');
                 });
             }

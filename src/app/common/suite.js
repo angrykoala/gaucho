@@ -49,12 +49,6 @@ class Suite {
         return Promise.all(promises);
     }
 
-    runAll() {
-        for (const task of this.tasks) {
-            if (!task.isRunning()) task.run();
-        }
-    }
-
     setTitle(title) {
         this.title = utils.truncate(title || "", constants.maxSuiteNameLength);
     }
