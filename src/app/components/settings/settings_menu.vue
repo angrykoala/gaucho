@@ -9,29 +9,28 @@
         <div class="columns is-mobile is-centered">
             <div class="column is-two-thirds settings-menu">
                 <h1 class="title settings-title">Settings</h1>
-                <h3 class="settings-subtitle">Display</h3>
-                <div class="settings-menu-section">
-                    <checkbox-item v-model="bottomBar" label="Bottom bar"></checkbox-item>
-                    <checkbox-item v-model="showTimer" label="Show timer"></checkbox-item>
-                    <theme-selector v-model="theme"></theme-selector>
-                </div>
+
+                <settings-section title="Display" :collapsable="false">
+                    <div class="settings-menu-section">
+                        <checkbox-item v-model="bottomBar" label="Bottom bar"></checkbox-item>
+                        <checkbox-item v-model="showTimer" label="Show timer"></checkbox-item>
+                        <theme-selector v-model="theme"></theme-selector>
+                    </div>
+                </settings-section>
+
                 <hr>
-                <h3 class="settings-subtitle">Actions</h3>
-                <settings-actions @resetSettings="resetSettings"></settings-actions>
 
+                <settings-section title="Actions" :collapsable="false">
+                    <settings-actions @resetSettings="resetSettings"></settings-actions>
+                </settings-section>
 
-                <h3 class="settings-subtitle" @click="toggleShortcuts">
-                    <span v-show="showShortcuts" class="icon">
-                        <i class="fas fa-caret-down"></i>
-                    </span>
-                    <span v-show="!showShortcuts" class="icon">
-                        <i class="fas fa-caret-right"></i>
-                    </span>
-                    Shortcuts
-                </h3>
-                <div class="settings-menu-section" v-show="showShortcuts">
+                <settings-section title="Env Variables" :collapsable="true">
+                    <env-variables-form v-model="envVariables"></env-variables-form>
+                </settings-section>
+
+                <settings-section title="Shortcuts" :collapsable="true">
                     <shortcuts-cheatsheet></shortcuts-cheatsheet>
-                </div>
+                </settings-section>
             </div>
         </div>
     </section>
@@ -46,7 +45,9 @@ const components = {
     "checkbox-item": require('./checkbox_item.vue'),
     "shortcuts-cheatsheet": require('./shortcuts_cheatsheet.vue'),
     "theme-selector": require('./theme_selector.vue'),
-    "settings-actions": require('./settings_actions.vue')
+    "settings-actions": require('./settings_actions.vue'),
+    "settings-section": require('./settings_section.vue'),
+    "env-variables-form": require('../common/env_variables_form.vue')
 };
 
 module.exports = {
@@ -54,8 +55,7 @@ module.exports = {
         return {
             bottomBar: this.$store.state.userConfig.bottomBar,
             showTimer: this.$store.state.userConfig.showTimer,
-            theme: this.$store.state.userConfig.theme,
-            showShortcuts: false
+            theme: this.$store.state.userConfig.theme
         };
     },
     components: components,
@@ -70,17 +70,26 @@ module.exports = {
             this.$store.commit("setShowTimer", this.showTimer);
         }
     },
+    computed: {
+        envVariables: {
+            get() {
+                return this.$store.state.tasks.globalEnv;
+            },
+            set(newValue) {
+                console.log("Set", newValue);
+                this.$store.commit("setGlobalEnv", newValue);
+            }
+        }
+    },
     methods: {
         saveSettings() {
+            this.$store.dispatch("saveGlobalEnvVariables");
             this._close();
         },
         resetSettings() {
             this.bottomBar = true;
             this.showTimer = true;
             this.theme = "classic";
-        },
-        toggleShortcuts() {
-            this.showShortcuts = !this.showShortcuts;
         },
         _close() {
             this.$store.commit("toggleSettings");
