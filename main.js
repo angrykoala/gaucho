@@ -42,6 +42,13 @@ if (!gotTheLock) {
 } else {
     app.on('second-instance', (event, commandLine, workingDirectory) => {
         // If command line is being executed while gaucho is running, this callback will be called
+        // commandLine Array of commands [ './gaucho', 'caca' ]
+        //         in development
+        //         Command [
+        //   '/home/angrykoala/Git/gaucho/node_modules/electron/dist/electron',
+        //   '.'
+        // ]
+
 
         // Someone tried to run a second instance, we should focus our window.
         if (win) {
