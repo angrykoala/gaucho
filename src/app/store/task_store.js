@@ -139,7 +139,7 @@ module.exports = {
                 const loadedSuites = TasksHandler.loadTasksFromData(data);
 
                 if (data.globalEnv && data.globalEnv.length > 0) {
-                    context.commit("setGlobalEnv",  data.globalEnv);
+                    context.commit("setGlobalEnv", data.globalEnv);
                     context.dispatch("saveGlobalEnvVariables", data.globalEnv);
                 }
                 return context.dispatch("stopAllTasks").then(() => {

@@ -24,7 +24,7 @@
                     <settings-actions @resetSettings="resetSettings"></settings-actions>
                 </settings-section>
 
-                <settings-section title="Env Variables" :collapsable="true">
+                <settings-section :title="envVariablesTitle" :collapsable="true">
                     <env-variables-form v-model="envVariables"></env-variables-form>
                 </settings-section>
 
@@ -51,25 +51,7 @@ const components = {
 };
 
 module.exports = {
-    data() {
-        return {
-            bottomBar: this.$store.state.userConfig.bottomBar,
-            showTimer: this.$store.state.userConfig.showTimer,
-            theme: this.$store.state.userConfig.theme
-        };
-    },
     components: components,
-    watch: {
-        theme() {
-            this.$store.commit("setTheme", this.theme);
-        },
-        bottomBar() {
-            this.$store.commit("setBottomBar", this.bottomBar);
-        },
-        showTimer() {
-            this.$store.commit("setShowTimer", this.showTimer);
-        }
-    },
     computed: {
         envVariables: {
             get() {
@@ -78,6 +60,33 @@ module.exports = {
             set(newValue) {
                 this.$store.commit("setGlobalEnv", newValue);
             }
+        },
+        theme: {
+            get() {
+                return this.$store.state.userConfig.theme;
+            },
+            set(newTheme) {
+                this.$store.commit("setTheme", newTheme);
+            }
+        },
+        bottomBar: {
+            get() {
+                return this.$store.state.userConfig.bottomBar;
+            },
+            set(newBottomBar) {
+                this.$store.commit("setBottomBar", newBottomBar);
+            }
+        },
+        showTimer: {
+            get() {
+                return this.$store.state.userConfig.showTimer;
+            },
+            set(newTimer) {
+                this.$store.commit("setShowTimer", newTimer);
+            }
+        },
+        envVariablesTitle() {
+            return `Env Variables (${this.envVariables.length - 1})`;
         }
     },
     methods: {
