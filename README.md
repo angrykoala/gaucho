@@ -5,6 +5,8 @@ _by @angrykoala_
 
 > Minimalistic task launcher
 
+Bost your productivity by running commands, as well as launching applications with just one click, the simple status icon, timer and log provides monitoring of all your tasks at a simple glance.
+
 ![Gaucho Screenshot](https://angrykoala.github.io/gaucho/images/gaucho_preview.png)   
 _Gaucho 0.6.1_
 
