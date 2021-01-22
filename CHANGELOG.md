@@ -1,6 +1,7 @@
 0.10.1 / ####-##-##
 ===================
 
+* Fix problem with collapsible settings and task form
 * Support for opening GitHub link in about modal
 
 0.10.0 / 2021-01-16

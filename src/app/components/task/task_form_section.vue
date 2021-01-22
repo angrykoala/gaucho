@@ -1,6 +1,6 @@
 <template>
     <div class="field">
-        <label class="label" @click="show=!show">
+        <label class="label" @click="toggleCollapse">
             <template v-if="collapsable">
                 <span v-show="show" class="icon">
                     <i class="fas fa-caret-down"></i>
@@ -21,12 +21,10 @@
 <script>
 "use strict";
 
+const collapsableMixin = require('../../mixins/collapsable');
+
 module.exports = {
-    props: ["title", "collapsable"],
-    data() {
-        return {
-            show: !this.collapsable
-        };
-    }
+    mixins: [collapsableMixin],
+    props: ["title"]
 };
 </script>
