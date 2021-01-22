@@ -2,6 +2,7 @@
 ===================
 
 * Fix problem with collapsible settings and task form
+* Adds ellipsis to task title if window is too narrow
 * Support for opening GitHub link in about modal
 
 0.10.0 / 2021-01-16

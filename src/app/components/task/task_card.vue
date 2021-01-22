@@ -219,6 +219,10 @@ module.exports = {
 
 .task-title {
     font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
     &.with-drag-handler {
         padding-left: 0;
     }
