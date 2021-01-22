@@ -29,20 +29,21 @@
     "mocha": "^8.2.1",
     "parcel": "^1.12.4",
     "sass": "^1.32.5",
+    "shx": "^0.3.3",
     "sinon": "^9.2.3",
     "vue-template-compiler": "^2.6.12"
   },
   "scripts": {
-    "build": "rm -rf public/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir public --no-source-maps",
-    "test": "cross-env NODE_ENV=test npm run build && mocha tests --recursive --exit",
     "start": "electron .",
+    "build": "shx rm -rf public/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir public --no-source-maps",
+    "test": "cross-env NODE_ENV=test npm run build && mocha tests --recursive --exit",
     "start-dev": "npm run build && cross-env NODE_ENV=dev npm start",
     "eslint": "eslint main.js src tests --ext .vue --ext .js",
     "eslint-fix": "eslint main.js src tests --ext .vue --ext .js --fix",
     "dist": "npm run clean && npm run build && electron-builder",
     "dist-all": "npm run clean && npm run build && electron-builder -wlm --x64",
-    "pack": "npm run build && rm -rf dist/ && electron-builder --dir",
-    "clean": "rm -rf dist/ && rm -rf public/"
+    "pack": "npm run build && shx rm -rf dist/ && electron-builder --dir",
+    "clean": "shx rm -rf dist/ && shx rm -rf public/"
   },
   "build": {
     "appId": "angrykoala.gaucho",

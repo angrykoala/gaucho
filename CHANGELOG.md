@@ -4,6 +4,7 @@
 * Fix problem with collapsible settings and task form
 * Adds ellipsis to task title if window is too narrow
 * Support for opening GitHub link in about modal
+* Support for windows development out-of-the-box through shx
 
 0.10.0 / 2021-01-16
 ===================
