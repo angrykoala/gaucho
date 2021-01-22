@@ -80,6 +80,7 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
     * Please, ensure the tests and linter are passing before creating a pull requests. Add tests for your changes.
 
 * To install snap version locally: `snap install --dangerous gaucho_0.6.3_amd64.deb`
+* Use `npm run pack` to execute a lightweight built with just the basic version of your OS
 
 **Release to snap:**
 1. snapcraft login

@@ -1,6 +1,6 @@
 {
   "name": "gaucho",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
@@ -23,12 +23,12 @@
     "cross-env": "^7.0.3",
     "electron": "~11.2.0",
     "electron-builder": "^22.9.1",
-    "eslint": "^7.17.0",
-    "eslint-plugin-vue": "^7.4.1",
-    "husky": "^4.3.7",
+    "eslint": "^7.18.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "husky": "^4.3.8",
     "mocha": "^8.2.1",
     "parcel": "^1.12.4",
-    "sass": "^1.32.4",
+    "sass": "^1.32.5",
     "sinon": "^9.2.3",
     "vue-template-compiler": "^2.6.12"
   },
