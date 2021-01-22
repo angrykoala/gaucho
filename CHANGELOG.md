@@ -1,4 +1,4 @@
-0.10.1 / ####-##-##
+0.10.1 / 2021-01-22
 ===================
 
 * Fix problem with collapsible settings and task form
