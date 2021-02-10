@@ -108,7 +108,12 @@ class Task {
             title: this.title,
             path: this.path,
             command: this.command,
-            env: this.env});
+            env: this.cloneEnvVariables()
+        });
+    }
+
+    cloneEnvVariables() {
+        return this.env.map(envVar => envVar.slice());
     }
 
     _processCommand() {

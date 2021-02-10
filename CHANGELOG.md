@@ -1,3 +1,8 @@
+0.10.2 / ####-##-##
+===================
+
+* Fix issue with env variables on duplicate tasks
+
 0.10.1 / 2021-01-22
 ===================
 
