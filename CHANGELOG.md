@@ -2,6 +2,7 @@
 ===================
 
 * Fix issue with env variables on duplicate tasks
+* Dependencies updated
 
 0.10.1 / 2021-01-22
 ===================
