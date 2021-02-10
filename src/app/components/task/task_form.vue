@@ -91,7 +91,7 @@ module.exports = {
                 this.title = this.task.title;
                 this.command = this.task.command;
                 this.path = this.task.path;
-                this.env = this.task.env;
+                this.env = this.task.cloneEnvVariables();
             }
         }
     }
