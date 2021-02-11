@@ -84,7 +84,7 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 
 **Release to snap:**
 1. snapcraft login
-2. snapcraft push Gaucho_0.6.0_amd64.snap --release=stable
+2. snapcraft upload Gaucho_0.6.0_amd64.snap --release=stable
 
 > Only for collaborators!!
 
