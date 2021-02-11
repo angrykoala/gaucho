@@ -1,3 +1,11 @@
+0.10.2 / 2021-02-11
+===================
+
+* Delete env variable button
+* Fix issue with env variables on duplicate tasks
+* Fix bug with env variables being updated before saving task
+* Dependencies updated
+
 0.10.1 / 2021-01-22
 ===================
 

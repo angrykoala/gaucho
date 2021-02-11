@@ -86,7 +86,7 @@ module.exports = {
             }
         },
         envVariablesTitle() {
-            return `Env Variables (${this.envVariables.length - 1})`;
+            return `Global Env Variables (${this.envVariables.length - 1})`;
         }
     },
     methods: {
