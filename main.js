@@ -38,6 +38,7 @@ app.allowRendererProcessReuse = true; // Default from electron 9, explicitly set
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (!gotTheLock) {
+    console.warn("An instance of Gaucho is already running");
     app.quit();
 } else {
     app.on('second-instance', (event, commandLine, workingDirectory) => {
