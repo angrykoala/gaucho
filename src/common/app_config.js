@@ -2,6 +2,7 @@
 
 const Store = require('electron-store');
 const utils = require('./utils');
+const defaultTasks = require('./default_tasks');
 
 const FIELDS = {
     WINDOW_SIZE: "windowSize",
@@ -17,34 +18,6 @@ const defaultUserConfig = {
     bottomBar: true,
     showTimer: true,
     theme: "classic"
-};
-
-const defaultTasks = {
-    suites: [{
-        title: "My Project",
-        tasks: [{
-            title: "Install",
-            command: "npm install"
-        }, {
-            title: "Test",
-            command: "npm test"
-        }, {
-            title: "Another awesome task",
-            command: "echo 'The result of my awesome task'"
-
-        }, {
-            title: "Start",
-            command: "npm start"
-
-        }]
-    }, {
-        title: "Suite 2",
-        tasks: [{
-            title: "Hello World 2",
-            command: "echo 'hello world'"
-        }]
-    }],
-    globalEnv: []
 };
 
 // Just for basic offuscation of the config file
