@@ -2,6 +2,7 @@
 ===================
 
 * Change default tasks to better examples
+* Dependencies updated
 
 0.10.2 / 2021-02-11
 ===================
