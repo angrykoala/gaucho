@@ -46,3 +46,4 @@ dist/
 public/
 resources/
 .cache
+.docusaurus

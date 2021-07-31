@@ -1,0 +1,14 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureImage {
+  border-style: solid;
+  border-color: #ececec;
+  border-width: 1px;
+}
