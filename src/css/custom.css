@@ -35,8 +35,12 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 
-.markdown p>img { /* Center Markdown images by default */
+.markdown p>img { /* Markdown images style */
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-style: solid;
+  border-color: #ececec;
+  border-width: 1px;
+  max-width: 85%;
 }

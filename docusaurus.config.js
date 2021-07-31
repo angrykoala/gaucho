@@ -44,7 +44,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `${new Date().getFullYear()} Gaucho. Built with Docusaurus and ❤️.`,
+      copyright: `${new Date().getFullYear()} Gaucho. Made with ❤️ and eucalyptus.`,
     },
     prism: {
       theme: lightCodeTheme,
