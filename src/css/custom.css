@@ -44,3 +44,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   border-width: 1px;
   max-width: 85%;
 }
+
+.markdown li>img {
+  vertical-align: bottom;
+}
