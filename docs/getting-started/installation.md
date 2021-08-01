@@ -14,7 +14,9 @@ There are several options available to install Gaucho in Linux systems:
 
 * A `zip` folder containing a binary file along with all the required files to execute directly in Linux systems
 * `.deb` file for Debian and Ubuntu systems. You can install the package using a suitable installer or running   
-  `sudo apt install ./gaucho.deb`.
+  ```bash
+  sudo apt install ./gaucho.deb
+  ```
 * An [AppImage](https://appimage.org/) file that can be executed directly or installed in multiple Linux systems
 * A `.snap` file for Ubuntu-based systems. If you plan on installing the snap version, please follow the instructions below.
 
@@ -30,7 +32,7 @@ Go to the Ubuntu Software Store and search for "Gaucho". Then click on "install"
 
 **Using Snap**   
 You can install the snap version of Gaucho using the terminal instead:
-```sh
+```bash
 snap install gaucho
 ```
 

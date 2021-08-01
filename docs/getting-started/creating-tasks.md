@@ -5,8 +5,7 @@ sidebar_position: 2
 # Creating Tasks
 
 ## Edit Mode
-Tasks are completely customizable. You can create, edit and delete tasks. To do this, you need to enter
-_"Edit Mode"_ by clicking the _Edit_ button on the to right corner.
+To configure your tasks, you need to enter _"Edit Mode"_ by clicking the _Edit_ button on the to right corner.
 
 ![Edit Button](/img/docs/edit_button.png)
 
@@ -23,12 +22,12 @@ While in _"Edit Mode"_, the button _"Add New Task"_ will appear below existing t
 
 ![Add Task Button](/img/docs/add_task_button.png)
 
-Clicking it will display a form with the [task information](/docs/intro#tasks). Only the **name**
+Clicking it will display a form asking the [task information](/docs/intro#tasks). Only the **name**
 and **command** fields are required.
 
 ![Add New Task Form](/img/docs/add_new_task_form.png)
 
 
 :::tip
-You can check some tasks examples in [Recipes](/docs/recipes/what-are-recipes)
+Check some tasks examples in [Recipes](/docs/recipes/what-are-recipes)
 :::
