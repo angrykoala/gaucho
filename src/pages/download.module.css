@@ -8,3 +8,45 @@ h1 {
   margin-top:1rem;
   margin-left:2rem;
 }
+
+.heroBanner {
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBannerSubtitle {
+  min-height: 2.3rem;
+  display:block;
+  font-size:1.3rem;
+}
+
+.heroBannerTitle {
+  margin-bottom:0;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.downloadTabs{
+  border-bottom-style: solid;
+  border-bottom-color: #ececec;
+  border-bottom-width: 1px;
+  width: min-content;
+}
+
+ul {
+  list-style-type: none;
+  width: min-content;
+}
+
+li {
+  padding-bottom: 8px;
+}
+
+.downloadButton {
+  width:100%;
+}
