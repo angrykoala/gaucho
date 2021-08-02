@@ -17,6 +17,8 @@ Once in edit mode, the interface will change. While in edit mode you can perform
 
 To exit  _"Edit Mode"_, click the _Edit_ button again.
 
+![Edit Mode](/img/docs/gaucho_interface_edit.png)
+
 ## Create a new task
 While in _"Edit Mode"_, the button _"Add New Task"_ will appear below existing tasks.
 

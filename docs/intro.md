@@ -13,3 +13,6 @@ Work In Progress
 
 
 ## Suites
+
+
+![Gaucho Interface](/img/docs/gaucho_interface.png)
