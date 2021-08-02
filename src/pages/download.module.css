@@ -1,7 +1,10 @@
-.downloadPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  font-size: 20px;
+h1 {
+  font-size: 3rem;
+  margin-bottom: calc(var(--ifm-leading-desktop) * var(--ifm-leading));
+}
+
+
+.downloadMain {
+  margin-top:1rem;
+  margin-left:2rem;
 }
