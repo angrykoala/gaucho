@@ -1,9 +1,3 @@
-h1 {
-  font-size: 3rem;
-  margin-bottom: calc(var(--ifm-leading-desktop) * var(--ifm-leading));
-}
-
-
 .downloadMain {
   margin-top:1rem;
   margin-left:2rem;
@@ -13,6 +7,10 @@ h1 {
   padding: 2rem 0;
   position: relative;
   overflow: hidden;
+}
+
+.bannerTitleContainer {
+  margin: 0;
 }
 
 .heroBannerSubtitle {
@@ -38,12 +36,14 @@ h1 {
   width: min-content;
 }
 
-ul {
+.downloadButtonsList {
   list-style-type: none;
   width: min-content;
+  margin:0 auto;
+  display:block;
 }
 
-li {
+.downloadMain li {
   padding-bottom: 8px;
 }
 

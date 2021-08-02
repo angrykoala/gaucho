@@ -31,21 +31,21 @@ function DownloadTabs({linuxAssets, windowsAssets, macAssets}){
       {label: 'Mac', value: 'mac'},
     ]}>
     <TabItem value="linux">
-    <ul>
+    <ul className={clsx(styles.downloadButtonsList)}>
       {linuxAssets.map((asset, idx) => (
         <AssetLink key={idx} {...asset} />
       ))}
     </ul>
     </TabItem>
     <TabItem value="windows">
-    <ul>
+    <ul className={clsx(styles.downloadButtonsList)}>
       {windowsAssets.map((asset, idx) => (
         <AssetLink key={idx} {...asset} />
       ))}
     </ul>
     </TabItem>
     <TabItem value="mac">
-    <ul>
+    <ul className={clsx(styles.downloadButtonsList)}>
       {macAssets.map((asset, idx) => (
         <AssetLink key={idx} {...asset} />
       ))}
@@ -55,14 +55,14 @@ function DownloadTabs({linuxAssets, windowsAssets, macAssets}){
   )
 }
 
-function DownloadHeader({version}) {
+function DownloadHeader({version, downloadCount}) {
   const {siteConfig} = useDocusaurusContext();
   const versionText=version?`Version ${version}`:""
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
+      <div className={clsx('container', styles.bannerTitleContainer)}>
         <h1 className={clsx("hero__title", styles.heroBannerTitle)}>Download</h1>
-        <i className={clsx("hero__subtitle", styles.heroBannerSubtitle)}>{versionText}</i>
+        <i className={clsx("hero__subtitle", styles.heroBannerSubtitle)} title={`${downloadCount} Downloads`}>{versionText}</i>
       </div>
     </header>
   );
@@ -95,20 +95,37 @@ export default function Download() {
     })
   }
 
+  const downloadCount=assets.map(a=>a.download_count || 0).reduce((a,b)=>a+b, 0)
+
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={`${siteConfig.title} Download`}
       description={siteConfig.tagline}>
-      <DownloadHeader version={version} />
+      <DownloadHeader version={version} downloadCount={downloadCount} />
       <main class={styles.downloadMain}>
-          { !releaseLoaded && <Loader/>}
-          { releaseLoaded && <>
-            <div className="container">
-              <DownloadTabs {...assetProps}/>
-            </div>
-        </>}
-          <a href="https://github.com/angrykoala/gaucho/releases">Check other releases</a>
+          <div className="row">
+              <div className={clsx('col col--6')}>
+              { !releaseLoaded && <Loader/>}
+              { releaseLoaded && <>
+                <div className="container">
+                  <DownloadTabs {...assetProps}/>
+                </div>
+                </>}
+              </div>
+              <div className={clsx('col col--6')}>
+                <p>Gaucho is available for Linux, Windows and Mac.</p>
+                <p>
+                  For instructions on how to install and the differences between versions,
+                  please check the <a href="/docs/getting-started/installation">Installation Guide</a>.
+                </p>
+                <p>
+                  If you need a different version, you can compile Gaucho following the instructions
+                  at <a href="/docs/advanced-guides/build-from-source">Build from source code</a> guide.
+                </p>
+                <a href="https://github.com/angrykoala/gaucho/releases">Check other releases</a>
+              </div>
+          </div>
       </main>
     </Layout>
   );

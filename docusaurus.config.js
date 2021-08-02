@@ -13,6 +13,9 @@ module.exports = {
   organizationName: 'angrykoala', // Usually your GitHub org/user name.
   projectName: 'gaucho', // Usually your repo name.
   themeConfig: {
+    colorMode: {
+      disableSwitch:true
+    },
     navbar: {
       title: 'Gaucho',
       logo: {
