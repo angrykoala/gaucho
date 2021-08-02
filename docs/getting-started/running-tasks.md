@@ -43,5 +43,18 @@ Each task status is displayed with an icon on the right:
 
 
 ## Context menu
+By right-clicking on a task, a contextual menu will appear. This menu allows you to perform several actions.
 
-TODO
+![Task Context Menu](/img/docs/task_context_menu.png)
+
+## Run/Stop
+The option _"Run"_ or _"Stop"_ will [run or stop](#runstop-tasks) the task. These options are available at any time.
+
+## Schedule
+With the schedule option, the tasks can be set to run at a certain time. Check [Schedule Tasks](/docs/features/schedule-tasks) for more info.
+
+## Delete
+Will delete the task. This option is available anytime.
+
+## Duplicate
+This option will create an identical task with a different name below the original. This new task can then be modified, moved or executed along with the original.
