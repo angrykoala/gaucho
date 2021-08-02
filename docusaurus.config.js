@@ -47,7 +47,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `${new Date().getFullYear()} Gaucho. Made with ❤️ and eucalyptus.`,
+      copyright: `${new Date().getFullYear()} Gaucho. Made with ❤️ and eucalyptus.<br/> Create Commons BY-SA`,
     },
     prism: {
       theme: lightCodeTheme,
@@ -68,12 +68,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/angrykoala/gaucho/tree/gh-pages',
+          // editUrl: 'https://github.com/angrykoala/gaucho/tree/gh-pages',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/angrykoala/gaucho/tree/gh-pages/blog/',
+          // editUrl: 'https://github.com/angrykoala/gaucho/tree/gh-pages/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

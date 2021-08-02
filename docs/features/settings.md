@@ -32,6 +32,7 @@ The following actions can be performed from the buttons in the _"settings"_ menu
 * Export/Import tasks and suites. Check [Export Tasks](/docs/features/export-tasks) for more details.
 * Clear Tasks. This will completely remove every task and suite you have in Gaucho.
 
-## Environment Variables
+## Global environment variables
+You can configure global [environment variables](/docs/features/env-variables) for all your tasks here. Variables defined on each task will have **more** priority than global variables.
 
-TODO
+![Global Env Variables](/img/docs/global_env_variables.png)
