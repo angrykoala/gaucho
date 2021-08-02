@@ -29,6 +29,7 @@ function DownloadTabs({linuxAssets, windowsAssets, macAssets}){
       {label: 'Linux', value: 'linux'},
       {label: 'Windows', value: 'windows'},
       {label: 'Mac', value: 'mac'},
+      {label: 'Other', value: 'other'},
     ]}>
     <TabItem value="linux">
     <ul className={clsx(styles.downloadButtonsList)}>
@@ -49,6 +50,16 @@ function DownloadTabs({linuxAssets, windowsAssets, macAssets}){
       {macAssets.map((asset, idx) => (
         <AssetLink key={idx} {...asset} />
       ))}
+    </ul>
+    </TabItem>
+    <TabItem value="other">
+    <ul className={clsx(styles.otherDownloadsList)}>
+      <li>
+        <a href="https://snapcraft.io/gaucho" target="_blank" rel="noopener noreferrer"><img src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" alt="Get it from the Snap Store"/></a>
+      </li>
+      <li>
+        <a href="https://www.softpedia.com/get/System/System-Miscellaneous/Gaucho.shtml">Softpedia</a>
+      </li>
     </ul>
     </TabItem>
     </Tabs>

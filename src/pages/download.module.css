@@ -43,6 +43,12 @@
   display:block;
 }
 
+.otherDownloadsList{
+  list-style-type: none;
+  margin:0 auto;
+  text-align: center;
+}
+
 .downloadMain li {
   padding-bottom: 8px;
 }

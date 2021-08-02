@@ -22,7 +22,11 @@ There are several options available to install Gaucho in Linux systems:
 
 
 ### Installing Snap
-Gaucho is published in the [Snap Store](https://snapcraft.io) and can be downloaded and installed directly.
+Gaucho is published in the [Snap Store](https://snapcraft.io) and can be downloaded and installed directly from there.
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/gaucho)
+
+Alternatively it can be installed from the Ubuntu Store or using the terminal.
 
 **From the Ubuntu Store**   
 Go to the Ubuntu Software Store and search for "Gaucho". Then click on "install".
@@ -35,6 +39,7 @@ You can install the snap version of Gaucho using the terminal instead:
 ```bash
 snap install gaucho
 ```
+
 
 ## Windows
 You can run Gaucho directly as a portable `gaucho.x.x.x.exe` file, no installation required.
