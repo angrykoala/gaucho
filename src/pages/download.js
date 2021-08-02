@@ -83,10 +83,11 @@ function DownloadHeader({version, downloadCount}) {
 export default function Download() {
   const [releaseData, setReleaseData] = useState({});
   const [releaseLoaded, setReleaseLoaded] = useState(false);
+
+
   useEffect(async () => {
     const res=await GithubMiniApi.getLastRelease()
-    const data=await res.json()
-    console.log(data[0])
+    const data=await res.json() // TODO: fix if errored
     setReleaseData(data[0])
     setReleaseLoaded(true)
   }, [])

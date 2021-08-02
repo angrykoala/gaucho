@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Running Tasks
 
+## Run/Stop tasks
+
 Once the tasks are configured, you can execute them with the _"Run"_ button.
 The _"Run"_ button will **not** be visible in [Edit Mode](docs/getting-started/creating-tasks#edit-mode).
 Gaucho can run multiple tasks at the same time.
@@ -34,9 +36,12 @@ The output will display colors and you can scroll to see the full output.
 
 Each task status is displayed with an icon on the right:
 
-
-
 * ![Status Ok](/img/docs/status_idle.png) **Idle**: The task has not been executed or it has been stopped.
 * ![Status Ok](/img/docs/status_ok.png) **OK**: The task finished successfully.
 * ![Status Ok](/img/docs/status_running.png) **Running**: The task is still running.
 * ![Status Ok](/img/docs/status_error.png) **Error**: The task failed or returned an error.
+
+
+## Context menu
+
+TODO

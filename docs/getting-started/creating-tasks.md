@@ -29,5 +29,5 @@ and **command** fields are required.
 
 
 :::tip
-Check some tasks examples in [Recipes](/docs/recipes/what-are-recipes)
+Check some tasks [examples](/docs/examples/simple).
 :::
