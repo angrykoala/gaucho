@@ -18,3 +18,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.description{
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.featureList {
+  margin-left: 40%;
+}

@@ -11,6 +11,20 @@ import styles from './download.module.css';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+function getOS(){
+  var os=undefined
+ if (navigator.appVersion.indexOf("Win") != -1) os =
+   "windows";
+ if (navigator.appVersion.indexOf("Mac") != -1) os =
+   "mac";
+ if (navigator.appVersion.indexOf("X11") != -1) os =
+   "linux";
+ if (navigator.appVersion.indexOf("Linux") != -1) os =
+   "linux";
+return os
+}
+
+
 function AssetLink({name,browser_download_url}) {
   return (
     <li>
@@ -24,8 +38,10 @@ function AssetLink({name,browser_download_url}) {
 }
 
 function DownloadTabs({linuxAssets, windowsAssets, macAssets}){
+  const os=getOS() || "linux"
+
   return (
-    <Tabs defaultValue="linux" className={clsx(styles.downloadTabs)}  values={[
+    <Tabs defaultValue={os} className={clsx(styles.downloadTabs)}  values={[
       {label: 'Linux', value: 'linux'},
       {label: 'Windows', value: 'windows'},
       {label: 'Mac', value: 'mac'},
@@ -115,7 +131,7 @@ export default function Download() {
       title={`${siteConfig.title} Download`}
       description={siteConfig.tagline}>
       <DownloadHeader version={version} downloadCount={downloadCount} />
-      <main class={styles.downloadMain}>
+      <main className={clsx(styles.downloadMain)}>
           <div className="row">
               <div className={clsx('col col--6')}>
               { !releaseLoaded && <Loader/>}

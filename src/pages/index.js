@@ -33,9 +33,28 @@ export default function Home() {
       description={siteConfig.tagline}>
       <HomepageHeader />
       <main>
-        <p>Add a description here</p>
-
+      <div className={clsx("container", styles.description)}>
+        <p>
+          Gaucho is an open-source, customizable task launcher to run your apps, commands or scripts.<br/>
+          Configure your commands and run them in a non-intrusive interface. Say goodbye to dozens of terminals.<br/>
+          Check our <a href="/docs/intro">documentation</a> to get started.
+        </p>
+        <hr/>
+      </div>
         <HomepageFeatures />
+        <div className={clsx("container")}>
+        <hr/>
+        <h2 style={{textAlign:"center"}}>Features</h2>
+        <ul className={clsx(styles.featureList)}>
+          <li><a href="/docs/getting-started/creating-tasks">Configure and run your tasks</a></li>
+          <li><a href="/docs/features/suites">Organize your scripts</a></li>
+          <li><a href="/docs/features/export-tasks">Export and import tasks</a></li>
+          <li><a href="/docs/features/settings#themes">Themes</a></li>
+          <li><a href="/docs/features/schedule-tasks">Schedule tasks</a></li>
+          <li><a href="/download">Available for Linux, Windows and Mac</a></li>
+          <li><a href="/docs/license">Open Source</a></li>
+        </ul>
+        </div>
       </main>
     </Layout>
   );

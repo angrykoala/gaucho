@@ -3,12 +3,10 @@ sidebar_position: 5
 ---
 
 # License
+Gaucho is open-source, licensed under [GPL-3.0](https://github.com/angrykoala/gaucho/blob/master/LICENSE).
 
-## Gaucho License
-Gaucho is licensed under an [GPL-3.0 license](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
-
-## Docs and art License
-All documentation, logos and art are under CC-BY-SA license (unless specified)
+## Docs and content License
+All documentation, logos, and art are under CC-BY-SA license (unless specified).
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">

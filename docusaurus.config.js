@@ -47,7 +47,8 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `${new Date().getFullYear()} Gaucho. Made with ❤️ and eucalyptus.<br/> Create Commons BY-SA`,
+      copyright: `${new Date().getFullYear()} Gaucho. Made with ❤️ by <a href="https://github.com/angrykoala">@angrykoala</a>.<br/>
+      This page content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a>`,
     },
     prism: {
       theme: lightCodeTheme,
