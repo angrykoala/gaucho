@@ -2,6 +2,7 @@
 ===================
 
 * Electron.remote deprecated in favor of @electron/remote
+* Fix bug with scheduling
 * Change default tasks to better examples
 * Minor style changes
 * Dependencies updated

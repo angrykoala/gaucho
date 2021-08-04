@@ -93,7 +93,7 @@ class Task {
             this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
                 onRun();
-                this.run(() => {
+                this.run(options.globalEnv, () => {
                     done();
                     if (options.repeat && this.status !== TaskStatus.stopped) {
                         this.schedule(options, onRun, done);
