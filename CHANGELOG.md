@@ -3,6 +3,7 @@
 
 * Electron.remote deprecated in favor of @electron/remote
 * Change default tasks to better examples
+* Minor style changes
 * Dependencies updated
 
 0.10.2 / 2021-02-11
