@@ -1,6 +1,7 @@
 0.10.3 / ####-##-##
 ===================
 
+* Electron.remote deprecated in favor of @electron/remote
 * Change default tasks to better examples
 * Dependencies updated
 

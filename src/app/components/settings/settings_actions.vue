@@ -16,8 +16,7 @@
 
 const os = require('os');
 const path = require('path');
-const app = require('electron').remote;
-const dialog = app.dialog;
+const dialog = require('@electron/remote').dialog;
 
 const {
     ImportTaskAlert,

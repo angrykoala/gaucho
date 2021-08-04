@@ -4,6 +4,7 @@
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
+    "@electron/remote": "^1.2.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "ansi-to-html": "^0.7.1",
     "electron-store": "^8.0.0",
@@ -76,7 +77,6 @@
     "test",
     "clean"
   ],
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angrykoala/gaucho.git"
