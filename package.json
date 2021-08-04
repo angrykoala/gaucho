@@ -8,7 +8,7 @@
     "ansi-to-html": "^0.7.1",
     "electron-store": "^8.0.0",
     "mousetrap": "^1.6.5",
-    "sweetalert2": "^11.0.20",
+    "sweetalert2": "^11.1.2",
     "vue": "^2.6.14",
     "vue-clickaway": "^2.2.2",
     "vuedraggable": "^2.24.3",
@@ -21,16 +21,15 @@
     "bulma-switch": "^2.0.0",
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
-    "electron": "~13.1.7",
+    "electron": "~13.1.8",
     "electron-builder": "^22.11.7",
-    "eslint": "^7.31.0",
-    "eslint-plugin-vue": "^7.14.0",
-    "husky": "~7.0.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^7.15.1",
     "mocha": "^9.0.3",
     "parcel": "^1.12.4",
-    "sass": "^1.36.0",
+    "sass": "^1.37.5",
     "shx": "^0.3.3",
-    "sinon": "^11.1.1",
+    "sinon": "^11.1.2",
     "vue-template-compiler": "^2.6.14"
   },
   "scripts": {
@@ -77,11 +76,7 @@
     "test",
     "clean"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run eslint && npm test"
-    }
-  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angrykoala/gaucho.git"
