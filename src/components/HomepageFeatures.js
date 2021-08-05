@@ -3,7 +3,16 @@ import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
-
+  {
+    title: "Eliminate unnecessary terminals",
+    img: require('../../static/img/terminals_to_gaucho.png').default,
+    description:(
+      <>
+      With Gaucho you can organize all your day-to-day tasks, scripts and server to run them quickly, no extra annoying terminals.
+      </>
+    ),
+    wide: true
+  },
   {
     title: 'Execute commands with one click',
     img: require('../../static/img/tasks.png').default,
@@ -24,9 +33,10 @@ const FeatureList = [
   },
 ];
 
-function Feature({img, title, description}) {
+function Feature({img, title, description, wide}) {
+  const col=wide?'col--12':'col--6'
   return (
-    <div className={clsx('col col--6')}>
+    <div className={clsx('col', col)}>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
         <p>{description}</p>

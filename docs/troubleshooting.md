@@ -1,7 +1,15 @@
-# Troubleshooting
+---
+sidebar_position: 5
+---
 
-## Running tests
-Problems that may appear while running the automatic tests
+# Troubleshooting
+This document details known errors and problems that may happen when building, running and testing Gaucho.
+
+## Using Gaucho
+
+## Task fails with message: Error: spawn /bin/sh ENOENT
+* **Problem**: When running a task, it fails with the message `Error: spawn /bin/sh ENOENT`.
+* **Solution**: This error message may appear when the path of the task is not valid (e.g. it does not exists or user does not have enough permissions).
 
 ## Building
 Some problems that may happen while executing `npm run dist`:
@@ -29,6 +37,9 @@ Some problems that may happen while executing `npm run dist`:
 :::note
 Other building problems can be found documented in the [official documentation of electron-builder](https://github.com/electron-userland/electron-builder/blob/master/docs/multi-platform-build.md#linux)
 :::
+
+## Running tests
+Problems that may appear while running the automatic tests
 
 ### Test coverage problem in windows
 * **Problem**: Message `No coverage information was collected, exit without writing coverage information` appears while trying to run `npm test`
