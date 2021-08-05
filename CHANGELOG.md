@@ -7,6 +7,7 @@
 * Change default tasks to better examples
 * Minor style changes
 * Dependencies updated
+* Yerbamate core runner updated to v3.0
 
 0.10.2 / 2021-02-11
 ===================
