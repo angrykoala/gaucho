@@ -29,6 +29,10 @@ and **command** fields are required.
 
 ![Add New Task Form](/img/docs/add_new_task_form.png)
 
+* **Name**: A friendly name for the task (e.g. "Run Server").
+* **Command**: The command to run (e.g. "make").
+* **Path**: The path to run the command, (defaults to "/home").
+* **Env Variables**: Define env variables to run the task, check [Env Variables](/docs/features/env-variables) for more details.
 
 :::tip
 Check some tasks [examples](/docs/examples/simple).

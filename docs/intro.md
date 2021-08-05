@@ -3,14 +3,15 @@ sidebar_position: 1
 ---
 
 # Introduction
-Gaucho is a **task launcher** designed to remove unnecessary terminals and run one-of tasks and background processes. To do this, you can create [tasks](#tasks)
+Gaucho is a **task launcher** designed to remove unnecessary terminals and run one-of tasks and background processes.
 
-## Tasks
-Tasks
+This documentation details how to get started with Gaucho and its features.
+* First time using Gaucho? Check [Getting Started](/docs/getting-started/installation).
+* Want to know the all its [features](/docs/features/suites)?
+* Ready to dive in? [Download Gaucho](/download).
 
-## Suites
 
 ## Interface
-Gaucho has a simple interface with a list of tasks. Different suites are organized through tabs:
+Gaucho has an interface built around [**tasks**](/docs/getting-started/creating-tasks#create-a-new-task) that are grouped in [suites](/docs/features/suites).
 
 ![Gaucho Interface](/img/docs/gaucho_interface.png)
