@@ -6,6 +6,7 @@
 * Bulma-switch removed in favor of custom styles
 * Change default tasks to better examples
 * Minor style changes
+* Fixed dangling output not being shown
 * Dependencies updated
 * Yerbamate core runner updated to v3.0
 

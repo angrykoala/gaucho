@@ -1,6 +1,7 @@
 "use strict";
 
 const os = require('os');
+const fs = require('fs/promises')
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('./task_status');
@@ -50,9 +51,11 @@ class Task {
             maxOutputSize: 1,
             env: this._getEnvVariablesForExecution(globalVariables)
         },
-        (code) => {
-            if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
+        (statusCode,out, err) => {
+            onOutput(out);
+            onOutput(err);
 
+            if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(statusCode) ? TaskStatus.ok : TaskStatus.error;
             this.timer.stop();
             done();
         });
