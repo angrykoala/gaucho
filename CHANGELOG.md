@@ -3,6 +3,7 @@
 
 * Electron.remote deprecated in favor of @electron/remote
 * Fix bug with scheduling
+* Bulma-switch removed in favor of custom styles
 * Change default tasks to better examples
 * Minor style changes
 * Dependencies updated

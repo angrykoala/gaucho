@@ -1,6 +1,6 @@
 <template>
     <div class="field">
-        <input type="checkbox" name="switchExample" class="switch is-rounded" :checked="value? 'checked':''">
+        <input type="checkbox" class="switch is-rounded" :checked="value? 'checked':''">
         <label class="switch-label" @click="onClick"></label>
     </div>
 </template>
