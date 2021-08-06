@@ -35,5 +35,5 @@ and **command** fields are required.
 * **Env Variables**: Define env variables to run the task, check [Env Variables](/docs/features/env-variables) for more details.
 
 :::tip
-Check some tasks [examples](/docs/examples/simple).
+Check some tasks [examples](/docs/examples/intro).
 :::
