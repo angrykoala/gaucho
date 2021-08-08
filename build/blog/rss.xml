@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Gaucho Blog</title>
+        <link>https://angrykoala.github.io/gaucho/blog</link>
+        <description>Gaucho Blog</description>
+        <lastBuildDate>Mon, 09 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[You shouldn't be here]]></title>
+            <link>https://angrykoala.github.io/gaucho/blog/hello-there</link>
+            <guid>hello-there</guid>
+            <pubDate>Mon, 09 Aug 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Hi, you seem lost, please go to the Main Page and stop messing with the url. Here is a koala to help you.]]></description>
+        </item>
+    </channel>
+</rss>
