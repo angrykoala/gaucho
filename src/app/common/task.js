@@ -1,7 +1,6 @@
 "use strict";
 
 const os = require('os');
-const fs = require('fs/promises')
 const yerbamate = require('yerbamate');
 
 const TaskStatus = require('./task_status');
@@ -51,7 +50,7 @@ class Task {
             maxOutputSize: 1,
             env: this._getEnvVariablesForExecution(globalVariables)
         },
-        (statusCode,out, err) => {
+        (statusCode, out, err) => {
             onOutput(out);
             onOutput(err);
 

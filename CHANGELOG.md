@@ -1,5 +1,5 @@
-0.10.3 / ####-##-##
-===================
+1.0.0 / 2021-08-09
+==================
 
 * Electron.remote deprecated in favor of @electron/remote
 * Fix bug with scheduling
