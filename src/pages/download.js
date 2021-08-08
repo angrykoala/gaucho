@@ -106,7 +106,7 @@ export default function Download() {
     const res=await GithubMiniApi.getLastRelease()
     if(res.ok){
       const data=await res.json()
-      setReleaseData(data[0])
+      setReleaseData(data)
       setReleaseLoaded(true)
     } else{
       setErrored(true)
