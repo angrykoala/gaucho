@@ -7,7 +7,7 @@ sidebar_position: 3
 ## Run/Stop tasks
 
 Once the tasks are configured, you can execute them with the _"Run"_ button.
-The _"Run"_ button will **not** be visible in [Edit Mode](docs/getting-started/creating-tasks#edit-mode).
+The _"Run"_ button will **not** be visible in [Edit Mode](/docs/getting-started/creating-tasks#edit-mode).
 Gaucho can run multiple tasks at the same time.
 
 ![Run button](/img/docs/run_button.png)

@@ -35,8 +35,3 @@ godot --no-window  -s addons/gut/gut_cmdln.gd -d -gdir=res://Tests -glog=1 -gexi
 ```sh title="path"
 ~/Godot/my-project
 ```
-
-## Download Examples
-To download the examples, <a target="_blank" href='/docs/assets/examples/godot_examples.json' download>click here</a>   
-
-To load the examples into Gaucho, follow [these instructions](/docs/examples/intro#downloading-examples)

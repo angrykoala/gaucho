@@ -1,1 +1,0 @@
-{"suites":[{"title":"Godot","tasks":[{"title":"Run Scene","command":"godot Scenes/Main.tscn","path":"~/Godot/my-project"},{"title":"Run Tests (Gut)","command":"godot --no-window  -s addons/gut/gut_cmdln.gd -d -gdir=res://Tests -glog=1 -gexit -gprefix= -gsuffix=Test.gd -ginclude_subdirs","path":"~/Godot/my-project"}]}],"version":"0.10.2"}

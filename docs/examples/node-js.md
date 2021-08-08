@@ -68,8 +68,3 @@ npm test
 ```sh title="path"
 ~/my-project
 ```
-
-## Download Examples
-To download the examples, <a target="_blank" href='/docs/assets/examples/nodejs_examples.json' download>click here</a>   
-
-To load the examples into Gaucho, follow [these instructions](/docs/examples/intro#downloading-examples)

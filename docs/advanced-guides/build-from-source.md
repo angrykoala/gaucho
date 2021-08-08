@@ -13,5 +13,5 @@ Once the repository is cloned:
 3. Any build will be available in the `dist` folder. Check
 
 :::caution
-If you encounter any problem, remember to check the [Troubleshooting](docs/advanced-guides/troubleshooting#building) page. If the solution is not there, consider [opening an issue](https://github.com/angrykoala/gaucho/issues/new)
+If you encounter any problem, remember to check the [Troubleshooting](/docs/troubleshooting#building) page. If the solution is not there, consider [opening an issue](https://github.com/angrykoala/gaucho/issues/new)
 :::

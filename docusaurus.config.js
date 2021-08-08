@@ -5,8 +5,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'Gaucho',
   tagline: 'Minimalist Task Launcher',
-  url: 'https://angrykoala.github.io/',
-  baseUrl: '/',
+  url: 'https://angrykoala.github.io',
+  baseUrl: '/gaucho/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',

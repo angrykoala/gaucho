@@ -60,7 +60,7 @@ At any time, you can rename a suite:
 ![Rename Suite Modal](/img/docs/rename_suite.png)
 
 ### Export suite
-Task in a suite can be exported to a `.json` file, as described [here](docs/features/export-tasks#export-suite).
+Task in a suite can be exported to a `.json` file, as described [here](/docs/features/export-tasks#export-suite).
 
 ### Duplicate suite
 Like tasks, suites can be duplicated, this will create a new suite with the same tasks as the previous one.

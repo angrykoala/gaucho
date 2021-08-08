@@ -1,1 +1,0 @@
-{"suites":[{"title":"Nodejs Example","tasks":[{"title":"Run Server","command":"npm start","path":"~/my-project"},{"title":"Run Server (yarn)","command":"yarn start","path":"~/my-project"},{"title":"Run server.js","command":"node server.js","path":"~/my-project"},{"title":"Test","command":"npm test","path":"~/my-project"}]}],"version":"0.10.2"}
