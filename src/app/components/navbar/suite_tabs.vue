@@ -32,8 +32,7 @@
 
 const os = require('os');
 const path = require('path');
-const app = require('electron').remote;
-const dialog = app.dialog;
+const dialog = require('@electron/remote').dialog;
 
 const AppAlerts = require('../../api/app_alerts');
 const ContextMenu = require('../../api/context_menu');

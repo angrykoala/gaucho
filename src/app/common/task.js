@@ -50,9 +50,11 @@ class Task {
             maxOutputSize: 1,
             env: this._getEnvVariablesForExecution(globalVariables)
         },
-        (code) => {
-            if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(code) ? TaskStatus.ok : TaskStatus.error;
+        (statusCode, out, err) => {
+            onOutput(out);
+            onOutput(err);
 
+            if (this.status !== TaskStatus.stopped) this.status = yerbamate.successCode(statusCode) ? TaskStatus.ok : TaskStatus.error;
             this.timer.stop();
             done();
         });
@@ -93,7 +95,7 @@ class Task {
             this.timer.start();
             this._scheduleTimeout = setTimeout(() => {
                 onRun();
-                this.run(() => {
+                this.run(options.globalEnv, () => {
                     done();
                     if (options.repeat && this.status !== TaskStatus.stopped) {
                         this.schedule(options, onRun, done);

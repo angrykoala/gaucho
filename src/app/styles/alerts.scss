@@ -15,12 +15,20 @@
 
     .time-input {
         display: flex;
-
+        justify-content: center;
         .hours {
             margin-right: 8px;
         }
         .minutes {
             margin-right: 8px;
         }
+    }
+
+    .swal2-input{
+      margin: 0;
+
+    }
+    .swal2-checkbox {
+      margin: 1.5em 0 0;
     }
 }

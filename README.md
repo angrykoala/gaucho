@@ -3,33 +3,48 @@ Gaucho
 _by @angrykoala_    
 [![Build Status](https://travis-ci.org/angrykoala/gaucho.svg?branch=master)](https://travis-ci.org/angrykoala/gaucho)
 
-> Minimalistic task launcher
+> The Minimalist Task Launcher
 
 Boost your productivity by running commands, scripts, and applications with one click.
 
 ![Gaucho Screenshot](https://angrykoala.github.io/gaucho/images/gaucho_preview.png)   
 _Gaucho 0.6.1_
 
+As a developer, it is quite common to repeat the same commands over an over. Running an app, starting a server, compiling your code or building a front-end for example. Most of these are just background tasks that just need to be running, or executed from time to time. Typing the command is slow, and having a terminal per task consumes our precious screen real state. Gaucho provides a simple way to de-clutter your screen by bundling all of those tasks in a simple menu to run and stop these, quick, and simple.
+
+Just add a name, type a command as you would in your terminal, set any env variable or path needed and you are good to go!
+
 ## Features
 
 * Easily run commands using a simple GUI.
 * Schedule your tasks.
 * Available for Windows, Linux and Mac.
+* Organize your tasks.
+* Environment variables.
 * Import/Export tasks.
 * Handy log output.
 * Themes.
+* Batch execution of tasks.
 
 ## Download
 
-Gaucho is available for Windows, Mac and Linux. It can be downloaded on the following links:
+Gaucho is available for Windows, Mac and Linux.
 * [Official Releases](https://github.com/angrykoala/gaucho/releases) (All versions)
 * [Snap store](https://snapcraft.io/store) (Linux)
-* [Softpedia](https://www.softpedia.com/get/System/System-Miscellaneous/Gaucho.shtml) (Windows)
 
 If you need a different version, please, follow the [development instructions](#development) to make your own build from the source code or [leave an issue](https://github.com/angrykoala/gaucho/issues).
 
 ## Usage
-Gaucho is organized through configurable tasks that belong to Suites. Each task can be easily configured by providing a name and command. Tasks can be executed independently, or the whole suite can be executed as once.
+Gaucho is allows you to configure **tasks** that can be grouped in **suites**. Each task can be configured by providing a name and command. Tasks can be executed independently, or the whole suite can be executed as once.
+
+### Creating and Editing tasks
+By clicking the _Edit_ button (top right corner). You'll enter the **edit mode** that allows you to create, delete, update and move tasks
+
+You can add new tasks to the current suite by clicking _"Add New Task"_ at the bottom of the list. By clicking on a task name you'll be able to edit that task.
+
+While editing/creating a new tasks, you should add a _name_ to the task and a _command_. The command can be any shell/terminal accepted command or an executable file. Optionally a _path_ can be added as well, if no path is added, default user path will be used.
+
+The tasks can be deleted by clicking the _Delete_ button. In this mode you can also move tasks (clicking on the drag handle), reorder suites, create suites (+ button), delete and rename suites and tasks (through the [context menu](#context-menu))
 
 ### Executing tasks
 On each suite, you will find the list of possible tasks to launch. By clicking on _Run_ you will start that task. Clicking the same button again (now the _Stop_ button) will stop the task.
@@ -39,15 +54,6 @@ You can easily see the _name_, _execution time_ and _status_ of each task. The _
 Clicking in the task name the _log_ will be displayed, allowing you to check the task output in real time.
 
 A task can also be scheduled through the [context menu](#context-menu). This menu also allows to perform some of the actions described above.
-
-### Creating and Editing tasks
-By clicking the _Edit_ button (on the top right corner) you'll be able to edit the suites and tasks (edit mode).
-
-You can add new tasks to the current suite by clicking _"Add New Task"_ at the bottom of the list. By clicking on a task name you'll be able to edit that task.
-
-While editing/creating a new tasks, you should add a _name_ to the task and a _command_. The command can be any shell/terminal accepted command or an executable file. Optionally a _path_ can be added as well, if no path is added, default user path will be used.
-
-The tasks can be deleted by clicking the _Delete_ button. In this mode you can also move tasks (clicking on the drag handle), reorder suites, create suites (+ button), delete and rename suites and tasks (through the [context menu](#context-menu))
 
 ### Context Menu
 
@@ -84,7 +90,7 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 
 **Release to snap:**
 1. snapcraft login
-2. snapcraft push Gaucho_0.6.0_amd64.snap --release=stable
+2. snapcraft upload Gaucho_0.6.0_amd64.snap --release=stable
 
 > Only for collaborators!!
 

@@ -1,3 +1,15 @@
+1.0.0 / 2021-08-09
+==================
+
+* Electron.remote deprecated in favor of @electron/remote
+* Fix bug with scheduling
+* Bulma-switch removed in favor of custom styles
+* Change default tasks to better examples
+* Minor style changes
+* Fixed dangling output not being shown
+* Dependencies updated
+* Yerbamate core runner updated to v3.0
+
 0.10.2 / 2021-02-11
 ===================
 

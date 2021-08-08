@@ -10,6 +10,7 @@ const utils = require('./src/common/utils');
 const {
     app
 } = require('electron');
+require('@electron/remote/main').initialize();
 // Global reference to window
 let win = null;
 

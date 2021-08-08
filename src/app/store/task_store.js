@@ -181,9 +181,11 @@ module.exports = {
         },
         scheduleTask(context, data) {
             const task = context.getters.currentSuite.getTask(data.index);
+            const globalEnv = context.state.globalEnv;
             const scheduleOptions = {
                 seconds: data.seconds,
-                repeat: data.repeat
+                repeat: data.repeat,
+                globalEnv
             };
 
             task.schedule(scheduleOptions, () => {
