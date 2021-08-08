@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgaucho_website=self.webpackChunkgaucho_website||[]).push([[535],{6353:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"You shouldn\'t be here","permalink":"/gaucho/blog/hello-there"}]}')}}]);

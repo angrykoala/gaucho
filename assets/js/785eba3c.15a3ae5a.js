@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgaucho_website=self.webpackChunkgaucho_website||[]).push([[724],{5395:function(e){e.exports=JSON.parse('{"permalink":"/gaucho/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
