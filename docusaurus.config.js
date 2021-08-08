@@ -56,7 +56,7 @@ module.exports = {
     },
     announcementBar: {
       id: 'gaucho_1_0',
-      content: 'Gaucho 1.0 is here! <a href="/download">Download</a>',
+      content: 'Gaucho 1.0 is here! <a href="download">Download</a>',
       backgroundColor: '#2bbbad',
       textColor: '#091E42',
       isCloseable: true,

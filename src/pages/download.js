@@ -153,11 +153,11 @@ export default function Download() {
                 <p>Gaucho is available for Linux, Windows and Mac.</p>
                 <p>
                   For instructions on how to install and the differences between versions,
-                  please check the <a href="/docs/getting-started/installation">Installation Guide</a>.
+                  please check the <a href="docs/getting-started/installation">Installation Guide</a>.
                 </p>
                 <p>
                   If you need a different version, you can compile Gaucho following the instructions
-                  at <a href="/docs/advanced-guides/build-from-source">Build from source code</a> guide.
+                  at <a href="docs/advanced-guides/build-from-source">Build from source code</a> guide.
                 </p>
                 <a href="https://github.com/angrykoala/gaucho/releases">Check other releases</a>
               </div>
