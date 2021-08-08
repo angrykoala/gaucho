@@ -98,14 +98,19 @@ function DownloadHeader({version, downloadCount}) {
 
 export default function Download() {
   const [releaseData, setReleaseData] = useState({});
+  const [errored, setErrored] = useState(false);
   const [releaseLoaded, setReleaseLoaded] = useState(false);
 
 
   useEffect(async () => {
     const res=await GithubMiniApi.getLastRelease()
-    const data=await res.json() // TODO: fix if errored
-    setReleaseData(data[0])
-    setReleaseLoaded(true)
+    if(res.ok){
+      const data=await res.json()
+      setReleaseData(data[0])
+      setReleaseLoaded(true)
+    } else{
+      setErrored(true)
+    }
   }, [])
   const assets=releaseData.assets || []
   const version=releaseData.tag_name || undefined
@@ -134,7 +139,10 @@ export default function Download() {
       <main className={clsx(styles.downloadMain)}>
           <div className="row">
               <div className={clsx('col col--6')}>
-              { !releaseLoaded && <Loader/>}
+              { !releaseLoaded && !errored && <Loader/>}
+              { errored && <>
+                <p>Error loading versions, click <a href="https://github.com/angrykoala/gaucho/releases">here</a> to download Gaucho</p>
+              </>}
               { releaseLoaded && <>
                 <div className="container">
                   <DownloadTabs {...assetProps}/>

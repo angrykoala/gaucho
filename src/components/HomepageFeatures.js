@@ -4,7 +4,7 @@ import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
   {
-    title: "Eliminate unnecessary terminals",
+    title: "Remove unnecessary terminals",
     img: require('../../static/img/terminals_to_gaucho.png').default,
     description:(
       <>
