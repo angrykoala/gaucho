@@ -1,7 +1,6 @@
 ---
-sidebar_position: 6
+hide_table_of_contents: true
 ---
-
 # License
 Gaucho is open-source, licensed under [GPL-3.0](https://github.com/angrykoala/gaucho/blob/master/LICENSE).
 

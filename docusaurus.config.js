@@ -34,6 +34,11 @@ module.exports = {
         //   position: 'left'
         // },
         {
+          to: '/license',
+          label: 'License',
+          position: 'left'
+        },
+        {
           to: '/download',
           label: 'Download',
           position: 'left'
