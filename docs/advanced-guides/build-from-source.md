@@ -1,4 +1,4 @@
-# Build from source code
+# Build From Source Code
 Gaucho is built using [Vue](https://vuejs.org/), [Electron](https://www.electronjs.org/)  and packaged with [Electron Builder](https://www.electron.build/). If you plan on modifying or rebuilding electron for a different platform, some knowledge on these tools is recommended.
 
 ## Requirements
