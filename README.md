@@ -5,10 +5,11 @@ _by @angrykoala_
 
 > The Minimalist Task Launcher
 
-Boost your productivity by running commands, scripts, and applications with one click.
+Gaucho is an open-source, customizable task launcher to run your apps, commands or scripts.
+Configure your commands and run them in a non-intrusive interface. Say goodbye to dozens of terminals.
+Check https://angrykoala.github.io/gaucho/ to get started.
 
-![Gaucho Screenshot](https://angrykoala.github.io/gaucho/images/gaucho_preview.png)   
-_Gaucho 0.6.1_
+![Gaucho Screenshot](https://angrykoala.github.io/gaucho/img/tasks.png)   
 
 As a developer, it is quite common to repeat the same commands over an over. Running an app, starting a server, compiling your code or building a front-end for example. Most of these are just background tasks that just need to be running, or executed from time to time. Typing the command is slow, and having a terminal per task consumes our precious screen real state. Gaucho provides a simple way to de-clutter your screen by bundling all of those tasks in a simple menu to run and stop these, quick, and simple.
 
@@ -29,13 +30,20 @@ Just add a name, type a command as you would in your terminal, set any env varia
 ## Download
 
 Gaucho is available for Windows, Mac and Linux.
-* [Official Releases](https://github.com/angrykoala/gaucho/releases) (All versions)
-* [Snap store](https://snapcraft.io/store) (Linux)
+[Download here](https://angrykoala.github.io/gaucho/download)
 
-If you need a different version, please, follow the [development instructions](#development) to make your own build from the source code or [leave an issue](https://github.com/angrykoala/gaucho/issues).
+All releases available at https://github.com/angrykoala/gaucho/releases
+
+Gaucho is also available in the [Snap store](https://snapcraft.io/store) (Linux)
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/gaucho)
+
+If you need a different version, please, follow the [development instructions](https://angrykoala.github.io/gaucho/docs/advanced-guides/build-from-source) to make your own build from the source code or [leave an issue](https://github.com/angrykoala/gaucho/issues).
 
 ## Usage
-Gaucho is allows you to configure **tasks** that can be grouped in **suites**. Each task can be configured by providing a name and command. Tasks can be executed independently, or the whole suite can be executed as once.
+> Check the [Official docs](https://angrykoala.github.io/gaucho/docs/intro) for the updated documentation
+
+Gaucho allows you to configure **tasks** that can be grouped in **suites**. Each task can be configured by providing a name and command. Tasks can be executed independently, or the whole suite can be executed as once.
 
 ### Creating and Editing tasks
 By clicking the _Edit_ button (top right corner). You'll enter the **edit mode** that allows you to create, delete, update and move tasks
@@ -46,32 +54,10 @@ While editing/creating a new tasks, you should add a _name_ to the task and a _c
 
 The tasks can be deleted by clicking the _Delete_ button. In this mode you can also move tasks (clicking on the drag handle), reorder suites, create suites (+ button), delete and rename suites and tasks (through the [context menu](#context-menu))
 
-### Executing tasks
-On each suite, you will find the list of possible tasks to launch. By clicking on _Run_ you will start that task. Clicking the same button again (now the _Stop_ button) will stop the task.
-
-You can easily see the _name_, _execution time_ and _status_ of each task. The _status_ (shown with the status icon) can be _idle_ (black), _running_ (blue), _successful_ (green) or _failed_ (red).
-
-Clicking in the task name the _log_ will be displayed, allowing you to check the task output in real time.
-
-A task can also be scheduled through the [context menu](#context-menu). This menu also allows to perform some of the actions described above.
-
-### Context Menu
-
-The Context menu can be accessed by clicking on the secondary button of the mouse, depending on where is clicked (task or suite), different actions will appear. These actions will not change whether you are in edit mode or not.
-
-### Main Menu
-Next to the edit button, is the menu button. When clicking the menu, several options will be shown, those options may change depending if the edit mode is active or not. This menu allows you to go to the settings menu, quit the application, or perform actions over the current selected suite.
-
-### User and Tasks Configuration
-All tasks and user changes are saved automatically on real time. This includes all the tasks/suites information as well as the window size.
-
-### Settings
-In the settings menu, you'll be able to configure how Gaucho looks (themes and some display options). You can also export and import all your suites to a file (useful to share or sync tasks between multiple Gaucho applications). Keep in mind that importing tasks will delete all currently existing tasks
-
 ## Development
 If you want to contribute to Gaucho, create a new different version of Gaucho, or compile it from source code, follow these instructions.
 
-> Node 10.16.0 or higher recommeded
+> Check the [Official docs](https://angrykoala.github.io/gaucho/docs/advanced-guides/build-from-source) for the updated intructions.
 
 Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ already installed in your system:
 
@@ -88,15 +74,14 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 * To install snap version locally: `snap install --dangerous gaucho_0.6.3_amd64.deb`
 * Use `npm run pack` to execute a lightweight built with just the basic version of your OS
 
-**Release to snap:**
+**Release to snap (only for collaborators):**
 1. snapcraft login
 2. snapcraft upload Gaucho_0.6.0_amd64.snap --release=stable
 
-> Only for collaborators!!
 
 ### Troubleshooting
 
-Check [Troubleshooting Page](https://github.com/angrykoala/gaucho/wiki/Common-Issues)
+Check [Troubleshooting Page](https://angrykoala.github.io/gaucho/docs/troubleshooting)
 
 ## Acknowledgments
 
@@ -108,7 +93,4 @@ Gaucho is being developed and maintained as Open-Source software by @angrykoala 
 
 The original source code can be found at: <https://github.com/angrykoala/gaucho>
 
-> You can find more information about Gaucho in the [official wiki](https://github.com/angrykoala/gaucho/wiki)
-
-
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/gaucho)
+> You can find more information about Gaucho License [here](https://angrykoala.github.io/gaucho/license)
