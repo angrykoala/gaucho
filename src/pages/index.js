@@ -49,8 +49,9 @@ export default function Home() {
           <li><a href="docs/getting-started/creating-tasks">Configure and run your tasks</a></li>
           <li><a href="docs/features/suites">Organize your scripts</a></li>
           <li><a href="docs/features/export-tasks">Export and import tasks</a></li>
-          <li><a href="docs/features/settings#themes">Themes</a></li>
           <li><a href="docs/features/schedule-tasks">Schedule tasks</a></li>
+          <li><a href="docs/features/env-variables">Manager env variables</a></li>
+          <li><a href="docs/features/settings#themes">Themes</a></li>
           <li><a href="download">Available for Linux, Windows and Mac</a></li>
           <li><a href="docs/license">Open Source</a></li>
         </ul>

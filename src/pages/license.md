@@ -2,7 +2,9 @@
 hide_table_of_contents: true
 ---
 # License
-Gaucho is open-source, licensed under [GPL-3.0](https://github.com/angrykoala/gaucho/blob/master/LICENSE).
+Gaucho is being developed and maintained as Open-Source software by @angrykoala (https://github.com/angrykoala) licensed under [GNU GENERAL PUBLIC LICENSE version 3](https://github.com/angrykoala/gaucho/blob/master/LICENSE)
+
+The original source code can be found at: <https://github.com/angrykoala/gaucho>
 
 ## Docs and content License
 All documentation, logos, and art are under CC-BY-SA license (unless specified).
