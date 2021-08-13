@@ -57,3 +57,4 @@ public/
 gtask.json
 
 .docusaurus
+build/
