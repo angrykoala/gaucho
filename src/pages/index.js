@@ -35,10 +35,13 @@ export default function Home() {
       <main>
       <div className={clsx("container", styles.description)}>
         <p>
-          Gaucho is an open-source, customizable task launcher to run your apps, commands or scripts.<br/>
-          Configure your commands and run them in a non-intrusive interface. Say goodbye to dozens of terminals.<br/>
-          Check our <a href="docs/intro">documentation</a> to get started.
-        </p>
+          Gaucho is an open-source, customizable task launcher to run your apps, commands or scripts.
+        </p><p>
+          Do you run the same commands every time?<br/>
+          Gaucho allows you to configure your commands once and run them in a non-intrusive interface.<br/>
+          Say goodbye to dozens of terminals.
+          </p>
+          <p>Check our <a href="docs/intro">documentation</a> to get started.</p>
         <hr/>
       </div>
         <HomepageFeatures />
@@ -50,7 +53,7 @@ export default function Home() {
           <li><a href="docs/features/suites">Organize your scripts</a></li>
           <li><a href="docs/features/export-tasks">Export and import tasks</a></li>
           <li><a href="docs/features/schedule-tasks">Schedule tasks</a></li>
-          <li><a href="docs/features/env-variables">Manager env variables</a></li>
+          <li><a href="docs/features/env-variables">Manage env variables</a></li>
           <li><a href="docs/features/settings#themes">Themes</a></li>
           <li><a href="download">Available for Linux, Windows and Mac</a></li>
           <li><a href="docs/license">Open Source</a></li>

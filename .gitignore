@@ -48,3 +48,4 @@ resources/
 .cache
 .docusaurus
 build/
+task.json

@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Gaucho',
-  tagline: 'Minimalist Task Launcher',
+  tagline: 'Remove Unnecesary Terminals',
   url: 'https://angrykoala.github.io',
   baseUrl: '/gaucho/',
   onBrokenLinks: 'throw',

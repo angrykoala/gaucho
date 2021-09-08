@@ -1,5 +1,5 @@
 # Env Variables
-Environment variables can be set for each task, or globally. By default, your own system usual env variables will be set when running
+Environment variables can be set for each task or globally. By default, your own system env variables will be set when running
 a task, but extra variables can be added or overridden.
 
 ## Adding env variables to a task
@@ -17,5 +17,5 @@ Env variables can be set to be used on **all** tasks. These can be configured in
 
 
 :::note
-Neither task or global env variables will change your system variables These variables are **only** used within Gaucho.
+Neither task or global env variables will change your system variables. These variables are **only** used within Gaucho.
 :::

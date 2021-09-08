@@ -4,7 +4,7 @@ hide_table_of_contents: true
 ---
 
 # Introduction
-Gaucho is a **task launcher** designed to remove unnecessary terminals and run one-of tasks and background processes.
+Gaucho is a **minimalist task launcher** designed to remove unnecessary terminals and run one-of tasks and background processes.
 
 This documentation details how to get started with Gaucho and its features.
 * First time using Gaucho? Check [Getting Started](/docs/getting-started/installation).
