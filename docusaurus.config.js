@@ -10,11 +10,16 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'angrykoala', // Usually your GitHub org/user name.
-  projectName: 'gaucho', // Usually your repo name.
+  organizationName: 'angrykoala',
+  projectName: 'gaucho',
+  plugins: ['@docusaurus/plugin-google-analytics'],
   themeConfig: {
+    googleAnalytics: {
+      trackingID: 'UA-208890788-1',
+      anonymizeIP: true,
+    },
     colorMode: {
-      disableSwitch:true
+      disableSwitch: true
     },
     navbar: {
       title: 'Gaucho',
@@ -86,5 +91,5 @@ module.exports = {
         },
       },
     ],
-  ],
+  ]
 };

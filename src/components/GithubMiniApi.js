@@ -1,5 +1,5 @@
 export default {
-  getLastRelease(){ //TODO use latest when not pre-release
+  getLastRelease(){
     return fetch("https://api.github.com/repos/angrykoala/gaucho/releases/latest", {
       headers:{
         Accept: "application/vnd.github.v3+json",
