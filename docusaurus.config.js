@@ -12,7 +12,6 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'angrykoala',
   projectName: 'gaucho',
-  plugins: ['@docusaurus/plugin-google-analytics'],
   themeConfig: {
     googleAnalytics: {
       trackingID: 'UA-208890788-1',
