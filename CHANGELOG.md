@@ -2,6 +2,7 @@
 ==================
 
 * New update available message!
+* Fix visual issue in rename modal
 
 1.0.0 / 2021-08-09
 ==================
