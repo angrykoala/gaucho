@@ -9,6 +9,9 @@
             </div>
             <div class="navbar-menu is-active">
                 <div class="navbar-end">
+                    <div class="navbar-item">
+                        <update-message></update-message>
+                    </div>
                     <a :class="{selected: editMode}" class="navbar-item" @click.prevent="toggleEdit">
                         <span class="icon">
                             <i class="fas fa-edit" title="Edit"></i>
@@ -37,7 +40,8 @@ const aboutModal = require('../../api/about_modal');
 
 const components = {
     "navbar-menu": require('./navbar_menu.vue'),
-    "suite-tabs": require('./suite_tabs.vue')
+    "suite-tabs": require('./suite_tabs.vue'),
+    "update-message": require('./update_message.vue')
 };
 
 
