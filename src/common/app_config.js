@@ -17,7 +17,8 @@ const defaultUserConfig = {
     maximized: false,
     bottomBar: true,
     showTimer: true,
-    theme: "classic"
+    theme: "classic",
+    checkUpdates: true
 };
 
 // Just for basic offuscation of the config file

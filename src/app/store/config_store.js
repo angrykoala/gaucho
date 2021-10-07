@@ -8,7 +8,8 @@ module.exports = {
     state: {
         bottomBar: appConfig.get("bottomBar"),
         showTimer: appConfig.get("showTimer"),
-        theme: appConfig.get("theme")
+        theme: appConfig.get("theme"),
+        checkUpdates: appConfig.get("checkUpdates")
     },
     mutations: {
         setBottomBar(state, value) {
@@ -22,6 +23,10 @@ module.exports = {
         setTheme(state, value) {
             appConfig.set("theme", value);
             state.theme = value;
+        },
+        setCheckUpdates(state, value) {
+            appConfig.set("checkUpdates", value)
+            state.checkUpdates = value
         }
     }
 };

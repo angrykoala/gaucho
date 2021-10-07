@@ -14,6 +14,7 @@
                     <div class="settings-menu-section">
                         <checkbox-item v-model="bottomBar" label="Bottom bar"></checkbox-item>
                         <checkbox-item v-model="showTimer" label="Show timer"></checkbox-item>
+                        <checkbox-item v-model="checkUpdates" label="Check for updates"></checkbox-item>
                         <theme-selector v-model="theme"></theme-selector>
                     </div>
                 </settings-section>
@@ -83,6 +84,14 @@ module.exports = {
             },
             set(newTimer) {
                 this.$store.commit("setShowTimer", newTimer);
+            }
+        },
+        checkUpdates: {
+            get() {
+                return this.$store.state.userConfig.checkUpdates;
+            },
+            set(newCheckUpdates) {
+                this.$store.commit("setCheckUpdates", newCheckUpdates);
             }
         },
         envVariablesTitle() {
