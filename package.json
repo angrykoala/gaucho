@@ -51,7 +51,7 @@
     "productName": "Gaucho",
     "copyright": "Copyright © 2021 ${author}",
     "linux": {
-      "artifactName": "${productName} Linux ${version}.${ext}",
+      "artifactName": "${productName}_Linux_${version}.${ext}",
       "executableName": "gaucho",
       "target": [
         "deb",
@@ -62,14 +62,14 @@
       "category": "Utility"
     },
     "win": {
-      "artifactName": "${productName} Windows ${version}.${ext}",
+      "artifactName": "${productName}_Windows_${version}.${ext}",
       "target": [
         "portable",
         "nsis"
       ]
     },
     "mac": {
-      "artifactName": "${productName} MacOS ${version}.${ext}",
+      "artifactName": "${productName}_MacOS_${version}.${ext}",
       "target": [
         "zip"
       ],
