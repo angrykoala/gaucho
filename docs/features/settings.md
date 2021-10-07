@@ -10,8 +10,9 @@ Gaucho has some options and actions in the _"Settings"_ menu; you can access thi
 ## Display
 In display options, you can customize Gaucho interface.
 
-* **Bottom Bar**: Display the bottom bar with information about running and total tasks.
-* **Show Timer**: Display each task execution time.
+* **Bottom bar**: Display the bottom bar with information about running and total tasks.
+* **Show timer**: Display each task execution time.
+* **Check for updates**: Checks for a newer version of Gaucho on startup. If a newer version is available, an icon will appear on the navbar.
 
 ### Themes
 Gaucho has 3 themes to choose from:

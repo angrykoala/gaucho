@@ -26,12 +26,15 @@ return os
 
 
 function AssetLink({name,browser_download_url}) {
+  const formattedName=name.replace(/\_/g, " ").replace(/gaucho/ig, "")
+
+
   return (
     <li>
     <Link
       className={clsx("button primary-button button--lg",styles.downloadButton)}
       to={browser_download_url}>
-      {name}
+      {formattedName}
     </Link>
     </li>
   )
