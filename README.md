@@ -7,4 +7,4 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 * npm start
 
 ## Deploy
-* npm run deploy
+* npm run deploy - This will deploy to GitHub pages (branch gh-pages)
