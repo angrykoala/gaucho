@@ -4,6 +4,8 @@
 * New update available message!
 * Fix visual issue in rename modal
 * Fix minor error in which task timer would be stopped twice
+* Build configuration updated and filenames changed
+* Links to webpage updated
 
 1.0.0 / 2021-08-09
 ==================
