@@ -152,6 +152,9 @@ module.exports = {
         duplicateTask() {
             this.$emit("duplicate");
         },
+        copyCommandTask() {
+            this.$emit("copy-command");
+        },
         context() {
             const cardMenu = new ContextMenu.CardMenu(this.task);
             cardMenu.on("delete", () => {
@@ -172,6 +175,9 @@ module.exports = {
             });
             cardMenu.on("duplicate", () => {
                 this.duplicateTask();
+            });
+            cardMenu.on("copy-command", () => {
+                this.copyCommandTask();
             });
             cardMenu.toggle();
         }
