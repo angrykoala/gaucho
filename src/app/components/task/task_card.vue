@@ -152,7 +152,7 @@ module.exports = {
         duplicateTask() {
             this.$emit("duplicate");
         },
-        copyCommandTask() {
+        copyTaskCommand() {
             this.$emit("copy-command");
         },
         context() {
@@ -177,7 +177,7 @@ module.exports = {
                 this.duplicateTask();
             });
             cardMenu.on("copy-command", () => {
-                this.copyCommandTask();
+                this.copyTaskCommand();
             });
             cardMenu.toggle();
         }

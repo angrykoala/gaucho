@@ -5,7 +5,7 @@
                 <task-card
                     :key="index" :task="task" :index="index" :open="selectedTask===index"
                     @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"
-                    @duplicate="duplicateTask(index)" @copy-command="copyCommandTask(index)"
+                    @duplicate="duplicateTask(index)" @copy-command="copyTaskCommand(index)"
                 >
                 </task-card>
             </template>
@@ -126,7 +126,7 @@ module.exports = {
                 task: index
             });
         },
-        copyCommandTask(index) {
+        copyTaskCommand(index) {
             const task = this.currentSuiteTasks[index];
             clipboard.writeText(task.command);
         }
