@@ -133,9 +133,13 @@ class CardMenu extends DefaultContextMenu {
         }
         super(items.concat([{
             label: "Delete",
-            event: "delete"}, {
+            event: "delete"
+        }, {
             label: "Duplicate",
             event: "duplicate"
+        }, {
+            label: "Copy Command",
+            event: "copy-command"
         }, {
             type: "separator"
         }]));
