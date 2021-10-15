@@ -12,7 +12,6 @@ In display options, you can customize Gaucho interface.
 
 * **Bottom bar**: Display the bottom bar with information about running and total tasks.
 * **Show timer**: Display each task execution time.
-* **Check for updates**: Checks for a newer version of Gaucho on startup. If a newer version is available, an icon will appear on the navbar.
 
 ### Themes
 Gaucho has 3 themes to choose from:
@@ -37,3 +36,10 @@ The following actions can be performed from the buttons in the _"settings"_ menu
 You can configure global [environment variables](/docs/features/env-variables) for all your tasks here. Variables defined on each task will have **more** priority than global variables.
 
 ![Global Env Variables](/img/docs/global_env_variables.png)
+
+## About
+The following section displays information about Gaucho.
+
+* **Check for updates**: Checks for a newer version of Gaucho on startup. If a newer version is available, an icon will appear on the navbar.
+
+![About](/img/docs/gaucho_settings_about.png)
