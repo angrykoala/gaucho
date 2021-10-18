@@ -12,7 +12,6 @@ In display options, you can customize Gaucho interface.
 
 * **Bottom bar**: Display the bottom bar with information about running and total tasks.
 * **Show timer**: Display each task execution time.
-* **Check for updates**: Checks for a newer version of Gaucho on startup. If a newer version is available, an icon will appear on the navbar.
 
 ### Themes
 Gaucho has 3 themes to choose from:
@@ -25,6 +24,13 @@ Gaucho has 3 themes to choose from:
 ![Themes](/img/docs/themes.png)
 
 You can create custom themes by following the instructions in [Custom Themes](/docs/advanced-guides/custom-themes) and [Rebuilding Gaucho](/docs/advanced-guides/build-from-source).
+
+## Other
+The following section displays information about Gaucho.
+
+* **Check for updates**: Checks for a newer version of Gaucho on startup. If a newer version is available, an icon will appear on the navbar.
+
+![Other](/img/docs/gaucho_settings_other.png)
 
 ## Actions
 The following actions can be performed from the buttons in the _"settings"_ menu:
