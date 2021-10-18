@@ -78,7 +78,7 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 1. snapcraft login
 2. snapcraft upload Gaucho_0.6.0_amd64.snap --release=stable
 
-#### For Contributing to Docs:
+### Contributing to Docs:
 > Production Docs at https://angrykoala.github.io/gaucho/
 > Docs built using https://docusaurus.io/.
 ##### Instructions:
