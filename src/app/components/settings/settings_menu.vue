@@ -14,9 +14,18 @@
                     <div class="settings-menu-section">
                         <checkbox-item v-model="bottomBar" label="Bottom bar"></checkbox-item>
                         <checkbox-item v-model="showTimer" label="Show timer"></checkbox-item>
-                        <checkbox-item v-model="checkUpdates" label="Check for updates"></checkbox-item>
                         <theme-selector v-model="theme"></theme-selector>
                     </div>
+                </settings-section>
+
+                <hr>
+
+                <settings-section title="Other" :collapsable="false">
+                    <h2 class="settings-current-version">
+                        <strong>Gaucho</strong> - Version {{currentVersion}}
+                    </h2>
+
+                    <checkbox-item v-model="checkUpdates" label="Check for updates"></checkbox-item>
                 </settings-section>
 
                 <hr>
@@ -96,6 +105,9 @@ module.exports = {
         },
         envVariablesTitle() {
             return `Global Env Variables (${this.envVariables.length - 1})`;
+        },
+        currentVersion() {
+            return this.$store.getters.version;
         }
     },
     methods: {
@@ -138,9 +150,9 @@ module.exports = {
     margin-top: 15px;
 }
 
-.settings-subtitle {
+.settings-current-version {
     font-size: 15px;
     color: #9e9e9e;
-    margin-top: 25px;
+    margin-bottom: 10px;
 }
 </style>
