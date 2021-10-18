@@ -79,28 +79,22 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 2. snapcraft upload Gaucho_0.6.0_amd64.snap --release=stable
 
 ### Contributing to Docs:
-> Production Docs at https://angrykoala.github.io/gaucho/
-> Docs built using https://docusaurus.io/.
-##### Instructions:
-* The docs branch is https://github.com/angrykoala/gaucho/tree/docs.
+> Gaucho Docs can be found at <https://angrykoala.github.io/gaucho/>.
+
+> Gaucho Docs built using https://docusaurus.io/.
+#### Instructions:
+> The docs branch is https://github.com/angrykoala/gaucho/tree/docs.
 * Commands for Development:
-   * npm install
-   * npm docusaurus,
-   * npm start
-   * npm run build
-   * npm run swizzle
-   * npm run deploy
-   * npm run clear
-   * npm run serve
-   * npm run write-translations
-   * npm run write-heading-ids
+   * `npm install` to install dependencies for project.
+   * `npm start` start to run docusaurus locally in port 3000
+  
 * Folders:
    * /docs: Docs pages corresponding to items in menu(introduction,getting started etc) on Docs page.
    * /src/pages: Pages for each item in page menu.
 
-**Modifications to Docs should be done against /docs branch.**
+> Modifications to Docs should be done against /docs branch.
 * Instructions to deploy (only for collaborators):
-   * npm serve will upload source code to https://github.com/angrykoala/gaucho/tree/gh-pages)
+   * `npm deploy` will upload source code to https://github.com/angrykoala/gaucho/tree/gh-pages
 
 ### Troubleshooting
 
