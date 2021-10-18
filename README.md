@@ -92,7 +92,7 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 
 > Modifications to Docs should be done against [/docs][docsurl] branch.
 * Instructions to deploy (only for collaborators):
-   * `npm deploy` will upload source code to https://github.com/angrykoala/gaucho/tree/gh-pages
+   * `npm deploy` will upload source code to <https://github.com/angrykoala/gaucho/tree/gh-pages>
 
 ### Troubleshooting
 
