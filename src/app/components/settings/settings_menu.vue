@@ -20,6 +20,16 @@
 
                 <hr>
 
+                <settings-section title="Other" :collapsable="false">
+                    <h2 class="settings-current-version">
+                        <strong>Gaucho</strong> - Version {{currentVersion}}
+                    </h2>
+
+                    <checkbox-item v-model="checkUpdates" label="Check for updates"></checkbox-item>
+                </settings-section>
+
+                <hr>
+
                 <settings-section title="Actions" :collapsable="false">
                     <settings-actions @resetSettings="resetSettings"></settings-actions>
                 </settings-section>
@@ -30,14 +40,6 @@
 
                 <settings-section title="Shortcuts" :collapsable="true">
                     <shortcuts-cheatsheet></shortcuts-cheatsheet>
-                </settings-section>
-
-                <settings-section title="About" :collapsable="true">
-                    <h2 class="settings-current-version">
-                        <strong>Gaucho</strong> - Version {{currentVersion}}
-                    </h2>
-
-                    <checkbox-item v-model="checkUpdates" label="Check for updates"></checkbox-item>
                 </settings-section>
             </div>
         </div>
