@@ -83,15 +83,15 @@ Clone/download source code from the GitHub. Make sure you have _node_ and _npm_ 
 #### Instructions:
 The docs branch is [/docs][docsurl].Modifications to Docs should be done against [/docs][docsurl] branch.
 
-#### Commands for Development:
+Commands for Development:
    * `npm install` to install dependencies for project.
    * `npm start` start to run docusaurus locally in port 3000
   
-#### Folders:
+Folders:
    * /docs: Docs pages corresponding to items in menu(introduction,getting started etc) on Docs page.
    * /src/pages: Pages for each item in page menu.
 
-#### Instructions to deploy (only for collaborators):
+Instructions to deploy (only for collaborators):
    * `npm deploy` will upload source code to <https://github.com/angrykoala/gaucho/tree/gh-pages>
 
 ### Troubleshooting
