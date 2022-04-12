@@ -58,3 +58,4 @@ gtask.json
 
 .docusaurus
 build/
+.parcel-cache
