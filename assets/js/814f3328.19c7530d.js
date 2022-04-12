@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgaucho_website=self.webpackChunkgaucho_website||[]).push([[535],{6353:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Gaucho 1.1.0","permalink":"/gaucho/blog/release-1-1-0"}]}')}}]);

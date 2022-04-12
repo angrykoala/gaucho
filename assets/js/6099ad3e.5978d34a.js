@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgaucho_website=self.webpackChunkgaucho_website||[]).push([[789],{6818:function(a){a.exports=JSON.parse('{"allTagsPath":"/gaucho/blog/tags","slug":"1-1-0","name":"1.1.0","count":1,"permalink":"/gaucho/blog/tags/1-1-0"}')}}]);

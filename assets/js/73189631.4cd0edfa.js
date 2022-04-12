@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgaucho_website=self.webpackChunkgaucho_website||[]).push([[775],{5561:function(e){e.exports=JSON.parse('{"allTagsPath":"/gaucho/blog/tags","slug":"release","name":"release","count":1,"permalink":"/gaucho/blog/tags/release"}')}}]);

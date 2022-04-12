@@ -4,15 +4,15 @@
         <title>Gaucho Blog</title>
         <link>https://angrykoala.github.io/gaucho/blog</link>
         <description>Gaucho Blog</description>
-        <lastBuildDate>Mon, 09 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 Apr 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
-            <title><![CDATA[You shouldn't be here]]></title>
-            <link>https://angrykoala.github.io/gaucho/blog/hello-there</link>
-            <guid>hello-there</guid>
-            <pubDate>Mon, 09 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Hi, you seem lost, please go to the Main Page and stop messing with the url. Here is a koala to help you.]]></description>
+            <title><![CDATA[Gaucho 1.1.0]]></title>
+            <link>https://angrykoala.github.io/gaucho/blog/release-1-1-0</link>
+            <guid>release-1-1-0</guid>
+            <pubDate>Tue, 12 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Gaucho 1.1.0 is here! Download]]></description>
         </item>
     </channel>
 </rss>
