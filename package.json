@@ -1,10 +1,10 @@
 {
   "name": "gaucho",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Minimalistic task launcher",
   "main": "main.js",
   "dependencies": {
-    "@electron/remote": "^1.2.1",
+    "@electron/remote": "^2.0.8",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "ansi-to-html": "^0.7.2",
     "electron-store": "^8.0.0",
@@ -28,9 +28,9 @@
     "eslint-plugin-vue": "^7.16.0",
     "mocha": "^9.0.3",
     "parcel": "^1.12.4",
-    "sass": "^1.37.5",
-    "shx": "^0.3.3",
-    "sinon": "^11.1.2",
+    "sass": "^1.50.0",
+    "shx": "^0.3.4",
+    "sinon": "^13.0.1",
     "vue-template-compiler": "^2.6.14"
   },
   "scripts": {
@@ -41,7 +41,7 @@
     "eslint": "eslint main.js src tests --ext .vue --ext .js",
     "eslint-fix": "eslint main.js src tests --ext .vue --ext .js --fix",
     "dist": "npm run clean && npm run build && electron-builder && npm run post-dist",
-    "dist-all": "npm run clean && npm run build && electron-builder -wlm --x64 && shx rm -rf dist/*.yml && npm run post-dist",
+    "dist-all": "npm run clean && npm run build && electron-builder -wlm --x64 && npm run post-dist",
     "post-dist": "shx rm -rf dist/*.yml dist/*.yaml dist/*-unpacked dist/*.blockmap dist/mac/",
     "pack": "npm run build && shx rm -rf dist/ && electron-builder --dir",
     "clean": "shx rm -rf dist/ && shx rm -rf public/"
@@ -49,7 +49,7 @@
   "build": {
     "appId": "angrykoala.gaucho",
     "productName": "Gaucho",
-    "copyright": "Copyright © 2021 ${author}",
+    "copyright": "Copyright © 2022 ${author}",
     "linux": {
       "artifactName": "${productName}_Linux_${version}.${ext}",
       "executableName": "gaucho",
@@ -60,6 +60,9 @@
         "zip"
       ],
       "category": "Utility"
+    },
+    "nsis": {
+        "artifactName": "${productName}_Windows_Setup_${version}.${ext}"
     },
     "win": {
       "artifactName": "${productName}_Windows_${version}.${ext}",

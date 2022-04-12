@@ -15,9 +15,9 @@ jobs:
       - run: sudo apt install icnsutils graphicsmagick rpm wine-stable wine32
       - name: Build project
         run: npm run dist-all
+      - name: Upload files
+        uses: JasonEtco/upload-to-release@master
+        with:
+          args: dist/Gaucho*
         env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Upload files
-      #   uses: JasonEtco/upload-to-release@master
-      #   with:
-      #     args: dist/gaucho*
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

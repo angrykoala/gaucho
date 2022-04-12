@@ -9,7 +9,7 @@ module.exports = {
         bottomBar: appConfig.get("bottomBar"),
         showTimer: appConfig.get("showTimer"),
         theme: appConfig.get("theme"),
-        checkUpdates: appConfig.get("checkUpdates")
+        checkUpdates: process.env.NODE_ENV === "dev" ? false : appConfig.get("checkUpdates")
     },
     mutations: {
         setBottomBar(state, value) {

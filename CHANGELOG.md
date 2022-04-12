@@ -1,3 +1,13 @@
+1.1.0 / 2022-04-12
+==================
+
+* Copy-command action in context menu
+* Check for updates option is now outside of Display section
+* Fixed problem with task timer not stopping
+* Fixed missing Setup build for windows
+* Updates disabled by default on dev mode
+* Some minor dependencies updated
+
 1.0.1 / 2021-10-07
 ==================
 

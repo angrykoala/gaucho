@@ -5,7 +5,7 @@
                 <task-card
                     :key="index" :task="task" :index="index" :open="selectedTask===index"
                     @selected="selectTask(index)" @save="saveTask(index, $event)" @delete="deleteTask(index)"
-                    @duplicate="duplicateTask(index)"
+                    @duplicate="duplicateTask(index)" @copy-command="copyTaskCommand(index)"
                 >
                 </task-card>
             </template>
@@ -27,6 +27,7 @@ const components = {
     "draggable": require('vuedraggable')
 };
 
+const {clipboard} = require("electron");
 
 module.exports = {
     props: ["suite"],
@@ -124,6 +125,10 @@ module.exports = {
                 suite: this.suite,
                 task: index
             });
+        },
+        copyTaskCommand(index) {
+            const task = this.currentSuiteTasks[index];
+            clipboard.writeText(task.command);
         }
     }
 };
