@@ -53,11 +53,10 @@ class Task {
         (statusCode, out, err) => {
             onOutput(out);
             onOutput(err);
-            console.log("ON TASK FINISH CALLBACK")
             if (this.status !== TaskStatus.stopped){
                 this.status = yerbamate.successCode(statusCode) ? TaskStatus.ok : TaskStatus.error;
-                this.timer.stop();
             }
+            this.timer.stop();
             done();
         });
     }
