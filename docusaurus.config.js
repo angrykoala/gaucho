@@ -32,11 +32,11 @@ module.exports = {
           position: 'left',
           label: 'Docs',
         },
-        // {
-        //   to: '/blog',
-        //   label: 'Blog',
-        //   position: 'left'
-        // },
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left'
+        },
         {
           to: '/license',
           label: 'License',

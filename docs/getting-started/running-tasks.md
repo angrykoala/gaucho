@@ -51,3 +51,4 @@ By right-clicking on a task, a contextual menu will appear. This menu allows you
 * **Schedule**: With the schedule option, the tasks can be set to run at a certain time. Check [Schedule Tasks](/docs/features/schedule-tasks) for more info.
 * **Delete**: Will delete the task. This option is available anytime.
 * **Duplicate**: This option will create an identical task with a different name below the original. This new task can then be modified, moved or executed along with the original.
+* **Copy Command**: Will copy the command to the clipboard, without having to go to edit mode.
