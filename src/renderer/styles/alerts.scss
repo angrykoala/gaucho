@@ -1,0 +1,34 @@
+.swal2-popup {
+    button {
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    input {
+        &:focus{
+            box-shadow: none;
+            outline: none;
+            border: 1px solid #d9d9d9;
+        }
+    }
+
+    .time-input {
+        display: flex;
+        justify-content: center;
+
+        .swal2-input{
+            margin: 0;
+            &.hours {
+                margin-right: 8px;
+            }
+            &.minutes {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .swal2-checkbox {
+      margin: 1.5em 0 0;
+    }
+}
