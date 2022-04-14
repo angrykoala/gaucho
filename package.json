@@ -1,107 +1,29 @@
 {
   "name": "gaucho",
-  "version": "1.1.0",
-  "description": "Minimalistic task launcher",
-  "main": "main.js",
+  "version": "2.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron dist/main/main.js",
+    "build": "npm run clean && npm run build-main && npm run build-renderer",
+    "clean": "shx rm -rf dist/ .parcel-cache/ public/",
+    "build-main": "tsc",
+    "build-renderer": "parcel build --public-url ./ --dist-dir dist/public --no-source-maps src/renderer/index.html"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@electron/remote": "^2.0.8",
-    "@fortawesome/fontawesome-free": "^5.15.4",
-    "ansi-to-html": "^0.7.2",
-    "electron-store": "^8.0.0",
-    "mousetrap": "^1.6.5",
-    "semver": "^7.0.0",
-    "sweetalert2": "^11.1.2",
-    "vue": "^2.6.14",
-    "vue-clickaway": "^2.2.2",
-    "vuedraggable": "^2.24.3",
-    "vuex": "^3.6.2",
-    "yerbamate": "^3.0.0"
+    "electron": "^18.0.3",
+    "vue": "^3.2.33"
   },
   "devDependencies": {
-    "@vue/component-compiler-utils": "^3.2.2",
-    "bulma": "^0.9.3",
-    "chai": "^4.3.4",
-    "cross-env": "^7.0.3",
-    "electron": "~13.1.9",
-    "electron-builder": "^22.11.7",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^7.16.0",
-    "mocha": "^9.0.3",
-    "parcel": "^1.12.4",
-    "sass": "^1.50.0",
+    "@parcel/packager-ts": "^2.4.1",
+    "@parcel/transformer-typescript-tsc": "^2.4.1",
+    "@parcel/transformer-typescript-types": "^2.4.1",
+    "@parcel/transformer-vue": "^2.4.1",
+    "@types/node": "^17.0.24",
+    "parcel": "^2.4.1",
     "shx": "^0.3.4",
-    "sinon": "^13.0.1",
-    "vue-template-compiler": "^2.6.14"
-  },
-  "scripts": {
-    "start": "electron .",
-    "build": "shx rm -rf public/ && parcel build src/app/index.html --target electron --public-url ./ --out-dir public --no-source-maps",
-    "test": "cross-env NODE_ENV=test npm run build && mocha tests --recursive --exit",
-    "start-dev": "npm run build && cross-env NODE_ENV=dev npm start",
-    "eslint": "eslint main.js src tests --ext .vue --ext .js",
-    "eslint-fix": "eslint main.js src tests --ext .vue --ext .js --fix",
-    "dist": "npm run clean && npm run build && electron-builder && npm run post-dist",
-    "dist-all": "npm run clean && npm run build && electron-builder -wlm --x64 && npm run post-dist",
-    "post-dist": "shx rm -rf dist/*.yml dist/*.yaml dist/*-unpacked dist/*.blockmap dist/mac/",
-    "pack": "npm run build && shx rm -rf dist/ && electron-builder --dir",
-    "clean": "shx rm -rf dist/ && shx rm -rf public/"
-  },
-  "build": {
-    "appId": "angrykoala.gaucho",
-    "productName": "Gaucho",
-    "copyright": "Copyright © 2022 ${author}",
-    "linux": {
-      "artifactName": "${productName}_Linux_${version}.${ext}",
-      "executableName": "gaucho",
-      "target": [
-        "deb",
-        "AppImage",
-        "snap",
-        "zip"
-      ],
-      "category": "Utility"
-    },
-    "nsis": {
-        "artifactName": "${productName}_Windows_Setup_${version}.${ext}"
-    },
-    "win": {
-      "artifactName": "${productName}_Windows_${version}.${ext}",
-      "target": [
-        "portable",
-        "nsis"
-      ]
-    },
-    "mac": {
-      "artifactName": "${productName}_MacOS_${version}.${ext}",
-      "target": [
-        "zip"
-      ],
-      "category": "public.app-category.developer-tools"
-    },
-    "directories": {
-      "buildResources": "build_resources"
-    }
-  },
-  "pre-commit": [
-    "test",
-    "clean"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/angrykoala/gaucho.git"
-  },
-  "keywords": [
-    "electron",
-    "task",
-    "launcher",
-    "yerbamate",
-    "gui",
-    "graphical"
-  ],
-  "author": "angrykoala <angrykoala@outlook.es>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/angrykoala/gaucho/issues"
-  },
-  "homepage": "https://github.com/angrykoala/gaucho#readme"
+    "typescript": "^4.6.3"
+  }
 }

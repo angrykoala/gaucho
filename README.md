@@ -1,7 +1,9 @@
-Gaucho
+Gaucho 2.0
 ======
 _by @angrykoala_    
 [![Build Status](https://travis-ci.org/angrykoala/gaucho.svg?branch=master)](https://travis-ci.org/angrykoala/gaucho)
+
+> WARNING: This branch is a Work in progress for gaucho 2
 
 > The Minimalist Task Launcher
 
@@ -86,7 +88,7 @@ The docs branch is [/docs][docsurl].Modifications to Docs should be done against
 Commands for Development:
    * `npm install` to install dependencies for project.
    * `npm start` start to run docusaurus locally in port 3000
-  
+
 Folders:
    * /docs: Docs pages corresponding to items in menu(introduction,getting started etc) on Docs page.
    * /src/pages: Pages for each item in page menu.

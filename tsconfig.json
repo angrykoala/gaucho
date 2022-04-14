@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "strict": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+    },
+    "files": [
+        "src/main/main.ts",
+        "src/preload.ts"
+    ],
+}
