@@ -8,7 +8,8 @@
     "build": "npm run clean && npm run build-main && npm run build-renderer",
     "clean": "shx rm -rf dist/ .parcel-cache/ public/",
     "build-main": "tsc",
-    "build-renderer": "parcel build --public-url ./ --dist-dir dist/public --no-source-maps src/renderer/index.html"
+    "build-renderer": "npm run lint-vue && parcel build --public-url ./ --dist-dir dist/public --no-source-maps src/renderer/index.html",
+    "lint-vue": "vue-tsc --noEmit src/**/*.vue"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "vue": "^3.2.33"
   },
   "devDependencies": {
+    "@babel/types": "^7.17.0",
     "@parcel/packager-ts": "^2.4.1",
     "@parcel/transformer-typescript-tsc": "^2.4.1",
     "@parcel/transformer-typescript-types": "^2.4.1",
@@ -24,6 +26,7 @@
     "@types/node": "^17.0.24",
     "parcel": "^2.4.1",
     "shx": "^0.3.4",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "vue-tsc": "^0.34.6"
   }
 }
