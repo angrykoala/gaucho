@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "module": "commonjs",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
@@ -9,6 +8,8 @@
         "strict": true,
         "esModuleInterop": true,
         "isolatedModules": true,
+        "allowSyntheticDefaultImports": true,
+        "module": "commonjs"
     },
     "files": [
         "src/main/main.ts",

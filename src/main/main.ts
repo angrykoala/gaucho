@@ -5,7 +5,6 @@ import path from 'path';
 
 const indexHtmlFile = path.join(__dirname, "../public/index.html");
 
-
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
