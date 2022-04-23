@@ -8,15 +8,15 @@ type TaskConstructorOptions = {
     path: string;
 }
 
-enum TASK_STATUS {
-    RUNNING = "running",
-    IDLE = "idle",
-    ERROR = "error",
-    STOPPED = "stopped",
-    OK = "OK"
+export enum TaskStatus {
+    running = "running",
+    idle = "idle",
+    error = "error",
+    stopped = "stopped",
+    ok = "ok"
 }
 
-type TaskEvent = "stdout" | "stderr" | "finished" | "error";
+type TaskEvent = "finished";
 
 type EventCallback = () => void
 
@@ -31,7 +31,7 @@ export class Task {
     private eventEmiter: EventEmitter;
 
     private _output: string = ""; // Output represents both, stdout and stderr
-    private _status: TASK_STATUS = TASK_STATUS.IDLE
+    private _status: TaskStatus = TaskStatus.idle
 
     constructor(options: TaskConstructorOptions) {
         this.title = options.title;
@@ -44,12 +44,12 @@ export class Task {
         return this._output;
     }
 
-    public get status(): TASK_STATUS {
+    public get status(): TaskStatus {
         return this._status;
     }
 
     public destroy(): void {
-        // this.eventEmiter.removeAllListeners();
+        this.eventEmiter.removeAllListeners();
         this.process = null;
     }
 
@@ -58,13 +58,20 @@ export class Task {
     }
 
     public run() {
-        this.process = yerbamate.run(this.command,{
-            stdout: (o)=>this.onOutput(o),
-            stderr: (o)=>this.onOutput(o),
+        this._status = TaskStatus.running;
+        this.process = yerbamate.run(this.command, {
+            stdout: (o) => this.onOutput(o),
+            stderr: (o) => this.onOutput(o),
             maxOutputSize: 1
         }, (code, _out, _err) => {
-            // this.output=out;
-            // this.
+            if (this.status !== TaskStatus.stopped) {
+                if (!yerbamate.isSuccessCode(code)) {
+                    this._status = TaskStatus.error
+                } else {
+                    this._status = TaskStatus.ok
+                }
+            }
+
             this.emit("finished");
         });
     }
@@ -75,7 +82,10 @@ export class Task {
                 return reject(new Error("Can't stop task: Process does not exists"));
             }
             yerbamate.stop(this.process, (err) => {
-                if (err) reject(err);
+                this._status = TaskStatus.stopped
+                if (err) {
+                    reject(err);
+                }
                 resolve();
             });
         })
